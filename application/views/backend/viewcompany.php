@@ -18,7 +18,7 @@
             </div>
         </div>
         <?php $this->chintantable->createpagination();?>
-            <div class="createbuttonplacement"><a class="btn-floating btn-large waves-effect waves-light blue darken-4 tooltipped" href="<?php echo site_url("site/createcompany"); ?>"data-position="top" data-delay="50" data-tooltip="Create"><i class="material-icons">add</i></a></div>
+            <div class="createbuttonplacement"><a class="btn-floating btn-large waves-effect waves-light blue darken-4 tooltipped" href="<?php echo site_url(" site/createcompany "); ?>"data-position="top" data-delay="50" data-tooltip="Create"><i class="material-icons">add</i></a></div>
     </div>
 </div>
 
@@ -33,72 +33,81 @@
                 console.log("abc");
                 alert2('Mail sent successfully!');
             });
-        }, function() {
+        }, function () {
             console.log("Cancel");
         });
     }
 
     function blockCompany(id) {
-             alert2('Are you sure want to block?', function () {
-            $.getJSON(new_base_url + '/site/blockCompany', {
+        alert2('Are you sure want to block?', function () {
+
+            $.get(new_base_url + '/site/blockCompany', {
                 id: id
             }, function (data) {
                 console.log("abc");
-                alert2('Successfully Blocked!');
+                Materialize.toast('Successfully Blocked!',2000);
+                $(".chintantablesearchgo").trigger("click");
             });
-        }, function() {
+        }, function () {
             console.log("Cancel");
         });
-//        var r = confirm("Are you sure want to block?");
-//        if (r == true) {
-//            console.log("Company ki lag gayi");
-//            var new_base_url = "<?php echo site_url(); ?>";
-//            $.getJSON(new_base_url + '/site/blockCompany', {
-//                id: id
-//            }, function (data) {
-//                console.log("abc");
-//                alert('Successfully Blocked');
-//            });
-//        } else {
-//            console.log("Clicked Cancel do nothing");
-//        }
+        //        var r = confirm("Are you sure want to block?");
+        //        if (r == true) {
+        //            console.log("Company ki lag gayi");
+        //            var new_base_url = "<?php echo site_url(); ?>";
+        //            $.getJSON(new_base_url + '/site/blockCompany', {
+        //                id: id
+        //            }, function (data) {
+        //                console.log("abc");
+        //                alert('Successfully Blocked');
+        //            });
+        //        } else {
+        //            console.log("Clicked Cancel do nothing");
+        //        }
 
     }
 
     function unBlockCompany(id) {
-         alert2('Are you sure want to Un block?', function () {
-            $.getJSON(new_base_url + '/site/unBlockCompany', {
+        alert2('Are you sure want to Un block?', function () {
+            $.get(new_base_url + '/site/unBlockCompany', {
                 id: id
             }, function (data) {
                 console.log("abc");
-                alert2('Successfully Un Blocked!');
+                Materialize.toast('Successfully Unblocked!',2000);
+                $(".chintantablesearchgo").trigger("click");
             });
-        }, function() {
+        }, function () {
             console.log("Cancel");
         });
-//        var r = confirm("Are you sure want to Un block?");
-//        if (r == true) {
-//            console.log("Company ki lag gayi");
-//            var new_base_url = "<?php echo site_url(); ?>";
-//            $.getJSON(new_base_url + '/site/unBlockCompany', {
-//                id: id
-//            }, function (data) {
-//                console.log("abc");
-//                alert('Successfully Blocked');
-//            });
-//        } else {
-//            console.log("Clicked Cancel do nothing");
-//        }
+        //        var r = confirm("Are you sure want to Un block?");
+        //        if (r == true) {
+        //            console.log("Company ki lag gayi");
+        //            var new_base_url = "<?php echo site_url(); ?>";
+        //            $.getJSON(new_base_url + '/site/unBlockCompany', {
+        //                id: id
+        //            }, function (data) {
+        //                console.log("abc");
+        //                alert('Successfully Blocked');
+        //            });
+        //        } else {
+        //            console.log("Clicked Cancel do nothing");
+        //        }
 
     }
 </script>
 <script>
     function drawtable(resultrow) {
         var blockfuncname = "blockCompany";
-                if (resultrow.isblock == 1) {
-                    blockfuncname = "unBlockCompany";
-                }
-        return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.name + "</td><td>" + resultrow.email + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad tooltipped' href='<?php echo site_url('site/editcompany?id=');?>" + resultrow.id + "' data-position='top' data-delay='50' data-tooltip='Edit Company'><i class='fa fa-pencil propericon'></i></a><a class='btn btn-danger btn-xs waves-effect waves-light black pad10 z-depth-0 less-pad tooltipped' href='<?php echo base_url();?>" + resultrow.id + "/index.php/login/validatemasterto'  target='_blank' data-position='top' data-delay='50' data-tooltip='Change Password'><i class='material-icons propericon'>lock_open</i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad tooltipped' onclick=\"" + blockfuncname + "(\'" + resultrow.id + "\')\" data-position='top' data-delay='50' data-tooltip='Block Company'><i class='material-icons propericon'>not_interested</i></a><a class='btn btn-danger btn-xs waves-effect waves-light pink pad10 z-depth-0 less-pad tooltipped' onclick=\"sendEmail(\'" + resultrow.id + "\')\" data-position='top' data-delay='50' data-tooltip='Resend Email'><i class='material-icons propericon'>replay</i></a><a class='btn btn-danger btn-xs waves-effect waves-light purple pad10 z-depth-0 less-pad tooltipped' href='<?php echo site_url('site/viewInterlinkage?id='); ?>" + resultrow.id + "' target='_blank' data-position='top' data-delay='50' data-tooltip='Interlinkage'><i class='material-icons propericon'>repeat</i></a><a class='btn btn-danger btn-xs waves-effect waves-light green pad10 z-depth-0 less-pad tooltipped'  href='<?php echo base_url();?>" + resultrow.id + "/index.php/login/validatemaster' target='_blank' data-position='top' data-delay='50' data-tooltip='Provide Access'><i class='material-icons propericon'>vpn_key</i></a></td></tr>";
+        var blockTitle = "Block Company";
+        var blockIcon = "not_interested";
+        var blockIconColor = "waves-light red";
+        if (resultrow.isblock == 1) {
+            blockfuncname = "unBlockCompany";
+            blockTitle = "Unblock Company";
+            blockIcon = "verified_user";
+            blockIconColor = "waves-light green";
+        }
+        return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.name + "</td><td>" + resultrow.email + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad tooltipped' href='<?php echo site_url('site/editcompany?id=');?>" + resultrow.id + "' data-position='top' data-delay='50' data-tooltip='Edit Company'><i class='fa fa-pencil propericon'></i></a><a class='btn btn-danger btn-xs waves-effect waves-light black pad10 z-depth-0 less-pad tooltipped' href='<?php echo base_url();?>" + resultrow.id + "/index.php/login/validatemasterto'  target='_blank' data-position='top' data-delay='50' data-tooltip='Change Password'><i class='material-icons propericon'>lock_open</i></a><a class='btn btn-danger btn-xs waves-effect "+blockIconColor+" pad10 z-depth-0 less-pad tooltipped' onclick=\"" + blockfuncname + "(\'" + resultrow.id + "\')\" data-position='top' data-delay='50' data-tooltip='" + blockTitle + "'><i class='material-icons propericon'>"+blockIcon+"</i></a><a class='btn btn-danger btn-xs waves-effect waves-light pink pad10 z-depth-0 less-pad tooltipped' onclick=\"sendEmail(\'" + resultrow.id + "\')\" data-position='top' data-delay='50' data-tooltip='Resend Email'><i class='material-icons propericon'>replay</i></a><a class='btn btn-danger btn-xs waves-effect waves-light purple pad10 z-depth-0 less-pad tooltipped' href='<?php echo site_url('site/viewInterlinkage?id='); ?>" + resultrow.id + "' target='_blank' data-position='top' data-delay='50' data-tooltip='Interlinkage'><i class='material-icons propericon'>repeat</i></a><a class='btn btn-danger btn-xs waves-effect waves-light green pad10 z-depth-0 less-pad tooltipped'  href='<?php echo base_url();?>" + resultrow.id + "/index.php/login/validatemaster' target='_blank' data-position='top' data-delay='50' data-tooltip='Provide Access'><i class='material-icons propericon'>vpn_key</i></a></td></tr>";
     }
     generatejquery("<?php echo $base_url;?>");
 </script>
