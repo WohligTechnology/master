@@ -18,7 +18,7 @@
 <input type="email" id="Email" name="email" value='<?php echo set_value('email',$before->email);?>'>
 </div>
 </div>
-<div class="row">
+<div class="row" style="display:none">
 <div class="input-field col s6">
 <label for="Package">Package</label>
 <input type="text" id="Package" name="package" value='<?php echo set_value('package',$before->package);?>'>
@@ -32,3 +32,32 @@
 </div>
 </form>
 </div>
+<div class="row">
+<div class="col s12">
+<h4 class="pad-left-15 capitalize">Packages</h4>
+</div>
+<div class="col s12">
+<div class="row">
+<div class="col s12 drawchintantable">
+<table class="highlight responsive-table">
+<thead>
+<tr>
+<th data-field="id">Id</th>
+<th data-field="Name">Package</th>
+<th data-field="startdate">Start Date</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<script>
+function drawtable(resultrow) {
+return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.name + "</td><td>" + resultrow.startdate + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/editcompanypackage?id=');?>"+resultrow.id+"&companyid="+resultrow.company+"'><i class='fa fa-pencil propericon'></i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/deletecompanypackage?id='); ?>"+resultrow.id+"&companyid="+resultrow.company+"'><i class='material-icons propericon'>delete</i></a></td></tr>";
+}
+generatejquery("<?php echo $base_url;?>");
+</script>
+

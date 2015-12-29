@@ -41,7 +41,7 @@
 				<label for="confirmpassword">Confirm Password</label>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="display:none">
 			<div class="input-field col m6 s12">
 				<label for="socialid">Social Id</label>
 				<input type="text" id="socialid" name="socialid" value="<?php echo set_value('socialid');?>">
@@ -53,7 +53,7 @@
 				<input type="text" id="phone" name="phone" value="<?php echo set_value('phone');?>">
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="display:none">
 			<div class="input-field col m6 s12">
 			<select id="logintype" name="logintype" id="" value="<?php echo set_value('logintype');?>">
 			    <option value="Email">Email</option>
@@ -193,7 +193,7 @@
 			</div>
 		</div>
 -->
-        <div class="row">
+        <div class="row" style="display:none">
 			<div class="input-field col m6 s12">
 				<label for="companyname">Company Name</label>
 				<input type="text" id="companyname" name="companyname" value="<?php echo set_value('companyname');?>">
@@ -225,12 +225,14 @@
 			</div>
 		</div> 
 -->
+<!--
 	   <div class="row">
 			<div class="input-field col m6 s12">
 				<?php echo form_dropdown( 'gender',$gender,set_value( 'gender')); ?>
 					<label>Gender</label>
 			</div>
 		</div>
+-->
 
 		<div class=" form-group">
 			<div class="row">

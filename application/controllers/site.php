@@ -51,7 +51,15 @@ class Site extends CI_Controller
 	{
 		$access = array("1","2");
 		$this->checkaccess($access);
-		$data[ 'page' ] = 'dashboard';
+         $accesslevelid=$this->session->userdata("accesslevel");
+        if($accesslevelid==2){
+            $data[ 'page' ] = 'createuser';
+        }
+        else{
+            $data[ 'page' ] = 'dashboard';
+        }
+		
+        $data['company']=$this->company_model->getcompanycount();
 		$data[ 'title' ] = 'Welcome';
 		$this->load->view( 'template', $data );	
 	}
@@ -275,9 +283,9 @@ class Site extends CI_Controller
 		$data[ 'logintype' ] =$this->user_model->getlogintypedropdown();
 		$data['before']=$this->user_model->beforeedit($this->input->get('id'));
 		$data['page']='edituser';
-		$data['page2']='block/userblock';
+//		$data['page2']='block/userblock';
 		$data['title']='Edit User';
-		$this->load->view('templatewith2',$data);
+		$this->load->view('template',$data);
 	}
 	function editusersubmit()
 	{
@@ -591,6 +599,11 @@ $elements[3]->field="`master_company`.`package`";
 $elements[3]->sort="1";
 $elements[3]->header="Package";
 $elements[3]->alias="package";
+$elements[4]=new stdClass();
+$elements[4]->field="`master_company`.`isblock`";
+$elements[4]->sort="1";
+$elements[4]->header="isblock";
+$elements[4]->alias="isblock";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -611,7 +624,7 @@ $this->load->view("json",$data);
 
 public function createcompany()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createcompany";
 $data["title"]="Create company";
@@ -619,7 +632,7 @@ $this->load->view("template",$data);
 }
 public function createcompanysubmit() 
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("name","Name","trim");
 $this->form_validation->set_rules("email","Email","trim");
@@ -646,16 +659,21 @@ $this->load->view("redirect",$data);
 }
 public function editcompany()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editcompany";
+$data["page2"]="block/companyblock";
+$data["base_url"]=site_url("site/viewcompanypackagejson");
+$data["before1"]=$this->input->get("id");
+$data["before2"]=$this->input->get("id");
 $data["title"]="Edit company";
 $data["before"]=$this->company_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$data["base_url"]=site_url("site/viewcompanypackagejson?id=".$this->input->get("id"));
+$this->load->view("templatewith2",$data);
 }
 public function editcompanysubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("name","Name","trim");
@@ -690,6 +708,381 @@ $this->checkaccess($access);
 $this->company_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewcompany";
 $this->load->view("redirect",$data);
+}
+    // PACKAGE
+    
+    public function viewpackage()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewpackage";
+$data["base_url"]=site_url("site/viewpackagejson");
+$data["title"]="View package";
+$this->load->view("template",$data);
+}
+function viewpackagejson()
+{
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`package`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="Id";
+$elements[0]->alias="id";
+$elements[1]=new stdClass();
+$elements[1]->field="`package`.`name`";
+$elements[1]->sort="1";
+$elements[1]->header="Name";
+$elements[1]->alias="name";
+$elements[2]=new stdClass();
+$elements[2]->field="`statuses`.`name`";
+$elements[2]->sort="1";
+$elements[2]->header="statusname";
+$elements[2]->alias="statusname";
+$elements[3]=new stdClass();
+$elements[3]->field="`package`.`startdate`";
+$elements[3]->sort="1";
+$elements[3]->header="startdate";
+$elements[3]->alias="startdate";
+
+$elements[4]=new stdClass();
+$elements[4]->field="`package`.`enddate`";
+$elements[4]->sort="1";
+$elements[4]->header="enddate";
+$elements[4]->alias="enddate";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `package` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`package`.`status`");
+$this->load->view("json",$data);
+}
+
+public function createpackage()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="createpackage";
+    $data[ 'status' ] =$this->user_model->getstatusdropdown();
+$data["title"]="Create package";
+$this->load->view("template",$data);
+}
+public function createpackagesubmit() 
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $name=$this->input->get_post("name");
+    $status=$this->input->get_post("status");
+    $startdate=$this->input->get_post("startdate");
+    $enddate=$this->input->get_post("enddate");
+  
+    if($this->package_model->create($name,$status,$startdate,$enddate)==0)
+    $data["alerterror"]="New package could not be created.";
+    else
+    $data["alertsuccess"]="package created Successfully.";
+    $data["redirect"]="site/viewpackage";
+    $this->load->view("redirect",$data);
+}
+
+public function editpackage()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data[ 'status' ] =$this->user_model->getstatusdropdown();
+$data["page"]="editpackage";
+$data["title"]="Edit package";
+$data["before"]=$this->package_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+public function editpackagesubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+$id=$this->input->get_post("id");
+$name=$this->input->get_post("name");
+    $status=$this->input->get_post("status");
+    $startdate=$this->input->get_post("startdate");
+    $enddate=$this->input->get_post("enddate");
+if($this->package_model->edit($id,$name,$status,$startdate,$enddate)==0)
+$data["alerterror"]="New package could not be Updated.";
+else
+$data["alertsuccess"]="package Updated Successfully.";
+$data["redirect"]="site/viewpackage";
+$this->load->view("redirect",$data);
+}
+
+public function deletepackage()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->package_model->delete($this->input->get("id"));
+$data["redirect"]="site/viewpackage";
+$this->load->view("redirect",$data);
+}
+//COMPANY PACKAGE
+
+public function viewcompanypackage()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewcompanypackage";
+$data["page2"]="block/companyblock";
+$data["before1"]=$this->input->get("id");
+$data["before2"]=$this->input->get("id");
+$data["base_url"]=site_url("site/viewcompanypackagejson?id=".$this->input->get('id'));
+$data["title"]="View companypackage";
+$this->load->view("templatewith2",$data);
+}
+function viewcompanypackagejson()
+{
+    $id=$this->input->get('id');
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`companypackage`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="Id";
+$elements[0]->alias="id";
+$elements[1]=new stdClass();
+$elements[1]->field="`companypackage`.`company`";
+$elements[1]->sort="1";
+$elements[1]->header="company";
+$elements[1]->alias="company";
+$elements[2]=new stdClass();
+$elements[2]->field="`package`.`name`";
+$elements[2]->sort="1";
+$elements[2]->header="Name";
+$elements[2]->alias="name";
+    
+$elements[3]=new stdClass();
+$elements[3]->field="`package`.`startdate`";
+$elements[3]->sort="1";
+$elements[3]->header="Start Date";
+$elements[3]->alias="startdate";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="DESC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `companypackage` LEFT OUTER JOIN `package` ON `package`.`id`=`companypackage`.`package`","WHERE `companypackage`.`company`=$id");
+$this->load->view("json",$data);
+}
+
+public function createcompanypackage()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="createcompanypackage";
+$data["package"]=$this->package_model->getPackageDropDown();
+$data["company"]=$this->company_model->getCompanyDropDown();
+$data["title"]="Create companypackage";
+$this->load->view("template",$data);
+}
+public function createcompanypackagesubmit() 
+{
+$access=array("1");
+$this->checkaccess($access);
+$company=$this->input->get_post("company");
+$package=$this->input->get_post("package");
+if($this->companypackage_model->create($company,$package)==0)
+$data["alerterror"]="New companypackage could not be created.";
+else
+$data["alertsuccess"]="companypackage created Successfully.";
+$data["redirect"]="site/viewcompanypackage?id=".$company;
+$this->load->view("redirect2",$data);
+}
+
+public function editcompanypackage()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["package"]=$this->package_model->getPackageDropDown();
+$data["company"]=$this->company_model->getCompanyDropDown();
+$data["page"]="editcompanypackage";
+$data["page2"]="block/companyblock";
+$data["before1"]=$this->input->get("companyid");
+$data["before2"]=$this->input->get("companyid");
+$data["title"]="Edit companypackage";
+$data["before"]=$this->companypackage_model->beforeedit($this->input->get("id"));
+$this->load->view("templatewith2",$data);
+}
+public function editcompanypackagesubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+$id=$this->input->get_post("id");
+$company=$this->input->get_post("company");
+$package=$this->input->get_post("package");
+if($this->companypackage_model->edit($id,$company,$package)==0)
+$data["alerterror"]="New companypackage could not be Updated.";
+else
+$data["alertsuccess"]="companypackage Updated Successfully.";
+$data["redirect"]="site/viewcompanypackage?id=".$company;
+$this->load->view("redirect2",$data);
+}
+
+public function deletecompanypackage()
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $this->companypackage_model->delete($this->input->get("id"));
+    $data["redirect"]="site/viewcompanypackage?id=".$this->input->get("companyid");
+    $this->load->view("redirect2",$data);
+}
+public function blockCompany()
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $companyid=$this->input->get("id");
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid.'/index.php/json/blockBackend';
+    $this->db->query("UPDATE `master_company` SET `isblock`=1 WHERE `id`='$companyid'");
+        // create a new cURL resource
+    $ch = curl_init();
+
+    // set URL and other appropriate options
+    curl_setopt($ch, CURLOPT_URL, "$exactpath");
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+
+    // grab URL and pass it to the browser
+    curl_exec($ch);
+
+    // close cURL resource, and free up system resources
+    curl_close($ch);
+     $data["message"] = 1;
+    $this->load->view("json", $data);
+    
+
+}
+    public function unBlockCompany()
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $companyid=$this->input->get("id");
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid.'/index.php/json/unBlockCompany';
+    $this->db->query("UPDATE `master_company` SET `isblock`=0 WHERE `id`='$companyid'");
+        // create a new cURL resource
+    $ch = curl_init();
+
+    // set URL and other appropriate options
+    curl_setopt($ch, CURLOPT_URL, "$exactpath");
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+
+    // grab URL and pass it to the browser
+    curl_exec($ch);
+
+    // close cURL resource, and free up system resources
+    curl_close($ch);
+     $data["message"] = 1;
+    $this->load->view("json", $data);
+    
+
+}
+    public function resendEmail()
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $companyid=$this->input->get("id");
+    $companydetails=$this->company_model->getsinglecompany($companyid);
+    $receiver=$companydetails->email;
+    $sender="vigwohlig@gmail.com";
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid;
+    // send email
+        
+        $this->load->library('email');
+        $this->email->from($sender, 'Find below the details');
+        $this->email->to($receiver);
+        $this->email->subject('Please find below the credentials');
+        $message = "<html>
+      <p><span style='font-size:14px;font-weight:bold;padding:10px 0;'>Link: </span>
+      <span>$exactpath</span>
+      </p>
+      <p>
+      <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Email: </span>
+      <span>wohlig@wohlig.com</span>
+      </p>
+      <p>
+      <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Password: </span>
+      <span>wohlig123</span>
+      </p>
+</html>";
+        $this->email->message($message);
+        $this->email->send();
+        $data["message"] = $this->email->print_debugger();
+        $this->load->view("json",$data);
+} 
+    public function provideAccess()
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $companyid=$this->input->get("id");
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid.'/index.php/login/validate';
+    $exactpathtobackend=$mainurl.$companyid;
+   
+     $fields = array(
+                        'username' => "master@master.com",
+                        'password' => 'master123'
+                    );
+        $stng= http_build_query($fields);
+        $ch = curl_init($exactpath);
+
+        curl_setopt($ch,CURLOPT_POST, true);
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $stng);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        $result = curl_exec($ch);
+        $result = json_decode($result);
+//        echo $result->access_token;
+        curl_close($ch);  
+        redirect($exactpathtobackend);
+       
+}  
+    public function changePassword()
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $companyid=$this->input->get("id");
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid.'/index.php/site/edituser?id=1';
+        redirect($exactpath);
+       
+}  
+    public function viewInterlinkage()
+{
+    $access=array("1");
+    $this->checkaccess($access);
+    $companyid=$this->input->get("id");
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid.'/index.php/login/interlinkage';
+        redirect($exactpath);
+       
 }
 
 }

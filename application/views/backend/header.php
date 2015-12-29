@@ -18,6 +18,8 @@
     <script src="<?php echo base_url('assets').'/';?>js/jquery.fancybox.pack.js"></script>
     <script src="<?php echo base_url('assets').'/';?>tinymce/tinymce.min.js"></script>
     <script src="<?php echo base_url('assets').'/';?>js/formInit.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700' rel='stylesheet' type='text/css'>
+
 
 
     <!--Let browser know website is optimized for mobile-->
@@ -131,3 +133,6 @@
 
     </header>
     <main>
+        
+
+

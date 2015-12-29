@@ -52,4 +52,23 @@ $id=$this->input->get_post("id");
 $data["message"]=$this->company_model->getsinglecompany($id);
 $this->load->view("json",$data);
 }
+ 
+ public function createDatabase() {
+     $name = $this->input->get("name");
+     $filename = "/xampp/mysql/bin/demo.sql";
+     $this->company_model->createAndPopuateDatabase($name,$filename);
+ }
+ public function greatest(){
+     $nums=array(14,25,65,45,21);
+     $greatest=$nums[0];
+    for($i=0;$i<$nums;$i++)
+    {
+        if($nums[$i]>$greatest)
+        {
+            $greatest=$nums[$i];
+        }
+        
+    }
+     return $greatest;
+ }
 } ?>

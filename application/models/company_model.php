@@ -26,7 +26,7 @@ return $query;
 }
 public function edit($id,$name,$email,$package)
 {
-if($image==""){$image=$this->company->getimagebyid($id);$image=$image->image;}$data=array("name" => $name,"email" => $email,"package" => $package);
+    $data=array("name" => $name,"email" => $email,"package" => $package);
 $this->db->where( "id", $id );
 $query=$this->db->update( "master_company", $data );
 return 1;
@@ -34,6 +34,7 @@ return 1;
 public function delete($id)
 {
 $query=$this->db->query("DELETE FROM `master_company` WHERE `id`='$id'");
+$query=$this->db->query("DELETE FROM `companypackage` WHERE `company`=$id");
 return $query;
 }
 
@@ -42,5 +43,33 @@ public function getimagebyid($id)
 $query=$this->db->query("SELECT `image` FROM `master_company` WHERE `id`='$id'")->row();
 return $query;
 }
+    public function getCompanyDropDown()
+	{
+		$query=$this->db->query("SELECT * FROM `master_company`  ORDER BY `id` ASC")->result();
+		$return=array(
+		"" => "Choose Company"
+		);
+		foreach($query as $row)
+		{
+			$return[$row->id]=$row->name;
+		}
+		
+		return $return;
+	}
+
+    
+//    public function createAndPopuateDatabase($name,$file) {
+//        echo "mysql -h localhost -u root -e \"CREATE DATABASE $name\"";
+//        echo shell_exec("/xampp/htdocs/mysql/bin -h localhost -u root -e \"CREATE DATABASE $name\"");
+//        echo shell_exec("/xampp/htdocs/mysql/bin -h localhost -u root  $name < $file");
+//    } 
+    public function getcompanycount() {
+        $query=$this->db->query("SELECT COUNT(*)as `countcompany` FROM `master_company`")->row();
+        $query=$query->countcompany;
+        return $query;
+    }
 }
+
+
+
 ?>
