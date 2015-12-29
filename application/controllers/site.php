@@ -52,6 +52,7 @@ class Site extends CI_Controller
 		$access = array("1","2");
 		$this->checkaccess($access);
          $accesslevelid=$this->session->userdata("accesslevel");
+        $data['blockedcompanies']=$this->company_model->getblockedcompany();
         if($accesslevelid==2){
             $data[ 'page' ] = 'createuser';
         }

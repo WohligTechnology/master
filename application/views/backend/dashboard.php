@@ -24,7 +24,7 @@
         <div class="card blue darken-4">
             <div class="card-content white-text">
                 <span class="card-title">Blocked Companies</span>
-                <p style="font-size: 32px;">45</p>
+                <p style="font-size: 32px;"><?php echo $blockedcompanies?></p>
             </div>
 
         </div>

@@ -68,6 +68,11 @@ return $query;
         $query=$query->countcompany;
         return $query;
     }
+    public function getblockedcompany() {
+        $query=$this->db->query("SELECT COUNT(*)as `countcompany` FROM `master_company` WHERE `isblock`=1")->row();
+        $query=$query->countcompany;
+        return $query;
+    }
 }
 
 
