@@ -24,6 +24,18 @@
 <input type="text" id="Package" name="package" value='<?php echo set_value('package',$before->package);?>'>
 </div>
 </div>
+    <div class="row">
+<div class="input-field col s6">
+<label for="startdate">Start Date</label>
+<input type="date" id="startdate" class="datepicker" name="startdate" value='<?php echo set_value('startdate',$before->startdate);?>'>
+</div>
+</div>
+<div class="row">
+<div class="input-field col s6">
+<label for="enddate">End Date</label>
+<input type="date" id="enddate" class="datepicker" name="enddate" value='<?php echo set_value('enddate',$before->enddate);?>'>
+</div>
+</div>
 <div class="row">
 <div class="col s6">
 <button type="submit" class="btn btn-primary waves-effect waves-light  blue darken-4">Save</button>

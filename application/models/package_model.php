@@ -52,7 +52,7 @@ return $query;
 }
 public function getPackageDropDown()
 	{
-		$query=$this->db->query("SELECT * FROM `package`  ORDER BY `id` ASC")->result();
+		$query=$this->db->query("SELECT * FROM `package` WHERE `status`=1  ORDER BY `id` ASC")->result();
 		$return=array(
 		"" => "Choose Package"
 		);

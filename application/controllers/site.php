@@ -650,7 +650,9 @@ else
 $name=$this->input->get_post("name");
 $email=$this->input->get_post("email");
 $package=$this->input->get_post("package");
-if($this->company_model->create($name,$email,$package)==0)
+$startdate=$this->input->get_post("startdate");
+$enddate=$this->input->get_post("enddate");
+if($this->company_model->create($name,$email,$package,$startdate,$enddate)==0)
 $data["alerterror"]="New company could not be created.";
 else
 $data["alertsuccess"]="company created Successfully.";
@@ -694,7 +696,9 @@ $id=$this->input->get_post("id");
 $name=$this->input->get_post("name");
 $email=$this->input->get_post("email");
 $package=$this->input->get_post("package");
-if($this->company_model->edit($id,$name,$email,$package)==0)
+$startdate=$this->input->get_post("startdate");
+$enddate=$this->input->get_post("enddate");
+if($this->company_model->edit($id,$name,$email,$package,$startdate,$enddate)==0)
 $data["alerterror"]="New company could not be Updated.";
 else
 $data["alertsuccess"]="company Updated Successfully.";

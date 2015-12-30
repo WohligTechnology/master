@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class company_model extends CI_Model
 {
-public function create($name,$email,$package)
+public function create($name,$email,$package,$startdate,$enddate)
 {
-$data=array("name" => $name,"email" => $email,"package" => $package);
+$data=array("name" => $name,"email" => $email,"package" => $package,"startdate" => $startdate,"enddate" => $enddate);
 $query=$this->db->insert( "master_company", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,9 +24,9 @@ $this->db->where("id",$id);
 $query=$this->db->get("master_company")->row();
 return $query;
 }
-public function edit($id,$name,$email,$package)
+public function edit($id,$name,$email,$package,$startdate,$enddate)
 {
-    $data=array("name" => $name,"email" => $email,"package" => $package);
+    $data=array("name" => $name,"email" => $email,"package" => $package,"startdate" => $startdate,"enddate" => $enddate);
 $this->db->where( "id", $id );
 $query=$this->db->update( "master_company", $data );
 return 1;

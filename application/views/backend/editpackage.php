@@ -16,13 +16,13 @@
 					<label>Status</label>
 			</div>
 		</div>
-<div class="row">
+<div class="row" style="display:none">
 <div class="input-field col s6">
 <label for="startdate">Start Date</label>
 <input type="date" id="startdate" class="datepicker" name="startdate" value='<?php echo set_value('startdate',$before->startdate);?>'>
 </div>
 </div>
-<div class="row">
+<div class="row" style="display:none">
 <div class="input-field col s6">
 <label for="enddate">End Date</label>
 <input type="date" id="enddate" class="datepicker" name="enddate" value='<?php echo set_value('enddate',$before->enddate);?>'>
