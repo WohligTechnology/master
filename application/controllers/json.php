@@ -58,6 +58,7 @@ $this->load->view("json",$data);
      $filename = "/xampp/mysql/bin/demo.sql";
      $this->company_model->createAndPopuateDatabase($name,$filename);
  }
+ 
  public function greatest(){
      $nums=array(14,25,65,45,21);
      $greatest=$nums[0];

@@ -53,6 +53,7 @@ class Site extends CI_Controller
 		$this->checkaccess($access);
          $accesslevelid=$this->session->userdata("accesslevel");
         $data['blockedcompanies']=$this->company_model->getblockedcompany();
+        $data['sectorwise']=$this->company_model->getcompanysector();
         if($accesslevelid==2){
             $data[ 'page' ] = 'createuser';
         }
@@ -628,6 +629,7 @@ public function createcompany()
 $access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createcompany";
+$data['sector']=$this->company_model->getSectorDropDown();
 $data["title"]="Create company";
 $this->load->view("template",$data);
 }
@@ -641,6 +643,7 @@ $this->form_validation->set_rules("package","Package","trim");
 if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
+$data['sector']=$this->company_model->getSectorDropDown();
 $data["page"]="createcompany";
 $data["title"]="Create company";
 $this->load->view("template",$data);
@@ -652,7 +655,8 @@ $email=$this->input->get_post("email");
 $package=$this->input->get_post("package");
 $startdate=$this->input->get_post("startdate");
 $enddate=$this->input->get_post("enddate");
-if($this->company_model->create($name,$email,$package,$startdate,$enddate)==0)
+$sector=$this->input->get_post("sector");
+if($this->company_model->create($name,$email,$package,$startdate,$enddate,$sector)==0)
 $data["alerterror"]="New company could not be created.";
 else
 $data["alertsuccess"]="company created Successfully.";
@@ -667,6 +671,7 @@ $this->checkaccess($access);
 $data["page"]="editcompany";
 $data["page2"]="block/companyblock";
 $data["base_url"]=site_url("site/viewcompanypackagejson");
+$data['sector']=$this->company_model->getSectorDropDown();
 $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
 $data["title"]="Edit company";
@@ -685,6 +690,7 @@ $this->form_validation->set_rules("package","Package","trim");
 if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
+$data['sector']=$this->company_model->getSectorDropDown();
 $data["page"]="editcompany";
 $data["title"]="Edit company";
 $data["before"]=$this->company_model->beforeedit($this->input->get("id"));
@@ -698,7 +704,8 @@ $email=$this->input->get_post("email");
 $package=$this->input->get_post("package");
 $startdate=$this->input->get_post("startdate");
 $enddate=$this->input->get_post("enddate");
-if($this->company_model->edit($id,$name,$email,$package,$startdate,$enddate)==0)
+$sector=$this->input->get_post("sector");
+if($this->company_model->edit($id,$name,$email,$package,$startdate,$enddate,$sector)==0)
 $data["alerterror"]="New company could not be Updated.";
 else
 $data["alertsuccess"]="company Updated Successfully.";

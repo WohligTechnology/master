@@ -16,6 +16,12 @@
 </div>
 </div>
  <div class="row">
+			<div class="input-field col m6 s12">
+				<?php echo form_dropdown( 'sector',$sector,set_value( 'sector')); ?>
+					<label>Sector</label>
+			</div>
+		</div>
+ <div class="row">
 <div class="input-field col s6">
 <label for="startdate">Start Date</label>
 <input type="date" id="startdate" class="datepicker" name="startdate" value='<?php echo set_value('startdate');?>'>

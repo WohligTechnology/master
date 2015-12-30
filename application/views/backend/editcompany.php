@@ -18,12 +18,12 @@
 <input type="email" id="Email" name="email" value='<?php echo set_value('email',$before->email);?>'>
 </div>
 </div>
-<div class="row" style="display:none">
-<div class="input-field col s6">
-<label for="Package">Package</label>
-<input type="text" id="Package" name="package" value='<?php echo set_value('package',$before->package);?>'>
-</div>
-</div>
+ <div class="row">
+			<div class="input-field col m6 s12">
+				<?php echo form_dropdown( 'sector',$sector,set_value( 'sector',$before->sector)); ?>
+					<label>Sector</label>
+			</div>
+		</div>
     <div class="row">
 <div class="input-field col s6">
 <label for="startdate">Start Date</label>

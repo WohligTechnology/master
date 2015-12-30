@@ -2,8 +2,8 @@
      <div class="col l3 m6 s12">
             <div class="card blue darken-4">
                 <div class="card-content white-text text-center">
-                    <i class="large material-icons block">business</i>
-                    <span class="card-title"> Total Companies <br><?php echo $company;?></span>
+                    <i class="large material-icons block" style="font-size: 4rem;">business</i>
+                    <span class="card-title"> Total Companies <br><span style="font-size: -webkit-xxx-large;"><b><?php echo $company;?></b></span></span>
                 </div>
             </div>
         </div>
@@ -11,8 +11,8 @@
       <div class="col l3 m6 s12">
             <div class="card blue darken-4">
                 <div class="card-content white-text text-center">
-                    <i class="large material-icons block">error</i>
-                    <span class="card-title"> Packages Expiring <br><?php echo 54;?></span>
+                    <i class="large material-icons block" style="font-size: 4rem;">error</i>
+                    <span class="card-title"> Packages Expiring <br><span style="font-size: -webkit-xxx-large;"><b><?php echo 54;?></b></span></span>
                 </div>
             </div>
         </div>
@@ -20,19 +20,20 @@
     <div class="col l3 m6 s12">
             <div class="card blue darken-4">
                 <div class="card-content white-text text-center">
-                    <i class="large material-icons block">not_interested</i>
-                    <span class="card-title">Blocked Companies<br><?php echo $blockedcompanies;?></span>
-                </div>
+                    <i class="large material-icons block" style="font-size: 4rem;">not_interested</i>
+                    <span class="card-title">Blocked Companies<br><span style="font-size: -webkit-xxx-large;"><b><?php echo $blockedcompanies;?></b></span></span>
+                </div
             </div>
         </div>
 
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
-
+<?php print_r($sectorwise);?>
 <div id="container" style="height: 400px"></div>
 <button id="button" class="autocompare">Get selected points</button>
 <script>
 $(function () {
+    sectorname = _.pluck(data, "name");
     $('#container').highcharts({
         chart: {
             type: 'pie'
