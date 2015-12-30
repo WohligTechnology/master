@@ -96,6 +96,12 @@ return $query;
         }
         return $query;
     }
+    public function getpackageexpire() {
+        $expiredate=date('Y-m-d', strtotime("+30 days"));
+        $query=$this->db->query("SELECT COUNT(*) as `packageexpire` FROM `master_company` WHERE `enddate`='$expiredate'")->row();
+        $packageexpirecount=$query->packageexpire;
+        return $packageexpirecount;
+    }
 }
 
 

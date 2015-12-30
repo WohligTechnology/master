@@ -53,7 +53,8 @@ class Site extends CI_Controller
 		$this->checkaccess($access);
          $accesslevelid=$this->session->userdata("accesslevel");
         $data['blockedcompanies']=$this->company_model->getblockedcompany();
-        $data['sectorwise']=$this->company_model->getcompanysector();
+       
+        $data['packageexpire']=$this->company_model->getpackageexpire();
         if($accesslevelid==2){
             $data[ 'page' ] = 'createuser';
         }
@@ -65,6 +66,11 @@ class Site extends CI_Controller
 		$data[ 'title' ] = 'Welcome';
 		$this->load->view( 'template', $data );	
 	}
+    public function getcompanysector(){
+         $data['message']=$this->company_model->getcompanysector();
+         $this->load->view("json",$data);
+        
+    }
 	public function createuser()
 	{
 		$access = array("1");
