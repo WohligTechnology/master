@@ -28,12 +28,12 @@
 
 </div>
 <script src="https://code.highcharts.com/highcharts.js"></script>
-<?php print_r($sectorwise);?>
+<!--<?php print_r($sectorwise);?>-->
 <div id="container" style="height: 400px"></div>
 <button id="button" class="autocompare">Get selected points</button>
 <script>
 $(function () {
-    sectorname = _.pluck(data, "name");
+    sectorname = _.pluck(<?php print_r($sectorwise);?>, "name");
     $('#container').highcharts({
         chart: {
             type: 'pie'
