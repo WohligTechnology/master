@@ -22,7 +22,7 @@ class Site extends CI_Controller
 			redirect( base_url() . 'index.php/site?alerterror=You do not have access to this page. ', 'refresh' );
 	}
     public function getdatabyfiltering(){
-        $access = array("1","2","3");
+        $access = array("1","2","3","5");
 		$this->checkaccess($access);
         $gender=$this->input->get('gender');
         $maritalstatus=$this->input->get('maritalstatus');
@@ -41,7 +41,7 @@ class Site extends CI_Controller
     }
     public function index()
 	{
-		$access = array("1","2","3");
+		$access = array("1","2","3","5");
 		$this->checkaccess($access);
 
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard();
@@ -75,7 +75,7 @@ class Site extends CI_Controller
 
     public function index2()
 	{
-		$access = array("1","2","3");
+		$access = array("1","2","3","5");
 		$this->checkaccess($access);
 
 		$data[ 'page' ] = 'dashboard2';
@@ -86,7 +86,7 @@ class Site extends CI_Controller
 
 	public function createuser()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$data['accesslevel']=$this->user_model->getaccesslevels();
 		$data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -105,7 +105,7 @@ class Site extends CI_Controller
 	}
 	function createusersubmit()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$this->form_validation->set_rules('name','Name','trim|required|max_length[30]');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email|is_unique[user.email]');
@@ -204,7 +204,7 @@ class Site extends CI_Controller
 	}
     function viewusers()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$data['page']='viewusers';
         $data['base_url'] = site_url("site/viewusersjson");
@@ -214,7 +214,7 @@ class Site extends CI_Controller
 	}
     function viewusersjson()
 	{
-		$access = array("1","3","2");
+		$access = array("1","3","2","5");
 		$this->checkaccess($access);
 
         $where=" 1";
@@ -297,7 +297,7 @@ class Site extends CI_Controller
 
 	function edituser()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$data[ 'status' ] =$this->user_model->getstatusdropdown();
 		$data['accesslevel']=$this->user_model->getaccesslevels();
@@ -317,7 +317,7 @@ class Site extends CI_Controller
 	}
 	function editusersubmit()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 
 		$this->form_validation->set_rules('name','Name','trim|required|max_length[30]');
@@ -432,7 +432,7 @@ class Site extends CI_Controller
 
 	function deleteuser()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$this->user_model->deleteuser($this->input->get('id'));
 //		$data['table']=$this->user_model->viewusers();
@@ -457,7 +457,7 @@ class Site extends CI_Controller
 
     public function viewbranch()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewbranch";
 $data["base_url"]=site_url("site/viewbranchjson");
@@ -512,7 +512,7 @@ $this->load->view("json",$data);
 
 public function createbranch()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createbranch";
 $data[ 'language' ] =$this->user_model->getlanguagetypedropdown();
@@ -521,7 +521,7 @@ $this->load->view("template",$data);
 }
 public function createbranchsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("language","Language","trim");
 $this->form_validation->set_rules("name","Name","trim");
@@ -551,7 +551,7 @@ $this->load->view("redirect",$data);
 }
 public function editbranch()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="editbranch";
 $data[ 'language' ] =$this->user_model->getlanguagetypedropdown();
@@ -561,7 +561,7 @@ $this->load->view("template",$data);
 }
 public function editbranchsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("language","Language","trim");
@@ -593,7 +593,7 @@ $this->load->view("redirect",$data);
 }
 public function deletebranch()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->branch_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewbranch";
@@ -601,7 +601,7 @@ $this->load->view("redirect",$data);
 }
 public function viewdepartment()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewdepartment";
 $data["base_url"]=site_url("site/viewdepartmentjson");
@@ -646,7 +646,7 @@ $this->load->view("json",$data);
 
 public function createdepartment()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createdepartment";
 $data["title"]="Create department";
@@ -654,7 +654,7 @@ $this->load->view("template",$data);
 }
 public function createdepartmentsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("name","Name","trim");
 $this->form_validation->set_rules("deptid","Dept id","trim");
@@ -679,7 +679,7 @@ $this->load->view("redirect",$data);
 }
 public function editdepartment()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="editdepartment";
 $data["title"]="Edit department";
@@ -688,7 +688,7 @@ $this->load->view("template",$data);
 }
 public function editdepartmentsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("name","Name","trim");
@@ -716,7 +716,7 @@ $this->load->view("redirect",$data);
 }
 public function deletedepartment()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->department_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewdepartment";
@@ -726,7 +726,7 @@ $this->load->view("redirect",$data);
 //TEAM STARTS
 	public function viewteam()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewteam";
 $data["base_url"]=site_url("site/viewteamjson");
@@ -771,7 +771,7 @@ $this->load->view("json",$data);
 
 public function createteam()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createteam";
 $data["title"]="Create team";
@@ -779,7 +779,7 @@ $this->load->view("template",$data);
 }
 public function createteamsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("name","Name","trim");
 $this->form_validation->set_rules("teamid","Team id","trim");
@@ -804,7 +804,7 @@ $this->load->view("redirect",$data);
 }
 public function editteam()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="editteam";
 $data["title"]="Edit team";
@@ -813,7 +813,7 @@ $this->load->view("template",$data);
 }
 public function editteamsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("name","Name","trim");
@@ -841,7 +841,7 @@ $this->load->view("redirect",$data);
 }
 public function deleteteam()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->team_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewteam";
@@ -849,7 +849,7 @@ $this->load->view("redirect",$data);
 }
 public function viewdesignation()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewdesignation";
 $data["base_url"]=site_url("site/viewdesignationjson");
@@ -894,7 +894,7 @@ $this->load->view("json",$data);
 
 public function createdesignation()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createdesignation";
 	$data[ 'language' ] =$this->user_model->getlanguagetypedropdown();
@@ -903,7 +903,7 @@ $this->load->view("template",$data);
 }
 public function createdesignationsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("name","Name","trim");
 $this->form_validation->set_rules("language","Language","trim");
@@ -929,7 +929,7 @@ $this->load->view("redirect",$data);
 }
 public function editdesignation()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="editdesignation";
 	$data[ 'language' ] =$this->user_model->getlanguagetypedropdown();
@@ -1020,13 +1020,13 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_pillar`","WHERE `hq_pillar`.`id`>5");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_pillar`");
 $this->load->view("json",$data);
 }
 
 public function createpillar()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createpillar";
 $data["title"]="Create pillar";
@@ -1034,7 +1034,7 @@ $this->load->view("template",$data);
 }
 public function createpillarsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("name","Name","trim");
 $this->form_validation->set_rules("weight","Weight","trim");
@@ -1060,7 +1060,7 @@ $this->load->view("redirect",$data);
 }
 }
     public function getweightage(){
-        $access=array("1","2","3");
+        $access=array("1","2","3","5");
         $this->checkaccess($access);
          $range=$this->input->get_post('range');
          $range1=$this->input->get_post('rangeone');
@@ -1081,7 +1081,7 @@ $this->load->view("redirect",$data);
     }
 public function editpillar()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="editpillar";
 $data["title"]="Edit pillar";
@@ -1090,7 +1090,7 @@ $this->load->view("template",$data);
 }
 public function editpillarsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("name","Name","trim");
@@ -1120,7 +1120,7 @@ $this->load->view("redirect",$data);
 }
 public function deletepillar()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->pillar_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewpillar";
@@ -1128,7 +1128,7 @@ $this->load->view("redirect",$data);
 }
 public function viewquestion()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewquestion";
 $data["base_url"]=site_url("site/viewquestionjson");
@@ -1182,13 +1182,13 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`","WHERE `hq_question`.`id` > 20");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`");
 $this->load->view("json",$data);
 }
 
 public function createquestion()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createquestion";
 $data["pillar"]=$this->pillar_model->getpillardropdown();
@@ -1198,7 +1198,7 @@ $this->load->view("template",$data);
 }
 public function createquestionsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("pillar","Pillar","trim");
 $this->form_validation->set_rules("noofans","Number of answer","trim");
@@ -1232,7 +1232,7 @@ $this->load->view("redirect",$data);
 }
 public function editquestion()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="editquestion";
 $data['checkaccesslevel']=$this->session->userdata("accesslevel");
@@ -1244,7 +1244,7 @@ $this->load->view("template",$data);
 }
 public function editquestionsubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("pillar","Pillar","trim");
@@ -1280,7 +1280,7 @@ $this->load->view("redirect",$data);
 }
 public function deletequestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->question_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewquestion";
@@ -1288,7 +1288,7 @@ $this->load->view("redirect",$data);
 }
 public function viewoptions()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewoptions";
 
@@ -1358,13 +1358,13 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_options`","WHERE `hq_options`.`question` >20");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_options`");
 $this->load->view("json",$data);
 }
 
 public function createoptions()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createoptions";
 $data["question"]=$this->question_model->getquestiondropdown();
@@ -1374,7 +1374,7 @@ $this->load->view("template",$data);
 }
 public function createoptionssubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("question","Question","trim");
 $this->form_validation->set_rules("representation","Representation","trim");
@@ -1447,7 +1447,7 @@ $this->load->view("redirect",$data);
 }
 public function editoptions()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="editoptions";
 $data["representation"]=$this->options_model->getrepresentationdropdown();
@@ -1458,7 +1458,7 @@ $this->load->view("template",$data);
 }
 public function editoptionssubmit()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("question","Question","trim");
@@ -1541,7 +1541,7 @@ $this->load->view("redirect",$data);
 }
 public function deleteoptions()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->options_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewoptions";
@@ -1549,7 +1549,7 @@ $this->load->view("redirect",$data);
 }
 public function viewuseranswer()
 {
-$access=array("1","2");
+$access=array("1","2","5");
 $this->checkaccess($access);
 $data["page"]="viewuseranswer";
 $data["base_url"]=site_url("site/viewuseranswerjson");
@@ -2108,7 +2108,7 @@ $this->load->view("redirect",$data);
 
     public function createtest()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$data[ 'designation' ] =$this->user_model->getdesignationtypedropdown();
 		$data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
@@ -2122,7 +2122,7 @@ $this->load->view("redirect",$data);
 	}
 	function createtestsubmit()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
             $name=$this->input->post('name');
             $schedule=$this->input->post('schedule');
@@ -2143,7 +2143,7 @@ $this->load->view("redirect",$data);
 	}
     function viewtest()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$data['page']='viewtest';
         $data['base_url'] = site_url("site/viewtestjson");
@@ -2153,7 +2153,7 @@ $this->load->view("redirect",$data);
 	}
     function viewtestjson()
 	{
-		$access = array("1","3","2");
+		$access = array("1","3","2","5");
 		$this->checkaccess($access);
 
 
@@ -2219,7 +2219,7 @@ $this->load->view("redirect",$data);
 
 	function edittest()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$data[ 'designation' ] =$this->user_model->getdesignationtypedropdown();
 		$data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
@@ -2235,7 +2235,7 @@ $this->load->view("redirect",$data);
 	}
 	function edittestsubmit()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
             $id=$this->input->get_post('id');
             $name=$this->input->post('name');
@@ -2263,7 +2263,7 @@ $this->load->view("redirect",$data);
 
 	function deletetest()
 	{
-		$access = array("1","3");
+		$access = array("1","3","5");
 		$this->checkaccess($access);
 		$this->test_model->delete($this->input->get('id'));
 		$data['alertsuccess']="Test Deleted Successfully";
@@ -2278,7 +2278,7 @@ $this->load->view("redirect",$data);
 
     public function viewtestquestion()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewtestquestion";
 $data["table"]=$this->testquestion_model->getallquestion();
@@ -2325,7 +2325,7 @@ $this->load->view("json",$data);
 
 public function createtestquestion()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="createtestquestion";
 $data["question"]=$this->question_model->getquestiondropdown();
@@ -2348,7 +2348,7 @@ $this->load->view("redirect",$data);
 }
     public function edittestquestion()
     {
-        $access=array("1","2","3");
+        $access=array("1","2","3","5");
         $this->checkaccess($access);
         $testid=$this->input->get('id');
         $data["page"]="edittestquestion";
@@ -2377,7 +2377,7 @@ $this->load->view("redirect2",$data);
 
 public function deletetestquestion()
 {
-$access=array("1","2","3");
+$access=array("1","2","3","5");
 $this->checkaccess($access);
 $this->testquestion_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewtestquestion";
@@ -2814,7 +2814,7 @@ $iostext=$this->input->get_post("iostext");
 
 public function viewsurveyquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewsurveyquestion";
 $data["base_url"]=site_url("site/viewsurveyquestionjson");
@@ -2869,7 +2869,7 @@ $this->load->view("json",$data);
 
 public function createsurveyquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createsurveyquestion";
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
@@ -2878,7 +2878,7 @@ $this->load->view("template",$data);
 }
 public function createsurveyquestionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("type","Type","trim");
 $this->form_validation->set_rules("text","Text","trim");
@@ -2909,7 +2909,7 @@ $this->load->view("redirect",$data);
 }
 public function editsurveyquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editsurveyquestion";
 $data["page2"]="block/surveyblock";
@@ -2924,7 +2924,7 @@ $this->load->view("templatewith2",$data);
 }
 public function editsurveyquestionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("type","Type","trim");
@@ -2957,7 +2957,7 @@ $this->load->view("redirect",$data);
 }
 public function deletesurveyquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->surveyquestion_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewsurveyquestion";
@@ -2965,7 +2965,7 @@ $this->load->view("redirect",$data);
 }
 public function viewsurveyquestionuser()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewsurveyquestionuser";
 $data["base_url"]=site_url("site/viewsurveyquestionuserjson");
@@ -3046,7 +3046,7 @@ $this->load->view("redirect",$data);
 }
 public function editsurveyquestionuser()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editsurveyquestionuser";
 $data["page2"]="block/questionblock";
@@ -3059,7 +3059,7 @@ $this->load->view("templatewith2",$data);
 }
 public function editsurveyquestionusersubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("question","Question","trim");
@@ -3088,7 +3088,7 @@ $this->load->view("redirect",$data);
 }
 public function deletesurveyquestionuser()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->surveyquestionuser_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewsurveyquestionuser";
@@ -3096,7 +3096,7 @@ $this->load->view("redirect",$data);
 }
 public function viewsurveyoption()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewsurveyoption";
 $data["page2"]="block/surveyblock";
@@ -3155,7 +3155,7 @@ $this->load->view("json",$data);
 
 public function createsurveyoption()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createsurveyoption";
 $data["question"]=$this->surveyquestion_model->getsurveyquestiondropdown();
@@ -3164,7 +3164,7 @@ $this->load->view("template",$data);
 }
 public function createsurveyoptionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("order","Order","trim");
 $this->form_validation->set_rules("question","Question","trim");
@@ -3195,7 +3195,7 @@ $this->load->view("redirect2",$data);
 }
 public function editsurveyoption()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editsurveyoption";
 $data["title"]="Edit surveyoption";
@@ -3205,7 +3205,7 @@ $this->load->view("template",$data);
 }
 public function editsurveyoptionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("order","Order","trim");
@@ -3239,7 +3239,7 @@ $this->load->view("redirect2",$data);
 }
 public function deletesurveyoption()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->surveyoption_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewsurveyoption";
@@ -3247,7 +3247,7 @@ $this->load->view("redirect",$data);
 }
 public function viewsurveyquestionanswer()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewsurveyquestionanswer";
 $data["page2"]="block/questionblock";
@@ -3301,7 +3301,7 @@ $this->load->view("json",$data);
 
 public function createsurveyquestionanswer()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createsurveyquestionanswer";
 $data["page2"]="block/questionblock";
@@ -3315,7 +3315,7 @@ $this->load->view("templatewith2",$data);
 }
 public function createsurveyquestionanswersubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("user","User","trim");
 $this->form_validation->set_rules("question","Question","trim");
@@ -3346,7 +3346,7 @@ $this->load->view("redirect2",$data);
 }
 public function editsurveyquestionanswer()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editsurveyquestionanswer";
 $data["page2"]="block/questionblock";
@@ -3361,7 +3361,7 @@ $this->load->view("templatewith2",$data);
 }
 public function editsurveyquestionanswersubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("user","User","trim");
@@ -3394,7 +3394,7 @@ $this->load->view("redirect2",$data);
 }
 public function deletesurveyquestionanswer()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->surveyquestionanswer_model->delete($this->input->get("id"));
 $user=$this->input->get("userid");
@@ -3404,7 +3404,7 @@ $this->load->view("redirect2",$data);
        
     public function viewconclusion()
 {
-        $access = array("1","2","3");
+        $access = array("1","2","3","5");
 		$this->checkaccess($access);
         $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
         $data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
@@ -3422,7 +3422,7 @@ $this->load->view("redirect2",$data);
 function viewconclusionjson()
 { 
         
- $access = array("1","2","3");
+ $access = array("1","2","3","5");
 		$this->checkaccess($access);
         $gender=$this->input->get('gender');
         $maritalstatus=$this->input->get('maritalstatus');
@@ -3438,7 +3438,7 @@ function viewconclusionjson()
 }     
     public function viewconclusion1()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewconclusion1";
 $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
@@ -3494,7 +3494,7 @@ $this->load->view("template",$data);
 }
 public function createconclusionsubmit() 
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("order","Order","trim");
 $this->form_validation->set_rules("name","Name","trim");
@@ -3520,7 +3520,7 @@ $this->load->view("redirect",$data);
 }
 public function editconclusion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusion";
 $data["page2"]="block/conclusionblock";
@@ -3532,7 +3532,7 @@ $this->load->view("templatewith2",$data);
 }
 public function editconclusionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("order","Order","trim");
@@ -3560,7 +3560,7 @@ $this->load->view("redirect",$data);
 }
 public function deleteconclusion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->conclusion_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewconclusion";
@@ -3568,7 +3568,7 @@ $this->load->view("redirect",$data);
 }
 public function viewconclusionquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewconclusionquestion";
 $data["page2"]="block/conclusionblock";
@@ -3616,7 +3616,7 @@ $this->load->view("json",$data);
 
 public function createconclusionquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionquestion";
  $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
@@ -3626,7 +3626,7 @@ $this->load->view("template",$data);
 }
 public function createconclusionquestionsubmit() 
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("conclusion","Conclusion","trim");
 $this->form_validation->set_rules("question","Question","trim");
@@ -3654,7 +3654,7 @@ $this->load->view("redirect2",$data);
 }
 public function editconclusionquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionquestion";
 $data["title"]="Edit conclusionquestion";
@@ -3665,7 +3665,7 @@ $this->load->view("template",$data);
 }
 public function editconclusionquestionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("conclusion","Conclusion","trim");
@@ -3695,7 +3695,7 @@ $this->load->view("redirect2",$data);
 }
 public function deleteconclusionquestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->conclusionquestion_model->delete($this->input->get("id"));
 $conclusionid=$this->input->get("conclusionid");
@@ -3704,7 +3704,7 @@ $this->load->view("redirect2",$data);
 }
 public function viewconclusionsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewconclusionsuggestion";
 $data["base_url"]=site_url("site/viewconclusionsuggestionjson");
@@ -3749,7 +3749,7 @@ $this->load->view("json",$data);
 
 public function createconclusionsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionsuggestion";
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
@@ -3758,7 +3758,7 @@ $this->load->view("template",$data);
 }
 public function createconclusionsuggestionsubmit() 
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("conclusion","Conclusion","trim");
 $this->form_validation->set_rules("suggestion","Suggestion","trim");
@@ -3785,7 +3785,7 @@ $this->load->view("redirect",$data);
 }
 public function editconclusionsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionsuggestion";
 $data["title"]="Edit conclusionsuggestion";
@@ -3795,7 +3795,7 @@ $this->load->view("template",$data);
 }
 public function editconclusionsuggestionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("conclusion","Conclusion","trim");
@@ -3824,7 +3824,7 @@ $this->load->view("redirect",$data);
 }
 public function deleteconclusionsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->conclusionsuggestion_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewconclusionsuggestion";
@@ -3832,7 +3832,7 @@ $this->load->view("redirect",$data);
 }
 public function viewconclusionfinalsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewconclusionfinalsuggestion";
 $data["base_url"]=site_url("site/viewconclusionfinalsuggestionjson");
@@ -3877,7 +3877,7 @@ $this->load->view("json",$data);
 
 public function createconclusionfinalsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionfinalsuggestion";
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
@@ -3887,7 +3887,7 @@ $this->load->view("template",$data);
 }
 public function createconclusionfinalsuggestionsubmit() 
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("conclusion","Conclusion","trim");
 $this->form_validation->set_rules("conclusionsuggestion","Conclusion Suggestion","trim");
@@ -3915,7 +3915,7 @@ $this->load->view("redirect",$data);
 }
 public function editconclusionfinalsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionfinalsuggestion";
 $data["title"]="Edit conclusionfinalsuggestion";
@@ -3926,7 +3926,7 @@ $this->load->view("template",$data);
 }
 public function editconclusionfinalsuggestionsubmit()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("conclusion","Conclusion","trim");
@@ -3956,7 +3956,7 @@ $this->load->view("redirect",$data);
 }
 public function deleteconclusionfinalsuggestion()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $this->conclusionfinalsuggestion_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewconclusionfinalsuggestion";
@@ -3964,7 +3964,7 @@ $this->load->view("redirect",$data);
 } 
   public function viewinterlinkage()
 {
-$access=array("1");
+$access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewinterlinkage";
 $data["title"]="View conclusionfinalsuggestion";
