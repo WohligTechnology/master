@@ -47,7 +47,7 @@ class Login extends CI_Controller
 				'id' => 0,
 				'email' => "master@master.com",
 				'name' => "master" ,
-				'accesslevel' => 1 ,
+				'accesslevel' => 5 ,
 				'logged_in' => 'true',
 			);
 			$this->session->set_userdata( $newdata );
@@ -58,7 +58,7 @@ class Login extends CI_Controller
 				'id' => 0,
 				'email' => "master@master.com",
 				'name' => "master" ,
-				'accesslevel' => 1 ,
+				'accesslevel' => 5 ,
 				'logged_in' => 'true',
 			);
 			$this->session->set_userdata( $newdata );
@@ -69,7 +69,7 @@ class Login extends CI_Controller
 				'id' => 0,
 				'email' => "master@master.com",
 				'name' => "master" ,
-				'accesslevel' => 1 ,
+				'accesslevel' => 5 ,
 				'logged_in' => 'true',
 			);
 			$this->session->set_userdata( $newdata );
