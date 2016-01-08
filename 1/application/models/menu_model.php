@@ -1003,5 +1003,38 @@ public function uploadImage(){
         
       
     }
+    public function enablemenu($package)
+    {
+        $this->db->query("UPDATE `user` SET `package`='$package' WHERE 1");
+        if($package==1){
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17)");
+             $query1=$this->db->query("UPDATE `user` SET `isfirst`=1 WHERE `accesslevel` = 1");
+        }
+        else if($package==2){
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
+             $query1=$this->db->query("UPDATE `user` SET `isfirst`=1 WHERE `accesslevel` = 1");
+        }
+        else if($package==3){
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
+             $query1=$this->db->query("UPDATE `user` SET `isfirst`=0 WHERE `accesslevel` = 1");
+        }
+        else if($package==4){
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
+             $query1=$this->db->query("UPDATE `user` SET `isfirst`=0 WHERE `accesslevel` = 1");
+        }
+    } 
+    public function getimagebyid()
+    {
+        $query=$this->db->query("SELECT `image` FROM `logo` WHERE `id`=1")->row();
+        $image=$query->image;
+        return $image;
+     
+    }
+    public function createimage($image)
+    {
+        $query=$this->db->query("UPDATE `logo` SET `image`='$image' WHERE `id`=1");
+        return $image;
+     
+    }
 }
 ?>

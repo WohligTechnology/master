@@ -634,6 +634,10 @@ $this->load->view("json",$data);
     
        return 1;
    }
+ public function assignpackage(){
+     $package=$this->input->get_post('package');
+     $this->menu_model->enablemenu($package);
+ }
 
    
    
