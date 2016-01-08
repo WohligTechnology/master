@@ -77,23 +77,6 @@ public function edit($id,$company,$package)
 {
     $data=array("company" => $company,"package" => $package);
     $this->db->where( "id", $id );
-      // ASSIGHNING A PACKAGE FOR A COMPANY
-    
-     $this->load->helper('url');
-    $mainurl=$this->config->base_url();
-    $exactpath=$mainurl.$company.'/index.php/json/assignpackage?package='.$package;
-    $exactpathtobackend=$mainurl.$company;
-    
-      // GET CURL
-        $ch = curl_init();  
-        $url=$exactpath;
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-      curl_setopt($ch,CURLOPT_HEADER, false); 
-        $output=curl_exec($ch);
-        curl_close($ch);
     return 1;
 }
 public function delete($id)

@@ -22,9 +22,11 @@
         <?php $this->chintantable->createpagination();?>
 
     </div>
+    <?php if($checkpackage==4){?>
     <div class="createbuttonplacement"><a class="btn-floating btn-large waves-effect waves-light blue darken-4 tooltipped" href="<?php echo site_url('site/createpillar'); ?>"data-position="top" data-delay="50" data-tooltip="Create"><i class="material-icons">add</i></a>
     </div>
-
+<?php }else {?>
+<?php }?>
 </div>
 <script>
     function drawtable(resultrow) {

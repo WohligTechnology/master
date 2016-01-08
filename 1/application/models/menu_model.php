@@ -1007,7 +1007,7 @@ public function uploadImage(){
     {
         $this->db->query("UPDATE `user` SET `package`='$package' WHERE 1");
         if($package==1){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=1 WHERE `accesslevel` = 1");
         }
         else if($package==2){
@@ -1034,6 +1034,13 @@ public function uploadImage(){
     {
         $query=$this->db->query("UPDATE `logo` SET `image`='$image' WHERE `id`=1");
         return $image;
+     
+    }
+    public function checkpackage()
+    {
+        $query=$this->db->query("SELECT `package` FROM `user` WHERE 1")->row();
+        $package=$query->package;
+        return $package;
      
     }
 }

@@ -979,6 +979,7 @@ public function viewpillar()
 $access=array("1","2","3");
 $this->checkaccess($access);
 $data["page"]="viewpillar";
+$data["checkpackage"]=$this->menu_model->checkpackage();
 $data["base_url"]=site_url("site/viewpillarjson");
 $data["title"]="View pillar";
 $this->load->view("template",$data);
