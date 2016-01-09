@@ -101,7 +101,91 @@ return $query;
         $query=$this->db->query("SELECT COUNT(*) as `packageexpire` FROM `master_company` WHERE `enddate`='$expiredate'")->row();
         $packageexpirecount=$query->packageexpire;
         return $packageexpirecount;
-    }
+    } 
+    public function blockCompanyModel($companyid)
+{
+//          // SEND ALERT
+//    
+   
+//        // START MAIL
+//        require 'Mandrill.php';
+//
+//$mandrill = new Mandrill(); 
+//
+//// If are not using environment variables to specific your API key, use:
+//// $mandrill = new Mandrill("YOUR_API_KEY")
+//
+//$message = array(
+//    'subject' => 'Test message',
+//    'from_email' => $sender,
+//    'html' => '<p>this is a test message with Mandrill\'s PHP wrapper!.</p>',
+//    'to' => array(array('email' => $receiver, 'name' => 'Recipient 1')),
+//    'merge_vars' => array(array(
+//        'rcpt' => $receiver,
+//        'vars' =>
+//        array(
+//            array(
+//                'name' => 'FIRSTNAME',
+//                'content' => 'Recipient 1 first name'),
+//            array(
+//                'name' => 'LASTNAME',
+//                'content' => 'Last name')
+//    ))));
+//
+//$template_name = 'Stationary';
+//
+//$template_content = array(
+//    array(
+//        'name' => 'main',
+//        'content' => 'Hi *|FIRSTNAME|* *|LASTNAME|*, thanks for signing up.'),
+//    array(
+//        'name' => 'footer',
+//        'content' => 'Copyright 2012.')
+//
+//);
+//
+//print_r($mandrill->messages->sendTemplate($template_name, $template_content, $message));
+
+        // END MAIL
+        
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid.'/index.php/json/blockBackend';
+    $this->db->query("UPDATE `master_company` SET `isblock`=1 WHERE `id`='$companyid'");
+        // create a new cURL resource
+    $ch = curl_init();
+
+    // set URL and other appropriate options
+    curl_setopt($ch, CURLOPT_URL, "$exactpath");
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+
+    // grab URL and pass it to the browser
+    curl_exec($ch);
+
+    // close cURL resource, and free up system resources
+    curl_close($ch);
+        
+        // MAIL SENT 
+        
+     $companydetails=$this->company_model->getsinglecompany($companyid);
+    $receiver=$companydetails->email;
+    $sender="vigwohlig@gmail.com";
+//        $this->load->library('email');
+        $this->email->from($sender, 'Demo Alert Mail');
+        $this->email->to($receiver);
+        $this->email->subject('Please find below the credentials');
+        $message = "<html>
+   
+      <p>
+      <span style='font-size:14px;font-weight:bold;padding:10px 0;'>A simple alert: </span>
+      <span>Your Package Is Expired...You Cannot Login Any More.</span>
+      </p>
+</html>";
+        $this->email->message($message);
+        $this->email->send();
+
+}
+   
 }
 
 

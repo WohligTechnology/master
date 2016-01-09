@@ -77,6 +77,7 @@ public function edit($id,$company,$package)
 {
     $data=array("company" => $company,"package" => $package);
     $this->db->where( "id", $id );
+    $query=$this->db->update( "companypackage", $data );
     return 1;
 }
 public function delete($id)

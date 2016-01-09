@@ -60,16 +60,22 @@ $this->load->view("json",$data);
  }
  
  public function greatest(){
-     $nums=array(14,25,65,45,21);
-     $greatest=$nums[0];
-    for($i=0;$i<$nums;$i++)
-    {
-        if($nums[$i]>$greatest)
-        {
-            $greatest=$nums[$i];
-        }
-        
-    }
-     return $greatest;
+       $mainurl = $this->input->get("mainurl");
+       $company = $this->input->get("company");
+     $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath="http://localhost/master/1/index.php/json/assignpackage?package=1";
+    $exactpathtobackend=$mainurl.$company;
+    echo $exactpath;
+      // GET CURL
+        $ch = curl_init();  
+        $url=$exactpath;
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+      curl_setopt($ch,CURLOPT_HEADER, false); 
+        $output=curl_exec($ch);
+        curl_close($ch);
  }
 } ?>

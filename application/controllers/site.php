@@ -53,7 +53,6 @@ class Site extends CI_Controller
 		$this->checkaccess($access);
          $accesslevelid=$this->session->userdata("accesslevel");
         $data['blockedcompanies']=$this->company_model->getblockedcompany();
-       
         $data['packageexpire']=$this->company_model->getpackageexpire();
         if($accesslevelid==2){
             $data[ 'page' ] = 'createuser';
@@ -957,7 +956,6 @@ else
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$company.'/index.php/json/assignpackage?package='.$package;
     $exactpathtobackend=$mainurl.$company;
-    
       // GET CURL
         $ch = curl_init();  
         $url=$exactpath;
@@ -1119,6 +1117,20 @@ public function blockCompany()
         redirect($exactpath);
        
 }
+     public function checkblock() 
+    {
+        // willbe included in cron
+         $todaysdate=date("Y-m-d");
+         $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` <= '$todaysdate' AND `isblock`=0")->result();
+        if(!empty($query))
+        {
+            foreach($query as $row)
+            {
+                $companyid=$row->id;
+                $this->company_model->blockCompanyModel($companyid);
+            }
+        }
+    }
 
 }
 ?>
