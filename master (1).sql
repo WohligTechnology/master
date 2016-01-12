@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2016 at 05:41 AM
+-- Generation Time: Jan 12, 2016 at 05:56 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -49,14 +49,15 @@ CREATE TABLE IF NOT EXISTS `companypackage` (
   `id` int(11) NOT NULL,
   `company` int(11) NOT NULL,
   `package` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `companypackage`
 --
 
 INSERT INTO `companypackage` (`id`, `company`, `package`) VALUES
-(3, 1, 1);
+(3, 1, 4),
+(4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `master_company` (
 --
 
 INSERT INTO `master_company` (`id`, `name`, `email`, `package`, `isblock`, `startdate`, `enddate`, `sector`) VALUES
-(1, 'pooja', 'pooja.wohlig@gmail.com', '0', 0, '2016-01-08', '2016-02-26', 1);
+(1, 'pooja', 'pooja.wohlig@gmail.com', '0', 1, '2016-01-08', '2016-01-09', 1);
 
 -- --------------------------------------------------------
 
@@ -412,7 +413,7 @@ ALTER TABLE `accesslevel`
 -- AUTO_INCREMENT for table `companypackage`
 --
 ALTER TABLE `companypackage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `logintype`
 --
