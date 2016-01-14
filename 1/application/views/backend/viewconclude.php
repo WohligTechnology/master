@@ -40,18 +40,19 @@
                     </thead>
                     <tbody>
 <!--                        for each for option-->
+                         <?php  foreach($question->options as $option) { ?>
                         <tr>
                             <td>
-                                lorem ipsum dolar mandal lorem ipsum dolar mandal lorem ipsum dolar mandal lorem ipsum dolar mandal lorem ipsum dolar mandal ?
+                              <?php echo $option->optiontext;?>
                             </td>
                             <td>
-                                Weight(40%)
+                                Weight(   <?php echo $option->weight;?>%)
                             </td>
                             <td>
                                 Average(30%)
                             </td>
                         </tr>
-                        
+                           <?php }?>
                         <!--                        for each for option ends-->
                     </tbody>
                 </table>
