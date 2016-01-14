@@ -49,7 +49,7 @@
                                 Weight(   <?php echo $option->weight;?>%)
                             </td>
                             <td>
-                                Average(30%)
+                                Average( <?php echo $question->avgweight->avgweight;?>%)
                             </td>
                         </tr>
                            <?php }?>
