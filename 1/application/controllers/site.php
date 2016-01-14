@@ -3419,6 +3419,15 @@ $this->load->view("redirect2",$data);
         
         $data['page']='viewconclusion';
         $this->load->view('template',$data);
+}   
+    public function viewconclude()
+{
+    $id=$this->input->get("id");
+    $data["conclusion"]=$this->conclusion_model->getConclusionQuestionOption($id);
+    $data[ 'title' ] ="Interlinkage Part";
+    $data['page']='viewconclude';
+    $this->load->view('template',$data);
+
 }
     
     
@@ -3529,6 +3538,7 @@ $data["page"]="editconclusion";
 $data["page2"]="block/conclusionblock";
 $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
+$data["before3"]=$this->input->get("id");
 $data["title"]="Edit conclusion";
 $data["before"]=$this->conclusion_model->beforeedit($this->input->get("id"));
 $this->load->view("templatewith2",$data);
@@ -3557,7 +3567,7 @@ if($this->conclusion_model->edit($id,$order,$name)==0)
 $data["alerterror"]="New conclusion could not be Updated.";
 else
 $data["alertsuccess"]="conclusion Updated Successfully.";
-$data["redirect"]="site/viewconclusion1";
+$data["redirect"]="site/viewconclusion";
 $this->load->view("redirect",$data);
 }
 }
@@ -3577,6 +3587,7 @@ $data["page"]="viewconclusionquestion";
 $data["page2"]="block/conclusionblock";
 $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
+$data["before3"]=$this->input->get("id");
 $data["base_url"]=site_url("site/viewconclusionquestionjson?id=".$this->input->get("id"));
 $data["title"]="View conclusionquestion";
 $this->load->view("templatewith2",$data);
@@ -3623,10 +3634,15 @@ public function createconclusionquestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionquestion";
+$data["page2"]="block/conclusionblock";
+    
+$data["before1"]=$this->input->get("id");
+$data["before2"]=$this->input->get("id");
+$data["before3"]=$this->input->get("id");
  $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["question"]=$this->conclusionquestion_model->getquestionfromtestdropdown();
 $data["title"]="Create conclusionquestion";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createconclusionquestionsubmit() 
 {
@@ -3661,11 +3677,15 @@ public function editconclusionquestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionquestion";
+$data["page2"]="block/conclusionblock";
+$data["before1"]=$this->input->get("conclusionid");
+$data["before2"]=$this->input->get("conclusionid");
+$data["before3"]=$this->input->get("conclusionid");
 $data["title"]="Edit conclusionquestion";
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["question"]=$this->conclusionquestion_model->getquestionfromtestdropdown();
 $data["before"]=$this->conclusionquestion_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editconclusionquestionsubmit()
 {
@@ -3711,9 +3731,13 @@ public function viewconclusionsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewconclusionsuggestion";
+$data["page2"]="block/conclusionblock";
+$data["before1"]=$this->input->get("id");
+$data["before2"]=$this->input->get("id");
+$data["before3"]=$this->input->get("id");
 $data["base_url"]=site_url("site/viewconclusionsuggestionjson");
 $data["title"]="View conclusionsuggestion";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 function viewconclusionsuggestionjson()
 {
@@ -3756,9 +3780,14 @@ public function createconclusionsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionsuggestion";
+$data["page2"]="block/conclusionblock";
+    
+$data["before1"]=$this->input->get("id");
+$data["before2"]=$this->input->get("id");
+$data["before3"]=$this->input->get("id");
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["title"]="Create conclusionsuggestion";
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function createconclusionsuggestionsubmit() 
 {
@@ -3783,8 +3812,8 @@ if($this->conclusionsuggestion_model->create($conclusion,$suggestion)==0)
 $data["alerterror"]="New conclusionsuggestion could not be created.";
 else
 $data["alertsuccess"]="conclusionsuggestion created Successfully.";
-$data["redirect"]="site/viewconclusionsuggestion";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewconclusionsuggestion?id=".$conclusion;
+$this->load->view("redirect2",$data);
 }
 }
 public function editconclusionsuggestion()
@@ -3792,10 +3821,14 @@ public function editconclusionsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionsuggestion";
+$data["page2"]="block/conclusionblock";
+$data["before1"]=$this->input->get("conclusionid");
+$data["before2"]=$this->input->get("conclusionid");
+$data["before3"]=$this->input->get("conclusionid");
 $data["title"]="Edit conclusionsuggestion";
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["before"]=$this->conclusionsuggestion_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
+$this->load->view("templatewith2",$data);
 }
 public function editconclusionsuggestionsubmit()
 {
@@ -3822,8 +3855,8 @@ if($this->conclusionsuggestion_model->edit($id,$conclusion,$suggestion)==0)
 $data["alerterror"]="New conclusionsuggestion could not be Updated.";
 else
 $data["alertsuccess"]="conclusionsuggestion Updated Successfully.";
-$data["redirect"]="site/viewconclusionsuggestion";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewconclusionsuggestion?id=".$conclusion;
+$this->load->view("redirect2",$data);
 }
 }
 public function deleteconclusionsuggestion()
@@ -3831,8 +3864,9 @@ public function deleteconclusionsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $this->conclusionsuggestion_model->delete($this->input->get("id"));
-$data["redirect"]="site/viewconclusionsuggestion";
-$this->load->view("redirect",$data);
+$conclusion=$this->input->get("conclusionid");
+$data["redirect"]="site/viewconclusionsuggestion?id=".$conclusion;
+$this->load->view("redirect2",$data);
 }
 public function viewconclusionfinalsuggestion()
 {

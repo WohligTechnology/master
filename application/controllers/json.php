@@ -78,4 +78,9 @@ $this->load->view("json",$data);
         $output=curl_exec($ch);
         curl_close($ch);
  }
+  
+ public function getpackageexpirecompanies() {
+    $a=$this->company_model->getpackageexpirecompanies();
+     print_r($a);
+ }
 } ?>

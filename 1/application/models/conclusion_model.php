@@ -219,5 +219,18 @@ return $query;
 		return $return;
 	
 }
+    public function getConclusionQuestionOption($id)
+	{
+	$query=$this->db->query("SELECT * FROM `hq_question` WHERE `id` IN (SELECT `question` FROM `hq_conclusionquestion` WHERE `conclusion`='$id')")->result();
+        foreach($query as $row)
+        {
+            $questionid=$row->id;
+            $row->avgquestionweight=$this->db->query("SELECT IFNULL(ROUND(AVG( `hq_options`.`weight`),2),0) as `avgquestionweight` FROM `hq_options` WHERE `hq_options`.`question` IN (SELECT `hq_conclusionquestion`.`question` FROM `hq_conclusionquestion` INNER JOIN `hq_useranswer` ON `hq_useranswer`.`question`=`hq_conclusionquestion`.`question` WHERE `hq_conclusionquestion`.`conclusion`='1')")->row();
+            	$row->avgweight=$this->db->query("SELECT IFNULL(ROUND(AVG( `hq_options`.`weight`),2),0) as `avgweight` FROM `hq_options` INNER JOIN `hq_useranswer` ON `hq_useranswer`.`option`=`hq_options`.`id` WHERE `hq_useranswer`.`question` IN (SELECT `question` FROM `hq_conclusionquestion` WHERE `conclusion`=$id)")->row();
+            	$row->options=$this->db->query("SELECT * FROM `hq_options` WHERE `question`=$questionid")->result();
+            	
+        }
+	return $query;
+    }
 }
 ?>

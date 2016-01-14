@@ -96,11 +96,24 @@ return $query;
         }
         return $query;
     }
+    public function getCompanyPackagesChart() {
+        $query=$this->db->query("SELECT `id`, `name` FROM `package` WHERE 1")->result();
+        foreach($query as $row)
+        {
+             $row->packagecount=$this->db->query("SELECT COUNT(*) as `package` FROM `master_company` WHERE `package` =$row->id")->row();
+        }
+        return $query;
+    }
     public function getpackageexpire() {
         $expiredate=date('Y-m-d', strtotime("+30 days"));
         $query=$this->db->query("SELECT COUNT(*) as `packageexpire` FROM `master_company` WHERE `enddate`='$expiredate'")->row();
         $packageexpirecount=$query->packageexpire;
         return $packageexpirecount;
+    }  
+    public function getpackageexpirecompanies() {
+        $expiredate=date('Y-m-d', strtotime("+30 days"));
+        $query=$this->db->query("SELECT `id` FROM `master_company` WHERE `enddate`='$expiredate'")->result();
+       return $query;
     } 
     public function blockCompanyModel($companyid)
 {

@@ -2,13 +2,13 @@
     <div class="col s12">
         <div class="row">
             <div class="col s12 drawchintantable">
-                <?php $this->chintantable->createsearch(" List of company");?>
+                <?php $this->chintantable->createsearch(" List of companies");?>
                     <table class="highlight responsive-table">
                         <thead>
                             <tr>
                                 <th data-field="id">Id</th>
-                                <th data-field="name">Name</th>
-                                <th data-field="email">Email</th>
+                                <th data-field="name">Contact Name</th>
+                                <th data-field="email">Contact Email</th>
                                 <!--<th data-field="package">Package</th>-->
                             </tr>
                         </thead>

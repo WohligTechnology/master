@@ -6,7 +6,7 @@
 -->
 <!--<div id="container" style="height: 400px"></div>-->
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
-<span class="filprop"><u>Filter By :-</u></span>
+<span class="filprop"><u>Filters</u></span>
 <button class="btn btn-primary waves-effect waves-light blue darken-4 right" onclick="GlobalFunctions.clearSelection()">Clear Selection</button>
 <form method="post" action="<?php echo site_url('site/getuserbyfilter');?>">
 
@@ -106,10 +106,12 @@
         <tr>
             <th>Name</th>
             <th>Average Percent</th>
+            <th>View</th>
         </tr>
     </thead>
     <tbody class="datatobeinserted">
         <tr>
+            <td>CHHCHH</td>
             <td>CHHCHH</td>
             <td>CHHCHH</td>
         </tr>
@@ -154,10 +156,11 @@
             $("table tbody.datatobeinserted").html("");
         }
 
-        function addRow(name, averagePercent) {
-            $("table tbody.datatobeinserted").append("<tr><td>" + name + "</td><td>" + averagePercent + "</td></tr>");
+        function addRow(name, averagePercent,id) {
+            $("table tbody.datatobeinserted").append("<tr><td>" + name + "</td><td>" + averagePercent + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/viewconclude?id=');?>"+ id +"'><i class='material-icons propericon'>visibility</i></a></td></tr>");
+            
         }
-
+//
 
         function getTable() {
             var $gender = $("select[name=gender]").val();
@@ -183,7 +186,7 @@
                 console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     var n = data[i];
-                    addRow(n.name, n.averagepercent.averagepercent);
+                    addRow(n.name, n.averagepercent.averagepercent,n.id);
                 }
 
                 $('select').material_select();

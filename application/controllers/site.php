@@ -69,6 +69,11 @@ class Site extends CI_Controller
          $data['message']=$this->company_model->getcompanysector();
          $this->load->view("json",$data);
         
+    } 
+    public function getcompanypackageschart(){
+         $data['message']=$this->company_model->getCompanyPackagesChart();
+         $this->load->view("json",$data);
+        
     }
 	public function createuser()
 	{
@@ -583,29 +588,129 @@ $data["base_url"]=site_url("site/viewcompanyjson");
 $data["title"]="View company";
 $this->load->view("template",$data);
 }
-function viewcompanyjson()
+    public function viewpackageexpiring()
 {
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewcompany";
+$data["base_url"]=site_url("site/viewcompanyjson1?id=1");
+$data["title"]="View company";
+$this->load->view("template",$data);
+}  
+    public function viewblockcompanies()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewcompany";
+$data["base_url"]=site_url("site/viewcompanyjson1?id=2");
+$data["title"]="View company";
+$this->load->view("template",$data);
+}
+function viewcompanyjson1()
+{
+    $id=$this->input->get('id');
+    $companyid=$this->company_model->getpackageexpirecompanies();
+    $companyids="(";
+            foreach($companyid as $key=>$value){
+                if($key==0)
+                {
+                    $companyids.=$value->id;
+                }
+                else
+                {
+                    $companyids.=",".$value->id;
+                }
+            }
+            $companyids.=")";
+            if($companyids=="()"){
+             $companyids="(0)";
+            }
+    $where="";
+    if($id==2)
+    {
+    $where="WHERE `master_company`.`isblock`=1";
+    }
+    else if($id==1)
+    {
+        // expire
+    $where="WHERE `master_company`.`id` IN $companyids";
+    }
+  
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`master_company`.`id`";
 $elements[0]->sort="1";
 $elements[0]->header="Id";
 $elements[0]->alias="id";
+    
 $elements[1]=new stdClass();
 $elements[1]->field="`master_company`.`name`";
 $elements[1]->sort="1";
-$elements[1]->header="Name";
+$elements[1]->header="Contact Name";
 $elements[1]->alias="name";
+    
 $elements[2]=new stdClass();
 $elements[2]->field="`master_company`.`email`";
 $elements[2]->sort="1";
-$elements[2]->header="Email";
+$elements[2]->header="Contact Email";
 $elements[2]->alias="email";
+    
 $elements[3]=new stdClass();
 $elements[3]->field="`master_company`.`package`";
 $elements[3]->sort="1";
 $elements[3]->header="Package";
 $elements[3]->alias="package";
+    
+$elements[4]=new stdClass();
+$elements[4]->field="`master_company`.`isblock`";
+$elements[4]->sort="1";
+$elements[4]->header="isblock";
+$elements[4]->alias="isblock";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `master_company`","$where");
+$this->load->view("json",$data);
+}
+    function viewcompanyjson()
+{
+   
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`master_company`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="Id";
+$elements[0]->alias="id";
+    
+$elements[1]=new stdClass();
+$elements[1]->field="`master_company`.`name`";
+$elements[1]->sort="1";
+$elements[1]->header="Contact Name";
+$elements[1]->alias="name";
+    
+$elements[2]=new stdClass();
+$elements[2]->field="`master_company`.`email`";
+$elements[2]->sort="1";
+$elements[2]->header=" Contact Email";
+$elements[2]->alias="email";
+    
+$elements[3]=new stdClass();
+$elements[3]->field="`master_company`.`package`";
+$elements[3]->sort="1";
+$elements[3]->header="Package";
+$elements[3]->alias="package";
+    
 $elements[4]=new stdClass();
 $elements[4]->field="`master_company`.`isblock`";
 $elements[4]->sort="1";
@@ -665,7 +770,16 @@ if($this->company_model->create($name,$email,$package,$startdate,$enddate,$secto
 $data["alerterror"]="New company could not be created.";
 else
 $data["alertsuccess"]="company created Successfully.";
-$data["redirect"]="site/viewcompany";
+$accesslevelid=$this->session->userdata("accesslevel");
+    if($accesslevelid==1)
+    {
+        $data["redirect"]="site/viewcompany";
+    }
+    else
+    {
+        $data["redirect"]="site/createcompany";
+    }
+
 $this->load->view("redirect",$data);
 }
 }

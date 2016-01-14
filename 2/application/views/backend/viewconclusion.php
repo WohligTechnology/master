@@ -6,7 +6,7 @@
 -->
 <!--<div id="container" style="height: 400px"></div>-->
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
-<span class="filprop"><u>Filter By :-</u></span>
+<span class="filprop"><u>Filters</u></span>
 <button class="btn btn-primary waves-effect waves-light blue darken-4 right" onclick="GlobalFunctions.clearSelection()">Clear Selection</button>
 <form method="post" action="<?php echo site_url('site/getuserbyfilter');?>">
 

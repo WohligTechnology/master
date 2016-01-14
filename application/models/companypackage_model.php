@@ -9,6 +9,11 @@ public function create($company,$package)
     $query=$this->db->insert( "companypackage", $data );
     $id=$this->db->insert_id();
   
+    //update company package
+     $data1=array("package" => $package);
+    $this->db->where( "id", $company );
+    $query=$this->db->update( "master_company", $data1 );
+    
     // SEND CREDENTIALS ON COMPANY CREATE
     
     $companydetails=$this->company_model->getsinglecompany($company);
@@ -78,6 +83,11 @@ public function edit($id,$company,$package)
     $data=array("company" => $company,"package" => $package);
     $this->db->where( "id", $id );
     $query=$this->db->update( "companypackage", $data );
+    
+       //update company package
+     $data1=array("package" => $package);
+    $this->db->where( "id", $company );
+    $query=$this->db->update( "master_company", $data1 );
     return 1;
 }
 public function delete($id)
