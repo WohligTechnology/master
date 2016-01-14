@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2016 at 10:20 AM
+-- Generation Time: Jan 14, 2016 at 06:53 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -49,19 +49,16 @@ CREATE TABLE IF NOT EXISTS `companypackage` (
   `id` int(11) NOT NULL,
   `company` int(11) NOT NULL,
   `package` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `companypackage`
 --
 
 INSERT INTO `companypackage` (`id`, `company`, `package`) VALUES
-(3, 1, 4),
-(4, 1, 1),
-(5, 2, 3),
-(6, 2, 1),
-(7, 2, 2),
-(8, 2, 4);
+(1, 1, 1),
+(2, 1, 3),
+(3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -99,15 +96,16 @@ CREATE TABLE IF NOT EXISTS `master_company` (
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
   `sector` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `master_company`
 --
 
 INSERT INTO `master_company` (`id`, `name`, `email`, `package`, `isblock`, `startdate`, `enddate`, `sector`) VALUES
-(1, 'pooja', 'pooja.wohlig@gmail.com', '0', 0, '2016-01-08', '2016-01-09', 1),
-(2, 'wohlig', 'chintan@wohlig.com', '0', 0, '2016-01-12', '2016-02-12', 2);
+(1, 'pooja', 'pooja.wohlig@gmail.com', '3', 0, '2015-11-11', '2016-02-12', 1),
+(2, 'wohlig', 'chintan@wohlig.com', '1', 1, '2015-12-11', '2016-02-12', 2),
+(3, 'demo', 'de@ejhka.dfd', '0', 0, '2016-01-01', '2016-01-31', 2);
 
 -- --------------------------------------------------------
 
@@ -133,9 +131,9 @@ CREATE TABLE IF NOT EXISTS `menu` (
 --
 
 INSERT INTO `menu` (`id`, `name`, `description`, `keyword`, `url`, `linktype`, `parent`, `isactive`, `order`, `icon`) VALUES
-(1, 'Users', '', '', 'site/viewusers', 1, 0, 1, 1, 'icon-user'),
+(1, 'Admins', '', '', 'site/viewusers', 1, 0, 1, 1, 'icon-user'),
 (2, 'Company', '', '', 'site/viewcompany', 1, 0, 1, 2, 'icon-dashboard'),
-(3, 'Package', '', '', 'site/viewpackage', 1, 0, 1, 3, 'icon-dashboard'),
+(3, 'Packages', '', '', 'site/viewpackage', 1, 0, 1, 3, 'icon-dashboard'),
 (4, 'Dashboard', '', '', 'site/index', 1, 0, 1, 0, 'icon-dashboard'),
 (5, 'Create Company', '', '', 'site/createcompany', 1, 0, 1, 4, 'icon-dashboard');
 
@@ -418,7 +416,7 @@ ALTER TABLE `accesslevel`
 -- AUTO_INCREMENT for table `companypackage`
 --
 ALTER TABLE `companypackage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `logintype`
 --
@@ -428,7 +426,7 @@ ALTER TABLE `logintype`
 -- AUTO_INCREMENT for table `master_company`
 --
 ALTER TABLE `master_company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `menu`
 --
