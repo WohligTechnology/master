@@ -51,19 +51,6 @@
         }, function () {
             console.log("Cancel");
         });
-        //        var r = confirm("Are you sure want to block?");
-        //        if (r == true) {
-        //            console.log("Company ki lag gayi");
-        //            var new_base_url = "<?php echo site_url(); ?>";
-        //            $.getJSON(new_base_url + '/site/blockCompany', {
-        //                id: id
-        //            }, function (data) {
-        //                console.log("abc");
-        //                alert('Successfully Blocked');
-        //            });
-        //        } else {
-        //            console.log("Clicked Cancel do nothing");
-        //        }
 
     }
 
@@ -79,20 +66,6 @@
         }, function () {
             console.log("Cancel");
         });
-        //        var r = confirm("Are you sure want to Un block?");
-        //        if (r == true) {
-        //            console.log("Company ki lag gayi");
-        //            var new_base_url = "<?php echo site_url(); ?>";
-        //            $.getJSON(new_base_url + '/site/unBlockCompany', {
-        //                id: id
-        //            }, function (data) {
-        //                console.log("abc");
-        //                alert('Successfully Blocked');
-        //            });
-        //        } else {
-        //            console.log("Clicked Cancel do nothing");
-        //        }
-
     }
 </script>
 <script>
