@@ -70,6 +70,11 @@ class Site extends CI_Controller
          $this->load->view("json",$data);
         
     } 
+    public function getcompanypackage(){
+         $data['message']=$this->company_model->getcompanypackage();
+         $this->load->view("json",$data);
+        
+    } 
     public function getcompanypackageschart(){
          $data['message']=$this->company_model->getCompanyPackagesChart();
          $this->load->view("json",$data);

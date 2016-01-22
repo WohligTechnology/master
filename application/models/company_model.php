@@ -95,6 +95,14 @@ return $query;
              $row->sectorcount=$this->db->query("SELECT COUNT(*) as `sector` FROM `master_company` WHERE `sector` =$row->id")->row();
         }
         return $query;
+    }  
+    public function getcompanypackage() {
+        $query=$this->db->query("SELECT * FROM `package`")->result();
+        foreach($query as $row)
+        {
+             $row->packagecount=$this->db->query("SELECT COUNT(*) as `package` FROM `companypackage` WHERE `package` =$row->id")->row();
+        }
+        return $query;
     }
     public function getCompanyPackagesChart() {
         $query=$this->db->query("SELECT `id`, `name` FROM `package` WHERE 1")->result();
