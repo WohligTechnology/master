@@ -1,7 +1,7 @@
 
    <div class="row">
     <div class="col l3 m6 s12">
-        <a href='<?php echo site_url(' site/viewcompany ');?>'>
+        <a href='<?php echo site_url('site/viewcompany');?>'>
             <div class="card blue darken-4">
                 <div class="card-content white-text text-center">
                     <i class="large material-icons block" style="font-size: 4rem;">business</i>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="col l3 m6 s12">
-        <a href='<?php echo site_url(' site/viewpackageexpiring ');?>'>
+        <a href='<?php echo site_url('site/viewpackageexpiring');?>'>
             <div class="card blue darken-4">
                 <div class="card-content white-text text-center">
                     <i class="large material-icons block" style="font-size: 4rem;">error</i>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="col l3 m6 s12">
-        <a href='<?php echo site_url(' site/viewblockcompanies ');?>'>
+        <a href='<?php echo site_url('site/viewblockcompanies');?>'>
             <div class="card blue darken-4">
                 <div class="card-content white-text text-center">
                     <i class="large material-icons block" style="font-size: 4rem;">not_interested</i>
