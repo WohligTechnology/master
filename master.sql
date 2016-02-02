@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2016 at 06:53 AM
+-- Generation Time: Feb 02, 2016 at 07:40 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `master_company` (
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
   `sector` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `master_company`
@@ -426,7 +426,7 @@ ALTER TABLE `logintype`
 -- AUTO_INCREMENT for table `master_company`
 --
 ALTER TABLE `master_company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `menu`
 --
