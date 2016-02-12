@@ -124,7 +124,7 @@ class Chintantable
             </div>
         </div>
     </div>
-    <h2 class="blue-text">Please wait...</h2>
+    <h2 class="">Please wait...</h2>
     </div>
 <div class="panel-body">
     <div class="row">

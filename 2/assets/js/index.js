@@ -1,4 +1,4 @@
-
+$( document ).ready(function() {
     $("[name=range]").on("change", function() {
     $("[for=range]").val(this.value +"%" );
     }).trigger("change");
@@ -38,3 +38,7 @@
     $("[name=rangenine]").on("change", function() {
     $("[for=rangenine]").val(this.value +"%" );
     }).trigger("change");
+      $("[name=rangeeleven]").on("change", function() {
+            $("[for=rangeeleven]").val(this.value + "%");
+        }).trigger("change");
+    });

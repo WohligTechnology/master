@@ -577,10 +577,21 @@ $this->load->view("json",$data);
 	 	$data['message'] = $this->restapi_model->pingHq($user);
 	 	$this->load->view('json', $data);
  	}
+ public function pingHqForSurvey()
+ 	{
+     
+      $data = json_decode(file_get_contents('php://input'), true);
+      $user=$data["user"];
+	 	$data['message'] = $this->restapi_model->pingHqForSurvey($user);
+	 	$this->load->view('json', $data);
+ 	}
  
  public function viewfirstpage()
  {
       $data['pillardata']=$this->pillar_model->getallpillars();
+      $data["checkpackage"]=$this->menu_model->checkpackage();
+     $data['lastpillardetail']=$this->pillar_model->lastpillardetail();
+     $data['before']=$this->pillar_model->getpillarweightforedit();
       $this->user_model->makeuserold($this->session->userdata("id"));
       $this->load->view('pillar',$data);
  }
@@ -614,15 +625,35 @@ $this->load->view("json",$data);
        echo "      ";
         foreach($getUserid as $getUserid){
             $email=$getUserid->email;
-            echo $email;
-            echo "      ";
              $hashvalue=base64_encode ($getUserid->id."&hq");
-            echo $hashvalue;
        $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-             echo "      ";
-            echo $link;
                $this->load->library('email');
-       $this->email->from('vigwohlig@gmail.com', 'HQ');
+       $this->email->from('master@willnevergrowup.in', 'HQ');
+       $this->email->to($email);
+       $this->email->subject('Test');   
+           
+       $message = "Hiii      ".$link;
+       $this->email->message($message);
+       $this->email->send();
+            
+        }
+    
+       return 1;
+   }
+ public function sendsurveyquestion()
+   {
+       $gettotalemails=$this->db->query("SELECT `user`.`id` as `userid`,`hq_surveyquestionuser`.`id`, `hq_surveyquestionuser`.`question`, `hq_surveyquestionuser`.`email`, `hq_surveyquestionuser`.`status` FROM `hq_surveyquestionuser` LEFT OUTER JOIN `user` ON `user`.`email`=`hq_surveyquestionuser`.`email` WHERE `hq_surveyquestionuser`.`status`=1
+")->result();
+       
+        foreach($gettotalemails as $gettotalemail){
+            $email=$gettotalemail->email;
+            $userid=$gettotalemail->userid;
+            echo $email;
+             $hashvalue=base64_encode ($userid."&hq");
+       $link="<a href='http://wohlig.co.in/hqfront/#/survey/$hashvalue'>Click here </a> To get questions.";
+           echo $link;
+              $this->load->library('email');
+       $this->email->from('master@willnevergrowup.in', 'HQ');
        $this->email->to($email);
        $this->email->subject('Test');   
            

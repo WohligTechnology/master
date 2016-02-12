@@ -45,6 +45,12 @@ public function getimagebyid($id)
 $query=$this->db->query("SELECT `image` FROM `hq_surveyoption` WHERE `id`='$id'")->row();
 return $query;
 }
+      function checktype($id)
+    {
+        $query=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `id`='$id'")->row();
+        $type=$query->type;
+          return $type;
+}
 public function getsurveyoptiondropdown()
 {
 $query=$this->db->query("SELECT * FROM `hq_surveyoption`  ORDER BY `id` ASC")->result();

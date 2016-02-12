@@ -71,5 +71,10 @@ WHERE `question`='$questionid'")->result();
         $query->options=$queryoptions;
         return $query;
     }
+    public function getallquestion()
+    {
+        $query=$this->db->query("SELECT * FROM `hq_question` WHERE 1")->result();
+        return $query;
+    }
 }
 ?>

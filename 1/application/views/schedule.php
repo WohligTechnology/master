@@ -1,26 +1,4 @@
-<!DOCTYPE html>
-<html lang="">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Starter Template for Bootstrap 3.3.6</title>
-    <link rel="shortcut icon" href="">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="materialize.css">
-    <link rel="stylesheet" href="materialize.min.css">
-    <link rel="stylesheet" href="range.css">
-    <link rel="stylesheet" href="style.css">
-
-    <!--[if IE]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body class="yellow-back">
     <div class="container">
         <div class="padtop">
             <div class="row">
@@ -194,8 +172,3 @@
             </div>
         </div>
     </div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src="index.js"></script>
-</body>
-
-</html>

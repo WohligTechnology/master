@@ -10,7 +10,7 @@
 <th data-field="order">Order</th>
 <!-- <th data-field="question">Question</th> -->
 <th data-field="title">Title</th>
-<th data-field="image">Image</th>
+<!--<th data-field="image">Image</th>-->
 </tr>
 </thead>
 <tbody>
@@ -29,7 +29,7 @@ function drawtable(resultrow) {
                 {
                 image="No Receipt Available";
                 }
-return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.order + "</td><td>" + resultrow.title + "</td><td>" + image + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/editsurveyoption?id=');?>"+resultrow.id+"&questionid="+resultrow.question+"'><i class='material-icons'>mode_edit</i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/deletesurveyoption?id='); ?>"+resultrow.id+"&questionid="+resultrow.question+"'><i class='material-icons propericon'>delete</i></a></td></tr>";
+return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.order + "</td><td>" + resultrow.title + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/editsurveyoption?id=');?>"+resultrow.id+"&questionid="+resultrow.question+"'><i class='material-icons'>mode_edit</i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/deletesurveyoption?id='); ?>"+resultrow.id+"&questionid="+resultrow.question+"'><i class='material-icons propericon'>delete</i></a></td></tr>";
 }
 generatejquery("<?php echo $base_url;?>");
 </script>

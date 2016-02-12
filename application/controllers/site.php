@@ -54,8 +54,9 @@ class Site extends CI_Controller
          $accesslevelid=$this->session->userdata("accesslevel");
         $data['blockedcompanies']=$this->company_model->getblockedcompany();
         $data['packageexpire']=$this->company_model->getpackageexpire();
+        $data['sector']=$this->company_model->getSectorDropDown();
         if($accesslevelid==2){
-            $data[ 'page' ] = 'createuser';
+            $data[ 'page' ] = 'createcompany';
         }
         else{
             $data[ 'page' ] = 'dashboard';
@@ -771,21 +772,26 @@ $package=$this->input->get_post("package");
 $startdate=$this->input->get_post("startdate");
 $enddate=$this->input->get_post("enddate");
 $sector=$this->input->get_post("sector");
-if($this->company_model->create($name,$email,$package,$startdate,$enddate,$sector)==0)
-$data["alerterror"]="New company could not be created.";
-else
-$data["alertsuccess"]="company created Successfully.";
+    $value=$this->company_model->create($name,$email,$package,$startdate,$enddate,$sector);
+if($value==0){
+    $data["alerterror"]="New company could not be created.";
+}
+
+else{
+    $data["alertsuccess"]="company created Successfully.";
 $accesslevelid=$this->session->userdata("accesslevel");
     if($accesslevelid==1)
     {
         $data["redirect"]="site/viewcompany";
     }
-    else
+    else if($accesslevelid==2)
     {
-        $data["redirect"]="site/createcompany";
+        $data["redirect"]="site/editcompany?id=".$value;
     }
 
 $this->load->view("redirect",$data);
+}
+
 }
 }
 public function editcompany()

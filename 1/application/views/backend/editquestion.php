@@ -41,7 +41,7 @@
                     <?php    if($checkaccesslevel==1) {?>
                 <button type="submit" class="btn btn-primary waves-effect waves-light blue darken-4">Save</button>
                         <?php }?>
-                <a href="<?php echo site_url('site/viewquestion'); ?>" class="btn btn-secondary waves-effect waves-light  red">Cancel</a>
+                <a href="<?php echo site_url('site/getSchedule'); ?>" class="btn btn-secondary waves-effect waves-light  red">Cancel</a>
         </div>
             </div>
         </div>

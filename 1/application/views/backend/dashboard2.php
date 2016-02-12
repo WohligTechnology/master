@@ -1,6 +1,6 @@
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <div id="nodata" style="display:none;">No Data Found</div>
-<div class="well" style="text-align: left;background-color: white;color:black;width:275px;">
+<div class="well">
     <span style="font-size: 20px;"><b>Charts of Recent Test :-</b></span>
 </div>
 <div id="container2"></div>
@@ -23,4 +23,3 @@
 
     });
 </script>
-

@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class surveyquestion_model extends CI_Model
 {
-public function create($type,$text,$starttime,$endtime)
+public function create($type,$text,$starttime,$endtime,$content)
 {
-$data=array("type" => $type,"text" => $text,"starttime" => $starttime,"endtime" => $endtime);
+$data=array("type" => $type,"text" => $text,"starttime" => $starttime,"endtime" => $endtime,"content" => $content);
 $query=$this->db->insert( "hq_surveyquestion", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,8 +24,9 @@ $this->db->where("id",$id);
 $query=$this->db->get("hq_surveyquestion")->row();
 return $query;
 }
-public function edit($id,$type,$text,$starttime,$endtime)
-{$data=array("type" => $type,"text" => $text,"starttime" => $starttime,"endtime" => $endtime);
+  
+public function edit($id,$type,$text,$starttime,$endtime,$content)
+{$data=array("type" => $type,"text" => $text,"starttime" => $starttime,"endtime" => $endtime,"content" => $content);
 $this->db->where( "id", $id );
 $query=$this->db->update( "hq_surveyquestion", $data );
 return 1;
@@ -48,7 +49,7 @@ $return=array(
 );
 foreach($query as $row)
 {
-  $return[$row->id]=$row->text;
+  $return[$row->id]=$row->content;
 }
 
 return $return;
@@ -57,12 +58,12 @@ public function gettypedropdown()
 {
 $return=array(
 "" => "Choose Type",
-"1" => "Single",
-"2" => "Multiple",
-"3" => "Image"
+"1" => "Text",
+"2" => "Paragraph text",
+"3" => "Multiple choice",
+"4" => "Checkboxes",
+"5" => "Choose Image"
 );
-
-
 return $return;
 }
 }

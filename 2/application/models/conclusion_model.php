@@ -31,6 +31,21 @@ $this->db->where( "id", $id );
 $query=$this->db->update( "hq_conclusion", $data );
 return 1;
 }
+     public function getConclusionQuestionOption($id)
+	{
+	$query=$this->db->query("SELECT * FROM `hq_question` WHERE `id` IN (SELECT `question` FROM `hq_conclusionquestion` WHERE `conclusion`='$id')")->result();
+        foreach($query as $row)
+        {
+            $questionid=$row->id;
+            $row->avgquestionweight=$this->db->query("SELECT IFNULL(ROUND(AVG( `hq_options`.`weight`),2),0) as `avgquestionweight` FROM `hq_options` WHERE `hq_options`.`question` IN (SELECT `hq_conclusionquestion`.`question` FROM `hq_conclusionquestion` INNER JOIN `hq_useranswer` ON `hq_useranswer`.`question`=`hq_conclusionquestion`.`question` WHERE `hq_conclusionquestion`.`conclusion`='$id')")->row();
+            	$row->avgweight=$this->db->query("SELECT IFNULL(ROUND(AVG( `hq_options`.`weight`),2),0) as `avgweight` FROM `hq_options` INNER JOIN `hq_useranswer` ON `hq_useranswer`.`option`=`hq_options`.`id`
+INNER JOIN `hq_conclusionquestion` ON `hq_conclusionquestion`.`question`=`hq_useranswer`.`question`
+WHERE `hq_conclusionquestion`.`conclusion`='$id'")->row();
+            	$row->options=$this->db->query("SELECT * FROM `hq_options` WHERE `question`=$questionid")->result();
+            	
+        }
+	return $query;
+    }
 public function delete($id)
 {
 $query=$this->db->query("DELETE FROM `hq_conclusion` WHERE `id`='$id'");

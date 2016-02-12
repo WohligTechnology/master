@@ -21,6 +21,11 @@ class Site extends CI_Controller
 		if(!in_array($accesslevel,$access))
 			redirect( base_url() . 'index.php/site?alerterror=You do not have access to this page. ', 'refresh' );
 	}
+     public function getpillarforpie(){
+         $data['message']=$this->menu_model->drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch);
+         $this->load->view("json",$data);
+        
+    } 
     public function getdatabyfiltering(){
         $access = array("1","2","3","5");
 		$this->checkaccess($access);
@@ -68,6 +73,10 @@ class Site extends CI_Controller
 		$data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
 		$data[ 'page' ] = 'dashboard';
 		$data[ 'title' ] = 'Welcome';
+        $data["checkpackage"]=$this->menu_model->checkpackage();
+        $data['before']=$this->pillar_model->getpillarweightforedit();
+        $data['showavg']=$this->pillar_model->showavg();
+        $data['lastpillardetail']=$this->pillar_model->lastpillardetail();
 		$this->load->view( 'template', $data );
 //        }
 
@@ -978,12 +987,74 @@ public function viewpillar()
 {
 $access=array("1","2","3");
 $this->checkaccess($access);
-$data["page"]="viewpillar";
+$data["page"]="pillarsecond";
 $data["checkpackage"]=$this->menu_model->checkpackage();
-$data["base_url"]=site_url("site/viewpillarjson");
+$data['before']=$this->pillar_model->getpillarweightforedit();
+$data['showavg']=$this->pillar_model->showavg();
+$data['lastpillardetail']=$this->pillar_model->lastpillardetail();
+//  echo $data['showavg'];
 $data["title"]="View pillar";
 $this->load->view("template",$data);
+//    $this->load->view("pillarsecond",$data);
 }
+    public function viewpillarquestion()
+{
+$access=array("1","2","3");
+$this->checkaccess($access);
+$data["page"]="question";
+$data['lastpillardetail']=$this->pillar_model->lastpillardetail();
+$data['getelevenpillarquestion']=$this->pillar_model->getelevenpillarquestion();
+$data['getelevenpillaroption']=$this->pillar_model->getelevenpillaroption();
+$data["title"]="New pillar question";
+$this->load->view("template",$data);
+}
+    public function getpillarquestion()
+    {
+         $access=array("1","2","3","5");
+         $this->checkaccess($access);
+         $questionone=$this->input->get_post('questionone');
+         $questiontwo=$this->input->get_post('questiontwo');
+         $questionthree=$this->input->get_post('questionthree');
+         $questionfour=$this->input->get_post('questionfour');
+         $optionone=$this->input->get_post('optionone');
+         $optiontwo=$this->input->get_post('optiontwo');
+         $optionthree=$this->input->get_post('optionthree');
+         $optionfour=$this->input->get_post('optionfour');
+         $optionfive=$this->input->get_post('optionfive');
+         $optionsix=$this->input->get_post('optionsix');
+         $optionseven=$this->input->get_post('optionseven');
+         $optioneight=$this->input->get_post('optioneight');
+         $optionnine=$this->input->get_post('optionnine');
+         $optionten=$this->input->get_post('optionten');
+         $optioneleven=$this->input->get_post('optioneleven');
+         $optiontwelve=$this->input->get_post('optiontwelve');
+         $optionthirteen=$this->input->get_post('optionthirteen');
+         $optionfourteen=$this->input->get_post('optionfourteen');
+         $optionfifteen=$this->input->get_post('optionfifteen');
+         $optionsixteen=$this->input->get_post('optionsixteen');
+         $this->pillar_model->getpillarquestion($questionone,$questiontwo,$questionthree,$questionfour,$optionone,$optiontwo,$optionthree,$optionfour,$optionfive,$optionsix,$optionseven,$optioneight,$optionnine,$optionten,$optioneleven,$optiontwelve,$optionthirteen,$optionfourteen,$optionfifteen,$optionsixteen);
+         $data["redirect"]="site/viewpillarquestion";
+         $this->load->view("redirect",$data);    
+    }
+    public function getweightageviewpillar()
+    {
+         $access=array("1","2","3","5");
+         $this->checkaccess($access);
+         $range=$this->input->get_post('range');
+         $range1=$this->input->get_post('rangeone');
+         $range2=$this->input->get_post('rangetwo');
+         $range3=$this->input->get_post('rangethree');
+         $range4=$this->input->get_post('rangefour');
+         $range5=$this->input->get_post('rangefive');
+         $range6=$this->input->get_post('rangesix');
+         $range7=$this->input->get_post('rangeseven');
+         $range8=$this->input->get_post('rangeeight');
+         $range9=$this->input->get_post('rangenine');
+         $range11=$this->input->get_post('rangeeleven');
+         $this->pillar_model->updateweightageviewpillar($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11);
+         $data["redirect"]="site/viewpillar";
+         $this->load->view("redirect",$data);    
+    }
 function viewpillarjson()
 {
 $elements=array();
@@ -1074,7 +1145,8 @@ $this->load->view("redirect",$data);
          $range7=$this->input->get_post('rangeseven');
          $range8=$this->input->get_post('rangeeight');
          $range9=$this->input->get_post('rangenine');
-        $this->pillar_model->updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9);
+         $range11=$this->input->get_post('rangeeleven');
+        $this->pillar_model->updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11);
 $data["redirect"]="site/index";
 $this->load->view("redirect",$data);
     }
@@ -1126,7 +1198,8 @@ $this->pillar_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewpillar";
 $this->load->view("redirect",$data);
 }
-public function viewquestion()
+
+    public function viewquestion()
 {
 $access=array("1","2","3","5");
 $this->checkaccess($access);
@@ -1691,6 +1764,17 @@ $data["before"]=$this->useranswer_model->beforeedit($this->input->get("id"));
 
 
 $this->load->view("template",$data);
+}
+    public function viewconclude()
+{
+    $id=$this->input->get("id");
+    $data["conclusion"]=$this->conclusion_model->getConclusionQuestionOption($id);
+        $data["before"]=$this->conclusionsuggestion_model->beforeedit($this->input->get("id"));
+        $data["optiondata"]=$this->menu_model->getinterlinkageoptions($data["conclusion"][0]->id,$data["conclusion"][1]->id);
+    $data[ 'title' ] ="Interlinkage Part";
+    $data['page']='viewconclude';
+    $this->load->view('template',$data);
+
 }
 public function edituseranswersubmit()
 {
@@ -2902,7 +2986,8 @@ $type=$this->input->get_post("type");
 $text=$this->input->get_post("text");
 $starttime=$this->input->get_post("starttime");
 $endtime=$this->input->get_post("endtime");
-if($this->surveyquestion_model->create($type,$text,$starttime,$endtime)==0)
+$content=$this->input->get_post("content");
+if($this->surveyquestion_model->create($type,$text,$starttime,$endtime,$content)==0)
 $data["alerterror"]="New surveyquestion could not be created.";
 else
 $data["alertsuccess"]="surveyquestion created Successfully.";
@@ -2950,7 +3035,8 @@ $type=$this->input->get_post("type");
 $text=$this->input->get_post("text");
 $starttime=$this->input->get_post("starttime");
 $endtime=$this->input->get_post("endtime");
-if($this->surveyquestion_model->edit($id,$type,$text,$starttime,$endtime)==0)
+$content=$this->input->get_post("content");
+if($this->surveyquestion_model->edit($id,$type,$text,$starttime,$endtime,$content)==0)
 $data["alerterror"]="New surveyquestion could not be Updated.";
 else
 $data["alertsuccess"]="surveyquestion Updated Successfully.";
@@ -2984,7 +3070,7 @@ $elements[0]->sort="1";
 $elements[0]->header="Id";
 $elements[0]->alias="id";
 $elements[1]=new stdClass();
-$elements[1]->field="`hq_surveyquestion`.`text`";
+$elements[1]->field="`hq_surveyquestion`.`content`";
 $elements[1]->sort="1";
 $elements[1]->header="Question";
 $elements[1]->alias="question";
@@ -2993,6 +3079,12 @@ $elements[2]->field="`hq_surveyquestionuser`.`email`";
 $elements[2]->sort="1";
 $elements[2]->header="Email";
 $elements[2]->alias="email";
+    
+$elements[3]=new stdClass();
+$elements[3]->field="`hq_surveyquestionuser`.`status`";
+$elements[3]->sort="1";
+$elements[3]->header="status";
+$elements[3]->alias="status";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -3039,7 +3131,8 @@ else
 $id=$this->input->get_post("id");
 $question=$this->input->get_post("question");
 $email=$this->input->get_post("email");
-if($this->surveyquestionuser_model->create($question,$email)==0)
+$status=$this->input->get_post("status");
+if($this->surveyquestionuser_model->create($question,$email,$status)==0)
 $data["alerterror"]="New surveyquestionuser could not be created.";
 else
 $data["alertsuccess"]="surveyquestionuser created Successfully.";
@@ -3081,7 +3174,8 @@ else
 $id=$this->input->get_post("id");
 $question=$this->input->get_post("question");
 $email=$this->input->get_post("email");
-if($this->surveyquestionuser_model->edit($id,$question,$email)==0)
+$status=$this->input->get_post("status");
+if($this->surveyquestionuser_model->edit($id,$question,$email,$status)==0)
 $data["alerterror"]="New surveyquestionuser could not be Updated.";
 else
 $data["alertsuccess"]="surveyquestionuser Updated Successfully.";
@@ -3162,6 +3256,7 @@ $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createsurveyoption";
 $data["question"]=$this->surveyquestion_model->getsurveyquestiondropdown();
+$data['checktype']=$this->surveyoption_model->checktype($this->input->get('id'));
 $data["title"]="Create surveyoption";
 $this->load->view("template",$data);
 }
@@ -3202,6 +3297,7 @@ $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editsurveyoption";
 $data["title"]="Edit surveyoption";
+$data['checktype']=$this->surveyoption_model->checktype($this->input->get('questionid'));
 $data["question"]=$this->surveyquestion_model->getsurveyquestiondropdown();
 $data["before"]=$this->surveyoption_model->beforeedit($this->input->get("id"));
 $this->load->view("template",$data);
@@ -3419,15 +3515,6 @@ $this->load->view("redirect2",$data);
         
         $data['page']='viewconclusion';
         $this->load->view('template',$data);
-}   
-    public function viewconclude()
-{
-    $id=$this->input->get("id");
-    $data["conclusion"]=$this->conclusion_model->getConclusionQuestionOption($id);
-    $data[ 'title' ] ="Interlinkage Part";
-    $data['page']='viewconclude';
-    $this->load->view('template',$data);
-
 }
     
     
@@ -3538,7 +3625,6 @@ $data["page"]="editconclusion";
 $data["page2"]="block/conclusionblock";
 $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
-$data["before3"]=$this->input->get("id");
 $data["title"]="Edit conclusion";
 $data["before"]=$this->conclusion_model->beforeedit($this->input->get("id"));
 $this->load->view("templatewith2",$data);
@@ -3567,7 +3653,7 @@ if($this->conclusion_model->edit($id,$order,$name)==0)
 $data["alerterror"]="New conclusion could not be Updated.";
 else
 $data["alertsuccess"]="conclusion Updated Successfully.";
-$data["redirect"]="site/viewconclusion";
+$data["redirect"]="site/viewconclusion1";
 $this->load->view("redirect",$data);
 }
 }
@@ -3587,7 +3673,6 @@ $data["page"]="viewconclusionquestion";
 $data["page2"]="block/conclusionblock";
 $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
-$data["before3"]=$this->input->get("id");
 $data["base_url"]=site_url("site/viewconclusionquestionjson?id=".$this->input->get("id"));
 $data["title"]="View conclusionquestion";
 $this->load->view("templatewith2",$data);
@@ -3634,15 +3719,10 @@ public function createconclusionquestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionquestion";
-$data["page2"]="block/conclusionblock";
-    
-$data["before1"]=$this->input->get("id");
-$data["before2"]=$this->input->get("id");
-$data["before3"]=$this->input->get("id");
  $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["question"]=$this->conclusionquestion_model->getquestionfromtestdropdown();
 $data["title"]="Create conclusionquestion";
-$this->load->view("templatewith2",$data);
+$this->load->view("template",$data);
 }
 public function createconclusionquestionsubmit() 
 {
@@ -3677,15 +3757,11 @@ public function editconclusionquestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionquestion";
-$data["page2"]="block/conclusionblock";
-$data["before1"]=$this->input->get("conclusionid");
-$data["before2"]=$this->input->get("conclusionid");
-$data["before3"]=$this->input->get("conclusionid");
 $data["title"]="Edit conclusionquestion";
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["question"]=$this->conclusionquestion_model->getquestionfromtestdropdown();
 $data["before"]=$this->conclusionquestion_model->beforeedit($this->input->get("id"));
-$this->load->view("templatewith2",$data);
+$this->load->view("template",$data);
 }
 public function editconclusionquestionsubmit()
 {
@@ -3731,13 +3807,9 @@ public function viewconclusionsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewconclusionsuggestion";
-$data["page2"]="block/conclusionblock";
-$data["before1"]=$this->input->get("id");
-$data["before2"]=$this->input->get("id");
-$data["before3"]=$this->input->get("id");
 $data["base_url"]=site_url("site/viewconclusionsuggestionjson");
 $data["title"]="View conclusionsuggestion";
-$this->load->view("templatewith2",$data);
+$this->load->view("template",$data);
 }
 function viewconclusionsuggestionjson()
 {
@@ -3780,14 +3852,9 @@ public function createconclusionsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionsuggestion";
-$data["page2"]="block/conclusionblock";
-    
-$data["before1"]=$this->input->get("id");
-$data["before2"]=$this->input->get("id");
-$data["before3"]=$this->input->get("id");
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["title"]="Create conclusionsuggestion";
-$this->load->view("templatewith2",$data);
+$this->load->view("template",$data);
 }
 public function createconclusionsuggestionsubmit() 
 {
@@ -3812,8 +3879,8 @@ if($this->conclusionsuggestion_model->create($conclusion,$suggestion)==0)
 $data["alerterror"]="New conclusionsuggestion could not be created.";
 else
 $data["alertsuccess"]="conclusionsuggestion created Successfully.";
-$data["redirect"]="site/viewconclusionsuggestion?id=".$conclusion;
-$this->load->view("redirect2",$data);
+$data["redirect"]="site/viewconclusionsuggestion";
+$this->load->view("redirect",$data);
 }
 }
 public function editconclusionsuggestion()
@@ -3821,52 +3888,32 @@ public function editconclusionsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionsuggestion";
-$data["page2"]="block/conclusionblock";
-$data["before1"]=$this->input->get("conclusionid");
-$data["before2"]=$this->input->get("conclusionid");
-$data["before3"]=$this->input->get("conclusionid");
 $data["title"]="Edit conclusionsuggestion";
 $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["before"]=$this->conclusionsuggestion_model->beforeedit($this->input->get("id"));
-$this->load->view("templatewith2",$data);
+$this->load->view("template",$data);
 }
 public function editconclusionsuggestionsubmit()
 {
 $access=array("1","5");
 $this->checkaccess($access);
-$this->form_validation->set_rules("id","Id","trim");
-$this->form_validation->set_rules("conclusion","Conclusion","trim");
-$this->form_validation->set_rules("suggestion","Suggestion","trim");
-if($this->form_validation->run()==FALSE)
-{
-$data["alerterror"]=validation_errors();
-$data["page"]="editconclusionsuggestion";
-$data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
-$data["title"]="Edit conclusionsuggestion";
-$data["before"]=$this->conclusionsuggestion_model->beforeedit($this->input->get("id"));
-$this->load->view("template",$data);
-}
-else
-{
-$id=$this->input->get_post("id");
 $conclusion=$this->input->get_post("conclusion");
 $suggestion=$this->input->get_post("suggestion");
-if($this->conclusionsuggestion_model->edit($id,$conclusion,$suggestion)==0)
+if($this->conclusionsuggestion_model->edit($conclusion,$suggestion)==0)
 $data["alerterror"]="New conclusionsuggestion could not be Updated.";
 else
 $data["alertsuccess"]="conclusionsuggestion Updated Successfully.";
-$data["redirect"]="site/viewconclusionsuggestion?id=".$conclusion;
+$data["redirect"]="site/viewconclude?id=".$conclusion;
 $this->load->view("redirect2",$data);
-}
+
 }
 public function deleteconclusionsuggestion()
 {
 $access=array("1","5");
 $this->checkaccess($access);
 $this->conclusionsuggestion_model->delete($this->input->get("id"));
-$conclusion=$this->input->get("conclusionid");
-$data["redirect"]="site/viewconclusionsuggestion?id=".$conclusion;
-$this->load->view("redirect2",$data);
+$data["redirect"]="site/viewconclusionsuggestion";
+$this->load->view("redirect",$data);
 }
 public function viewconclusionfinalsuggestion()
 {
@@ -4022,7 +4069,7 @@ $this->load->view("template",$data);
     }
     public function createlogo()
 {
-$access=array("1","5");
+$access=array("1","5","3");
 $this->checkaccess($access);
 $data["page"]="createlogo";
 $data["image"]=$this->menu_model->getimagebyid();
@@ -4032,7 +4079,7 @@ $this->load->view("template",$data);
 }
     public function createlogosubmit()
 {
-        $access=array("1","5");
+        $access=array("1","5","3");
 $this->checkaccess($access);
  $config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -4076,5 +4123,61 @@ $data["alertsuccess"]="logo Updated Successfully.";
 $data["redirect"]="site/createlogo";
 $this->load->view("redirect",$data);
 }
+       public function disableCompany()
+	{
+        $id=$this->input->get("id");
+		$result=$this->surveyquestionuser_model->disableCompany($id);
+        $data["message"] = $result;
+        $this->load->view("json", $data);
+        
+	} 
+    public function enableCompany()
+	{
+        $id=$this->input->get("id");
+		$result=$this->surveyquestionuser_model->enableCompany($id);
+        $data["message"] = $result;
+        $this->load->view("json", $data);
+        
+	}
+    public function getSchedule()
+	{
+     $access=array("1","2","3");
+$this->checkaccess($access);
+$data["page"]="questionschedule";
+$data["checkpackage"]=$this->menu_model->checkpackage();
+$data['pillar']=$this->pillar_model->getpillarweightforedit();
+$data['question']=$this->question_model->getallquestion();
+$data[ 'schedule' ] =$this->user_model->getscheduledropdown();
+//$data['lastpillardetail']=$this->pillar_model->lastpillardetail();
+//  echo $data['showavg'];
+$data["title"]="View pillar";
+$this->load->view("template",$data);
+        
+	}
+     public function sendMailToEachUser()
+   {
+       $getUserid=$this->restapi_model->getUsers();
+        foreach($getUserid as $getUserid){
+            $email=$getUserid->email;
+             $hashvalue=base64_encode ($getUserid->id."&hq");
+       $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+               $this->load->library('email');
+       $this->email->from('master@willnevergrowup.in', 'HQ');
+       $this->email->to($email);
+       $this->email->subject('Test');   
+           
+//       $message = "Hiii      ".$link;
+       $message = "<html>
+        <p>Hello!</p><br>
+      <p>Feel like taking a break from work? Click on this link to have some fun! </p><span>$link</span><br>
+<p>For any queries/support, contact the HR Team on ___________________</p><br>
+      </html>";
+       $this->email->message($message);
+       $this->email->send();
+        }
+    $data["redirect"]="site/getSchedule";
+         $this->load->view("redirect",$data);
+      
+   }
 }
 ?>

@@ -6,18 +6,26 @@
 <div class="row">
 <form class='col s12' method='post' action='<?php echo site_url("site/editsurveyquestionsubmit");?>' enctype= 'multipart/form-data'>
 <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
+<div class="row">
+           <div class="col s12 m6">
+               <textarea name="content" placeholder="Enter text ..."><?php echo set_value('content',$before->content);?></textarea>
+           </div>
+        </div>
+        
 <div class=" row">
 <div class=" input-field col s12 m6">
 <?php echo form_dropdown("type",$type,set_value('type',$before->type));?>
 <label for="Type">Type</label>
 </div>
 </div>
+<!--
 <div class="row">
 <div class="input-field col s6">
 <label for="Text">Text</label>
 <input type="text" id="Text" name="text" value='<?php echo set_value('text',$before->text);?>'>
 </div>
 </div>
+-->
 <div class="row" >
 <div class="input-field col s6" style="margin-top: -18px;">
 <label for="Start Time">Start Time</label>

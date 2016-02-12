@@ -475,6 +475,32 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
       
         return $arr;
     }
+    function getpillarforpie()
+    {
+        $arr = array();
+        $testquery=$this->db->query("SELECT * FROM `test` ORDER BY `id` DESC LIMIT 0,2")->result();
+        foreach($testquery as $row1)
+        {
+            $testid=$row1->id;
+            $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `order` ASC")->result();
+            foreach($query as $row)
+            {
+                $pillarid = $row->id;
+//                $testexpectedweights=$this->db->query("SELECT `testpillarexpected`.`pillar`,`testpillarexpected`.`test`,IFNULL(`testpillarexpected`.`expectedvalue`,0) as `weight`,`test`.`name` as `testname` FROM `testpillarexpected` LEFT OUTER JOIN `test` ON `test`.`id`=`testpillarexpected`.`test`  WHERE `test`='$testid' AND `pillar`='$pillarid'")->row();
+//                $testexpectedweight=$testexpectedweights->weight;
+//                $testname=$testexpectedweights->testname;
+                $pillaraveragevalues=$this->db->query("SELECT IFNULL(AVG(`hq_options`.`weight`),0) AS `totalweight`
+    FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_useranswer`.`option` LEFT OUTER JOIN `user` ON `hq_useranswer`.`user`=`user`.`id`
+                WHERE `hq_useranswer`.`pillar`='$pillarid' AND `hq_useranswer`.`test`='$testid'")->row();
+
+                $row->pillaraveragevalues=$pillaraveragevalues->totalweight;
+                $row->testname=$testname;
+            }
+            array_push($arr,$query);
+        }
+
+        return $arr;
+    }  
     function drawpillarjsononhrdashboaard()
     {
         $arr = array();
@@ -1007,20 +1033,20 @@ public function uploadImage(){
     {
         $this->db->query("UPDATE `user` SET `package`='$package' WHERE 1");
         if($package==1){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,20)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14)");
              $query=$this->db->query("UPDATE `menuaccess` SET `access`=0 WHERE `menu` IN (17,18)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=1 WHERE `accesslevel` = 1");
         }
         else if($package==2){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18,20)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=1 WHERE `accesslevel` = 1");
         }
         else if($package==3){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18,20)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=0 WHERE `accesslevel` = 1");
         }
         else if($package==4){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18,20)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=0 WHERE `accesslevel` = 1");
         }
     } 
@@ -1029,6 +1055,41 @@ public function uploadImage(){
         $query=$this->db->query("SELECT `image` FROM `logo` WHERE `id`=1")->row();
         $image=$query->image;
         return $image;
+     
+    }
+    public function getinterlinkageoptions($question1,$question2)
+    {
+       $query=$this->db->query("SELECT `option1`,`table1`.`id1`,`option2`,`table1`.`id2`,IFNULL(`count`,0) as `countuser`
+FROM
+(
+    
+    SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `id1`,`option2`.`optiontext` as `option2`,`option2`.`id` as `id2` FROM `hq_options` as `option1` , `hq_options` as `option2` WHERE `option1`.`question`='1' AND `option2`.`question`='9'
+
+) as `table1`
+
+LEFT OUTER JOIN
+
+(
+SELECT `option1`.`optiontext` as `option1text`,`option1`.`id` as `id1` ,`option2`.`optiontext` as `option2text`,`option2`.`id` as `id2`,COUNT(`user`) as `count`
+FROM 
+(SELECT MAX(`option1id`) as `option1id`,MAX(`option2id`) as `option2id`,`user`,COUNT(`question1`) as `count` FROM (SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `option1id`,0 as `option2`,0 as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option1`  ON `option1`.`id` = `hq_useranswer`.`option`
+
+WHERE `option1`.`question`='$question1'
+
+UNION 
+
+SELECT 0 as `option1`,0 as `option1id`,`option2`.`optiontext` as `option2`,`option2`.`id` as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option2`  ON `option2`.`id` = `hq_useranswer`.`option`
+
+WHERE `option2`.`question`='$question2'
+
+) as `tab1` GROUP BY `user` ) 
+
+as `tab2` 
+INNER JOIN `hq_options` as `option1` ON `option1`.`id` = `option1id`
+INNER JOIN `hq_options` as `option2` ON `option2`.`id` = `option2id`
+WHERE `count` >= 2
+GROUP BY `option1id`,`option2id`) as `table2` ON `table1`.`id1`=`table2`.`id1` AND `table1`.`id2`=`table2`.`id2`")->result();
+        return $query;
      
     }
     public function createimage($image)

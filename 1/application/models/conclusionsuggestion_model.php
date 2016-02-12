@@ -15,7 +15,7 @@ return  $id;
 }
 public function beforeedit($id)
 {
-$this->db->where("id",$id);
+$this->db->where("conclusion",$id);
 $query=$this->db->get("hq_conclusionsuggestion")->row();
 return $query;
 }
@@ -24,9 +24,10 @@ $this->db->where("id",$id);
 $query=$this->db->get("hq_conclusionsuggestion")->row();
 return $query;
 }
-public function edit($id,$conclusion,$suggestion)
-{$data=array("conclusion" => $conclusion,"suggestion" => $suggestion);
-$this->db->where( "id", $id );
+public function edit($conclusion,$suggestion)
+{
+    $data=array("suggestion" => $suggestion);
+$this->db->where( "conclusion",$conclusion );
 $query=$this->db->update( "hq_conclusionsuggestion", $data );
 return 1;
 }

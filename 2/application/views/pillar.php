@@ -294,6 +294,39 @@
                             </div>
                         </div>
                     </div>
+                    <?php if($checkpackage==4){?>
+<div class="row">
+    <div class="all-range">
+        <div class="col s10">
+            <div class="left-side">
+
+                <div class="progress-bar">
+
+
+                    <p class="display-inline">
+                        <?php echo $lastpillardetail->name;?>
+                    </p>
+                    <div class="left-s">
+                        <div class="box-tp displ-inline">
+                            <a href='<?php echo site_url('site/editpillar?id=11');?>'>Edit</a>
+                        </div>
+                    </div>
+                        <div class="input-border">
+                            <p class="range-field">
+                                <input type="range" name="rangeeleven" id="rangeeleven" min="0" max="100" value="<?php echo $before[10]->weight;?>"/>
+                            </p>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s2">
+            <div class="progress-bar out-top">
+                <output for="rangeeleven" class="output"></output>
+            </div>
+        </div>
+    </div>
+</div>
+<?php }?>
                 </div>
             </div>
         </div>
@@ -308,60 +341,6 @@
     </div>
     </form>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-<!--
-    <script>
-        $(document).ready(function () {
-            $('#submit1').click(function () {
-                console.log("dfgr");
-              var $range=$("#range").val();
-                console.log($range);
-              var $range1=$("#range1").val();
-                console.log($range1);
-              var $range2=$("#range2").val();
-                console.log($range2);
-              var $range3=$("#range3").val();
-                console.log($range3);
-              var $range4=$("#range4").val();
-                console.log($range4);
-              var $range5=$("#range5").val();
-                console.log($range5);
-              var $range6=$("#range6").val();
-                console.log($range6);
-              var $range7=$("#range7").val();
-                console.log($range7);
-              var $range8=$("#range8").val();
-                console.log($range8);
-              var $range9=$("#range9").val();
-                console.log($range9);
-              var new_base_url = "<?php echo site_url(); ?>";
-            
-              // GET METHOD AJAX CALL
-//                $.get(new_base_url + '/site/getweightage', {
-//                                range: $range,
-//                                range1: $range1,
-//                                range2: $range2,
-//                                range3: $range3,
-//                                range4: $range4,
-//                                range5: $range5,
-//                                range6: $range6,
-//                                range7: $range7,
-//                                range8: $range8,
-//                                range9: $range9
-//                                
-//                            }, function (data) {
-//                                                console.log("dsajgyrh");
-//                                                console.log(data);
-//                              
-//                            });
-                $.get( new_base_url + '/site/getweightage', { range: $range, range1: $range1,range2: $range2, range3: $range3, range4: $range4, range5: $range5, range6: $range6, range7: $range7, range8: $range8, range9: $range9 } )
-  .done(function( data ) {
-    alert( "Done" );
-  });
-            });
-        });
-    </script>
--->
     <script src="<?php echo base_url('assets').'/';?>js/index.js"></script>
 
 </body>
