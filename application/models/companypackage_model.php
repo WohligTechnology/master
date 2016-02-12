@@ -19,28 +19,41 @@ public function create($company,$package)
     $companydetails=$this->company_model->getsinglecompany($company);
     $receiver=$companydetails->email;
     $companyid=$companydetails->id;
-    $sender="vigwohlig@gmail.com";
+    $sender="master@willnevergrowup.in";
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$id;
     // send email
         
         $this->load->library('email');
-        $this->email->from($sender, 'Find below the details');
+        $this->email->from($sender, 'Never Grow Up');
         $this->email->to($receiver);
-        $this->email->subject('Please find below the credentials');
+        $this->email->subject('Welcome to never grow up');
         $message = "<html>
-      <p><span style='font-size:14px;font-weight:bold;padding:10px 0;'>Link: </span>
+        <p>Hey Happyness Torch-bearer,</p><br>
+        <p>Welcome aboard!</p><br>
+        <p>Your company has now been registered on Happyness Quotient.</p><br>
+        <p>Please use the below ID and Password to access your company profile:</p><br>
+        <p><span style='font-size:14px;font-weight:bold;padding:10px 0;'>Link: </span>
       <span>$exactpath</span>
-      </p>
-      <p>
-      <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Email: </span>
-      <span>wohlig@wohlig.com</span>
-      </p>
+      </p><br>
+        <p>
+          <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Email: </span>
+          <span>wohlig@wohlig.com</span>
+          </p><br>
       <p>
       <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Password: </span>
       <span>wohlig123</span>
-      </p>
+      </p><br>
+      <p>Let's make a difference in your company by measuring Happyness at Work. We are exciting to have 
+you with us on this journey.</p><br>
+<p>For any queries/support, you can contact us on ___________________</p><br>
+<p>Happy to help!</p><br>
+<p>Regards,</p><br>
+<p>Team Never Grow Up</p><br>
+<p>-------------------------------------------------------------------------------</p><br>
+<p>Note: This is a system generated email, do not respond to this.</p><br>
+      
 </html>";
         $this->email->message($message);
         $this->email->send();
