@@ -190,18 +190,22 @@ return $query;
         
      $companydetails=$this->company_model->getsinglecompany($companyid);
     $receiver=$companydetails->email;
-    $sender="vigwohlig@gmail.com";
+    $sender="master@willnevergrowup.in";
 //        $this->load->library('email');
-        $this->email->from($sender, 'Demo Alert Mail');
+        $this->email->from($sender, 'Never Grow Up');
         $this->email->to($receiver);
-        $this->email->subject('Please find below the credentials');
+        $this->email->subject('Package expired:');
         $message = "<html>
-   
-      <p>
-      <span style='font-size:14px;font-weight:bold;padding:10px 0;'>A simple alert: </span>
-      <span>Your Package Is Expired...You Cannot Login Any More.</span>
-      </p>
-</html>";
+        <p>Hey Happyness Torch-bearer,</p><br>
+      <p>This is to inform you that your Happyness Quotient package has expired. To continue measuring 
+Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.</p><br>
+<p>For any queries/support, you can contact us on ___________________</p><br>
+<p>Happy to help!</p><br>
+<p>Regards,</p><br>
+<p>Team Never Grow Up</p><br>
+<p>-------------------------------------------------------------------------------</p><br>
+<p>Note: This is a system generated email, do not respond to this.</p><br>
+      </html>";
         $this->email->message($message);
         $this->email->send();
 
