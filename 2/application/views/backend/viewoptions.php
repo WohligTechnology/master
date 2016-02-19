@@ -35,7 +35,7 @@
         else if(resultrow.representation==1){
         resultrow.representation="Text";
         }
-          var image = "<a href='<?php echo base_url('uploads').'/'; ?>" + resultrow.image + "' target='_blank'><img src='<?php echo base_url('uploads').'/'; ?>" + resultrow.image + "' width='80px' height='80px'></a>";
+          var image = "<a href='<?php echo base_url('uploads').'/'; ?>" + resultrow.image + "' class='fancybox' ><img src='<?php echo base_url('uploads').'/'; ?>" + resultrow.image + "' height='80px'></a>";
                 if (resultrow.image == "") {
                     image = "No Receipt Available";
                 }

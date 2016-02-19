@@ -889,3 +889,12 @@ button:focus {
     margin-right: 80px;
 
 }
+.fancybox-skin {
+    position: relative;
+    background: rgba(0, 0, 0, 0.4);
+    color: #444;
+    text-shadow: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
