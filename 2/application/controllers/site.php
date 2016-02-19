@@ -24,8 +24,8 @@ class Site extends CI_Controller
      public function getpillarforpie(){
          $data['message']=$this->menu_model->drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch);
          $this->load->view("json",$data);
-        
-    } 
+
+    }
     public function getdatabyfiltering(){
         $access = array("1","2","3","5");
 		$this->checkaccess($access);
@@ -48,23 +48,20 @@ class Site extends CI_Controller
 	{
 		$access = array("1","2","3","5");
 		$this->checkaccess($access);
-
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard();
-        $data['weightgraph']=$pillarsdata;
-//        if($this->session->userdata('accesslevel')==3)
-//        {
-//         $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
-//        $data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
-//        $data[ 'gender' ] =$this->user_model->getgendertypedropdown();
-//		$data[ 'maritalstatus' ] =$this->user_model->getmaritalstatustypedropdown();
-//		$data[ 'designation' ] =$this->user_model->getdesignationtypedropdown();
-//		$data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
-//		$data[ 'page' ] = 'dashboard';
-//		$data[ 'title' ] = 'Welcome';
-//		$this->load->view( 'template', $data );
-//        }
-//        else
-//        {
+        $totalsum=0;
+        $totalexpected=0;
+        foreach($pillarsdata as $row)
+        {
+            for($i=0;$i<count($row);$i++)
+            {
+                $totalsum=$totalsum+($row[$i]->expectedweight *$row[$i]->pillaraveragevalues)/100;
+                $totalexpected=$totalexpected+($row[$i]->weight * $row[$i]->pillaraveragevalues)/100;
+               
+            }
+        }
+        $data['totalsum']=number_format((float)$totalsum, 2, '.', ''); 
+        $data['totalexpected']=number_format((float)$totalexpected, 2, '.', '');
         $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
         $data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
         $data[ 'gender' ] =$this->user_model->getgendertypedropdown();
@@ -1034,7 +1031,7 @@ $this->load->view("template",$data);
          $optionsixteen=$this->input->get_post('optionsixteen');
          $this->pillar_model->getpillarquestion($questionone,$questiontwo,$questionthree,$questionfour,$optionone,$optiontwo,$optionthree,$optionfour,$optionfive,$optionsix,$optionseven,$optioneight,$optionnine,$optionten,$optioneleven,$optiontwelve,$optionthirteen,$optionfourteen,$optionfifteen,$optionsixteen);
          $data["redirect"]="site/viewpillarquestion";
-         $this->load->view("redirect",$data);    
+         $this->load->view("redirect",$data);
     }
     public function getweightageviewpillar()
     {
@@ -1053,7 +1050,7 @@ $this->load->view("template",$data);
          $range11=$this->input->get_post('rangeeleven');
          $this->pillar_model->updateweightageviewpillar($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11);
          $data["redirect"]="site/viewpillar";
-         $this->load->view("redirect",$data);    
+         $this->load->view("redirect",$data);
     }
 function viewpillarjson()
 {
@@ -1146,9 +1143,16 @@ $this->load->view("redirect",$data);
          $range8=$this->input->get_post('rangeeight');
          $range9=$this->input->get_post('rangenine');
          $range11=$this->input->get_post('rangeeleven');
-        $this->pillar_model->updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11);
-$data["redirect"]="site/index";
-$this->load->view("redirect",$data);
+        $value=$this->pillar_model->updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11);
+        if($value==1){
+            $data["redirect"]="site/index";
+            $this->load->view("redirect",$data);
+        }
+        else if($value==0){
+            $this->user_model->makeusernew($this->session->userdata("id"));
+            redirect( base_url() . 'index.php/json/viewfirstpage?id=2', 'refresh' );
+        }
+        
     }
 public function editpillar()
 {
@@ -2430,7 +2434,7 @@ $data["redirect"]="site/viewtestquestion";
 $this->load->view("redirect",$data);
 
 }
-    
+
     public function edittestquestion()
     {
         $access=array("1","2","3","5");
@@ -2632,7 +2636,7 @@ $this->load->view("redirect",$data);
             $filepath=$uploaddata['file_path'];
         }
         else
-        {      
+        {
             $error = array('error' => $this->upload->display_errors());
 			print_r($error);
         }
@@ -2640,12 +2644,12 @@ $this->load->view("redirect",$data);
         $file = $this->csvreader->parse_file($fullfilepath);
         $id1=$this->user_model->createbycsv($file);
 //        echo $id1;
-        
+
         if($id1==0)
         $data['alerterror']="New user could not be Uploaded.";
 		else
 		$data['alertsuccess']="user Uploaded Successfully.";
-        
+
         $data['redirect']="site/viewusers";
         $this->load->view("redirect",$data);
     }
@@ -3079,7 +3083,7 @@ $elements[2]->field="`hq_surveyquestionuser`.`email`";
 $elements[2]->sort="1";
 $elements[2]->header="Email";
 $elements[2]->alias="email";
-    
+
 $elements[3]=new stdClass();
 $elements[3]->field="`hq_surveyquestionuser`.`status`";
 $elements[3]->sort="1";
@@ -3500,7 +3504,7 @@ $user=$this->input->get("userid");
 $data["redirect"]="site/viewsurveyquestionanswer?id=".$user;
 $this->load->view("redirect2",$data);
 }
-       
+
     public function viewconclusion()
 {
         $access = array("1","2","3","5");
@@ -3512,15 +3516,15 @@ $this->load->view("redirect2",$data);
 		$data[ 'designation' ] =$this->user_model->getdesignationtypedropdown();
 		$data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
 		$data[ 'title' ] ="Interlinkage";
-        
+
         $data['page']='viewconclusion';
         $this->load->view('template',$data);
 }
-    
-    
+
+
 function viewconclusionjson()
-{ 
-        
+{
+
  $access = array("1","2","3","5");
 		$this->checkaccess($access);
         $gender=$this->input->get('gender');
@@ -3534,7 +3538,7 @@ function viewconclusionjson()
         $interlinkage=$this->conclusion_model->getinterlinkage( $gender ,$maritalstatus, $designation ,$department, $spanofcontrol, $experience, $salary, $branch );
         $data['message']=$interlinkage;
         $this->load->view('json',$data);
-}     
+}
     public function viewconclusion1()
 {
 $access=array("1","5");
@@ -3545,10 +3549,10 @@ $data["base_url"]=site_url("site/viewconclusionjson1");
 $data["title"]="View conclusion";
 $this->load->view("template",$data);
 }
-    
-    
+
+
 function viewconclusionjson1()
-{ 
+{
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`hq_conclusion`.`id`";
@@ -3591,7 +3595,7 @@ $data["page"]="createconclusion";
 $data["title"]="Create conclusion";
 $this->load->view("template",$data);
 }
-public function createconclusionsubmit() 
+public function createconclusionsubmit()
 {
 $access=array("1","5");
 $this->checkaccess($access);
@@ -3724,7 +3728,7 @@ $data["question"]=$this->conclusionquestion_model->getquestionfromtestdropdown()
 $data["title"]="Create conclusionquestion";
 $this->load->view("template",$data);
 }
-public function createconclusionquestionsubmit() 
+public function createconclusionquestionsubmit()
 {
 $access=array("1","5");
 $this->checkaccess($access);
@@ -3856,7 +3860,7 @@ $data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
 $data["title"]="Create conclusionsuggestion";
 $this->load->view("template",$data);
 }
-public function createconclusionsuggestionsubmit() 
+public function createconclusionsuggestionsubmit()
 {
 $access=array("1","5");
 $this->checkaccess($access);
@@ -3970,7 +3974,7 @@ $data[ 'conclusionsuggestion' ] =$this->conclusionsuggestion_model->getConclusio
 $data["title"]="Create conclusionfinalsuggestion";
 $this->load->view("template",$data);
 }
-public function createconclusionfinalsuggestionsubmit() 
+public function createconclusionfinalsuggestionsubmit()
 {
 $access=array("1","5");
 $this->checkaccess($access);
@@ -4046,7 +4050,7 @@ $this->checkaccess($access);
 $this->conclusionfinalsuggestion_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewconclusionfinalsuggestion";
 $this->load->view("redirect",$data);
-} 
+}
   public function viewinterlinkage()
 {
 $access=array("1","5");
@@ -4054,9 +4058,9 @@ $this->checkaccess($access);
 $data["page"]="viewinterlinkage";
 $data["title"]="View conclusionfinalsuggestion";
 $this->load->view("template",$data);
-}  
+}
     public function getinterlinkage(){
-      
+
 //        $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
 //        $data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
 //        $data[ 'gender' ] =$this->user_model->getgendertypedropdown();
@@ -4065,7 +4069,7 @@ $this->load->view("template",$data);
 //		$data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
 //		$data[ 'page' ] = 'dashboard';
 //		$data[ 'title' ] = 'Welcome';
-//		$this->load->view( 'template', $data );   
+//		$this->load->view( 'template', $data );
     }
     public function createlogo()
 {
@@ -4129,15 +4133,15 @@ $this->load->view("redirect",$data);
 		$result=$this->surveyquestionuser_model->disableCompany($id);
         $data["message"] = $result;
         $this->load->view("json", $data);
-        
-	} 
+
+	}
     public function enableCompany()
 	{
         $id=$this->input->get("id");
 		$result=$this->surveyquestionuser_model->enableCompany($id);
         $data["message"] = $result;
         $this->load->view("json", $data);
-        
+
 	}
     public function getSchedule()
 	{
@@ -4152,7 +4156,7 @@ $data[ 'schedule' ] =$this->user_model->getscheduledropdown();
 //  echo $data['showavg'];
 $data["title"]="View pillar";
 $this->load->view("template",$data);
-        
+
 	}
      public function sendMailToEachUser()
    {
@@ -4164,8 +4168,8 @@ $this->load->view("template",$data);
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
        $this->email->to($email);
-       $this->email->subject('Test');   
-           
+       $this->email->subject('Test');
+
 //       $message = "Hiii      ".$link;
        $message = "<html>
         <p>Hello!</p><br>
@@ -4177,7 +4181,17 @@ $this->load->view("template",$data);
         }
     $data["redirect"]="site/getSchedule";
          $this->load->view("redirect",$data);
-      
+
    }
+	 public function getWelcomePage(){
+		 $data["page"]="welcome";
+		 $data["title"]="Welcome to HQ";
+		 $this->load->view("template",$data);
+	 }
+    public function getPillarWeight(){
+		 $weights=$this->pillar_model->getallpillars();
+        $data["message"] = $weights;
+		$this->load->view( 'json', $data );
+	 }
 }
 ?>

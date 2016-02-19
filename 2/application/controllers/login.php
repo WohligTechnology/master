@@ -22,7 +22,8 @@ class Login extends CI_Controller
 		if ( $validate) {
             $checkfirst=$this->user_model->checkfirstlogin($this->session->userdata("id"));
             if($checkfirst==true){
-                 redirect( base_url() . 'index.php/json/viewfirstpage', 'refresh' );
+                redirect( base_url() . 'index.php/site/getWelcomePage', 'refresh' );
+//                 redirect( base_url() . 'index.php/json/viewfirstpage?id=1', 'refresh' );
             }
             else
             {
@@ -31,7 +32,14 @@ class Login extends CI_Controller
 			
 		} //$validate
 		else {
-			$data[ 'alerterror' ] = 'Username or Password Incorrect';
+            $checkifblockquery=$this->db->query("SELECT `isblock` FROM `user`")->row();
+            $checkifblock=$checkifblockquery->isblock;
+            if($checkifblock==0){
+                $data['alerterror']="Your Username OR Password is Invalid!!";
+            }
+			else if($checkifblock==1){
+                $data['alerterror']="Oops your Package is Expired!!";
+            }
 			//$data[ 'page' ]  = 'login';
 			//$data[ 'title' ]      = 'Login Page';
 			$this->load->view( 'login' , $data );

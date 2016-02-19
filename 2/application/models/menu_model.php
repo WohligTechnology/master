@@ -315,6 +315,7 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         }
         return count($abc);
     }
+    
 
     function drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch)
     {
@@ -457,7 +458,17 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         $testquery=$this->db->query("SELECT * FROM `test` ORDER BY `id` DESC LIMIT 0,1")->row();
         $row1  = $testquery;
             $testid=$row1->id;
+            
+        $checkpack=$this->db->query("SELECT * FROM `user`")->row();
+        $checkpackage=$checkpack->package;
+        if($checkpackage==4){
             $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `id` ASC")->result();
+        }
+        else{
+            $query=$this->db->query("SELECT * FROM `hq_pillar` WHERE `id` != 11 ORDER BY `id` ASC")->result();
+        }
+        
+            
             foreach($query as $row)
             {
                 $pillarid = $row->id;
@@ -482,7 +493,15 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         foreach($testquery as $row1)
         {
             $testid=$row1->id;
-            $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `order` ASC")->result();
+              $checkpack=$this->db->query("SELECT * FROM `user`")->row();
+        $checkpackage=$checkpack->package;
+        if($checkpackage==4){
+            $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `id` ASC")->result();
+        }
+        else{
+            $query=$this->db->query("SELECT * FROM `hq_pillar` WHERE `id` != 11 ORDER BY `id` ASC")->result();
+        }
+//            $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `order` ASC")->result();
             foreach($query as $row)
             {
                 $pillarid = $row->id;
@@ -508,7 +527,15 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         foreach($testquery as $row1)
         {
             $testid=$row1->id;
-            $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `order` ASC")->result();
+              $checkpack=$this->db->query("SELECT * FROM `user`")->row();
+        $checkpackage=$checkpack->package;
+        if($checkpackage==4){
+            $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `id` ASC")->result();
+        }
+        else{
+            $query=$this->db->query("SELECT * FROM `hq_pillar` WHERE `id` != 11 ORDER BY `id` ASC")->result();
+        }
+//            $query=$this->db->query("SELECT * FROM `hq_pillar` ORDER BY `order` ASC")->result();
             foreach($query as $row)
             {
                 $pillarid = $row->id;

@@ -201,107 +201,120 @@ return $query;
 }  
     public function updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11)
 {
-$data=array("expectedweight" => $range);
-$this->db->where( "id", 1 );
-$query=$this->db->update( "hq_pillar", $data );
+        $sumofweight=$range + $range1 + $range2 + $range3 + $range4 + $range5 + $range6 + $range7 + $range8 + $range9 + $range11;
+        if($sumofweight<=100){
+            $data=array("weight" => $range);
+            $this->db->where( "id", 1 );
+            $query=$this->db->update( "hq_pillar", $data );
 
-$data1=array("expectedweight" => $range1);
-$this->db->where( "id", 2 );
-$query=$this->db->update( "hq_pillar", $data1 );
+            $data1=array("weight" => $range1);
+            $this->db->where( "id", 2 );
+            $query=$this->db->update( "hq_pillar", $data1 );
+
+            $data2=array("weight" => $range2);
+            $this->db->where( "id", 3 );
+            $query=$this->db->update( "hq_pillar", $data2 );
+
+            $data3=array("weight" => $range3);
+            $this->db->where( "id", 4 );
+            $query=$this->db->update( "hq_pillar", $data3 );
+
+            $data4=array("weight" => $range4);
+            $this->db->where( "id", 5 );
+            $query=$this->db->update( "hq_pillar", $data4 );
+
+            $data5=array("weight" => $range5);
+            $this->db->where( "id", 6 );
+            $query=$this->db->update( "hq_pillar", $data5 );
+
+            $data6=array("weight" => $range6);
+            $this->db->where( "id", 7 );
+            $query=$this->db->update( "hq_pillar", $data6 );
+
+            $data7=array("weight" => $range7);
+            $this->db->where( "id", 8 );
+            $query=$this->db->update( "hq_pillar", $data7 );
+
+            $data8=array("weight" => $range8);
+            $this->db->where( "id", 9 );
+            $query=$this->db->update( "hq_pillar", $data8 );
+
+            $data9=array("weight" => $range9);
+            $this->db->where( "id", 10 );
+            $query=$this->db->update( "hq_pillar", $data9 );
+
+            $data10=array("weight" => $range11);
+            $this->db->where( "id", 11 );
+            $query=$this->db->update( "hq_pillar", $data10 );
+            
+            return 1;
+        }
+        else{
+            return 0;
+        }
+
         
-$data2=array("expectedweight" => $range2);
-$this->db->where( "id", 3 );
-$query=$this->db->update( "hq_pillar", $data2 );
         
-$data3=array("expectedweight" => $range3);
-$this->db->where( "id", 4 );
-$query=$this->db->update( "hq_pillar", $data3 );
-        
-$data4=array("expectedweight" => $range4);
-$this->db->where( "id", 5 );
-$query=$this->db->update( "hq_pillar", $data4 );
-        
-$data5=array("expectedweight" => $range5);
-$this->db->where( "id", 6 );
-$query=$this->db->update( "hq_pillar", $data5 );
-        
-$data6=array("expectedweight" => $range6);
-$this->db->where( "id", 7 );
-$query=$this->db->update( "hq_pillar", $data6 );
-        
-$data7=array("expectedweight" => $range7);
-$this->db->where( "id", 8 );
-$query=$this->db->update( "hq_pillar", $data7 );
-        
-$data8=array("expectedweight" => $range8);
-$this->db->where( "id", 9 );
-$query=$this->db->update( "hq_pillar", $data8 );
-        
-$data9=array("expectedweight" => $range9);
-$this->db->where( "id", 10 );
-$query=$this->db->update( "hq_pillar", $data9 );
-        
-$data10=array("expectedweight" => $range11);
-$this->db->where( "id", 11 );
-$query=$this->db->update( "hq_pillar", $data10 );
-return 1;
+
 } 
     
     
     public function updateweightageviewpillar($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11)
 {
-$data=array("weight" => $range);
-$this->db->where( "id", 1 );
-$query=$this->db->update( "hq_pillar", $data );
+       
+            $data=array("weight" => $range);
+            $this->db->where( "id", 1 );
+            $query=$this->db->update( "hq_pillar", $data );
 
-$data1=array("weight" => $range1);
-$this->db->where( "id", 2 );
-$query=$this->db->update( "hq_pillar", $data1 );
-        
-$data2=array("weight" => $range2);
-$this->db->where( "id", 3 );
-$query=$this->db->update( "hq_pillar", $data2 );
-        
-$data3=array("weight" => $range3);
-$this->db->where( "id", 4 );
-$query=$this->db->update( "hq_pillar", $data3 );
-        
-$data4=array("weight" => $range4);
-$this->db->where( "id", 5 );
-$query=$this->db->update( "hq_pillar", $data4 );
-        
-$data5=array("weight" => $range5);
-$this->db->where( "id", 6 );
-$query=$this->db->update( "hq_pillar", $data5 );
-        
-$data6=array("weight" => $range6);
-$this->db->where( "id", 7 );
-$query=$this->db->update( "hq_pillar", $data6 );
-        
-$data7=array("weight" => $range7);
-$this->db->where( "id", 8 );
-$query=$this->db->update( "hq_pillar", $data7 );
-        
-$data8=array("weight" => $range8);
-$this->db->where( "id", 9 );
-$query=$this->db->update( "hq_pillar", $data8 );
-        
-$data9=array("weight" => $range9);
-$this->db->where( "id", 10 );
-$query=$this->db->update( "hq_pillar", $data9 );
-        
-$data11=array("weight" => $range11);
-$this->db->where( "id", 11 );
-$query=$this->db->update( "hq_pillar", $data11 );
-return 1;
+            $data1=array("weight" => $range1);
+            $this->db->where( "id", 2 );
+            $query=$this->db->update( "hq_pillar", $data1 );
+
+            $data2=array("weight" => $range2);
+            $this->db->where( "id", 3 );
+            $query=$this->db->update( "hq_pillar", $data2 );
+
+            $data3=array("weight" => $range3);
+            $this->db->where( "id", 4 );
+            $query=$this->db->update( "hq_pillar", $data3 );
+
+            $data4=array("weight" => $range4);
+            $this->db->where( "id", 5 );
+            $query=$this->db->update( "hq_pillar", $data4 );
+
+            $data5=array("weight" => $range5);
+            $this->db->where( "id", 6 );
+            $query=$this->db->update( "hq_pillar", $data5 );
+
+            $data6=array("weight" => $range6);
+            $this->db->where( "id", 7 );
+            $query=$this->db->update( "hq_pillar", $data6 );
+
+            $data7=array("weight" => $range7);
+            $this->db->where( "id", 8 );
+            $query=$this->db->update( "hq_pillar", $data7 );
+
+            $data8=array("weight" => $range8);
+            $this->db->where( "id", 9 );
+            $query=$this->db->update( "hq_pillar", $data8 );
+
+            $data9=array("weight" => $range9);
+            $this->db->where( "id", 10 );
+            $query=$this->db->update( "hq_pillar", $data9 );
+
+            $data11=array("weight" => $range11);
+            $this->db->where( "id", 11 );
+            $query=$this->db->update( "hq_pillar", $data11 );
+              return 1;
+          
 }
 	public function showavg()
 	{
-		$query=$this->db->query("SELECT AVG(`weight`) as `avgweight` FROM `hq_pillar`")->row();
-        $avgweight=$query->avgweight;
+		$query=$this->db->query("SELECT SUM(`weight`) as `weight` FROM `hq_pillar`")->row();
+		$totalweightpercent=$query->weight;
         
         
-        return number_format((float)$avgweight, 2, '.', '');
+        return number_format((float)$totalweightpercent, 2, '.', '');
 	}
     public function lastpillardetail()
 	{

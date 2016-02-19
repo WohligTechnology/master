@@ -51,6 +51,9 @@ class User_model extends CI_Model
     public function makeuserold($id){
   $this->db->query(" UPDATE `user` SET `isfirst`='1' WHERE `id`='$id'");
     }
+    public function makeusernew($id){
+  $this->db->query(" UPDATE `user` SET `isfirst`='' WHERE `id`='$id'");
+    }
 	
 	
 	public function create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$username,$gender,$age,$maritalstatus,$designation,$department,$noofyearsinorganization,$spanofcontrol,$description,$employeeid,$branch,$language,$team,$salary)

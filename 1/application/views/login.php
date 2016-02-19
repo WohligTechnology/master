@@ -145,3 +145,45 @@
 </body>
 
 </html>
+<div class="lightcolor">
+		<?php if(isset($alertsuccess)) {
+$alertsuccess = trim(preg_replace('/\s+/', ' ', $alertsuccess));
+	?>
+			<script>
+				$(document).ready(function() {
+					Materialize.toast("<?php echo $alertsuccess; ?>", 3000, 'green');
+				});
+			</script>
+			<?php } ?>
+				<?php if($this->input->get("alertsuccess") != "") {
+$alertsuccess = trim(preg_replace('/\s+/', ' ', $this->input->get("alertsuccess")));
+	?>
+					<script>
+						$(document).ready(function() {
+							Materialize.toast("<?php echo $alertsuccess; ?>", 3000, 'green');
+						});
+					</script>
+					<?php } ?>
+
+						<?php if(isset($alerterror)) {
+
+$alerterror = trim(preg_replace('/\s+/', ' ', $alerterror));
+	?>
+							<script>
+								$(document).ready(function() {
+									Materialize.toast("<?php echo $alerterror; ?>", 3000, 'red');
+								});
+							</script>
+							<?php } ?>
+
+								<?php if($this->input->get("alerterror") != "") {
+
+$alerterror = trim(preg_replace('/\s+/', ' ', $this->input->get("alerterror")));
+	?>
+									<script>
+										$(document).ready(function() {
+											Materialize.toast("<?php echo $alerterror; ?>", 3000, 'red');
+										});
+									</script>
+									<?php } ?>
+</div>

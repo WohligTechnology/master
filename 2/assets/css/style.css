@@ -842,3 +842,50 @@ button:focus {
 .p15 {
   padding-top: 15px;
 }
+.welcome-set{
+  margin: -65px -15px 0px -15px;
+  padding: 0px 0px 20px 0px;
+}
+.welcome {
+    background: #fff1e0;
+    color: #383939;
+    text-align: center;
+    padding: 25px 0px;
+    position: relative;
+}
+.welcome h3{
+  margin-top:0px;
+}
+.welcome h4{
+  margin-bottom:0px;
+}
+.welcome:after{
+  position: absolute;
+      top: 100%;
+      right: 50%;
+      margin-top: -3px;
+      width: 0;
+      height: 0;
+      border-top: 68px solid;
+      border-right: 30px solid rgba(255, 241, 224, 0);
+      border-left: 30px solid rgba(255, 241, 224, 0);
+      color: #FFF1E0;
+      content: "";
+      pointer-events: none;
+}
+.welcome-img{
+  text-align: center;
+      padding-top: 80px;
+}
+.welcome-img img{
+
+      padding-right: 90px;
+}
+.begin{
+  text-align: center;
+
+}
+.begin a{
+    margin-right: 80px;
+
+}

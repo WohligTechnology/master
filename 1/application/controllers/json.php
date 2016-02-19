@@ -588,6 +588,7 @@ $this->load->view("json",$data);
  
  public function viewfirstpage()
  {
+     $data['id']=$this->input->get('id');
       $data['pillardata']=$this->pillar_model->getallpillars();
       $data["checkpackage"]=$this->menu_model->checkpackage();
      $data['lastpillardetail']=$this->pillar_model->lastpillardetail();
@@ -668,6 +669,26 @@ $this->load->view("json",$data);
  public function assignpackage(){
      $package=$this->input->get_post('package');
      $this->menu_model->enablemenu($package);
+ }
+ public function checkweight(){
+         $range=$this->input->get_post('range');
+         $range1=$this->input->get_post('rangeone');
+         $range2=$this->input->get_post('rangetwo');
+         $range3=$this->input->get_post('rangethree');
+         $range4=$this->input->get_post('rangefour');
+         $range5=$this->input->get_post('rangefive');
+         $range6=$this->input->get_post('rangesix');
+         $range7=$this->input->get_post('rangeseven');
+         $range8=$this->input->get_post('rangeeight');
+         $range9=$this->input->get_post('rangenine');
+         $range11=$this->input->get_post('rangeeleven');
+        $value=$this->pillar_model->updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11);
+//        if($value==1){
+//           echo "Proper wieght";
+//        }
+//        else if($value==0){
+//             echo " Wrong";
+//        }
  }
 
    

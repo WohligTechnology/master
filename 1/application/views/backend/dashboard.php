@@ -255,7 +255,7 @@
                         text: 'Percentage (%)'
                     }
                 },
-                colors: ['#FFB110', '#684703', '#ce3a56'],
+                colors: ['#ffd61e', '#684703', '#ce3a56'],
                 borderRadius: 0,
                 borderWidth: 10,
                 //                colors: ['#684703', '#FFB110','#684703'],
@@ -274,25 +274,94 @@
                         maxPointWidth: 100
                     }
                 },
-                series: [{
-                    name: 'Expected',
-                    data: expectedWeight
-
-                }, {
+                series: [ {
                     name: 'Average',
                     data: pillAraverage
 
-                }, {
-                    name: 'Weight',
-                    data: weight
-
-                }]
+                }, ]
+//                series: [{
+//                    name: 'Expected',
+//                    data: expectedWeight
+//
+//                }, {
+//                    name: 'Average',
+//                    data: pillAraverage
+//
+//                }, {
+//                    name: 'Weight',
+//                    data: weight
+//
+//                }]
             });
         }
 
     });
 
 </script>
+<div id="container3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<script>
+    
+$(function () {
+    $('#container3').highcharts({
+        chart: {
+            type: 'bar',
+            backgroundColor: "transparent"
+        },
+        title: {
+            text: 'Overall'
+        },
+        xAxis: {
+            categories: ['Weighted Average'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Overall (percent)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' percent'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+         colors: ['#ffd61e', '#fff'],
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        series: [ {
+            name: 'Average',
+            data: [<?php echo $totalexpected;?>]
+        },{
+            name: 'HQ Expected',
+            data: [<?php echo $totalsum;?>]
+        }]
+    });
+});
+</script>
+
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 <script>
@@ -305,7 +374,8 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false,
-                type: 'pie'
+                type: 'pie',
+                 backgroundColor: "transparent"
             },
             title: {
                 text: 'Pillar Average'
@@ -346,7 +416,6 @@
 
 
     }
-    // the button action
     $('#button').click(function() {
         var chart = $('#container').highcharts(),
             selectedPoints = chart.getSelectedPoints();

@@ -13,7 +13,7 @@
            <div class="row">
             <div class="input-field col s12 m6">
                 <label for="weight">Weight</label>
-                <input type="text" id="weight" name="weight" value="<?php echo set_value('weight',$before->weight);?>">
+                <input type="text" id="weight" name="weight" readonly="true" value="<?php echo set_value('weight',$before->weight);?>">
             </div>
         </div> 
            <div class="row">
