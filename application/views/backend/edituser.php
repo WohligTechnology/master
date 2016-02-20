@@ -51,12 +51,14 @@
                 <input type="text" id="socialid" name="socialid" value="<?php echo set_value('socialid',$before->socialid);?>">
             </div>
         </div>
+<!--
         <div class="row">
             <div class="input-field col m6 s12">
                 <label for="phone">Phone</label>
                 <input type="text" id="phone" name="phone" value="<?php echo set_value('phone',$before->phone);?>">
             </div>
         </div>
+-->
         <div class="row" style="display:none">
             <div class="input-field col m6 s12">
                 <select id="logintype" name="logintype" placeholder="Login Type" id="" value="<?php echo set_value('logintype',$before->logintype);?>">

@@ -47,7 +47,7 @@
 				<input type="text" id="socialid" name="socialid" value="<?php echo set_value('socialid');?>">
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" style="display:none">
 			<div class="input-field col m6 s12">
 				<label for="phone">Phone</label>
 				<input type="text" id="phone" name="phone" value="<?php echo set_value('phone');?>">
