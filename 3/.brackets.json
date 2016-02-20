@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "selectionChange.js",
+        "C:/xampp/htdocs/hq/assets/js/highcharts-3dbyavi.js",
+        "C:/xampp/htdocs/hq/assets/js/highcharts-export-outside.js"
+    ]
+}

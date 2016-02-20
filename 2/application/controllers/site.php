@@ -60,8 +60,11 @@ class Site extends CI_Controller
                
             }
         }
-        $data['totalsum']=number_format((float)$totalsum, 2, '.', ''); 
-        $data['totalexpected']=number_format((float)$totalexpected, 2, '.', '');
+//        $data['totalsum']=number_format((float)$totalsum, 2, '.', ''); 
+//        $data['totalexpected']=number_format((float)$totalexpected, 2, '.', '');
+        
+        $data['totalsum']=floor($totalsum); 
+        $data['totalexpected']=floor($totalexpected); 
         $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
         $data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
         $data[ 'gender' ] =$this->user_model->getgendertypedropdown();
