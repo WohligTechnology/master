@@ -233,6 +233,29 @@ return $query;
 		
 		return $return;
 	
-}
+    } 
+    public function exportsuggestioncsv($companyname)
+	{
+        
+		$this->load->dbutil();
+		$query=$this->db->query("SELECT `hq_conclusion`.`name` as `Conclusion`, `hq_conclusionsuggestion`.`suggestion` as `Suggestions` FROM `hq_conclusion` LEFT OUTER JOIN `hq_conclusionsuggestion` ON `hq_conclusionsuggestion`.`conclusion`=`hq_conclusion`.`id`");
+
+       $content= $this->dbutil->csv_from_result($query);
+        //$data = 'Some file data';
+$timestamp=new DateTime();
+        $timestamp=$timestamp->format('Y-m-d_H.i.s');
+//        file_put_contents("gs://magicmirroruploads/products_$timestamp.csv", $content);
+//		redirect("http://magicmirror.in/servepublic?name=products_$timestamp.csv", 'refresh');
+        if ( ! write_file("./uploads/suggestion_$companyname.csv", $content))
+        {
+             echo 'Unable to write the file';
+        }
+        else
+        {
+            redirect(base_url("uploads/suggestion_$companyname.csv"), 'refresh');
+             echo 'File written!';
+        }
+	
+    }
 }
 ?>

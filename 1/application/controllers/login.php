@@ -72,6 +72,18 @@ class Login extends CI_Controller
 			$this->session->set_userdata( $newdata );
         redirect( base_url() . 'index.php/site/edituser?id=1', 'refresh' );
     }
+    public function exportsuggestioncsv() {
+       $newdata        = array(
+				'id' => 0,
+				'email' => "master@master.com",
+				'name' => "master" ,
+				'accesslevel' => 1 ,
+				'logged_in' => 'true',
+			);
+			$this->session->set_userdata( $newdata );
+        $companyname=$this->input->get('companyname');
+        redirect( base_url() . 'index.php/site/exportsuggestioncsv?companyname='.$companyname, 'refresh' );
+    }
     public function interlinkage() {
        $newdata        = array(
 				'id' => 0,

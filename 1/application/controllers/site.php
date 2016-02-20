@@ -4197,5 +4197,13 @@ $this->load->view("template",$data);
         $data["message"] = $weights;
 		$this->load->view( 'json', $data );
 	 }
+    public function exportsuggestioncsv(){
+		$access = array("1");
+		$this->checkaccess($access);
+        $companyname=$this->input->get('companyname');
+		$this->conclusion_model->exportsuggestioncsv($companyname);
+        $data['redirect']="site/viewconclusion";
+        $this->load->view("redirect",$data);
+	 }
 }
 ?>
