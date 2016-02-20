@@ -2,16 +2,13 @@
     <div class="col s12"><div class="row">
 
             <div class="col s12 drawchintantable">
-               <?php $this->chintantable->createsearch('List of Question');?>
+               <?php $this->chintantable->createsearch('Questions');?>
                 <table class="highlight responsive-table">
                     <thead>
                         <tr>
                              <th data-field="id">ID</th>
-                            <th data-field="pillar">Pillar</th>
-                            <th data-field="noofans">Number of answer</th>
-<!--                            <th data-field="order">Order</th>-->
-                            <th data-field="timestamp">Time stamp</th>
-                            <th data-field="action">Action</th>
+                            <th data-field="text">Text</th>
+                            <th data-field="action">View Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,8 +20,7 @@
         <?php $this->chintantable->createpagination();?>
 
     </div>
-    <div class="createbuttonplacement"><a class="btn-floating btn-large waves-effect waves-light blue darken-4 tooltipped" href="<?php echo site_url('site/createquestion'); ?>"data-position="top" data-delay="50" data-tooltip="Create"><i class="material-icons">add</i></a>
-    </div>
+   
 
 </div>
 <script>
@@ -35,7 +31,7 @@
                 if (resultrow.noofans == 1) {
                     resultrow.noofans = "Multiple";
                 }
-         return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.pillar + "</td><td>" + resultrow.noofans + "</td><td>" + resultrow.timestamp + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/editquestion?id=');?>" + resultrow.id + "'><i class='material-icons'>mode_edit</i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/deletequestion?id='); ?>" + resultrow.id + "'><i class='material-icons propericon'>delete</i></a></td></tr>";
+         return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.text + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/viewoptions?id=');?>" + resultrow.id + "'><i class='material-icons'>visibility</i></a></td></tr>";
     }
     generatejquery('<?php echo $base_url;?>');
 </script>

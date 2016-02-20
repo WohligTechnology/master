@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col s12">
-<h4 class="pad-left-15 capitalize">Create surveyquestionuser</h4>
+<h4 class="pad-left-15 capitalize"> Survey Question User</h4>
 </div>
 <form class='col s12' method='post' action='<?php echo site_url("site/createsurveyquestionusersubmit");?>' enctype= 'multipart/form-data'>
 <div class=" row">

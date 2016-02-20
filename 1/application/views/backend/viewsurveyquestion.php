@@ -2,7 +2,7 @@
     <div class="col s12">
         <div class="row">
             <div class="col s12 drawchintantable">
-                <?php $this->chintantable->createsearch(" List of surveyquestion");?>
+                <?php $this->chintantable->createsearch(" Survey Question");?>
                     <div class="row">
                         <div class="col s12 m6">   
                                <a href="<?php echo site_url("site/viewsurveyresult"); ?>" class="btn btn-secondary waves-effect waves-light red">View Results</a>

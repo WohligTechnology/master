@@ -2,7 +2,7 @@
 <div class="col s12">
 <div class="row">
 <div class="col s12 drawchintantable">
-<?php $this->chintantable->createsearch(" List of surveyquestionuser");?>
+<?php $this->chintantable->createsearch(" Survey Question User");?>
    <div class="row">
                         <div class="col s12 m6">
                         

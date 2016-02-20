@@ -41,6 +41,7 @@ class Site extends CI_Controller
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch);
 
         $data["message"] = $pillarsdata;
+        
 		$this->load->view( 'json', $data );
 
     }
@@ -1262,7 +1263,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`","WHERE `hq_question`.`id` < 41");
 $this->load->view("json",$data);
 }
 
@@ -1320,6 +1321,7 @@ $data["pillar"]=$this->pillar_model->getpillardropdown();
 $data["noofans"]=$this->question_model->getnoofansdropdown();
 $data["title"]="Edit question";
 $data["before"]=$this->question_model->beforeedit($this->input->get("id"));
+$data["option"]=$this->question_model->getQuestionOptions($this->input->get("id"));
 $this->load->view("template",$data);
 }
 public function editquestionsubmit()
@@ -1371,13 +1373,13 @@ public function viewoptions()
 $access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewoptions";
-
-$data["base_url"]=site_url("site/viewoptionsjson");
+$data["base_url"]=site_url("site/viewoptionsjson?id=").$this->input->get('id');
 $data["title"]="View options";
 $this->load->view("template",$data);
 }
 function viewoptionsjson()
 {
+    $id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`hq_options`.`id`";
@@ -1438,7 +1440,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_options`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_options`","WHERE `hq_options`.`question`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -3552,7 +3554,6 @@ $data["base_url"]=site_url("site/viewconclusionjson1");
 $data["title"]="View conclusion";
 $this->load->view("template",$data);
 }
-
 
 function viewconclusionjson1()
 {

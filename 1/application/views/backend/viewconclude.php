@@ -1,27 +1,35 @@
 <div class="row">
-    <div class="col s12">
-        <h4 class="pad-left-15 capitalize">Suggestion</h4>
+    <div class="col s8">
+        <h4 class="pad-left-15 capitalize" style="float: left;">Suggestion</h4>
+         <a href="<?php echo site_url('site/viewconclusion'); ?>" class="btn btn-secondary waves-effect waves-light  red" style="float: right;
+    margin-top: 20px;">Back</a>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+           
+        </div>
     </div>
 </div>
 <div class="row">
     <form class='col s12' method='post' action='<?php echo site_url("site/editconclusionsuggestionsubmit");?>' enctype='multipart/form-data'>
         <div class=" row" style="display:none">
             <div class=" input-field col s12 m6">
-<!--                <?php echo form_dropdown("conclusion",$conclusion,set_value('conclusion',$this->input->get('id')));?>-->
-                  <input type="hidden" id="conclusion" name="conclusion" value="<?php echo set_value('conclusion',$this->input->get('id'));?>">
-                    <label for="Conclusion">Conclusion</label>
+                <!--                <?php echo form_dropdown("conclusion",$conclusion,set_value('conclusion',$this->input->get('id')));?>-->
+                <input type="hidden" id="conclusion" name="conclusion" value="<?php echo set_value('conclusion',$this->input->get('id'));?>">
+                <label for="Conclusion">Conclusion</label>
             </div>
         </div>
         <div class="row">
             <div class="col s12 m6">
                 <label>Suggestion</label>
-                <textarea name="suggestion" placeholder="Enter text ..."><?php echo set_value( 'suggestion',$before->suggestion);?></textarea>
+                <textarea name="suggestion" placeholder="Enter text ..."><?php echo set_value( 'suggestion',$before->suggestion);?>
+                </textarea>
             </div>
         </div>
         <div class="row">
             <div class="col s6">
                 <button type="submit" class="btn btn-primary waves-effect waves-light  blue darken-4">Save</button>
-                
+
             </div>
         </div>
     </form>
