@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2016 at 07:40 AM
+-- Generation Time: Feb 23, 2016 at 07:21 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -49,16 +49,14 @@ CREATE TABLE IF NOT EXISTS `companypackage` (
   `id` int(11) NOT NULL,
   `company` int(11) NOT NULL,
   `package` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `companypackage`
 --
 
 INSERT INTO `companypackage` (`id`, `company`, `package`) VALUES
-(1, 1, 1),
-(2, 1, 3),
-(3, 2, 1);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -96,16 +94,14 @@ CREATE TABLE IF NOT EXISTS `master_company` (
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
   `sector` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `master_company`
 --
 
 INSERT INTO `master_company` (`id`, `name`, `email`, `package`, `isblock`, `startdate`, `enddate`, `sector`) VALUES
-(1, 'pooja', 'pooja.wohlig@gmail.com', '3', 0, '2015-11-11', '2016-02-12', 1),
-(2, 'wohlig', 'chintan@wohlig.com', '1', 1, '2015-12-11', '2016-02-12', 2),
-(3, 'demo', 'de@ejhka.dfd', '0', 0, '2016-01-01', '2016-01-31', 2);
+(1, 'WohligTech', 'pooja.wohlig@gmail.com', '0', 0, '2016-02-01', '2016-02-29', 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +152,6 @@ INSERT INTO `menuaccess` (`menu`, `access`) VALUES
 (1, 1),
 (4, 1),
 (2, 1),
-(3, 1),
 (5, 2),
 (6, 2);
 
@@ -283,7 +278,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json`, `firstname`, `lastname`, `phone`, `billingaddress`, `billingcity`, `billingstate`, `billingcountry`, `billingcontact`, `billingpincode`, `shippingaddress`, `shippingcity`, `shippingcountry`, `shippingstate`, `shippingpincode`, `shippingname`, `shippingcontact`, `currency`, `credit`, `companyname`, `registrationno`, `vatnumber`, `country`, `fax`, `gender`, `facebook`, `google`, `twitter`, `street`, `address`, `dob`, `city`, `state`, `pincode`) VALUES
-(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, 'images_(2)1.jpg', '', '', 'Facebook', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '0000-00-00', '', '', ''),
+(1, 'wohlig', 'a63526467438df9566c508027d9cb06b', 'wohlig@wohlig.com', 1, '0000-00-00 00:00:00', 1, '1.jpg', '', '', 'Email', '0', '0', '0', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '0', '0', '0', 0, '', '', '', '', '', '0000-00-00', '', '', ''),
 (9, 'Asif', 'c0a63e7316d156e39c9b9d7a61db2722', 'asif@willnevergrowup.com', 1, '2015-12-26 05:27:16', 1, '', '', '@asifupadhye', '', '0', '0', '0', '9892338317', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '0', '0', '0', 0, '', '', '', '', '', '0000-00-00', '', '', ''),
 (10, 'Sales', 'a63526467438df9566c508027d9cb06b', 'sales@wohlig.com', 2, '2015-12-29 07:15:59', 1, 'lenovo-thinkpad-hd-wallpaper-background-ilw.png', '', '', 'Email', '0', '0', '0', '987878', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '', '0', '0', '0', '0', 0, '', '', '', '', '', '0000-00-00', '', '', '');
 
@@ -416,7 +411,7 @@ ALTER TABLE `accesslevel`
 -- AUTO_INCREMENT for table `companypackage`
 --
 ALTER TABLE `companypackage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `logintype`
 --
@@ -426,7 +421,7 @@ ALTER TABLE `logintype`
 -- AUTO_INCREMENT for table `master_company`
 --
 ALTER TABLE `master_company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `menu`
 --
