@@ -19,11 +19,11 @@
         <div class="row">
             <div class="input-field col s12 m6">
                 <label for="branchid">Branch Id</label>
-                <input type="text" id="branchid" name="branchid" value="<?php echo set_value('branchid',$before->branchid);?>">
+                <input type="text" id="branchid" name="branchid"  value="<?php echo set_value('branchid',$before->branchid);?>">
             </div>
         </div>
         <div class="row">
-           <div class="col s12 m6"><textarea name="address" placeholder="address"><?php echo set_value('address',$before->address);?></textarea>
+           <div class="col s12 m6"> <label for="address">Address</label><textarea name="address" class="materialize-textarea" placeholder="address"><?php echo set_value('address',$before->address);?></textarea>
            </div>
         </div>
        

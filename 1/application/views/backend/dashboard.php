@@ -1,8 +1,11 @@
-<button class="btn btn-primary waves-effect waves-light blue darken-4 right" onclick="GlobalFunctions.clearSelection()">Clear Selection</button>
+<div class="text-center padding-bottom">
+  <button class="btn btn-primary waves-effect waves-light blue darken-4" onclick="GlobalFunctions.clearSelection()">Clear Selection</button>
+</div>
+<span>Total Employee Count: <?php echo $empcount;?></span>
 <form method="post" action="<?php echo site_url('site/getdatabyfiltering');?>">
 
-    <div class="cf">
-    </div>
+    <div class="cf"></div>
+
     <div class="row selectproper">
         <div class="col s12 m3">
             <select id="1" name="gender" onchange="GlobalFunctions.checkfortwo(1);" style="display:none">
@@ -200,7 +203,7 @@
                    totalsum= totalsum + (data[i].pillaraveragevalues * data[i].expectedweight)/100;
                     totalexpected =totalexpected + (data[i].pillaraveragevalues * data[i].weight)/100;
                 }
-              
+
                 totalsum=Math.floor(totalsum);
                 totalexpected=Math.floor(totalexpected);
 //                  console.log(totalsum);
@@ -370,7 +373,7 @@
 
 
     }
-        
+
         function overAll (totalexpected,totalsum) {
         $('#container3').highcharts({
         chart: {
@@ -430,8 +433,8 @@
         }]
     });
 }
-        
-        
+
+
 
     });
 
@@ -442,7 +445,7 @@
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 <script>
- 
+
     $('#button').click(function() {
         var chart = $('#container').highcharts(),
             selectedPoints = chart.getSelectedPoints();

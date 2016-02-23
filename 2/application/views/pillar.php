@@ -20,19 +20,23 @@
 </head>
 
 <body class="yellow-back">
-      <form class="col s12" method="post" action="<?php echo site_url('site/getweightage');?>" enctype="multipart/form-data">
+      <form class="padtop" method="post" action="<?php echo site_url('site/getweightage');?>" enctype="multipart/form-data">
+
     <div class="container">
-       
+      <div class="padding-bottom">
+        <h5 class="padleft"> Weightages</h5>
+        <?php if($checkpackage==3 || $checkpackage==4) {?>
+         <?php if($id==1){?>
+          <span><b>Note : Sum Of Weights Should Be 100.</b></span>
+          <?php } else {?>
+          <span><b>Sum Of Weights Should Be 100.</b></span>
+          <?php }?>
+          <?php }?>
+        </div>
         <div class="row">
             <div class="col s6 ">
-               <?php if($id==1){?>
-                <span><b>Note : Sum Of Weights Should Be 100.</b></span>
-                <?php } else {?>
-                <span><b>Sum Of Weights Should Be 100.</b></span>
-                <?php }?>
-                <div class="padtop">
- 
-                    <h5 class="padleft"> Weightages</h5>
+                <div class="">
+
                     <div class="row">
 
                         <div class="all-range">
@@ -42,10 +46,14 @@
                                     <div class="progress-bar">
                                         <p>Work Life Blend</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="range" id="range" min="0" max="100" value="<?php echo $pillardata[0]->weight;?>"/>
+                                                   <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="range" readonly="true" id="range" min="0" max="100" value="<?php echo $pillardata[0]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="range" id="range" min="0" max="100" value="<?php echo $pillardata[0]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
 
@@ -70,7 +78,11 @@
 
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangeone" id="rangeone" min="0" max="100" value="<?php echo $pillardata[1]->weight;?>" />
+                                 <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangeone" readonly="true" id="rangeone" min="0" max="100" value="<?php echo $pillardata[1]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangeone" id="rangeone" min="0" max="100" value="<?php echo $pillardata[1]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
                                     </div>
@@ -92,13 +104,17 @@
                                     <div class="progress-bar">
                                         <p>Driving Force</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangetwo" id="rangetwo" min="0" max="100" value="<?php echo $pillardata[2]->weight;?>" />
+                             <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangetwo" readonly="true" id="rangetwo" min="0" max="100" value="<?php echo $pillardata[2]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangetwo" id="rangetwo" min="0" max="100" value="<?php echo $pillardata[2]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -118,13 +134,17 @@
                                     <div class="progress-bar">
                                         <p>Health of an Individual</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangethree" id="rangethree" min="0" value="<?php echo $pillardata[3]->weight;?>" max="100" />
+                                         <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangethree" readonly="true" id="rangethree" min="0" max="100" value="<?php echo $pillardata[3]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangethree" id="rangethree" min="0" max="100" value="<?php echo $pillardata[3]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
-                                     
+
                                     </div>
                                 </div>
                             </div>
@@ -144,10 +164,14 @@
                                     <div class="progress-bar">
                                         <p>Interpersonal Relationships at Work</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangefour" id="rangefour" min="0" max="100" value="<?php echo $pillardata[4]->weight;?>" />
+                                <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangefour" readonly="true" id="rangefour" min="0" max="100" value="<?php echo $pillardata[4]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangefour" id="rangefour" min="0" max="100" value="<?php echo $pillardata[4]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
                                         </form>
@@ -165,11 +189,8 @@
             </div>
 
             <div class="col s6 ">
-                <div class="padtop">
-
-                    <h5 class="padleft"></h5>
+                <div class="">
                     <div class="row">
-
                         <div class="all-range">
                             <div class="col s10">
                                 <div class="left-side">
@@ -177,13 +198,17 @@
                                     <div class="progress-bar">
                                         <p>Rewards and Recognition</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangefive" id="rangefive" min="0" value="<?php echo $pillardata[5]->weight;?>" max="100" />
+                             <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangefive" readonly="true" id="rangefive" min="0" max="100" value="<?php echo $pillardata[5]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangefive" id="rangefive" min="0" max="100" value="<?php echo $pillardata[5]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
-                                      
+
                                     </div>
                                 </div>
                             </div>
@@ -203,13 +228,17 @@
                                     <div class="progress-bar">
                                         <p>Sense of Ownership</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangesix" id="rangesix" min="0" value="<?php echo $pillardata[6]->weight;?>" max="100" />
+                             <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangesix" readonly="true" id="rangesix" min="0" max="100" value="<?php echo $pillardata[6]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangesix" id="rangesix" min="0" max="100" value="<?php echo $pillardata[6]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -229,13 +258,17 @@
                                     <div class="progress-bar">
                                         <p>Work Environment</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangeseven" id="rangeseven" value="<?php echo $pillardata[7]->weight;?>" min="0" max="100" />
+                                      <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangeseven" readonly="true" id="rangeseven" min="0" max="100" value="<?php echo $pillardata[7]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangeseven" id="rangeseven" min="0" max="100" value="<?php echo $pillardata[7]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -255,13 +288,17 @@
                                     <div class="progress-bar">
                                         <p>Job Security</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangeeight" id="rangeeight" value="<?php echo $pillardata[8]->weight;?>" min="0" max="100" />
+                                        <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangeeight" readonly="true" id="rangeeight" min="0" max="100" value="<?php echo $pillardata[8]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangeeight" id="rangeeight" min="0" max="100" value="<?php echo $pillardata[8]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -281,13 +318,17 @@
                                     <div class="progress-bar">
                                         <p>Alignment</p>
 
-                                
+
                                             <div class="input-border">
                                                 <p class="range-field">
-                                                    <input type="range" name="rangenine" id="rangenine" value="<?php echo $pillardata[9]->weight;?>" min="0" max="100" />
+                                      <?php if($checkpackage==1 || $checkpackage==2) {?>
+                                                    <input type="range" name="rangenine" readonly="true" id="rangenine" min="0" max="100" value="<?php echo $pillardata[9]->weight;?>"/>
+                                                    <?php } else {?>
+                                                          <input type="range" name="rangenine" id="rangenine" min="0" max="100" value="<?php echo $pillardata[9]->weight;?>"/>
+                                                    <?php }?>
                                                 </p>
                                             </div>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -310,11 +351,13 @@
                     <p class="display-inline">
                         <?php echo $lastpillardetail->name;?>
                     </p>
+<!--
                     <div class="left-s">
                         <div class="box-tp displ-inline">
                             <a href='<?php echo site_url('site/editpillar?id=11');?>'>Edit</a>
                         </div>
                     </div>
+-->
                         <div class="input-border">
                             <p class="range-field">
                                 <input type="range" name="rangeeleven" id="rangeeleven" min="0" max="100" value="<?php echo $before[10]->weight;?>"/>
@@ -348,15 +391,15 @@
 <!--  <script src="<?php echo base_url('assets').'/';?>js/index.js"></script>-->
 <script>
 $( document ).ready(function() {
-    
+
      var new_base_url = "<?php echo site_url(); ?>";
      $.getJSON(new_base_url + '/site/getPillarWeight', {
             }, function(data) {
                 console.log("datd");
                 console.log(data);
             });
-    
-    
+
+
      $("[name=range]").on("change", function() {
             $("[for=range]").val(this.value + "%");
         }).trigger("change");

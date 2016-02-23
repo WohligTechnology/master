@@ -19,6 +19,12 @@ $this->db->where("id",$id);
 $query=$this->db->get("hq_question")->row();
 return $query;
 }
+    public function getQuestionOptions($id)
+{
+$this->db->where("question",$id);
+$query=$this->db->get("hq_options")->result();
+return $query;
+}
 function getsinglequestion($id){
 $this->db->where("id",$id);
 $query=$this->db->get("hq_question")->row();

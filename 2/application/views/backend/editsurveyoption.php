@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col s12">
-<h4 class="pad-left-15 capitalize">Edit surveyoption</h4>
+<h4 class="pad-left-15 capitalize"> Survey Option</h4>
 </div>
 </div>
 <div class="row">
@@ -45,9 +45,8 @@
           <?php } else { ?>
               <div class="row">
                 <div class="col s12 m6">
-                    <textarea name="title" placeholder="Enter text ...">
-                        <?php echo set_value('title');?>
-                    </textarea>
+                   <label for="title">Title</label>
+                    <textarea name="title" class="materialize-textarea" placeholder="Enter text ..."><?php echo set_value('title');?></textarea>
                 </div>
             </div>
           <?php }?>

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s12">
-        <h4 class="pad-left-15">Create Branch</h4>
+        <h4 class="pad-left-15"> Branch</h4>
     </div>
     <form class="col s12" method="post" action="<?php echo site_url('site/createbranchsubmit');?>" enctype="multipart/form-data">
 
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row">
-           <div class="col s12 m6"><textarea  name="address" placeholder="Address"><?php echo set_value('address');?></textarea>
+           <div class="col s12 m6"><textarea  name="address" class="materialize-textarea" placeholder="Address"><?php echo set_value('address');?></textarea>
            </div>
         </div>
        

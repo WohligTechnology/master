@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s12">
-        <h4 class="pad-left-15">Edit Branch</h4>
+        <h4 class="pad-left-15"> Branch</h4>
     </div>
     <form class="col s12" method="post" action="<?php echo site_url('site/editbranchsubmit');?>" enctype="multipart/form-data">
  <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
@@ -19,11 +19,11 @@
         <div class="row">
             <div class="input-field col s12 m6">
                 <label for="branchid">Branch Id</label>
-                <input type="text" id="branchid" name="branchid" value="<?php echo set_value('branchid',$before->branchid);?>">
+                <input type="text" id="branchid" name="branchid"  value="<?php echo set_value('branchid',$before->branchid);?>">
             </div>
         </div>
         <div class="row">
-           <div class="col s12 m6"><textarea name="address" placeholder="address"><?php echo set_value('address',$before->address);?></textarea>
+           <div class="col s12 m6"> <label for="address">Address</label><textarea name="address" class="materialize-textarea" placeholder="address"><?php echo set_value('address',$before->address);?></textarea>
            </div>
         </div>
        

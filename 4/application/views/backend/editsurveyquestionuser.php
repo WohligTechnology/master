@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col s12">
-<h4 class="pad-left-15 capitalize">Edit surveyquestionuser</h4>
+<h4 class="pad-left-15 capitalize"> Survey Question User</h4>
 </div>
 </div>
 <div class="row">
@@ -12,7 +12,7 @@
 <label for="Question">Question</label>
 </div>
 </div>
-<div class="row">
+<div class="row" style="display:none">
 <div class="input-field col s6">
 <label for="Email">Email</label>
 <input type="email" id="Email" name="email" value='<?php echo set_value('email',$before->email);?>'>

@@ -10,6 +10,7 @@
                 <input type="text" id="name" name="name" value="<?php echo set_value('name',$before->name);?>">
             </div>
         </div> 
+<!--
            <div class="row">
             <div class="input-field col s12 m6">
                 <label for="weight">Weight</label>
@@ -22,6 +23,7 @@
                 <input type="text" id="order" name="order" value="<?php echo set_value('order',$before->order);?>">
             </div>
         </div> 
+-->
       
         <div class="row"  style="display:none">
             <div class="input-field col s12 m6">

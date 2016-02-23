@@ -789,7 +789,7 @@ $accesslevelid=$this->session->userdata("accesslevel");
         $data["redirect"]="site/editcompany?id=".$value;
     }
 
-$this->load->view("redirect",$data);
+$this->load->view("redirect2",$data);
 }
 
 }
@@ -911,7 +911,7 @@ $this->load->view("json",$data);
 
 public function createpackage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createpackage";
     $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -920,7 +920,7 @@ $this->load->view("template",$data);
 }
 public function createpackagesubmit() 
 {
-    $access=array("1");
+    $access=array("1","2");
     $this->checkaccess($access);
     $name=$this->input->get_post("name");
     $status=$this->input->get_post("status");
@@ -937,7 +937,7 @@ public function createpackagesubmit()
 
 public function editpackage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
 $data["page"]="editpackage";
@@ -947,7 +947,7 @@ $this->load->view("template",$data);
 }
 public function editpackagesubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
 $name=$this->input->get_post("name");
@@ -964,7 +964,7 @@ $this->load->view("redirect",$data);
 
 public function deletepackage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->package_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewpackage";
@@ -974,7 +974,7 @@ $this->load->view("redirect",$data);
 
 public function viewcompanypackage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewcompanypackage";
 $data["page2"]="block/companyblock";
@@ -1029,7 +1029,7 @@ $this->load->view("json",$data);
 
 public function createcompanypackage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createcompanypackage";
 $data["package"]=$this->package_model->getPackageDropDown();
@@ -1039,7 +1039,7 @@ $this->load->view("template",$data);
 }
 public function createcompanypackagesubmit() 
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $company=$this->input->get_post("company");
 $package=$this->input->get_post("package");
@@ -1053,7 +1053,7 @@ $this->load->view("redirect2",$data);
 
 public function editcompanypackage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["package"]=$this->package_model->getPackageDropDown();
 $data["company"]=$this->company_model->getCompanyDropDown();
@@ -1067,7 +1067,7 @@ $this->load->view("templatewith2",$data);
 }
 public function editcompanypackagesubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
 $company=$this->input->get_post("company");
@@ -1098,7 +1098,7 @@ $this->load->view("redirect2",$data);
 
 public function deletecompanypackage()
 {
-    $access=array("1");
+    $access=array("1","2");
     $this->checkaccess($access);
     $this->companypackage_model->delete($this->input->get("id"));
     $data["redirect"]="site/viewcompanypackage?id=".$this->input->get("companyid");
@@ -1255,7 +1255,7 @@ you with us on this journey.</p><br>
         redirect($exactpath);
        
 }
-     public function checkblock() 
+     public function checkblockpackage() 
     {
         // willbe included in cron
          $todaysdate=date("Y-m-d");
@@ -1266,6 +1266,71 @@ you with us on this journey.</p><br>
             {
                 $companyid=$row->id;
                 $this->company_model->blockCompanyModel($companyid);
+            }
+        }
+    }
+    public function checkpackagesendemail() 
+    {
+        // willbe included in cron
+         $dayafter30days=date("Y-m-d",strtotime("+30 days"));
+         $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$dayafter30days' AND `isblock`=0")->result();
+        if(!empty($query))
+        {
+            foreach($query as $row)
+            {
+                $companyid=$row->id;
+                $companyname=$row->name;
+                $receiver=$row->email;
+                
+                $sender="master@willnevergrowup.in";
+                $this->email->from($sender, 'Never Grow Up');
+                $this->email->to($receiver);
+                $this->email->subject('Package expired:');
+                $message = "<html>
+        <p>Hey Happyness Torch-bearer,</p><br>
+      <p>Trust you are doing great and are having an awesome experience with Happyness Quotient. </p><br>
+<p>This is a reminder that your package will expire in the next 30 days.  To continue measuring Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.</p><br>
+<p>For any queries/support, you can contact us on ___________________</p><br>
+<p>Happy to help!</p><br>
+<p>Regards,</p><br>
+<p>Team Never Grow Up</p><br>
+<p>-------------------------------------------------------------------------------</p><br>
+<p>Note: This is a system generated email, do not respond to this.</p><br>
+      </html>";
+                $this->email->message($message);
+                $this->email->send();
+            }
+        }
+    }
+    public function packageexpiremail() 
+    {
+        // willbe included in cron
+         $todaysdate=date("Y-m-d");
+         $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$todaysdate' AND `isblock`=0")->result();
+        if(!empty($query))
+        {
+            foreach($query as $row)
+            {
+                $companyid=$row->id;
+                $companyname=$row->name;
+                $receiver=$row->email;
+                
+                $sender="master@willnevergrowup.in";
+                $this->email->from($sender, 'Never Grow Up');
+                $this->email->to($receiver);
+                $this->email->subject('Package expired:');
+                $message = "<html>
+        <p>Hey Happyness Torch-bearer,</p><br>
+      <p>This is to inform you that your Happyness Quotient package has expired. To continue measuring Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.</p><br>
+<p>For any queries/support, you can contact us on ___________________</p><br>
+<p>Happy to help!</p><br>
+<p>Regards,</p><br>
+<p>Team Never Grow Up</p><br>
+<p>-------------------------------------------------------------------------------</p><br>
+<p>Note: This is a system generated email, do not respond to this.</p><br>
+      </html>";
+                $this->email->message($message);
+                $this->email->send();
             }
         }
     }

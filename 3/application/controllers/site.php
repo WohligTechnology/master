@@ -41,12 +41,14 @@ class Site extends CI_Controller
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch);
 
         $data["message"] = $pillarsdata;
+        
 		$this->load->view( 'json', $data );
 
     }
     public function index()
 	{
 		$access = array("1","2","3","5");
+        $data['empcount']=$this->user_model->getEmployeeCount();
 		$this->checkaccess($access);
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard();
         $totalsum=0;
@@ -1262,7 +1264,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`","WHERE `hq_question`.`id` < 41");
 $this->load->view("json",$data);
 }
 
@@ -1320,6 +1322,7 @@ $data["pillar"]=$this->pillar_model->getpillardropdown();
 $data["noofans"]=$this->question_model->getnoofansdropdown();
 $data["title"]="Edit question";
 $data["before"]=$this->question_model->beforeedit($this->input->get("id"));
+$data["option"]=$this->question_model->getQuestionOptions($this->input->get("id"));
 $this->load->view("template",$data);
 }
 public function editquestionsubmit()
@@ -1371,13 +1374,13 @@ public function viewoptions()
 $access=array("1","2","3","5");
 $this->checkaccess($access);
 $data["page"]="viewoptions";
-
-$data["base_url"]=site_url("site/viewoptionsjson");
+$data["base_url"]=site_url("site/viewoptionsjson?id=").$this->input->get('id');
 $data["title"]="View options";
 $this->load->view("template",$data);
 }
 function viewoptionsjson()
 {
+    $id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`hq_options`.`id`";
@@ -1438,7 +1441,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_options`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_options`","WHERE `hq_options`.`question`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -2929,10 +2932,10 @@ $elements[1]->sort="1";
 $elements[1]->header="Type";
 $elements[1]->alias="type";
 $elements[2]=new stdClass();
-$elements[2]->field="`hq_surveyquestion`.`text`";
+$elements[2]->field="`hq_surveyquestion`.`content`";
 $elements[2]->sort="1";
-$elements[2]->header="Text";
-$elements[2]->alias="text";
+$elements[2]->header="Content";
+$elements[2]->alias="content";
 $elements[3]=new stdClass();
 $elements[3]->field="`hq_surveyquestion`.`starttime`";
 $elements[3]->sort="1";
@@ -3552,7 +3555,6 @@ $data["base_url"]=site_url("site/viewconclusionjson1");
 $data["title"]="View conclusion";
 $this->load->view("template",$data);
 }
-
 
 function viewconclusionjson1()
 {
@@ -4195,6 +4197,14 @@ $this->load->view("template",$data);
 		 $weights=$this->pillar_model->getallpillars();
         $data["message"] = $weights;
 		$this->load->view( 'json', $data );
+	 }
+    public function exportsuggestioncsv(){
+		$access = array("1");
+		$this->checkaccess($access);
+        $companyname=$this->input->get('companyname');
+		$this->conclusion_model->exportsuggestioncsv($companyname);
+        $data['redirect']="site/viewconclusion";
+        $this->load->view("redirect",$data);
 	 }
 }
 ?>

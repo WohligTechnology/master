@@ -208,7 +208,7 @@ return $query;
             
                foreach($conclusionquery as $conclusion)
                {
-                $conclusion->averagepercent=$this->db->query("SELECT IFNULL(AVG(`hq_options`.`weight`),0) as `averagepercent` FROM `hq_options` LEFT OUTER JOIN `hq_useranswer` ON `hq_useranswer`.`option`=`hq_options`.`id` WHERE `hq_useranswer`.`user` IN ($userquery) AND `hq_useranswer`.`question` IN (SELECT `hq_conclusionquestion`.`question` FROM `hq_conclusionquestion` LEFT OUTER JOIN `hq_conclusion` ON `hq_conclusion`.`id`=`hq_conclusionquestion`.`conclusion` WHERE `hq_conclusion`.`id`='$conclusion->id')")->row();
+                $conclusion->averagepercent=$this->db->query("SELECT ROUND(IFNULL(AVG(`hq_options`.`weight`),0),2) as `averagepercent` FROM `hq_options` LEFT OUTER JOIN `hq_useranswer` ON `hq_useranswer`.`option`=`hq_options`.`id` WHERE `hq_useranswer`.`user` IN ($userquery) AND `hq_useranswer`.`question` IN (SELECT `hq_conclusionquestion`.`question` FROM `hq_conclusionquestion` LEFT OUTER JOIN `hq_conclusion` ON `hq_conclusion`.`id`=`hq_conclusionquestion`.`conclusion` WHERE `hq_conclusion`.`id`='$conclusion->id')")->row();
 //                   
 //                   $conclusion->averagepercent=$this->db->query("SELECT AVG(`hq_options`.`weight`) as `averagepercent` FROM `hq_options` LEFT OUTER JOIN `hq_useranswer` ON `hq_useranswer`.`option`=`hq_options`.`id` WHERE `hq_useranswer`.`user` IN ($userquery) AND `hq_useranswer`.`question` IN (SELECT `hq_conclusionquestion`.`question` FROM `hq_conclusionquestion` LEFT OUTER JOIN `hq_conclusion` ON `hq_conclusion`.`id`=`hq_conclusionquestion`.`conclusion` WHERE `hq_conclusion`.`id`='$conclusion->id')")->row();
              
@@ -233,6 +233,29 @@ return $query;
 		
 		return $return;
 	
-}
+    } 
+    public function exportsuggestioncsv($companyname)
+	{
+        
+		$this->load->dbutil();
+		$query=$this->db->query("SELECT `hq_conclusion`.`name` as `Conclusion`, `hq_conclusionsuggestion`.`suggestion` as `Suggestions` FROM `hq_conclusion` LEFT OUTER JOIN `hq_conclusionsuggestion` ON `hq_conclusionsuggestion`.`conclusion`=`hq_conclusion`.`id`");
+
+       $content= $this->dbutil->csv_from_result($query);
+        //$data = 'Some file data';
+$timestamp=new DateTime();
+        $timestamp=$timestamp->format('Y-m-d_H.i.s');
+//        file_put_contents("gs://magicmirroruploads/products_$timestamp.csv", $content);
+//		redirect("http://magicmirror.in/servepublic?name=products_$timestamp.csv", 'refresh');
+        if ( ! write_file("./uploads/suggestion_$companyname.csv", $content))
+        {
+             echo 'Unable to write the file';
+        }
+        else
+        {
+            redirect(base_url("uploads/suggestion_$companyname.csv"), 'refresh');
+             echo 'File written!';
+        }
+	
+    }
 }
 ?>

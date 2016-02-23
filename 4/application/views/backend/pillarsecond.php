@@ -1,8 +1,8 @@
 <form method="post" action="<?php echo site_url('site/getweightageviewpillar');?>" enctype="multipart/form-data">
     <h5 class="padleft"> Weightages</h5>
-    <span class="padleft">Sum of Weightage Should be equal to 100</span>
+    <div class="padleft padding-bottom">Sum of Weightage Should be equal to 100</div>
     <div class="row">
-        <div class="col s6 ">
+        <div class="col s12 m6 ">
             <div class="">
                 <div class="row">
                     <div class="all-range">
@@ -141,7 +141,7 @@
                                         </p>
                                         <div class="left-s">
                                             <div class="box-tp displ-inline">
-                                                <a href='<?php echo site_url(' site/editpillar?id=11 ');?>'>Edit</a>
+                                                <a href='<?php echo site_url('site/editpillar?id=11 ');?>'>Edit</a>
                                             </div>
                                         </div>
                                         <div class="input-border">
@@ -161,34 +161,12 @@
                     </div>
                     <?php
 }?>
-                        <div class="row">
-                            <div class="all-range">
-                                <div class="col s2">
-                                    <div class="progress-bar out-top" style="margin:0px;">
-                                        <!--                                    <output for="rangeavg" class="output">67.5</output>-->
-                                        <output for="rangeavg" class="output">
-                                            <span id="demo"></span>
-                                        </output>
-                                    </div>
-                                </div>
-                                <div class="col s10">
-                                    <div class="left-side">
-                                        <div class="progress-bar">
-                                            <p class="pt7">Out Of 100% (Reach 100% to Proceed)</p>
 
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
             </div>
         </div>
 
-        <div class="col s6 ">
+        <div class="col s12 m6 ">
             <div class="">
-
-                <h5 class="padleft"></h5>
                 <div class="row">
 
                     <div class="all-range">
@@ -325,11 +303,37 @@
     </div>
 
     <div class="row">
-        <div class="col s6 text-center showok">
+      <div class="col s12 m6">
+        <div class="row">
+            <div class="all-range">
+                <div class="col s2">
+                    <div class="progress-bar out-top" style="margin:0px;">
+                        <!--                                    <output for="rangeavg" class="output">67.5</output>-->
+                        <output for="rangeavg" class="output">
+                            <span id="demo"></span>
+                        </output>
+                    </div>
+                </div>
+                <div class="col s10">
+                    <div class="left-side">
+                        <div class="progress-bar">
+                            <p class="pt7">Out Of 100% (Reach 100% to Proceed)</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6 text-center showok">
             <button type="submit" class="waves-effect waves-light btn blue-btn">OK</button>
         </div>
         <?php if ($checkpackage == 4) { ?>
-            <div class="col s6 text-center">
+            <div class="col s12 m6 text-center">
                 <a class="blue-btn custm-btn" href="<?php echo site_url('site/viewpillarquestion');?>">Go to Question</a>
             </div>
             <?php } ?>
@@ -341,14 +345,14 @@
     $(document).ready(function() {
 
 
-        
+
         var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
-        
+
         if($("[name=rangeeleven]").val()){
             console.log("in if");
             totalsum +=  parseFloat($("[name=rangeeleven]").val());
-        } 
-        
+        }
+
         console.log(totalsum);
         if (totalsum != 100) {
             $(".showok").hide();
@@ -411,11 +415,11 @@
             console.log(document.getElementById("demo"));
             var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
             console.log(totalsum);
-              
+
         if($("[name=rangeeleven]").val()){
             console.log("in if");
             totalsum +=  parseFloat($("[name=rangeeleven]").val());
-        } 
+        }
             if (totalsum != 100) {
                 $(".showok").hide();
                 //                document.getElementById("demo").innerHTML = totalsum;
@@ -428,11 +432,11 @@
 
         $("[name=rangeone]").on("change", function() {
             var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
-              
+
         if($("[name=rangeeleven]").val()){
             console.log("in if");
             totalsum +=  parseFloat($("[name=rangeeleven]").val());
-        } 
+        }
             console.log(totalsum);
             if (totalsum != 100) {
                 $(".showok").hide();
@@ -493,7 +497,7 @@
 
         $("[name=rangefive]").on("change", function() {
             var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
-            
+
             if($("[name=rangeeleven]").val()){
             console.log("in if");
             totalsum +=  parseFloat($("[name=rangeeleven]").val());

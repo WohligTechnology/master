@@ -48,6 +48,7 @@ class Site extends CI_Controller
     public function index()
 	{
 		$access = array("1","2","3","5");
+        $data['empcount']=$this->user_model->getEmployeeCount();
 		$this->checkaccess($access);
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard();
         $totalsum=0;
@@ -2931,10 +2932,10 @@ $elements[1]->sort="1";
 $elements[1]->header="Type";
 $elements[1]->alias="type";
 $elements[2]=new stdClass();
-$elements[2]->field="`hq_surveyquestion`.`text`";
+$elements[2]->field="`hq_surveyquestion`.`content`";
 $elements[2]->sort="1";
-$elements[2]->header="Text";
-$elements[2]->alias="text";
+$elements[2]->header="Content";
+$elements[2]->alias="content";
 $elements[3]=new stdClass();
 $elements[3]->field="`hq_surveyquestion`.`starttime`";
 $elements[3]->sort="1";

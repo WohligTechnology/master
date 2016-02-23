@@ -28,12 +28,14 @@
                 <label>Schedule</label>
             </div>
         </div>
+<!--
            <div class="row">
             <div class="input-field col s12 m6">
                 <?php echo form_dropdown('check', $check, set_value('check',$before->check)); ?>
                 <label>check</label>
             </div>
         </div>
+-->
 <!--
            <div class="row">
             <div class="input-field col s12 m6">

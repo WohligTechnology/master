@@ -12,7 +12,7 @@
                             <th data-field="id">ID</th>
                             <th data-field="name">Name</th>
                             <th data-field="teamid">Team id</th>
-                            <th data-field="action">ActionAction</th>
+                            <th data-field="action">Action</th>
                         </tr>
                     </thead>
                     <tbody>

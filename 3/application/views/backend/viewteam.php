@@ -2,7 +2,7 @@
     <div class="col s12">
         <div class="row">
             <div class="col s12 drawchintantable">
-                <?php $this->chintantable->createsearch("List of Team");?>
+                <?php $this->chintantable->createsearch("Team");?>
                 <div class="col s4">
 
                 </div>
@@ -12,7 +12,7 @@
                             <th data-field="id">ID</th>
                             <th data-field="name">Name</th>
                             <th data-field="teamid">Team id</th>
-                            <th data-field="action">ActionAction</th>
+                            <th data-field="action">Action</th>
                         </tr>
                     </thead>
                     <tbody>

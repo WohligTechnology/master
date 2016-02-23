@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s12">
-        <h4 class="pad-left-15">Create Test</h4>
+        <h4 class="pad-left-15"> Test</h4>
     </div>
     <form class="col s12" method="post" action="<?php echo site_url('site/createtestsubmit');?>" enctype="multipart/form-data">
 
@@ -29,12 +29,14 @@
                 <label>Schedule</label>
             </div>
         </div>
+<!--
            <div class="row">
             <div class="input-field col s12 m6">
                 <?php echo form_dropdown('check', $check, set_value('check')); ?>
                 <label>check</label>
             </div>
         </div>
+-->
 <!--
            <div class="row">
             <div class="input-field col s12 m6">

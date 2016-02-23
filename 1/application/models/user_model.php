@@ -53,6 +53,11 @@ class User_model extends CI_Model
     }
     public function makeusernew($id){
   $this->db->query(" UPDATE `user` SET `isfirst`='' WHERE `id`='$id'");
+    } 
+    public function getEmployeeCount(){
+  $query=$this->db->query("SELECT COUNT(*) as `empcount` FROM `user` WHERE `accesslevel`=4")->row();
+        $empcount=$query->empcount;
+        return $empcount;
     }
 	
 	

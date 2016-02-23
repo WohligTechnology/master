@@ -125,48 +125,6 @@ return $query;
     } 
     public function blockCompanyModel($companyid)
 {
-//          // SEND ALERT
-//    
-   
-//        // START MAIL
-//        require 'Mandrill.php';
-//
-//$mandrill = new Mandrill(); 
-//
-//// If are not using environment variables to specific your API key, use:
-//// $mandrill = new Mandrill("YOUR_API_KEY")
-//
-//$message = array(
-//    'subject' => 'Test message',
-//    'from_email' => $sender,
-//    'html' => '<p>this is a test message with Mandrill\'s PHP wrapper!.</p>',
-//    'to' => array(array('email' => $receiver, 'name' => 'Recipient 1')),
-//    'merge_vars' => array(array(
-//        'rcpt' => $receiver,
-//        'vars' =>
-//        array(
-//            array(
-//                'name' => 'FIRSTNAME',
-//                'content' => 'Recipient 1 first name'),
-//            array(
-//                'name' => 'LASTNAME',
-//                'content' => 'Last name')
-//    ))));
-//
-//$template_name = 'Stationary';
-//
-//$template_content = array(
-//    array(
-//        'name' => 'main',
-//        'content' => 'Hi *|FIRSTNAME|* *|LASTNAME|*, thanks for signing up.'),
-//    array(
-//        'name' => 'footer',
-//        'content' => 'Copyright 2012.')
-//
-//);
-//
-//print_r($mandrill->messages->sendTemplate($template_name, $template_content, $message));
-
         // END MAIL
         
     $this->load->helper('url');
@@ -199,6 +157,29 @@ return $query;
         <p>Hey Happyness Torch-bearer,</p><br>
       <p>This is to inform you that your Happyness Quotient package has expired. To continue measuring 
 Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.</p><br>
+<p>For any queries/support, you can contact us on ___________________</p><br>
+<p>Happy to help!</p><br>
+<p>Regards,</p><br>
+<p>Team Never Grow Up</p><br>
+<p>-------------------------------------------------------------------------------</p><br>
+<p>Note: This is a system generated email, do not respond to this.</p><br>
+      </html>";
+        $this->email->message($message);
+        $this->email->send();
+        
+        
+        
+        $sender="master@willnevergrowup.in";
+        $this->email->from($sender, 'Never Grow Up');
+        $this->email->to($receiver);
+        $this->email->subject('Package expired:');
+        $message = "<html>
+        <p>Hey Happyness Torch-bearer,</p><br>
+      <p>Hello there! Now that your company has been registered on Happyness Quotient, here’s what you need to do next:</p><br>
+<p>Upload your company logo</p><br>
+<p>Upload a CSV file of your employee data</p><br>
+<p>Decide when you want to send the questions</p><br>
+<p>Begin the journey of measuring happyness at work! </p><br>
 <p>For any queries/support, you can contact us on ___________________</p><br>
 <p>Happy to help!</p><br>
 <p>Regards,</p><br>

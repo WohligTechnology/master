@@ -971,6 +971,7 @@
                                         </div>
 
                                     </div>
+<!--
                                     <div class="col s3">
                                         <ul class="text-center matop">
                                             <li>15, jan 2015</li>
@@ -978,6 +979,7 @@
                                             <li class="box-tp" >Customize</li></a>
                                         </ul>
                                     </div>
+-->
                                 </div>
                                 <div class="row marbotm">
                                     <div class="col s9">
@@ -986,6 +988,7 @@
                                         </div>
 
                                     </div>
+<!--
                                     <div class="col s3">
                                         <ul class="text-center matop">
                                             <li>15, jan 2015</li>
@@ -993,6 +996,7 @@
                                             <li class="box-tp" >Customize</li></a>
                                         </ul>
                                     </div>
+-->
                                 </div>
                                 <div class="row marbotm">
                                     <div class="col s9">
@@ -1001,6 +1005,7 @@
                                         </div>
 
                                     </div>
+<!--
                                     <div class="col s3">
                                         <ul class="text-center matop">
                                             <li>15, jan 2015</li>
@@ -1008,6 +1013,7 @@
                                             <li class="box-tp" >Customize</li></a>
                                         </ul>
                                     </div>
+-->
                                 </div>
                                 <div class="row marzero">
                                     <div class="col s9">
@@ -1016,6 +1022,7 @@
                                         </div>
 
                                     </div>
+<!--
                                     <div class="col s3">
                                         <ul class="text-center matop">
                                             <li>15, jan 2015</li>
@@ -1023,6 +1030,7 @@
                                             <li class="box-tp" >Customize</li></a>
                                         </ul>
                                     </div>
+-->
                                 </div>
                             </div>
                         </div>

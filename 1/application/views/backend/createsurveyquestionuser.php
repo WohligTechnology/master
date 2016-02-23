@@ -9,7 +9,7 @@
 <label>Question</label>
 </div>
 </div>
-<div class="row">
+<div class="row" style="display:none">
 <div class="input-field col s6">
 <label for="Email">Email</label>
 <input type="email" id="Email" name="email" value='<?php echo set_value('email');?>'>

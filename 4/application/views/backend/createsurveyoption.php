@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s12">
-        <h4 class="pad-left-15 capitalize">Create surveyoption</h4>
+        <h4 class="pad-left-15 capitalize"> Survey option</h4>
     </div>
     <form class='col s12' method='post' action='<?php echo site_url("site/createsurveyoptionsubmit");?>' enctype='multipart/form-data'>
         <div class="row">
@@ -70,10 +70,10 @@
             </div>
           <?php } else { ?>
               <div class="row">
+               
                 <div class="col s12 m6">
-                    <textarea name="title" placeholder="Enter text ...">
-                        <?php echo set_value('title');?>
-                    </textarea>
+                   <label for="title">Title</label>
+                    <textarea name="title" class="materialize-textarea" placeholder="Enter text ..."><?php echo set_value('title');?></textarea>
                 </div>
             </div>
           <?php }?>

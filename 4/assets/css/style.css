@@ -61,7 +61,9 @@ html {
 .pad-left-30 {
     padding-left: 30px;
 }
-
+.padding-bottom {
+  padding-bottom: 10px;
+}
 .right {
     text-align: right;
     margin-top: 15px;
@@ -261,42 +263,37 @@ main,
 footer {
     padding-left: 240px;
 }
-
 .side-nav {
     width: 240px;
     background-color: #ffd61e;
 }
-
 ul.side-nav.fixed li.logo a {
     line-height: 100%;
     height: auto;
-
 }
 ul.side-nav.fixed li.logo img {
   width: 80%;
   height: auto;
 }
-  .btn, .btn-large {
-
-    background-color: #ce3a56 !important;
-      color:#ffd61e;
-    }
+.btn, .btn-large {
+  background-color: #ce3a56 !important;
+  color:#ffd61e;
+}
 ul.side-nav.fixed li a {
   line-height: 100%;
   height: auto;
-  color: #fffbec;
+  color: #3b2417;
   padding: 6px 25px;
   font-size: 16px;
-
 }
 .side-nav li:hover, .side-nav li.active {
-    background-color: #fffbec;
+    background-color: #3b2417;
 }
 .side-nav li:hover a, .side-nav li.active a {
   color:#ffd61e !important;
 }
 .side-nav li:hover, .side-nav li.active {
-    background-color: #fffbec;
+    background-color: #3b2417;
     color: #ffd61e !important;
 }
 .side-nav li {
@@ -311,10 +308,11 @@ ul.side-nav.fixed li a {
 .pad10 {
     margin-left: 5px;
 }
-
-.pagination li.active,
+.pagination li.active {
+  background-color: #fffbec;
+}
 .side-nav li.active {
-    background-color: #fffbec;
+    background-color: #3b2417;
 }
 
 .side-nav li.active a {
@@ -375,11 +373,12 @@ ul.side-nav.fixed li a {
     padding: 10px 15px;
     color: #00AC93;
     background-color: #FFFBEC;
-    border: 1px solid #00AC93;
+    border: 1px solid #F9F3DC;
     width: 100%;
-    margin-bottom: 10px;
 }
-
+.panel-body ul#nav-mobile li + li {
+  margin-top: 10px;
+}
 .panel-body ul#nav-mobile li a.active {
     color: #FFFBEC;
     background-color: #00AC93;
@@ -821,7 +820,7 @@ font-size: 16px;
 .box-left {
     border: 1px solid #684703;
     border-radius: 4px;
-    padding: 30px 0px 15px 16px;
+    padding: 20px 0;
 }
 .btn-right{
   text-align: right;
@@ -897,4 +896,13 @@ button:focus {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
+}
+@media only screen and (min-width: 601px) {
+  .col-padder .row .col + .col {
+    margin-top: 0;
+  }
+}
+
+.col-padder .row .col + .col {
+  margin-top: 20px;
 }

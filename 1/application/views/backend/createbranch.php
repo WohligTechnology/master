@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="row">
-           <div class="col s12 m6"><textarea  name="address" placeholder="Address"><?php echo set_value('address');?></textarea>
+           <div class="col s12 m6"><textarea  name="address" class="materialize-textarea" placeholder="Address"><?php echo set_value('address');?></textarea>
            </div>
         </div>
        
