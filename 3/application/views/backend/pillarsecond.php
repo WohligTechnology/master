@@ -1,5 +1,5 @@
 <form method="post" action="<?php echo site_url('site/getweightageviewpillar');?>" enctype="multipart/form-data">
-    <h5 class="padleft"> Weightages</h5>
+    <h5 class="padleft">Assigned Weightages</h5>
     <div class="padleft padding-bottom">Sum of Weightage Should be equal to 100</div>
     <div class="row">
         <div class="col s12 m6 ">
@@ -330,11 +330,11 @@
 
     <div class="row">
         <div class="col s12 m6 text-center showok">
-            <button type="submit" class="waves-effect waves-light btn blue-btn">OK</button>
+            <button type="submit" class="waves-effect waves-light btn">OK</button>
         </div>
         <?php if ($checkpackage == 4) { ?>
             <div class="col s12 m6 text-center">
-                <a class="blue-btn custm-btn" href="<?php echo site_url('site/viewpillarquestion');?>">Go to Question</a>
+                <a class="waves-effect waves-light btn" href="<?php echo site_url('site/viewpillarquestion');?>">Go to Question</a>
             </div>
             <?php } ?>
     </div>

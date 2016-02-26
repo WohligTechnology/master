@@ -70,7 +70,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>4. <span><?php echo $question[3]->text?></span></p>
@@ -163,7 +163,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>8. <span><?php echo $question[7]->text?></span></p>
@@ -258,7 +258,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>12. <span><?php echo $question[11]->text?></span></p>
@@ -351,7 +351,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>16. <span><?php echo $question[15]->text?></span></p>
@@ -446,7 +446,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>20. <span><?php echo $question[19]->text?></span></p>
@@ -539,7 +539,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>24. <span><?php echo $question[23]->text?></span></p>
@@ -635,7 +635,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>28. <span><?php echo $question[27]->text?></span></p>
@@ -729,7 +729,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>32. <span><?php echo $question[31]->text?></span></p>
@@ -824,7 +824,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>36. <span><?php echo $question[35]->text?></span></p>
@@ -917,7 +917,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>40. <span><?php echo $question[39]->text?></span></p>
@@ -1015,7 +1015,7 @@
                                     </div>
 -->
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>44. <span><?php echo $question[43]->text?></span></p>

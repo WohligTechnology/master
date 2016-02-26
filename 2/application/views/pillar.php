@@ -27,9 +27,9 @@
         <h5 class="padleft"> Weightages</h5>
         <?php if($checkpackage==3 || $checkpackage==4) {?>
          <?php if($id==1){?>
-          <span><b>Note : Sum Of Weights Should Be 100.</b></span>
+          <span><b>Note : Sum Of All Weightages Should Be 100.</b></span>
           <?php } else {?>
-          <span><b>Sum Of Weights Should Be 100.</b></span>
+          <span><b>Sum Of All Weightages Should Be 100.</b></span>
           <?php }?>
           <?php }?>
         </div>

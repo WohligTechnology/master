@@ -67,7 +67,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>1. <span>You put in your best at work. We know you do so. Your life look something like this</span></p>
@@ -95,7 +95,7 @@
                                     <p class="panel-title">Work-Life Blend</p>
                                 </div>
                                 <div class="pull-right matop  selects-before displ">
-                                 
+
                                     <select>
 
                                         <option value="1">Weekly</option>
@@ -150,7 +150,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="row marzero">
+                                <div class="row marbotm">
                                     <div class="col s9">
                                         <div class="text-p ">
                                             <p>1. <span>You put in your best at work. We know you do so. Your life look something like this</span></p>

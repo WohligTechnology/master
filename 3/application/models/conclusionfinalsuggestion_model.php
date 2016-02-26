@@ -40,5 +40,19 @@ public function getimagebyid($id)
 $query=$this->db->query("SELECT `image` FROM `hq_conclusionfinalsuggestion` WHERE `id`='$id'")->row();
 return $query;
 }
+    public function getSurveyNameDown()
+	{
+		$query=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion`  ORDER BY `id` ASC")->result();
+		$return=array(
+		"" => "Choose Survey"
+		);
+		foreach($query as $row)
+		{
+			$return[$row->id]=$row->conclusion;
+		}
+		
+		return $return;
+	
+    }
 }
 ?>

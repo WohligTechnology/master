@@ -3,11 +3,13 @@
         <div class="row">
             <div class="col s12 drawchintantable">
                 <?php $this->chintantable->createsearch(" Survey Question");?>
+<!--
                     <div class="row">
                         <div class="col s12 m6">   
                                <a href="<?php echo site_url("site/viewsurveyresult"); ?>" class="btn btn-secondary waves-effect waves-light red">View Results</a>
                         </div>
                     </div>
+-->
                     <table class="highlight responsive-table">
                         <thead>
                             <tr>

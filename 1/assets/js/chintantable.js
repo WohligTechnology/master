@@ -116,6 +116,9 @@ function generatejquery(url) {
 
 
                 $(".drawchintantable .loader").hide();
+                  $('.tooltipped').tooltip({
+                    delay: 50
+                });
 
             });
 

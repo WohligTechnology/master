@@ -430,9 +430,9 @@ class Site extends CI_Controller
             }
 
 			if($this->user_model->edit($id,$name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$username,$gender,$age,$maritalstatus,$designation,$department,$noofyearsinorganization,$spanofcontrol,$description,$employeeid,$branch,$timestamp,$language,$team,$salary)==0)
-			$data['alerterror']="User Editing was unsuccesful";
+			$data['alerterror']="User editing was unsuccesful";
 			else
-			$data['alertsuccess']="User edited Successfully.";
+			$data['alertsuccess']="User edited successfully.";
 
 			$data['redirect']="site/viewusers";
 			//$data['other']="template=$template";
@@ -555,7 +555,7 @@ $address=$this->input->get_post("address");
 if($this->branch_model->create($language,$name,$branchid,$address)==0)
 $data["alerterror"]="New branch could not be created.";
 else
-$data["alertsuccess"]="branch created Successfully.";
+$data["alertsuccess"]="Branch created Successfully.";
 $data["redirect"]="site/viewbranch";
 $this->load->view("redirect",$data);
 }
@@ -595,9 +595,9 @@ $name=$this->input->get_post("name");
 $branchid=$this->input->get_post("branchid");
 $address=$this->input->get_post("address");
 if($this->branch_model->edit($id,$language,$name,$branchid,$address)==0)
-$data["alerterror"]="New branch could not be Updated.";
+$data["alerterror"]="New branch could not be updated.";
 else
-$data["alertsuccess"]="branch Updated Successfully.";
+$data["alertsuccess"]="Branch Updated Successfully.";
 $data["redirect"]="site/viewbranch";
 $this->load->view("redirect",$data);
 }
@@ -683,7 +683,7 @@ $deptid=$this->input->get_post("deptid");
 if($this->department_model->create($name,$deptid)==0)
 $data["alerterror"]="New department could not be created.";
 else
-$data["alertsuccess"]="department created Successfully.";
+$data["alertsuccess"]="Department created Successfully.";
 $data["redirect"]="site/viewdepartment";
 $this->load->view("redirect",$data);
 }
@@ -720,7 +720,7 @@ $deptid=$this->input->get_post("deptid");
 if($this->department_model->edit($id,$name,$deptid)==0)
 $data["alerterror"]="New department could not be Updated.";
 else
-$data["alertsuccess"]="department Updated Successfully.";
+$data["alertsuccess"]="Department Updated Successfully.";
 $data["redirect"]="site/viewdepartment";
 $this->load->view("redirect",$data);
 }
@@ -808,7 +808,7 @@ $teamid=$this->input->get_post("teamid");
 if($this->team_model->create($name,$teamid)==0)
 $data["alerterror"]="New team could not be created.";
 else
-$data["alertsuccess"]="team created Successfully.";
+$data["alertsuccess"]="Team created Successfully.";
 $data["redirect"]="site/viewteam";
 $this->load->view("redirect",$data);
 }
@@ -845,7 +845,7 @@ $teamid=$this->input->get_post("teamid");
 if($this->team_model->edit($id,$name,$teamid)==0)
 $data["alerterror"]="New team could not be Updated.";
 else
-$data["alertsuccess"]="team Updated Successfully.";
+$data["alertsuccess"]="Team Updated Successfully.";
 $data["redirect"]="site/viewteam";
 $this->load->view("redirect",$data);
 }
@@ -933,7 +933,7 @@ $language=$this->input->get_post("language");
 if($this->designation_model->create($name,$language)==0)
 $data["alerterror"]="New designation could not be created.";
 else
-$data["alertsuccess"]="designation created Successfully.";
+$data["alertsuccess"]="Designation created Successfully.";
 $data["redirect"]="site/viewdesignation";
 $this->load->view("redirect",$data);
 }
@@ -972,7 +972,7 @@ $language=$this->input->get_post("language");
 if($this->designation_model->edit($id,$name,$language)==0)
 $data["alerterror"]="New designation could not be Updated.";
 else
-$data["alertsuccess"]="designation Updated Successfully.";
+$data["alertsuccess"]="Designation Updated Successfully.";
 $data["redirect"]="site/viewdesignation";
 $this->load->view("redirect",$data);
 }
@@ -2228,9 +2228,9 @@ $this->load->view("redirect",$data);
             $team=$this->input->post('team');
             $organization=$this->input->post('organization');
 			if($this->test_model->create($name,$schedule,$units,$startdate,$designation,$department,$branch,$team,$organization)==0)
-			$data['alerterror']="New test could not be created.";
+			$data['alerterror']="New Test Could Not Be Created.";
 			else
-			$data['alertsuccess']="Test created Successfully.";
+			$data['alertsuccess']="Test Created Successfully.";
 			$data['redirect']="site/viewtest";
 			$this->load->view("redirect",$data);
 
@@ -2463,9 +2463,9 @@ $this->checkaccess($access);
 $id=$this->input->get_post("id");
 $question=$this->input->get_post("question");
 if($this->testquestion_model->edittestquestion($id,$question)==0)
-$data["alerterror"]="New testquestion could not be Updated.";
+$data["alerterror"]="New test question could not be updated.";
 else
-$data["alertsuccess"]="testquestion Updated Successfully.";
+$data["alertsuccess"]="Test question Updated Successfully.";
 $data["redirect"]="site/edittestquestion?id=".$id;
 $this->load->view("redirect2",$data);
 }
@@ -2970,6 +2970,7 @@ $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createsurveyquestion";
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
+$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Create surveyquestion";
 $this->load->view("template",$data);
 }
@@ -2985,6 +2986,7 @@ if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="createsurveyquestion";
+$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
 $data["title"]="Create surveyquestion";
 $this->load->view("template",$data);
@@ -2998,9 +3000,9 @@ $starttime=$this->input->get_post("starttime");
 $endtime=$this->input->get_post("endtime");
 $content=$this->input->get_post("content");
 if($this->surveyquestion_model->create($type,$text,$starttime,$endtime,$content)==0)
-$data["alerterror"]="New surveyquestion could not be created.";
+$data["alerterror"]="New Survey question could not be created.";
 else
-$data["alertsuccess"]="surveyquestion created Successfully.";
+$data["alertsuccess"]="Survey question created Successfully.";
 $data["redirect"]="site/viewsurveyquestion";
 $this->load->view("redirect",$data);
 }
@@ -3015,6 +3017,7 @@ $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
 $data["title"]="Edit surveyquestion";
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
+$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["before"]=$this->surveyquestion_model->beforeedit($this->input->get("id"));
 $data['exp'] = explode(':', $data['before']->starttime);
 $data['exp1'] = explode(':', $data['before']->endtime);
@@ -3033,6 +3036,7 @@ if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="editsurveyquestion";
+$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
 $data["title"]="Edit surveyquestion";
 $data["before"]=$this->surveyquestion_model->beforeedit($this->input->get("id"));
@@ -3047,9 +3051,9 @@ $starttime=$this->input->get_post("starttime");
 $endtime=$this->input->get_post("endtime");
 $content=$this->input->get_post("content");
 if($this->surveyquestion_model->edit($id,$type,$text,$starttime,$endtime,$content)==0)
-$data["alerterror"]="New surveyquestion could not be Updated.";
+$data["alerterror"]="New survey question could not be Updated.";
 else
-$data["alertsuccess"]="surveyquestion Updated Successfully.";
+$data["alertsuccess"]="survey question Updated Successfully.";
 $data["redirect"]="site/viewsurveyquestion";
 $this->load->view("redirect",$data);
 }
@@ -3067,12 +3071,13 @@ public function viewsurveyquestionuser()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="viewsurveyquestionuser";
-$data["base_url"]=site_url("site/viewsurveyquestionuserjson");
+$data["base_url"]=site_url("site/viewsurveyquestionuserjson?id=".$this->input->get('id'));
 $data["title"]="View surveyquestionuser";
 $this->load->view("template",$data);
 }
 function viewsurveyquestionuserjson()
 {
+$id=$this->input->get('id');
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`hq_surveyquestionuser`.`id`";
@@ -3080,7 +3085,7 @@ $elements[0]->sort="1";
 $elements[0]->header="Id";
 $elements[0]->alias="id";
 $elements[1]=new stdClass();
-$elements[1]->field="`hq_surveyquestion`.`content`";
+$elements[1]->field="`hq_surveyquestionuser`.`question`";
 $elements[1]->sort="1";
 $elements[1]->header="Question";
 $elements[1]->alias="question";
@@ -3109,7 +3114,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_surveyquestionuser` LEFT OUTER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionuser`.`question`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_surveyquestionuser` LEFT OUTER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionuser`.`question`","WHERE `hq_surveyquestionuser`.`question`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -3118,7 +3123,7 @@ public function createsurveyquestionuser()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createsurveyquestionuser";
-$data["question"]=$this->surveyquestion_model->getsurveyquestiondropdown();
+$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Create surveyquestionuser";
 $this->load->view("template",$data);
 }
@@ -3132,7 +3137,7 @@ if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="createsurveyquestionuser";
-$data["question"]=$this->surveyquestion_model->getquestiondropdown();
+$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Create surveyquestionuser";
 $this->load->view("template",$data);
 }
@@ -3146,8 +3151,8 @@ if($this->surveyquestionuser_model->create($question,$email,$status)==0)
 $data["alerterror"]="New surveyquestionuser could not be created.";
 else
 $data["alertsuccess"]="surveyquestionuser created Successfully.";
-$data["redirect"]="site/viewsurveyquestionuser";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewsurveyquestionuser?id=".$question;
+$this->load->view("redirect2",$data);
 }
 }
 public function editsurveyquestionuser()
@@ -3155,13 +3160,13 @@ public function editsurveyquestionuser()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editsurveyquestionuser";
-$data["page2"]="block/questionblock";
+//$data["page2"]="block/questionblock";
 $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
-$data["question"]=$this->surveyquestion_model->getsurveyquestiondropdown();
+$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Edit surveyquestionuser";
 $data["before"]=$this->surveyquestionuser_model->beforeedit($this->input->get("id"));
-$this->load->view("templatewith2",$data);
+$this->load->view("template",$data);
 }
 public function editsurveyquestionusersubmit()
 {
@@ -3174,7 +3179,7 @@ if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="editsurveyquestionuser";
-$data["question"]=$this->surveyquestion_model->getquestiondropdown();
+$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Edit surveyquestionuser";
 $data["before"]=$this->surveyquestionuser_model->beforeedit($this->input->get("id"));
 $this->load->view("template",$data);
@@ -3189,8 +3194,8 @@ if($this->surveyquestionuser_model->edit($id,$question,$email,$status)==0)
 $data["alerterror"]="New surveyquestionuser could not be Updated.";
 else
 $data["alertsuccess"]="surveyquestionuser Updated Successfully.";
-$data["redirect"]="site/viewsurveyquestionuser";
-$this->load->view("redirect",$data);
+$data["redirect"]="site/viewsurveyquestionuser?id=".$question;
+$this->load->view("redirect2",$data);
 }
 }
 public function deletesurveyquestionuser()
@@ -3198,7 +3203,7 @@ public function deletesurveyquestionuser()
 $access=array("1","5");
 $this->checkaccess($access);
 $this->surveyquestionuser_model->delete($this->input->get("id"));
-$data["redirect"]="site/viewsurveyquestionuser";
+$data["redirect"]="site/viewsurveyquestionuser?id=".$this->input->get("surveyid");
 $this->load->view("redirect",$data);
 }
 public function viewsurveyoption()
@@ -3944,13 +3949,8 @@ $elements[0]->alias="id";
 $elements[1]=new stdClass();
 $elements[1]->field="`hq_conclusionfinalsuggestion`.`conclusion`";
 $elements[1]->sort="1";
-$elements[1]->header="Conclusion";
+$elements[1]->header="Survey Name";
 $elements[1]->alias="conclusion";
-$elements[2]=new stdClass();
-$elements[2]->field="`hq_conclusionfinalsuggestion`.`conclusionsuggestion`";
-$elements[2]->sort="1";
-$elements[2]->header="Conclusion Suggestion";
-$elements[2]->alias="conclusionsuggestion";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -3974,8 +3974,6 @@ public function createconclusionfinalsuggestion()
 $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createconclusionfinalsuggestion";
-$data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
-$data[ 'conclusionsuggestion' ] =$this->conclusionsuggestion_model->getConclusionSuggestionDropDown();
 $data["title"]="Create conclusionfinalsuggestion";
 $this->load->view("template",$data);
 }
@@ -3988,8 +3986,6 @@ $this->form_validation->set_rules("conclusionsuggestion","Conclusion Suggestion"
 if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
-$data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
-    $data[ 'conclusionsuggestion' ] =$this->conclusionsuggestion_model->getConclusionSuggestionDropDown();
 $data["page"]="createconclusionfinalsuggestion";
 $data["title"]="Create conclusionfinalsuggestion";
 $this->load->view("template",$data);
@@ -4000,9 +3996,9 @@ $id=$this->input->get_post("id");
 $conclusion=$this->input->get_post("conclusion");
 $conclusionsuggestion=$this->input->get_post("conclusionsuggestion");
 if($this->conclusionfinalsuggestion_model->create($conclusion,$conclusionsuggestion)==0)
-$data["alerterror"]="New conclusionfinalsuggestion could not be created.";
+$data["alerterror"]="New survey could not be created.";
 else
-$data["alertsuccess"]="conclusionfinalsuggestion created Successfully.";
+$data["alertsuccess"]="Survey created Successfully.";
 $data["redirect"]="site/viewconclusionfinalsuggestion";
 $this->load->view("redirect",$data);
 }
@@ -4013,8 +4009,6 @@ $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="editconclusionfinalsuggestion";
 $data["title"]="Edit conclusionfinalsuggestion";
-$data[ 'conclusion' ] =$this->conclusion_model->getConclusionDropDown();
-$data[ 'conclusionsuggestion' ] =$this->conclusionsuggestion_model->getConclusionSuggestionDropDown();
 $data["before"]=$this->conclusionfinalsuggestion_model->beforeedit($this->input->get("id"));
 $this->load->view("template",$data);
 }
@@ -4041,9 +4035,9 @@ $id=$this->input->get_post("id");
 $conclusion=$this->input->get_post("conclusion");
 $conclusionsuggestion=$this->input->get_post("conclusionsuggestion");
 if($this->conclusionfinalsuggestion_model->edit($id,$conclusion,$conclusionsuggestion)==0)
-$data["alerterror"]="New conclusionfinalsuggestion could not be Updated.";
+$data["alerterror"]="New survey could not be Updated.";
 else
-$data["alertsuccess"]="conclusionfinalsuggestion Updated Successfully.";
+$data["alertsuccess"]="Survey Updated Successfully.";
 $data["redirect"]="site/viewconclusionfinalsuggestion";
 $this->load->view("redirect",$data);
 }
@@ -4198,6 +4192,89 @@ $this->load->view("template",$data);
         $data["message"] = $weights;
 		$this->load->view( 'json', $data );
 	 }
+    public function viewchangeexpected(){
+        $access=array("1","5");
+        $this->checkaccess($access);
+        $data['before']=$this->pillar_model->getallpillarsbypackage();
+        $data['elevenpillar']=$this->pillar_model->getelevenpillar();
+        $data["page"]="viewchangeexpected";
+        $data["title"]="View Expected Weightages";
+        $this->load->view("template",$data);
+	 }
+    public function editchangeexpected(){
+        $access=array("1","5");
+        $this->checkaccess($access);
+        $expected1=$this->input->get_post("expected1");
+        $expected2=$this->input->get_post("expected2");
+        $expected3=$this->input->get_post("expected3");
+        $expected4=$this->input->get_post("expected4");
+        $expected5=$this->input->get_post("expected5");
+        $expected6=$this->input->get_post("expected6");
+        $expected7=$this->input->get_post("expected7");
+        $expected8=$this->input->get_post("expected8");
+        $expected9=$this->input->get_post("expected9");
+        $expected10=$this->input->get_post("expected10");
+        $expected11=$this->input->get_post("expected11");
+        $checkpackage=$this->menu_model->checkpackage();
+        if($checkpackage !=4)
+            {
+                $sum=$expected1 + $expected2 + $expected3 + $expected4 + $expected5 + $expected6 + $expected7 + $expected8 + $expected9 + $expected10;
+                if($sum==100)
+                {
+                     if($this->pillar_model->editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)==0)                     
+                    {     
+                        $data["alerterror"]="Expected Weightages Cannot Updated Successfully.";
+                        $data["redirect"]="site/viewchangeexpected";
+                        $this->load->view("redirect",$data);
+                    }
+                    else
+                    {
+                        $data["alertsuccess"]="Expected Weightages Updated Successfully.";
+                        $data["redirect"]="site/viewchangeexpected";
+                        $this->load->view("redirect",$data);
+                    }
+                    
+                }
+                else
+                    {
+                     $data["alerterror"]="Sum Should be equal to 100";
+                     $data["redirect"]="site/viewchangeexpected";
+                     $this->load->view("redirect",$data);
+                    }
+            }
+        else
+            {
+                $sum=$expected1 + $expected2 + $expected3 + $expected4 + $expected5 + $expected6 + $expected7 + $expected8 + $expected9 +  $expected10 + $expected11;
+                if($sum==100)
+                {
+                     if($this->pillar_model->editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)==0)     
+                     {    
+                        $data["alerterror"]="Expected Weightages Cannot Updated Successfully.";
+                        $data["redirect"]="site/viewchangeexpected";
+                        $this->load->view("redirect",$data);
+                      }
+                    else
+                    {
+                        $data["alertsuccess"]="Expected Weightages Updated Successfully.";
+                        $data["redirect"]="site/viewchangeexpected";
+                        $this->load->view("redirect",$data);
+                    }
+                }
+                else
+                    {
+                     $data["alerterror"]="Sum Should be equal to 100";
+                     $data["redirect"]="site/viewchangeexpected";
+                     $this->load->view("redirect",$data);
+                    }
+                
+            }
+       
+	 }
+//    public function getallpillarsbypackage(){
+//		$data['']=$this->pillar_model->getallpillarsbypackage();
+//        $data["message"] = $weights;
+//		$this->load->view( 'json', $data );
+//	 }
     public function exportsuggestioncsv(){
 		$access = array("1");
 		$this->checkaccess($access);
@@ -4206,5 +4283,15 @@ $this->load->view("template",$data);
         $data['redirect']="site/viewconclusion";
         $this->load->view("redirect",$data);
 	 }
+    public function exportsurveyresultcsv(){
+		$access = array("1");
+		$this->checkaccess($access);
+        $surveyid=$this->input->get('id');
+		$this->surveyquestionanswer_model->exportsurveyresultcsv($surveyid);
+        $data['redirect']="site/viewconclusion";
+        $this->load->view("redirect",$data);
+	 }   
+   
+    
 }
 ?>

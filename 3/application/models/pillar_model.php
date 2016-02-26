@@ -198,6 +198,58 @@ return $query;
 {
 $query=$this->db->query("SELECT * FROM `hq_pillar`  ORDER BY `id` ASC")->result();
 return $query;
+}
+    public function getallpillarsbypackage()
+{
+$query=$this->db->query("SELECT * FROM `hq_pillar`  ORDER BY `id` ASC")->result();
+return $query;
+} 
+    public function editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)
+{
+            $data=array("expectedweight" => $expected1);
+            $this->db->where( "id", 1 );
+            $query=$this->db->update( "hq_pillar", $data );
+
+            $data1=array("expectedweight" => $expected2);
+            $this->db->where( "id", 2 );
+            $query=$this->db->update( "hq_pillar", $data1 );
+
+            $data2=array("expectedweight" => $expected3);
+            $this->db->where( "id", 3 );
+            $query=$this->db->update( "hq_pillar", $data2 );
+
+            $data3=array("expectedweight" => $expected4);
+            $this->db->where( "id", 4 );
+            $query=$this->db->update( "hq_pillar", $data3 );
+
+            $data4=array("expectedweight" => $expected5);
+            $this->db->where( "id", 5 );
+            $query=$this->db->update( "hq_pillar", $data4 );
+
+            $data5=array("expectedweight" => $expected6);
+            $this->db->where( "id", 6 );
+            $query=$this->db->update( "hq_pillar", $data5 );
+
+            $data6=array("expectedweight" => $expected7);
+            $this->db->where( "id", 7 );
+            $query=$this->db->update( "hq_pillar", $data6 );
+
+            $data7=array("expectedweight" => $expected8);
+            $this->db->where( "id", 8 );
+            $query=$this->db->update( "hq_pillar", $data7 );
+
+            $data8=array("expectedweight" => $expected9);
+            $this->db->where( "id", 9 );
+            $query=$this->db->update( "hq_pillar", $data8 );
+
+            $data9=array("expectedweight" => $expected10);
+            $this->db->where( "id", 10 );
+            $query=$this->db->update( "hq_pillar", $data9 );
+
+            $data10=array("expectedweight" => $expected11);
+            $this->db->where( "id", 11 );
+            $query=$this->db->update( "hq_pillar", $data10 );
+        return 1;
 }  
     public function updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11)
 {
@@ -341,6 +393,11 @@ return $query;
     public function getelevenpillaroption()
 	{
         $query=$this->db->query("SELECT * FROM `hq_options` WHERE `id` BETWEEN '186' AND '201'")->result();
+        return $query;
+	}
+    public function getelevenpillar()
+	{
+        $query=$this->db->query("SELECT * FROM `hq_pillar` WHERE `id` =11")->row();
         return $query;
 	}
 }

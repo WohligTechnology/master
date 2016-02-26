@@ -45,6 +45,25 @@ class restapi_model extends CI_Model
         else
             return true;
     }
+    public function storeSurveyAnswer($user,$option,$question,$survey)
+    {
+        $normalfromhash = base64_decode($user);
+        $returnvalue    = explode("&", $normalfromhash);
+        $userid         = $returnvalue[0];
+       
+        $data  = array(
+            "user" => $userid,
+            "question" => $question,
+            "option" => $option,
+            "survey" => $survey
+        );
+        $query = $this->db->insert("hq_surveyquestionanswer", $data);
+        $id    = $this->db->insert_id();
+        if (!$query)
+            return false;
+        else
+            return true;
+    }
     
     public function pingHq($user)
     {
@@ -67,7 +86,7 @@ HAVING `questionid` not in (Select `testquestion`.`id` as `questionid` from `tes
 	
 	    return $query;
     } 
-    public function pingHqForSurvey($user)
+    public function pingHqForSurvey($user,$survey)
     {
         $normalfromhash = base64_decode($user);
         $returnvalue    = explode("&", $normalfromhash);
@@ -75,10 +94,10 @@ HAVING `questionid` not in (Select `testquestion`.`id` as `questionid` from `tes
 	    
 	   $getemail = $this->db->query("SELECT `email` FROM `user` WHERE `id`='$userid'")->row();
         $email=$getemail->email;
-        $query = $this->db->query("SELECT `hq_surveyquestionuser`.`question` as `questionid`,`hq_surveyquestion`.`content` as `text`,`hq_surveyquestion`.`type` FROM `hq_surveyquestionuser` INNER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionuser`.`question` WHERE `hq_surveyquestionuser`.`email`='$email' AND `hq_surveyquestionuser`.`status`=1")->result();
+        $query = $this->db->query("SELECT * FROM `hq_surveyquestion` WHERE `text`='$survey'")->result();
                 foreach ($query as $questions) 
                 {
-                $questions->option = $this->db->query("SELECT `id`, `order`, `question`, `title`, `image` FROM `hq_surveyoption` WHERE `question`='$questions->questionid'")->result();
+                $questions->option = $this->db->query("SELECT `id`, `order`, `question`, `title`, `image` FROM `hq_surveyoption` WHERE `question`='$questions->id'")->result();
                 
                 }
 	   

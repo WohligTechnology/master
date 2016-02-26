@@ -15,6 +15,12 @@
                     <label>Type</label>
             </div>
         </div>
+            <div class="row">
+            <div class="input-field col s12 m8">
+                <?php echo form_dropdown('text', $text, set_value('text')); ?>
+                    <label>Text</label>
+            </div>
+        </div>
 <!--
         <div class="row text">
             <div class="input-field col s6">

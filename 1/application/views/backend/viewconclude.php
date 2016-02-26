@@ -22,8 +22,7 @@
         <div class="row">
             <div class="col s12 m6">
                 <label>Suggestion</label>
-                <textarea name="suggestion" placeholder="Enter text ..."><?php echo set_value( 'suggestion',$before->suggestion);?>
-                </textarea>
+                <textarea name="suggestion" class="materialize-textarea" placeholder="Enter text ..."><?php echo set_value( 'suggestion',$before->suggestion);?></textarea>
             </div>
         </div>
         <div class="row">

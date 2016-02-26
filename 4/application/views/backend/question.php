@@ -299,7 +299,7 @@
       <div class="row">
         <div class="col s12">
           <div class="text-center">
-             <button type="submit" class="waves-effect waves-light btn blue-btn">Save</button>
+             <button type="submit" class="waves-effect waves-light btn">Save</button>
           </div>
         </div>
       </div>

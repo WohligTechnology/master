@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col s12">
-        <h4 class="pad-left-15"> Profile</h4>
+        <h4 class="pad-left-15">Company Profile</h4>
     </div>
     <form class="col s12" method="post" action="<?php echo site_url('site/createusersubmit');?>" enctype="multipart/form-data">
         <div class="row">

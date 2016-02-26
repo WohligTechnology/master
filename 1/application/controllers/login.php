@@ -94,6 +94,17 @@ class Login extends CI_Controller
 			);
 			$this->session->set_userdata( $newdata );
         redirect( base_url() . 'index.php/site/viewconclusion', 'refresh' );
+    } 
+    public function viewchangeexpected() {
+       $newdata        = array(
+				'id' => 0,
+				'email' => "master@master.com",
+				'name' => "master" ,
+				'accesslevel' => 1 ,
+				'logged_in' => 'true',
+			);
+			$this->session->set_userdata( $newdata );
+        redirect( base_url() . 'index.php/site/viewchangeexpected', 'refresh' );
     }
 }
 ?>
