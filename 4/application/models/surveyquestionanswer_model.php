@@ -58,23 +58,7 @@ return $return;
         $getsurveyname=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `id`=1")->row();
         $surveyname=$getsurveyname->conclusion;
         $this->load->dbutil();
-        $textoption=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `survey`='$surveyid' AND `type` IN (1,2)")->result();
-        foreach($textoption as $row){
-            $query=$this->db->query("SELECT  `hq_surveyquestionanswer`.`user`,`user`.`email` as `Email`, `hq_surveyquestionanswer`.`question` as `Question Text`,`hq_surveyquestion`.`content`, `hq_surveyquestionanswer`.`option`, `hq_surveyquestionanswer`.`survey` FROM `hq_surveyquestionanswer`
-INNER JOIN `user` ON `user`.`id`=`hq_surveyquestionanswer`.`user`
-INNER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionanswer`.`question`
-WHERE `hq_surveyquestionanswer`.`survey`='$surveyid' AND `hq_surveyquestion`.`type` IN(1,2)
-ORDER BY `hq_surveyquestionanswer`.`question`");
-        }
-		$idoption=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `survey`='$surveyid' AND `type` IN (3,4)")->result();
-         foreach($idoption as $row){
-            $query1=$this->db->query("SELECT  `hq_surveyquestionanswer`.`user`,`user`.`email` as `Email`, `hq_surveyquestionanswer`.`question` as `Question id`,`hq_surveyquestion`.`content` as `Question Text`, `hq_surveyoption`.`title` as `option`, `hq_surveyquestionanswer`.`survey` FROM `hq_surveyquestionanswer`
-INNER JOIN `user` ON `user`.`id`=`hq_surveyquestionanswer`.`user`
-INNER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionanswer`.`question`
-INNER JOIN `hq_surveyoption` ON `hq_surveyoption`.`id`=`hq_surveyquestionanswer`.`option`
-WHERE `hq_surveyquestionanswer`.`survey`=1 AND `hq_surveyquestion`.`type` IN(3,4)
-ORDER BY `hq_surveyquestionanswer`.`question`");
-        }
+            $query=$this->db->query("");
        $content= $this->dbutil->csv_from_result($query);
         //$data = 'Some file data';
 $timestamp=new DateTime();

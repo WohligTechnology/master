@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class surveyquestion_model extends CI_Model
 {
-public function create($type,$text,$starttime,$endtime,$content)
+public function create($type,$survey,$starttime,$endtime,$content)
 {
-$data=array("type" => $type,"text" => $text,"starttime" => $starttime,"endtime" => $endtime,"content" => $content);
+$data=array("type" => $type,"survey" => $survey,"starttime" => $starttime,"endtime" => $endtime,"content" => $content);
 $query=$this->db->insert( "hq_surveyquestion", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -25,8 +25,8 @@ $query=$this->db->get("hq_surveyquestion")->row();
 return $query;
 }
   
-public function edit($id,$type,$text,$starttime,$endtime,$content)
-{$data=array("type" => $type,"text" => $text,"starttime" => $starttime,"endtime" => $endtime,"content" => $content);
+public function edit($id,$type,$survey,$starttime,$endtime,$content)
+{$data=array("type" => $type,"survey" => $survey,"starttime" => $starttime,"endtime" => $endtime,"content" => $content);
 $this->db->where( "id", $id );
 $query=$this->db->update( "hq_surveyquestion", $data );
 return 1;
@@ -61,7 +61,8 @@ $return=array(
 "1" => "Text",
 "2" => "Paragraph text",
 "3" => "Multiple choice",
-"4" => "Checkboxes"
+"4" => "Drop Down",
+"5" => "Radio Button",
 );
 return $return;
 }

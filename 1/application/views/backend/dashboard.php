@@ -101,7 +101,7 @@
     </div>
 </div>
 
-<div class="container"></div>
+<div class="container1"></div>
 <div class="lightcolor"></div>
 <script>
     var pillars = [];
@@ -260,7 +260,7 @@
 
 
         function createGraph() {
-            $('.container').highcharts({
+            $('.container1').highcharts({
 
                 chart: {
                     type: 'bar',
@@ -269,7 +269,7 @@
                     borderRadius: 0,
                     borderWidth: 0,
                     height: 800,
-                    className: "graph-color"
+                    className: "graph-color",
                 },
                 credits: {
                     enabled: false
@@ -346,7 +346,11 @@
                 plotShadow: false,
                 type: 'pie',
                 backgroundColor: "transparent",
-                height: 400
+                margin: [0, 0, 0, 0],
+                spacingTop: 0,
+                spacingBottom: 0,
+                spacingLeft: 0,
+                spacingRight: 0
             },
             title: {
                 text: 'Pillar Average'
@@ -356,6 +360,7 @@
             },
             plotOptions: {
                 pie: {
+                    size:'70%',
                     allowPointSelect: true,
                     cursor: 'pointer',
                     dataLabels: {
@@ -453,10 +458,10 @@
     });
 
 </script>
-<div id="container3" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="container3" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="container" style="min-width: 310px; margin: 0 auto"></div>
 
 <script>
 

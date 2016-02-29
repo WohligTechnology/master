@@ -3,9 +3,12 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class surveyquestionuser_model extends CI_Model
 {
-public function create($question,$email,$status)
+public function create($survey,$email,$status)
 {
-$data=array("question" => $question,"email" => $email,"status" => $status);
+    
+    $getuserid=$this->db->query("SELECT * FROM `user` WHERE `email`='$email'")->row();
+    $userid=$getuserid->id;
+$data=array("survey" => $survey,"email" => $email,"status" => $status,"userid" => $userid);
 $query=$this->db->insert( "hq_surveyquestionuser", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,9 +27,11 @@ $this->db->where("id",$id);
 $query=$this->db->get("hq_surveyquestionuser")->row();
 return $query;
 }
-public function edit($id,$question,$email,$status)
+public function edit($id,$survey,$email,$status)
 {
-  $data=array("question" => $question,"email" => $email,"status" => $status);
+    $getuserid=$this->db->query("SELECT * FROM `user` WHERE `email`='$email'")->row();
+    $userid=$getuserid->id;
+  $data=array("survey" => $survey,"email" => $email,"status" => $status,"userid" => $userid);
 $this->db->where( "id", $id );
 $query=$this->db->update( "hq_surveyquestionuser", $data );
 return 1;

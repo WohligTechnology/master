@@ -803,11 +803,12 @@ thead {
     margin-top: 100px;
 }
 .cat-names input[type="text"] {
-    background: #e0bd28;
     border-radius: 4px;
-    border-bottom: 0px;
+    border: 1px solid #00AC93 !important;
     margin: 0px;
     padding: 0px 0px 0px 10px;
+    box-shadow: none !important;
+    background-color: #00AC93;
 }
 .cat-names input[type="text"]:focus {
 
@@ -820,7 +821,7 @@ padding-top: 13px;
 font-size: 16px;
 }
 .box-left {
-    border: 1px solid #684703;
+    border: 1px solid #00AC93;
     border-radius: 4px;
     padding: 20px 0;
 }
@@ -906,7 +907,7 @@ button:focus {
 }
 
 .col-padder .row .col + .col {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
 .lightcolor text {
   color: #fffbed !important;

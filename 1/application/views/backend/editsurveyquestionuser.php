@@ -8,8 +8,8 @@
 <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
 <div class=" row">
 <div class=" input-field col s12 m6">
-<?php echo form_dropdown("question",$question,set_value('question',$before->question));?>
-<label for="Question">Question</label>
+<?php echo form_dropdown("survey",$survey,set_value('survey',$before->survey));?>
+<label for="survey">Survey</label>
 </div>
 </div>
 <div class="row">

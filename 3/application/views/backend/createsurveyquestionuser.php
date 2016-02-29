@@ -5,8 +5,8 @@
 <form class='col s12' method='post' action='<?php echo site_url("site/createsurveyquestionusersubmit");?>' enctype= 'multipart/form-data'>
 <div class=" row">
 <div class=" input-field col s6">
-<?php echo form_dropdown("question",$question,set_value('question',$this->input->get('id')));?>
-<label>Question</label>
+<?php echo form_dropdown("survey",$survey,set_value('survey',$this->input->get('id')));?>
+<label>Survey</label>
 </div>
 </div>
 <div class="row">

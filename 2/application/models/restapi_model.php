@@ -16,7 +16,7 @@ class restapi_model extends CI_Model
     
     public function getSingleQuestionAndOption($id)
     {
-        $query          = $this->db->query("SELECT `id`, `pillar`, `noofans`, `order`, `timestamp`, `text` FROM `hq_question` WHERE `id`='$id'")->row();
+        $query = $this->db->query("SELECT `id`, `pillar`, `noofans`, `order`, `timestamp`, `text` FROM `hq_question` WHERE `id`='$id'")->row();
         $query->options = $this->db->query("SELECT `id`, `question`, `representation`, `actualorder`, `image`, `order`, `weight`, `optiontext`, `text` FROM `hq_options` WHERE `question`='$query->id'")->result();
         return $query;
     }
@@ -45,20 +45,23 @@ class restapi_model extends CI_Model
         else
             return true;
     }
-    public function storeSurveyAnswer($user,$option,$question,$survey)
+    public function storeSurveyAnswer($answer)
     {
+//        print_r($answer);
+        $user=$answer['user'];
+        $survey=$answer['survey'];
+        $questions=$answer['questions'];
         $normalfromhash = base64_decode($user);
-        $returnvalue    = explode("&", $normalfromhash);
-        $userid         = $returnvalue[0];
-       
-        $data  = array(
-            "user" => $userid,
-            "question" => $question,
-            "option" => $option,
-            "survey" => $survey
-        );
-        $query = $this->db->insert("hq_surveyquestionanswer", $data);
-        $id    = $this->db->insert_id();
+        $userid         = $normalfromhash;
+//        print_r($questions);
+        foreach($questions as $row)
+        {
+            
+            $questionId = $row["questionid"];
+            $answer = $row["answer"];
+            $this->db->query("INSERT INTO `hq_surveyquestionanswer`(`user`,`question`,`option`,`survey`) VALUES ('$userid','$questionId','$answer','$survey')");
+            $insertid=$this->db->insert_id();
+        }
         if (!$query)
             return false;
         else
@@ -67,43 +70,84 @@ class restapi_model extends CI_Model
     
     public function pingHq($user)
     {
+        if($user==''){
+            $object = new stdClass();
+                $object->value = "No User Found";
+                return $object;
+        }
         $normalfromhash = base64_decode($user);
         $returnvalue    = explode("&", $normalfromhash);
         $userid         = $returnvalue[0];
         $todaysdate     = date("Y-m-d");
 	    
-	   $query = $this->db->query("Select `testquestion`.`id` as `questionid`, `testquestion`.`test`, `testquestion`.`question`, `testquestion`.`dateandtime`, `hq_question`.`text`, `hq_question`.`type`
-from `testquestion`
-inner join `test` ON `testquestion`.`test` = `test`.`id`
-inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id`
-where `test`.`startdate` < now()
-HAVING `questionid` not in (Select `testquestion`.`id` as `questionid` from `testquestion` inner join `test` ON `testquestion`.`test` = `test`.`id` inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id` inner join `hq_useranswer` ON `testquestion`.`question` = `hq_useranswer`.`question` AND `testquestion`.`test` = `hq_useranswer`.`test` where `hq_useranswer`.`user` = '$userid')")->result();
+        // query by jags
+        
+//	   $query = $this->db->query("SELECT `testquestion`.`id` as `questionid`, `testquestion`.`test`, `testquestion`.`question`, `testquestion`.`dateandtime`, `hq_question`.`text`, `hq_question`.`type`
+//from `testquestion`
+//inner join `test` ON `testquestion`.`test` = `test`.`id`
+//inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id`
+//where `test`.`startdate` < now()
+//HAVING `questionid` not in (Select `testquestion`.`id` as `questionid` from `testquestion` inner join `test` ON `testquestion`.`test` = `test`.`id` inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id` inner join `hq_useranswer` ON `testquestion`.`question` = `hq_useranswer`.`question` AND `testquestion`.`test` = `hq_useranswer`.`test` where `hq_useranswer`.`user` = '$userid')")->result(); 
+        
+        //query by pooja
+        
+        
+        $query = $this->db->query("SELECT `testquestion`.`question` as `questionid`, `testquestion`.`test`, `testquestion`.`question`, `testquestion`.`dateandtime`, `hq_question`.`text`, `hq_question`.`type` from `testquestion` inner join `test` ON `testquestion`.`test` = `test`.`id` inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id` where `test`.`startdate` < now() HAVING `questionid` not in (Select `testquestion`.`question` as `questionid` from `testquestion` inner join `test` ON `testquestion`.`test` = `test`.`id` inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id` inner join `hq_useranswer` ON `testquestion`.`question` = `hq_useranswer`.`question` AND `testquestion`.`test` = `hq_useranswer`.`test` where `hq_useranswer`.`user` = '$userid') LIMIT 0,1")->result(); 
 	   
-	    foreach ($query as $questions) {
-                $questions->option = $this->db->query("SELECT `id`, `question`, `representation`, `actualorder`, `image`, `order`, `weight`, `optiontext`, `text` FROM `hq_options` WHERE `question`='$questions->question'")->result();
-                
-            }
-	
-	    return $query;
-    } 
-    public function pingHqForSurvey($user,$survey)
-    {
-        $normalfromhash = base64_decode($user);
-        $returnvalue    = explode("&", $normalfromhash);
-        $userid         = $returnvalue[0];
-	    
-	   $getemail = $this->db->query("SELECT `email` FROM `user` WHERE `id`='$userid'")->row();
-        $email=$getemail->email;
-        $query = $this->db->query("SELECT * FROM `hq_surveyquestion` WHERE `text`='$survey'")->result();
+        if(empty($query))
+        {
+	       
+            $query2 = "SELECT DISTINCT(`survey`) AS `survey` FROM `hq_surveyquestionuser` WHERE `userid`='$userid' AND `survey` NOT IN
+(SELECT `survey` FROM `hq_surveyquestionanswer` WHERE `user`='$userid') LIMIT 0,1";
+            $query2 = $this->db->query($query2);
+            if($query2->num_rows() > 0)
+            {
+                $query2 = $query2->row();
+                $query = $this->db->query("SELECT * FROM `hq_surveyquestion` WHERE `survey` = '$query2->survey' LIMIT 0,20")->result();
                 foreach ($query as $questions) 
                 {
                 $questions->option = $this->db->query("SELECT `id`, `order`, `question`, `title`, `image` FROM `hq_surveyoption` WHERE `question`='$questions->id'")->result();
-                
                 }
-	   
+                
+                $getsurveyname=$this->db->query("Select `conclusion` as `surveyname` FROM `hq_conclusionfinalsuggestion` WHERE `id`='$query2->survey' LIMIT 0,1")->row();
+                $query3 = new stdClass();
+                $query3->questions = $query;
+                $query3->surveyid = $query2->survey;
+                $query3->type = "survey";
+                $query3->surveyname = $getsurveyname->surveyname;
+                return $query3;
+            }
+            else{
+                $object = new stdClass();
+                $object->value = false;
+                return $object;
+            }
+            
+        }
+        else
+        {
+//            IT IS A PILLAR QUESTIONS
+            
+            foreach ($query as $questions) 
+            {
+                $questions->option = $this->db->query("SELECT `id`, `question`, `representation`, `actualorder`, `image`, `order`, `weight`, `optiontext`, `text` FROM `hq_options` WHERE `question`='$questions->question'")->result();
+                
+            }
+             if($query)
+             {
+               return $query;
+             }
+            else
+            {
+              $object = new stdClass();
+              $object->value = false;
+              return $object;
+            }
+        }
+               
 
-	    return $query;
-    }
+    } 
+
     
     public function getUsers()
     {

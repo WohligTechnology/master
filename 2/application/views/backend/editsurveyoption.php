@@ -46,7 +46,7 @@
               <div class="row">
                 <div class="col s12 m6">
                    <label for="title">Title</label>
-                    <textarea name="title" class="materialize-textarea" placeholder="Enter text ..."><?php echo set_value('title');?></textarea>
+                    <textarea name="title" class="materialize-textarea" placeholder="Enter text ..."><?php echo set_value('title',$before->title);?></textarea>
                 </div>
             </div>
           <?php }?>

@@ -598,18 +598,16 @@ $this->load->view("json",$data);
    public function sendMailToEachUser()
    {
        $getUserid=$this->restapi_model->getUsers();
-       print_r($getUserid);
-       echo "      ";
+//       print_r($getUserid);
         foreach($getUserid as $getUserid){
             $email=$getUserid->email;
              $hashvalue=base64_encode ($getUserid->id."&hq");
        $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+            echo $link;
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
        $this->email->to($email);
        $this->email->subject('Test');   
-           
-       $message = "Hiii      ".$link;
        $this->email->message($message);
        $this->email->send();
             
@@ -625,23 +623,30 @@ $this->load->view("json",$data);
   public function sendsurveyquestion()
   {
         $surveyid=$this->input->get('id');
-		$gettotalemails=$this->db->query("SELECT `user`.`id` as `userid`,`hq_surveyquestionuser`.`id`, `hq_surveyquestionuser`.`question`, `hq_surveyquestionuser`.`email`, `hq_surveyquestionuser`.`status` FROM `hq_surveyquestionuser` LEFT OUTER JOIN `user` ON `user`.`email`=`hq_surveyquestionuser`.`email` WHERE `hq_surveyquestionuser`.`question`='$surveyid'")->result();
+      
+      $gettotalemails=$this->db->query("SELECT `id`, `survey`, `email`, `status`, `userid` FROM `hq_surveyquestionuser` WHERE `survey`='$surveyid'")->result();
+//      foreach($gettotalemails as $row)
+//      {
+//          $checkuseransweredsurvey=$this->db->query("SELECT `survey` FROM `hq_surveyquestionanswer` WHERE `user`='$row->id' AND `survey`='$surveyid'")->result();
+//      }
+      
        
         foreach($gettotalemails as $gettotalemail)
         {
             $email=$gettotalemail->email;
             $userid=$gettotalemail->userid;
             $hashvalue=base64_encode ($userid."&hq");
-            $link="<a href='http://wohlig.co.in/hqfront/#/survey/$surveyid/$hashvalue'>Click here </a> To get questions.";
+            $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
             echo $link;
             $this->load->library('email');
             $this->email->from('master@willnevergrowup.in', 'HQ');
             $this->email->to($email);
             $this->email->subject('Test');   
-            $message = "Hiii      ".$link;
+            $message = "Hiii this is survey    ".$link;
             $this->email->message($message);
             $this->email->send();
 	 }
+       redirect( base_url() . 'index.php/site/viewconclusionfinalsuggestion', 'refresh' );
   }
   public function pingHqForSurvey()
  	{
@@ -654,10 +659,10 @@ $this->load->view("json",$data);
  	}
   public function pingHq()
  	{
-     
       $data = json_decode(file_get_contents('php://input'), true);
       $user=$data["user"];
 	 	$data['message'] = $this->restapi_model->pingHq($user);
+    
 	 	$this->load->view('json', $data);
  	}
  public function storeUserAnswer()
@@ -667,17 +672,20 @@ $this->load->view("json",$data);
       $option=$data["option"];
       $question=$data["question"];
       $test=$data["test"];
+     if(empty($data)){
+          $data['message']=0;
+     }
+     else{
          $data['message']=$this->restapi_model->storeUserAnswer($user,$option,$question,$test);
+     }
+         
          $this->load->view('json',$data);
      }
  public function storeSurveyAnswer()
      {
       $data = json_decode(file_get_contents('php://input'), true);
-      $user=$data["user"];
-      $option=$data["option"];
-      $question=$data["question"];
-      $survey=$data["survey"];
-         $data['message']=$this->restapi_model->storeSurveyAnswer($user,$option,$question,$survey);
+      $answer=$data;
+         $data['message']=$this->restapi_model->storeSurveyAnswer($answer);
          $this->load->view('json',$data);
      }
  public function checkweight(){
@@ -700,40 +708,41 @@ $this->load->view("json",$data);
 //             echo " Wrong";
 //        }
  }
-// public function checkexport()
-// {
-//     $surveyid=1;
-//        $getsurveyname=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `id`=1")->row();
-//        $surveyname=$getsurveyname->conclusion;
-//        $textoption=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `text`='$surveyid' AND `type` IN (1,2)")->result();
-//        foreach($textoption as $row){
-//            $query=$this->db->query("SELECT  `hq_surveyquestionanswer`.`user`,`user`.`email` as `Email`, `hq_surveyquestionanswer`.`question` as `Question Text`,`hq_surveyquestion`.`content`, `hq_surveyquestionanswer`.`option`, `hq_surveyquestionanswer`.`survey` FROM `hq_surveyquestionanswer`
-//INNER JOIN `user` ON `user`.`id`=`hq_surveyquestionanswer`.`user`
-//INNER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionanswer`.`question`
-//WHERE `hq_surveyquestionanswer`.`survey`='$surveyid' AND `hq_surveyquestion`.`type` IN(1,2)
-//ORDER BY `hq_surveyquestionanswer`.`question`")->result();
-//        }
-//		$idoption=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `text`='$surveyid' AND `type` IN (3,4)")->result();
-//         foreach($idoption as $row){
-//            $query1=$this->db->query("SELECT  `hq_surveyquestionanswer`.`user`,`user`.`email` as `Email`, `hq_surveyquestionanswer`.`question` as `Question id`,`hq_surveyquestion`.`content` as `Question Text`, `hq_surveyoption`.`title` as `option`, `hq_surveyquestionanswer`.`survey` FROM `hq_surveyquestionanswer`
-//INNER JOIN `user` ON `user`.`id`=`hq_surveyquestionanswer`.`user`
-//INNER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionanswer`.`question`
-//INNER JOIN `hq_surveyoption` ON `hq_surveyoption`.`id`=`hq_surveyquestionanswer`.`option`
-//WHERE `hq_surveyquestionanswer`.`survey`='$surveyid' AND `hq_surveyquestion`.`type` IN(3,4)
-//ORDER BY `hq_surveyquestionanswer`.`question`")->result();
-//        }
-//     $arr=array_merge($query,$query1);
-//     $cars = array
-//       (
-//         foreach($arr as $row){
-//              array($row->email,$row->email,18)
-//         }
-//      
-//       );
-//     print_r($arr);
-// }
+ public function checkexport()
+ {
+     $surveyid=1;
+        $getsurveyname=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `id`=1")->row();
+        $surveyname=$getsurveyname->conclusion;
+        $textoption=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `survey`='$surveyid' AND `type` IN (1,2)")->result();
+   
+        foreach($textoption as $row){
+            $query=$this->db->query("SELECT  `hq_surveyquestionanswer`.`user`,`user`.`email` as `Email`, `hq_surveyquestionanswer`.`question`,`hq_surveyquestion`.`content`, `hq_surveyquestionanswer`.`option`, `hq_surveyquestionanswer`.`survey` FROM `hq_surveyquestionanswer`
+INNER JOIN `user` ON `user`.`id`=`hq_surveyquestionanswer`.`user`
+INNER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionanswer`.`question`
+WHERE `hq_surveyquestionanswer`.`survey`='$surveyid' AND `hq_surveyquestion`.`survey` IN(1,2)
+ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
+        }
+		$idoption=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `survey`='$surveyid' AND `type` IN (3,4)")->result();
+         foreach($idoption as $row){
+            $query1=$this->db->query("SELECT  `hq_surveyquestionanswer`.`user`,`user`.`email` as `Email`, `hq_surveyquestionanswer`.`question`,`hq_surveyquestion`.`content` as `content`, `hq_surveyoption`.`title` as `option`, `hq_surveyquestionanswer`.`survey` FROM `hq_surveyquestionanswer`
+INNER JOIN `user` ON `user`.`id`=`hq_surveyquestionanswer`.`user`
+INNER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionanswer`.`question`
+INNER JOIN `hq_surveyoption` ON `hq_surveyoption`.`id`=`hq_surveyquestionanswer`.`option`
+WHERE `hq_surveyquestionanswer`.`survey`='$surveyid' AND `hq_surveyquestion`.`survey` IN(3,4)
+ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
+        }
+     $arr=array_merge($query,$query1);
+     
+//     $mdarr=array();
+//      for($i=0; $i<count($arr);$i++){
+//          $temp = array();
+//          
+//          array_push($temp,$arr[$i]->user,$arr[$i]->content,$arr[$i]->option);
+//          array_push($mdarr,$temp);
+//     }
+//     echo count($mdarr);
+//     print_r($mdarr);
+ print_r($arr);
 
-   
-   
- 
-} ?>
+ }
+ } ?>

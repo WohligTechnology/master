@@ -2970,7 +2970,7 @@ $access=array("1","5");
 $this->checkaccess($access);
 $data["page"]="createsurveyquestion";
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
-$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Create surveyquestion";
 $this->load->view("template",$data);
 }
@@ -2986,7 +2986,7 @@ if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="createsurveyquestion";
-$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
 $data["title"]="Create surveyquestion";
 $this->load->view("template",$data);
@@ -2995,11 +2995,11 @@ else
 {
 $id=$this->input->get_post("id");
 $type=$this->input->get_post("type");
-$text=$this->input->get_post("text");
+$survey=$this->input->get_post("survey");
 $starttime=$this->input->get_post("starttime");
 $endtime=$this->input->get_post("endtime");
 $content=$this->input->get_post("content");
-if($this->surveyquestion_model->create($type,$text,$starttime,$endtime,$content)==0)
+if($this->surveyquestion_model->create($type,$survey,$starttime,$endtime,$content)==0)
 $data["alerterror"]="New Survey question could not be created.";
 else
 $data["alertsuccess"]="Survey question created Successfully.";
@@ -3017,11 +3017,19 @@ $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
 $data["title"]="Edit surveyquestion";
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
-$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["before"]=$this->surveyquestion_model->beforeedit($this->input->get("id"));
 $data['exp'] = explode(':', $data['before']->starttime);
 $data['exp1'] = explode(':', $data['before']->endtime);
-$this->load->view("templatewith2",$data);
+$type=$data["before"]->type;
+    if($type==1 && $type==2){
+        $this->load->view("template",$data);
+    }
+    else{
+        $this->load->view("templatewith2",$data);
+    }
+
+
 }
 public function editsurveyquestionsubmit()
 {
@@ -3029,14 +3037,14 @@ $access=array("1","5");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","Id","trim");
 $this->form_validation->set_rules("type","Type","trim");
-$this->form_validation->set_rules("text","Text","trim");
+$this->form_validation->set_rules("survey","survey","trim");
 $this->form_validation->set_rules("starttime","Start Time","trim");
 $this->form_validation->set_rules("endtime","End Time","trim");
 if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="editsurveyquestion";
-$data["text"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["type"]=$this->surveyquestion_model->gettypedropdown();
 $data["title"]="Edit surveyquestion";
 $data["before"]=$this->surveyquestion_model->beforeedit($this->input->get("id"));
@@ -3046,11 +3054,11 @@ else
 {
 $id=$this->input->get_post("id");
 $type=$this->input->get_post("type");
-$text=$this->input->get_post("text");
+$survey=$this->input->get_post("survey");
 $starttime=$this->input->get_post("starttime");
 $endtime=$this->input->get_post("endtime");
 $content=$this->input->get_post("content");
-if($this->surveyquestion_model->edit($id,$type,$text,$starttime,$endtime,$content)==0)
+if($this->surveyquestion_model->edit($id,$type,$survey,$starttime,$endtime,$content)==0)
 $data["alerterror"]="New survey question could not be Updated.";
 else
 $data["alertsuccess"]="survey question Updated Successfully.";
@@ -3085,10 +3093,10 @@ $elements[0]->sort="1";
 $elements[0]->header="Id";
 $elements[0]->alias="id";
 $elements[1]=new stdClass();
-$elements[1]->field="`hq_surveyquestionuser`.`question`";
+$elements[1]->field="`hq_surveyquestionuser`.`survey`";
 $elements[1]->sort="1";
-$elements[1]->header="Question";
-$elements[1]->alias="question";
+$elements[1]->header="Survey";
+$elements[1]->alias="survey";
 $elements[2]=new stdClass();
 $elements[2]->field="`hq_surveyquestionuser`.`email`";
 $elements[2]->sort="1";
@@ -3114,7 +3122,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_surveyquestionuser` LEFT OUTER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionuser`.`question`","WHERE `hq_surveyquestionuser`.`question`='$id'");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_surveyquestionuser` LEFT OUTER JOIN `hq_surveyquestion` ON `hq_surveyquestion`.`id`=`hq_surveyquestionuser`.`survey`","WHERE `hq_surveyquestionuser`.`survey`='$id'");
 $this->load->view("json",$data);
 }
 
@@ -3123,7 +3131,7 @@ public function createsurveyquestionuser()
 $access=array("1");
 $this->checkaccess($access);
 $data["page"]="createsurveyquestionuser";
-$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Create surveyquestionuser";
 $this->load->view("template",$data);
 }
@@ -3137,21 +3145,21 @@ if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="createsurveyquestionuser";
-$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Create surveyquestionuser";
 $this->load->view("template",$data);
 }
 else
 {
 $id=$this->input->get_post("id");
-$question=$this->input->get_post("question");
+$survey=$this->input->get_post("survey");
 $email=$this->input->get_post("email");
 $status=$this->input->get_post("status");
-if($this->surveyquestionuser_model->create($question,$email,$status)==0)
+if($this->surveyquestionuser_model->create($survey,$email,$status)==0)
 $data["alerterror"]="New surveyquestionuser could not be created.";
 else
 $data["alertsuccess"]="surveyquestionuser created Successfully.";
-$data["redirect"]="site/viewsurveyquestionuser?id=".$question;
+$data["redirect"]="site/viewsurveyquestionuser?id=".$survey;
 $this->load->view("redirect2",$data);
 }
 }
@@ -3163,7 +3171,7 @@ $data["page"]="editsurveyquestionuser";
 //$data["page2"]="block/questionblock";
 $data["before1"]=$this->input->get("id");
 $data["before2"]=$this->input->get("id");
-$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Edit surveyquestionuser";
 $data["before"]=$this->surveyquestionuser_model->beforeedit($this->input->get("id"));
 $this->load->view("template",$data);
@@ -3179,7 +3187,7 @@ if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
 $data["page"]="editsurveyquestionuser";
-$data["question"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
+$data["survey"]=$this->conclusionfinalsuggestion_model->getSurveyNameDown();
 $data["title"]="Edit surveyquestionuser";
 $data["before"]=$this->surveyquestionuser_model->beforeedit($this->input->get("id"));
 $this->load->view("template",$data);
@@ -3187,14 +3195,14 @@ $this->load->view("template",$data);
 else
 {
 $id=$this->input->get_post("id");
-$question=$this->input->get_post("question");
+$survey=$this->input->get_post("survey");
 $email=$this->input->get_post("email");
 $status=$this->input->get_post("status");
-if($this->surveyquestionuser_model->edit($id,$question,$email,$status)==0)
+if($this->surveyquestionuser_model->edit($id,$survey,$email,$status)==0)
 $data["alerterror"]="New surveyquestionuser could not be Updated.";
 else
 $data["alertsuccess"]="surveyquestionuser Updated Successfully.";
-$data["redirect"]="site/viewsurveyquestionuser?id=".$question;
+$data["redirect"]="site/viewsurveyquestionuser?id=".$survey;
 $this->load->view("redirect2",$data);
 }
 }
@@ -3204,7 +3212,7 @@ $access=array("1","5");
 $this->checkaccess($access);
 $this->surveyquestionuser_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewsurveyquestionuser?id=".$this->input->get("surveyid");
-$this->load->view("redirect",$data);
+$this->load->view("redirect2",$data);
 }
 public function viewsurveyoption()
 {

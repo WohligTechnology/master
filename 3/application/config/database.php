@@ -50,8 +50,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $myserver=$_SERVER['SERVER_NAME'];
-
-if($myserver!="localhost")
+$ip = substr($myserver,0,7);
+//if($myserver != "localhost")
+if($myserver != "localhost"  && $ip != "192.168")
 {
     $db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'wohligco_newhq';
@@ -74,7 +75,7 @@ else
     $db['default']['hostname'] = 'localhost';
 	$db['default']['username'] = 'root';
 	$db['default']['password'] = '';
-	$db['default']['database'] = 'newhq';
+	$db['default']['database'] = '3';
 	$db['default']['dbdriver'] = 'mysql';
 	$db['default']['dbprefix'] = '';
 	$db['default']['pconnect'] = TRUE;

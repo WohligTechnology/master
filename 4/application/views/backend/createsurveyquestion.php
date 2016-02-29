@@ -17,8 +17,8 @@
         </div>
             <div class="row">
             <div class="input-field col s12 m8">
-                <?php echo form_dropdown('text', $text, set_value('text')); ?>
-                    <label>Text</label>
+                <?php echo form_dropdown('survey', $survey, set_value('survey')); ?>
+                    <label>Survey</label>
             </div>
         </div>
 <!--

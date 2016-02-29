@@ -40,9 +40,9 @@
         } else if (resultrow.type == 3) {
             resultrow.type = "Multiple Choice";
         } else if (resultrow.type == 4) {
-            resultrow.type = "Checkboxes";
+            resultrow.type = "Drop Down";
         } else if (resultrow.type == 5) {
-            resultrow.type = "Choose Image";
+            resultrow.type = "Radio Button";
         }
         return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.content + "</td><td>" + resultrow.type + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/editsurveyquestion?id=');?>" + resultrow.id + "'><i class='material-icons'>mode_edit</i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/deletesurveyquestion?id='); ?>" + resultrow.id + "'><i class='material-icons propericon'>delete</i></a></td></tr>";
     }

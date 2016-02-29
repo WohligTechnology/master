@@ -46,7 +46,7 @@ function drawtable(resultrow) {
             blockIcon = "verified_user";
             blockIconColor = "waves-light green";
         }
-return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.email + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/editsurveyquestionuser?id=');?>"+resultrow.id+"&surveyid="+resultrow.question+"'><i class='material-icons'>mode_edit</i></i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/deletesurveyquestionuser?id='); ?>"+resultrow.id+"&surveyid="+resultrow.question+"'><i class='material-icons propericon'>delete</i></a></td></tr>";
+return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.email + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/editsurveyquestionuser?id=');?>"+resultrow.id+"&surveyid="+resultrow.survey+"'><i class='material-icons'>mode_edit</i></i></a><a class='btn btn-danger btn-xs waves-effect waves-light red pad10 z-depth-0 less-pad' onclick=\"return confirm('Are you sure you want to delete?');\" href='<?php echo site_url('site/deletesurveyquestionuser?id='); ?>"+resultrow.id+"&surveyid="+resultrow.survey+"'><i class='material-icons propericon'>delete</i></a></td></tr>";
 }
 generatejquery("<?php echo $base_url;?>");
 </script>
