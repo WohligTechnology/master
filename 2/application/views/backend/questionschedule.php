@@ -1,7 +1,7 @@
 
     <div class="">
         <div class="">
-          <h5 class="padleft">Schedule the question</h5>
+          <h5 class="padleft">Schedule</h5>
 
             <div class="row">
                <!--               First pillar-->
@@ -11,6 +11,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[0]->name?></p>
                                 </div>
+<!--
                                 <div class="pull-right select-before displ">
                                     <select>
                                         <option value="1">Weekly</option>
@@ -19,6 +20,7 @@
                                         <option value="3">Mothly</option>
                                     </select>
                                 </div>
+-->
                             </div>
 
                             <div class="panel-body">
@@ -101,16 +103,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[1]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                               
 
                             </div>
 
@@ -196,16 +189,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[2]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                            
 
                             </div>
 
@@ -289,16 +273,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[3]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                             
 
                             </div>
 
@@ -384,16 +359,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[4]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                             
 
                             </div>
 
@@ -477,16 +443,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[5]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                           
 
                             </div>
 
@@ -573,16 +530,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[6]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                            
 
                             </div>
 
@@ -667,16 +615,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[7]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                       
 
                             </div>
 
@@ -762,16 +701,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[8]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                           
 
                             </div>
 
@@ -855,16 +785,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[9]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                            
 
                             </div>
 
@@ -950,16 +871,7 @@
                                 <div class="pull-left  displ">
                                     <p class="panel-title"><?php echo $pillar[10]->name?></p>
                                 </div>
-                                <div class="pull-right selects-before displ">
-
-                                    <select>
-
-                                        <option value="1">Weekly</option>
-                                        <option value="2">Biweekly</option>
-                                        <option value="3">Fortnight</option>
-                                        <option value="3">Mothly</option>
-                                    </select>
-                                </div>
+                              
 
                             </div>
 

@@ -621,6 +621,11 @@ $this->load->view("json",$data);
      $package=$this->input->get_post('package');
      $this->menu_model->enablemenu($package);
  }
+ public function changecredentials(){
+     $email=$this->input->get_post('email');
+     $pass=$this->input->get_post('pass');
+     $this->usermodel->changecredentials($email,$pass);
+ }
   public function sendsurveyquestion()
   {
         $surveyid=$this->input->get('id');

@@ -1,5 +1,5 @@
 <div class="text-center padding-bottom">
-  <button class="btn btn-primary waves-effect waves-light blue darken-4" onclick="GlobalFunctions.clearSelection()">Clear Selection</button>
+    <button class="btn btn-primary waves-effect waves-light blue darken-4" onclick="GlobalFunctions.clearSelection()">Clear Selection</button>
 </div>
 <span>Total Employee Count: <?php echo $empcount;?></span>
 <form method="post" action="<?php echo site_url('site/getdatabyfiltering');?>">
@@ -8,15 +8,17 @@
 
     <div class="row selectproper">
         <div class="col s12 m3">
+            <label>Gender</label>
             <select id="1" name="gender" onchange="GlobalFunctions.checkfortwo(1);" style="display:none">
                 <?php  foreach($gender as $key => $value) {?>
-                    <option value=<?php echo $key; ?>><?php echo $value; ?>
+                    <option value=<?php echo $key; ?>>
+                        <?php echo $value; ?>
                     </option>
                     <?php }?>
             </select>
-            <label>Gender</label>
         </div>
         <div class="col s12 m3">
+            <label>Annual Salary</label>
             <select id="2" name="salary" onchange="GlobalFunctions.checkfortwo(2);" style="display:none">
                 <option value="">Choose Salary</option>
                 <option value="Below 2">Below 2L</option>
@@ -28,46 +30,50 @@
                 <option value="17-19">17L-19L</option>
                 <option value="19+">19L+</option>
             </select>
-            <label>Annual Salary</label>
         </div>
         <div class="col s12 m3">
+            <label>Marital Status</label>
             <select id="3" name="maritalstatus" onchange="GlobalFunctions.checkfortwo(3);" style="display:none">
                 <?php  foreach($maritalstatus as $key => $value) {?>
-                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
+                    <option value="<?php echo $key; ?>">
+                        <?php echo $value; ?>
                     </option>
                     <?php }?>
             </select>
-            <label>Marital Status</label>
         </div>
         <div class="col s12 m3">
+            <label>Branch</label>
             <select id="4" name="branch" onchange="GlobalFunctions.checkfortwo(4);" style="display:none">
                 <?php  foreach($branch as $key => $value) {?>
-                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
+                    <option value="<?php echo $key; ?>">
+                        <?php echo $value; ?>
                             <?php }?>
             </select>
-            <label>Branch</label>
         </div>
     </div>
     <div class="row selectproper">
         <div class="col s12 m3">
+            <label>Department</label>
             <select id="5" name="department" onchange="GlobalFunctions.checkfortwo(5);" style="display:none">
                 <?php  foreach($department as $key => $value) {?>
-                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
+                    <option value="<?php echo $key; ?>">
+                        <?php echo $value; ?>
                     </option>
                     <?php }?>
             </select>
-            <label>Department</label>
         </div>
         <div class="col s12 m3">
+            <label>Designation</label>
             <select id="6" name="designation" onchange="GlobalFunctions.checkfortwo(6);" style="display:none">
                 <?php  foreach($designation as $key => $value) {?>
-                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
+                    <option value="<?php echo $key; ?>">
+                        <?php echo $value; ?>
                     </option>
                     <?php }?>
             </select>
-            <label>Designation</label>
         </div>
         <div class="col s12 m3">
+            <label>Span of Control</label>
             <select id="7" name="spanofcontrol" onchange="GlobalFunctions.checkfortwo(7);" style="display:none">
                 <option value="">Choose Span of control</option>
                 <option value="0-5">0-5</option>
@@ -77,9 +83,9 @@
                 <option value="20-25">20-25</option>
                 <option value="25+">25+</option>
             </select>
-            <label>Span of Control</label>
         </div>
         <div class="col s12 m3">
+            <label>Experience</label>
             <select id="8" name="experience" onchange="GlobalFunctions.checkfortwo(8);" style="display:none">
                 <option value="">Choose Experience</option>
                 <option value="0-2">0-2</option>
@@ -87,7 +93,6 @@
                 <option value="6-8">6-8</option>
                 <option value="8+">8+</option>
             </select>
-            <label>Experience</label>
         </div>
     </div>
 </form>
@@ -115,17 +120,17 @@
     var weight = [];
     $(document).ready(function() {
 
-//        var new_base_url = "<?php echo site_url(); ?>";
-//        $.getJSON(new_base_url + '/site/getpillarforpie', {}, function(data) {
-//            _.each(data, function(n) {
-//                var hold = {};
-//                hold.name = n.name;
-//                hold.y = parseInt(n.pillaraveragevalues);
-//                pillaraveragevalues.push(hold);
-//                $('select').material_select();
-//                createPie();
-//            });
-//        });
+        //        var new_base_url = "<?php echo site_url(); ?>";
+        //        $.getJSON(new_base_url + '/site/getpillarforpie', {}, function(data) {
+        //            _.each(data, function(n) {
+        //                var hold = {};
+        //                hold.name = n.name;
+        //                hold.y = parseInt(n.pillaraveragevalues);
+        //                pillaraveragevalues.push(hold);
+        //                $('select').material_select();
+        //                createPie();
+        //            });
+        //        });
 
         GlobalFunctions.checkfortwo = function(val) {
             var count = 0;
@@ -184,30 +189,30 @@
                 experience: $experience
             }, function(data) {
                 console.log(data);
-//                var arr=[];
-                _.each(data,function(n){
-                    var obj={};
-                    obj.name=n.name;
-                    obj.y=parseFloat(n.pillaraveragevalues);
+                //                var arr=[];
+                _.each(data, function(n) {
+                    var obj = {};
+                    obj.name = n.name;
+                    obj.y = parseFloat(n.pillaraveragevalues);
                     arr.push(obj);
                 })
-                getname=_.mapValues(data, 'name');
-                getavgvalue=_.mapValues(data, 'pillaraveragevalues');
-//                mappedvalue=_.mapValues(users, 'age');
+                getname = _.mapValues(data, 'name');
+                getavgvalue = _.mapValues(data, 'pillaraveragevalues');
+                //                mappedvalue=_.mapValues(users, 'age');
                 console.log(arr);
-//                console.log(getavgvalue);
-//                console.log(mappedvalue);
-                var totalsum=0;
-                var totalexpected=0;
-                for(var i=0;i< data.length ; i++){
-                   totalsum= totalsum + (data[i].pillaraveragevalues * data[i].expectedweight)/100;
-                    totalexpected =totalexpected + (data[i].pillaraveragevalues * data[i].weight)/100;
+                //                console.log(getavgvalue);
+                //                console.log(mappedvalue);
+                var totalsum = 0;
+                var totalexpected = 0;
+                for (var i = 0; i < data.length; i++) {
+                    totalsum = totalsum + (data[i].pillaraveragevalues * data[i].expectedweight) / 100;
+                    totalexpected = totalexpected + (data[i].pillaraveragevalues * data[i].weight) / 100;
                 }
 
-                totalsum=Math.floor(totalsum);
-                totalexpected=Math.floor(totalexpected);
-//                  console.log(totalsum);
-//                console.log(totalexpected);
+                totalsum = Math.floor(totalsum);
+                totalexpected = Math.floor(totalexpected);
+                //                  console.log(totalsum);
+                //                console.log(totalexpected);
                 pillars = _.pluck(data, "name");
                 pillars.push("Overall");
                 expectedWeight = _.pluck(data, "expectedweight");
@@ -225,7 +230,7 @@
                     }
                     return parseInt(n);
                 });
-//                console.log(pillAraverage);
+                //                console.log(pillAraverage);
                 pillAraverage.push(_.sum(pillAraverage) / (pillars.length - 1));
 
                 weight = _.pluck(data, "weight");
@@ -235,11 +240,11 @@
                     }
                     return parseInt(n);
                 });
-//                console.log(weight);
+                //                console.log(weight);
                 $('select').material_select();
                 createGraph();
                 createPie();
-                overAll(totalexpected,totalsum);
+                overAll(totalexpected, totalsum);
             });
 
 
@@ -304,8 +309,8 @@
                     }
                 },
 
-                 <?php if($checkpackage==3 || $checkpackage==4) {?>
-                     series: [{
+                <?php if($checkpackage==3 || $checkpackage==4) {?>
+                series: [{
                     name: 'Expected',
                     data: expectedWeight
 
@@ -318,140 +323,137 @@
                     data: weight
 
                 }]
-                 <?php } else {?>
-                  series: [ {
+                <?php } else {?>
+                series: [{
                     name: 'Average',
                     data: pillAraverage
 
-                },
-                           {
-                   name: 'Expected',
+                }, {
+                    name: 'Expected',
                     data: expectedWeight
 
-                }
-                          ]
-                 <?php } ?>
+                }]
+                <?php } ?>
 
             });
         }
-           function createPie() {
-//        console.log(arr);
-        $('#container').highcharts({
-            credits: {
-                enabled: false
-            },
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie',
-                backgroundColor: "transparent",
-                margin: [0, 0, 0, 0],
-                spacingTop: 0,
-                spacingBottom: 0,
-                spacingLeft: 0,
-                spacingRight: 0
-            },
-            title: {
-                text: 'Pillar Average'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    size:'70%',
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+
+        function createPie() {
+            //        console.log(arr);
+            $('#container').highcharts({
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie',
+                    backgroundColor: "transparent",
+                    margin: [0, 0, 0, 0],
+                    width: 1000
+
+                },
+                title: {
+                    text: 'Pillar Average'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        size: '70%',
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
                         }
                     }
-                }
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'right',
-                verticalAlign: 'top',
-                x: -500,
-                y: 80,
-                floating: true,
-                borderWidth: 1,
-                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                shadow: true
-            },
-            series: [{
-                name: 'Average',
-                colorByPoint: true,
-                data: arr
-            }]
-        });
+                },
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -500,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                series: [{
+                    name: 'Average',
+                    colorByPoint: true,
+                    data: arr
+                }]
+            });
 
 
-    }
+        }
 
-        function overAll (totalexpected,totalsum) {
-        $('#container3').highcharts({
-        chart: {
-            type: 'bar',
-            backgroundColor: "transparent"
-        },
-        title: {
-            text: 'Overall'
-        },
-        xAxis: {
-            categories: ['Weighted Average'],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Overall (percent)',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-            valueSuffix: ' percent'
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-         colors: ['#ffd61e', '#fff'],
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 80,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
-        series: [ {
-            name: 'Average',
-            data: [totalexpected]
-        },{
-            name: 'HQ Expected',
-            data: [totalsum]
-        }]
-    });
-}
+        function overAll(totalexpected, totalsum) {
+            $('#container3').highcharts({
+                chart: {
+                    type: 'bar',
+                    backgroundColor: "transparent"
+                },
+                title: {
+                    text: 'Overall'
+                },
+                xAxis: {
+                    categories: ['Weighted Average'],
+                    title: {
+                        text: null
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Overall (percent)',
+                        align: 'high'
+                    },
+                    labels: {
+                        overflow: 'justify'
+                    }
+                },
+                tooltip: {
+                    valueSuffix: ' percent'
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                colors: ['#ffd61e', '#fff'],
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'top',
+                    x: -40,
+                    y: 80,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                    shadow: true
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Average',
+                    data: [totalexpected]
+                }, {
+                    name: 'HQ Expected',
+                    data: [totalsum]
+                }]
+            });
+        }
 
 
 
@@ -464,7 +466,6 @@
 <div id="container" style="min-width: 310px; margin: 0 auto"></div>
 
 <script>
-
     $('#button').click(function() {
         var chart = $('#container').highcharts(),
             selectedPoints = chart.getSelectedPoints();

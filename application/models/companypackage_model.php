@@ -22,6 +22,7 @@ public function create($company,$package)
     $sender="master@willnevergrowup.in";
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
+    $password=$this->companypackage_model->checkrandom();
     $exactpath=$mainurl.$id;
     // send email
         
@@ -39,11 +40,11 @@ public function create($company,$package)
       </p><br>
         <p>
           <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Email: </span>
-          <span>wohlig@wohlig.com</span>
+          <span>$receiver</span>
           </p><br>
       <p>
       <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Password: </span>
-      <span>wohlig123</span>
+      <span>$password</span>
       </p><br>
       <p>Let's make a difference in your company by measuring Happyness at Work. We are exciting to have 
 you with us on this journey.</p><br>
@@ -58,7 +59,35 @@ you with us on this journey.</p><br>
         $this->email->message($message);
         $this->email->send();
     
-    // ASSIGHNING A PACKAGE FOR A COMPANY
+   
+    
+    // ASSIGHNING A CREDENTIALS FOR A COMPANY
+    
+    $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password;
+    $exactpathtobackend=$mainurl.$companyid;
+    
+      // GET CURL
+        $ch = curl_init();  
+        $url=$exactpathforcredential;
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+      curl_setopt($ch,CURLOPT_HEADER, false); 
+        $output=curl_exec($ch);
+        curl_close($ch);
+    
+    //assign package
+//    $this->companypackage_model->assignpackage($companyid,$package);
+    
+    if(!$query)
+    return  0;
+    else
+    return  $id;
+}
+    public function assignpackage($companyid,$package)
+    {
+         // ASSIGHNING A PACKAGE FOR A COMPANY
     
      $this->load->helper('url');
     $mainurl=$this->config->base_url();
@@ -75,23 +104,34 @@ you with us on this journey.</p><br>
       curl_setopt($ch,CURLOPT_HEADER, false); 
         $output=curl_exec($ch);
         curl_close($ch);
-    if(!$query)
-    return  0;
-    else
-    return  $id;
-}
-public function beforeedit($id)
+    }
+     public function checkrandom($length = 10)
+	{
+	$alphabets = range('A', 'Z');
+	$numbers = range('0', '9');
+	$smallletters = range('a', 'z');
+	$final_array = array_merge($alphabets, $numbers, $smallletters);
+	$password = '';
+	while ($length--)
+		{
+		$key = array_rand($final_array);
+		$password.= $final_array[$key];
+		}
+
+	return $password;
+	}
+    public function beforeedit($id)
 {
     $this->db->where("id",$id);
     $query=$this->db->get("companypackage")->row();
     return $query;
 }
-function getsinglecompany($id){
+    function getsinglecompany($id){
     $this->db->where("id",$id);
     $query=$this->db->get("companypackage")->row();
     return $query;
 }
-public function edit($id,$company,$package)
+    public function edit($id,$company,$package)
 {
     $data=array("company" => $company,"package" => $package);
     $this->db->where( "id", $id );
@@ -103,13 +143,13 @@ public function edit($id,$company,$package)
     $query=$this->db->update( "master_company", $data1 );
     return 1;
 }
-public function delete($id)
+    public function delete($id)
 {
     $query=$this->db->query("DELETE FROM `companypackage` WHERE `id`='$id'");
     return $query;
 }
 
-public function getimagebyid($id)
+    public function getimagebyid($id)
 {
     $query=$this->db->query("SELECT `image` FROM `companypackage` WHERE `id`='$id'")->row();
     return $query;

@@ -1193,7 +1193,6 @@ public function blockCompany()
       </p><br>
       <p>Let's make a difference in your company by measuring Happyness at Work. We are exciting to have 
 you with us on this journey.</p><br>
-<p>For any queries/support, you can contact us on ___________________</p><br>
 <p>Happy to help!</p><br>
 <p>Regards,</p><br>
 <p>Team Never Grow Up</p><br>

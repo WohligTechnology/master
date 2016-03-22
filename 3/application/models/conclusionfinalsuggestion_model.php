@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class conclusionfinalsuggestion_model extends CI_Model
 {
-public function create($conclusion,$conclusionsuggestion)
+public function create($conclusion,$conclusionsuggestion,$message)
 {
-$data=array("conclusion" => $conclusion,"conclusionsuggestion" => $conclusionsuggestion);
+$data=array("conclusion" => $conclusion,"conclusionsuggestion" => $conclusionsuggestion,"message" => $message);
 $query=$this->db->insert( "hq_conclusionfinalsuggestion", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,8 +24,8 @@ $this->db->where("id",$id);
 $query=$this->db->get("hq_conclusionfinalsuggestion")->row();
 return $query;
 }
-public function edit($id,$conclusion,$conclusionsuggestion)
-{$data=array("conclusion" => $conclusion,"conclusionsuggestion" => $conclusionsuggestion);
+public function edit($id,$conclusion,$conclusionsuggestion,$message)
+{$data=array("conclusion" => $conclusion,"conclusionsuggestion" => $conclusionsuggestion,"message" => $message);
 $this->db->where( "id", $id );
 $query=$this->db->update( "hq_conclusionfinalsuggestion", $data );
 return 1;

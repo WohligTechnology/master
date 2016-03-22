@@ -54,9 +54,39 @@ $this->load->view("json",$data);
 }
  
  public function createDatabase() {
-     $name = $this->input->get("name");
-     $filename = "/xampp/mysql/bin/demo.sql";
-     $this->company_model->createAndPopuateDatabase($name,$filename);
+     $receiver="pooja.wohlig@gmail.com";
+         $password=$this->companypackage_model->checkrandom();
+     $companyid=1;
+     $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpathtobackend=$mainurl.$companyid;
+     $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password;
+     echo $exactpathforcredential;
+    $exactpathtobackend=$mainurl.$companyid;
+    
+//      // GET CURL
+//        $ch = curl_init();  
+//        $url=$exactpathforcredential;
+//        curl_setopt($ch,CURLOPT_URL,$url);
+//        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+//      curl_setopt($ch,CURLOPT_HEADER, false); 
+//        $output=curl_exec($ch);
+//        curl_close($ch);
+     
+//     post
+     $ch = curl_init();
+ $url=$exactpathforcredential;
+curl_setopt($ch, CURLOPT_URL,$url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,"email=".$receiver."&pass=".$password);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$server_output = curl_exec ($ch);
+     $old=error_reporting(0);
+     echo $old;
+
+curl_close ($ch);
  }
  
  public function greatest(){
@@ -83,4 +113,5 @@ $this->load->view("json",$data);
     $a=$this->company_model->getpackageexpirecompanies();
      print_r($a);
  }
+
 } ?>

@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>
-	<?php echo $title;?> - HQ</title>
-
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Happyness Quotitent - Powered by Never Growup">
+		<title><?php echo $title;?> - Happyness Quotient</title>
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="<?php echo base_url('assets').'/';?>img/favicon.png">
+    <meta name="msapplication-TileColor" content="#00ac93">
+    <meta name="msapplication-TileImage" content="<?php echo base_url('assets').'/';?>img/favicon.png">
+    <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
+    <!--  Android 5 Chrome Color-->
+    <meta name="theme-color" content="#00ac93">
+
+
 	<link rel="shortcut icon" href="<?php echo base_url('assets').'/';?>img/favicon.png" type="image/png" />
-	<link rel="stylesheet" href="<?php echo base_url('assets').'/';?>css/materialize.min.css">
+	<!-- <link rel="stylesheet" href="<?php echo base_url('assets').'/';?>css/materialize.min.css"> -->
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
 	<link href="<?php echo base_url('assets').'/';?>css/jquery.fancybox.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url('assets').'/';?>css/linearfonts.css">
 	<link href="<?php echo base_url('assets').'/';?>css/style.css" rel="stylesheet">
 	<link href="<?php echo base_url('assets').'/';?>css/range.css" rel="stylesheet">
-<!--	<link href="<?php echo base_url('assets').'/';?>css/materialize.css" rel="stylesheet">-->
+
 	<script src="<?php echo base_url('assets').'/';?>js/jquery.min.js"></script>
-	<script src="<?php echo base_url('assets').'/';?>js/materialize.min.js"></script>
+	<!-- <script src="<?php echo base_url('assets').'/';?>js/materialize.min.js"></script> -->
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 	<script src="<?php echo base_url('assets').'/';?>js/chintantable.js"></script>
 	<script src="<?php echo base_url('assets').'/';?>js/jquery.fancybox.pack.js"></script>
 	<script src="<?php echo base_url('assets').'/';?>tinymce/tinymce.min.js"></script>
 	<script src="<?php echo base_url('assets').'/';?>js/formInit.js"></script>
-	
+
 	<script src="<?php echo base_url('assets').'/';?>js/lodash.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <!--	 <script src="<?php echo base_url('assets/js/jquery-1.8.3.min.js'); ?>" type="text/javascript"></script>-->
@@ -27,12 +44,9 @@
     <script src="<?php echo base_url('assets/js/highchartsbyavi.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/highcharts-3dbyavi.js'); ?>"></script>
 -->
-
-       <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-	<!--Let browser know website is optimized for mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 	<script>
         var admin_url="<?php echo base_url();?>";
     </script>
@@ -172,7 +186,7 @@ document.oncontextmenu=new Function("return false")
 
 	</header>
 	<main>
-		<div class="lightcolor">
+		<div class="lightcolor min-h">
       <?php echo $alerterror; ?>
 		<?php if(isset($alertsuccess)) {
 $alertsuccess = trim(preg_replace('/\s+/', ' ', $alertsuccess));

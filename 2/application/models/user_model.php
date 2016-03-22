@@ -682,9 +682,8 @@ class User_model extends CI_Model
         {
             $name=$row['name'];
             $email=$row['email'];
-            $username=$row['username'];
             $gender=$row['gender'];
-            $dob=$row['dob'];
+            $age=$row['age'];
             $maritalstatus=$row['maritalstatus'];
             $designation=$row['designation'];
             $department=$row['department'];
@@ -694,14 +693,17 @@ class User_model extends CI_Model
             $branch=$row['branch'];
             $team=$row['team'];
             $language=$row['language'];
+            $salary=$row['salary'];
+            $description=$row['description'];
 
-            $from = new DateTime($dob);
-            $to   = new DateTime('today');
-            $calculatedage=$from->diff($to)->y;
+            $checkuser=$this->db->query("SELECT * FROM `user` WHERE `email`= '$email'");
             
-            $age=$calculatedage;
-            
-            if(strtolower($maritalstatus)=='Unmarried')
+            if($checkuser->num_rows() > 0){
+                
+            }
+            else
+            {
+                 if(strtolower($maritalstatus)=='Unmarried')
             {
                 $maritalstatus=1;
             }
@@ -764,30 +766,33 @@ class User_model extends CI_Model
                 $team=$teamquery->id;
             }
             
-		$data  = array(
-			'name' => $name,
-			'email' => $email,
-			'accesslevel' => 4,
-			'status' => 1,
-			'username' => $username,
-			'gender' => $gender,
-			'age' => $age,
-			'maritalstatus' => $maritalstatus,
-			'designation' => $designation,
-			'department' => $department,
-			'noofyearsinorganization' => $experience,
-			'spanofcontrol' => $spanofcontrol,
-			'employeeid' => $employeeid,
-			'branch' => $branch,
-			'language' => 0,
-			'team' => $team
-		);
-		$query=$this->db->insert( 'user', $data );
-		$id=$this->db->insert_id();
+            $data  = array(
+                'name' => $name,
+                'email' => $email,
+                'accesslevel' => 4,
+                'status' => 1,
+                'gender' => $gender,
+                'age' => $age,
+                'maritalstatus' => $maritalstatus,
+                'designation' => $designation,
+                'department' => $department,
+                'noofyearsinorganization' => $experience,
+                'spanofcontrol' => $spanofcontrol,
+                'employeeid' => $employeeid,
+                'branch' => $branch,
+                'language' => 0,
+                'team' => $team,
+                'salary' => $salary,
+                'description' => $description
+            );
+            $query=$this->db->insert( 'user', $data );
+            $id=$this->db->insert_id();
          
             
         }
 			return  1;
+        }  
+           
 	}
 }
 ?>

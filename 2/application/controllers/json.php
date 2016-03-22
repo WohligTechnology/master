@@ -607,7 +607,8 @@ $this->load->view("json",$data);
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
        $this->email->to($email);
-       $this->email->subject('Test');   
+       $this->email->subject('Test');  
+            $message = "Hiii this is the link ".$link;
        $this->email->message($message);
        $this->email->send();
             
@@ -688,6 +689,12 @@ $this->load->view("json",$data);
          $data['message']=$this->restapi_model->storeSurveyAnswer($answer);
          $this->load->view('json',$data);
      }
+ public function sendlogo(){
+     $query=$this->db->query("SELECT * FROM `logo` WHERE 1")->row();
+     $image=$query->image;
+     $data['message']=$query;
+    $this->load->view('json',$data);
+ }
  public function checkweight(){
          $range=$this->input->get_post('range');
          $range1=$this->input->get_post('rangeone');
@@ -745,4 +752,79 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
  print_r($arr);
 
  }
+ 
+ 
+  /* <div class="option2">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option2" id="option2" value=" <?php echo $option[0]->options[1]->title;?>">
+                            <input type="hidden" name="option1id" id="option1id" value=" <?php echo $option[0]->options[0]->id;?>">
+                            <label>Option</label>
+                        </div>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option2')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option2','option3')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                */
+ 
+ public function test(){
+     for($i=91;$i<=100;$i++){
+         $j = $i+1;
+        print '<div class="option'.$i.'">
+        <div class="row">
+         <div class="input-field col s8 m8"><input type="text" name="option'.$i.'" value="<?php echo $option[0]->options['.$i.']->title;?>" id="option'.$i.'"><input type="hidden" name="option'.$i.'id" value="<?php echo $option[0]->options['.$i.']->id;?>" id="option'.$i.'id">
+         <label>Option</label>
+         </div>
+         <div class="input-field col s2 m2">
+         <div onclick="hidedelete(\'option'.$i.'\')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
+          <div onclick="showoption(\'option'.$i.'\',\'option'.$j.'\')" class="btn btn-xs less-pad"><i class="material-icons propericon">add</i></div></div></div></div>';
+     }
+     
+     
+ }
+ public function test1(){
+      for($i=1;$i<=100;$i++){
+          $j=10;
+          echo '$option'.$i.'id,';
+//          echo "// create option".$i;
+//          echo "\n";
+//          echo "\n";
+//          echo 'if($question'.$j.' !="" && $option'.$i.'!="")';
+//          echo "\n";
+//          
+//          echo "{";
+//          echo "\n";
+//     echo '$data=array("question" => $question'.$j.'id,"title" => $option'.$i.');';
+//          
+//          echo "\n";
+//      echo   '$query=$this->db->insert( "hq_surveyoption", $data );';
+//          echo "\n";
+//       echo '$option'.$i.'id=$this->db->insert_id();';
+//          echo "\n";
+//          echo "}";
+//          echo "\n";
+//          echo "\n";
+          
+      }
+ }
+     public function test2(){
+         echo '//question '.$j.''; echo "\n";
+      for($i=1;$i<=10;$i++){
+          $j=1;
+    
+       echo '//option'.$i.''; echo "\n";
+        echo '$data=array("question" => $question'.$j.'id,"title" => $option'.$i.');'; echo "\n";
+       echo '$this->db->where( "id", $option'.$i.'id );'; echo "\n";
+          echo '$query=$this->db->update( "hq_surveyoption", $data );'; echo "\n";echo "\n";
+          
+      }
+ }
+ 
+
  } ?>
