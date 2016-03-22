@@ -41,7 +41,7 @@ class Site extends CI_Controller
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch);
 
         $data["message"] = $pillarsdata;
-        
+
 		$this->load->view( 'json', $data );
 
     }
@@ -59,14 +59,14 @@ class Site extends CI_Controller
             {
                 $totalsum=$totalsum+($row[$i]->expectedweight *$row[$i]->pillaraveragevalues)/100;
                 $totalexpected=$totalexpected+($row[$i]->weight * $row[$i]->pillaraveragevalues)/100;
-               
+
             }
         }
-//        $data['totalsum']=number_format((float)$totalsum, 2, '.', ''); 
+//        $data['totalsum']=number_format((float)$totalsum, 2, '.', '');
 //        $data['totalexpected']=number_format((float)$totalexpected, 2, '.', '');
-        
-        $data['totalsum']=floor($totalsum); 
-        $data['totalexpected']=floor($totalexpected); 
+
+        $data['totalsum']=floor($totalsum);
+        $data['totalexpected']=floor($totalexpected);
         $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
         $data[ 'department' ] =$this->user_model->getdepartmenttypedropdown();
         $data[ 'gender' ] =$this->user_model->getgendertypedropdown();
@@ -1157,7 +1157,7 @@ $this->load->view("redirect",$data);
             $this->user_model->makeusernew($this->session->userdata("id"));
             redirect( base_url() . 'index.php/json/viewfirstpage?id=2', 'refresh' );
         }
-        
+
     }
 public function editpillar()
 {
@@ -3946,6 +3946,7 @@ $data["base_url"]=site_url("site/viewconclusionfinalsuggestionjson");
 $data["title"]="View conclusionfinalsuggestion";
 $this->load->view("template",$data);
 }
+
 function viewconclusionfinalsuggestionjson()
 {
 $elements=array();
@@ -4003,7 +4004,8 @@ else
 $id=$this->input->get_post("id");
 $conclusion=$this->input->get_post("conclusion");
 $conclusionsuggestion=$this->input->get_post("conclusionsuggestion");
-if($this->conclusionfinalsuggestion_model->create($conclusion,$conclusionsuggestion)==0)
+$message=$this->input->get_post("message");
+if($this->conclusionfinalsuggestion_model->create($conclusion,$conclusionsuggestion,$message)==0)
 $data["alerterror"]="New survey could not be created.";
 else
 $data["alertsuccess"]="Survey created Successfully.";
@@ -4042,7 +4044,8 @@ else
 $id=$this->input->get_post("id");
 $conclusion=$this->input->get_post("conclusion");
 $conclusionsuggestion=$this->input->get_post("conclusionsuggestion");
-if($this->conclusionfinalsuggestion_model->edit($id,$conclusion,$conclusionsuggestion)==0)
+    $message=$this->input->get_post("message");
+if($this->conclusionfinalsuggestion_model->edit($id,$conclusion,$conclusionsuggestion,$message)==0)
 $data["alerterror"]="New survey could not be Updated.";
 else
 $data["alertsuccess"]="Survey Updated Successfully.";
@@ -4175,9 +4178,7 @@ $this->load->view("template",$data);
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
        $this->email->to($email);
-       $this->email->subject('Test');
-
-//       $message = "Hiii      ".$link;
+       $this->email->subject('Happiness Quotient');
        $message = "<html>
         <p>Hello!</p><br>
       <p>Feel like taking a break from work? Click on this link to have some fun! </p><span>$link</span><br>
@@ -4229,8 +4230,8 @@ $this->load->view("template",$data);
                 $sum=$expected1 + $expected2 + $expected3 + $expected4 + $expected5 + $expected6 + $expected7 + $expected8 + $expected9 + $expected10;
                 if($sum==100)
                 {
-                     if($this->pillar_model->editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)==0)                     
-                    {     
+                     if($this->pillar_model->editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)==0)
+                    {
                         $data["alerterror"]="Expected Weightages Cannot Updated Successfully.";
                         $data["redirect"]="site/viewchangeexpected";
                         $this->load->view("redirect",$data);
@@ -4241,7 +4242,7 @@ $this->load->view("template",$data);
                         $data["redirect"]="site/viewchangeexpected";
                         $this->load->view("redirect",$data);
                     }
-                    
+
                 }
                 else
                     {
@@ -4255,8 +4256,8 @@ $this->load->view("template",$data);
                 $sum=$expected1 + $expected2 + $expected3 + $expected4 + $expected5 + $expected6 + $expected7 + $expected8 + $expected9 +  $expected10 + $expected11;
                 if($sum==100)
                 {
-                     if($this->pillar_model->editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)==0)     
-                     {    
+                     if($this->pillar_model->editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)==0)
+                     {
                         $data["alerterror"]="Expected Weightages Cannot Updated Successfully.";
                         $data["redirect"]="site/viewchangeexpected";
                         $this->load->view("redirect",$data);
@@ -4274,9 +4275,9 @@ $this->load->view("template",$data);
                      $data["redirect"]="site/viewchangeexpected";
                      $this->load->view("redirect",$data);
                     }
-                
+
             }
-       
+
 	 }
 //    public function getallpillarsbypackage(){
 //		$data['']=$this->pillar_model->getallpillarsbypackage();
@@ -4298,8 +4299,442 @@ $this->load->view("template",$data);
 		$this->surveyquestionanswer_model->exportsurveyresultcsv($surveyid);
         $data['redirect']="site/viewconclusion";
         $this->load->view("redirect",$data);
-	 }   
-   
+	 } 
     
+    public function trialsurvey()
+    {
+        $access=array("1","5");
+        $this->checkaccess($access);
+        $data["page"]="createtrialsurvey";
+        $data["type"]=$this->surveyquestion_model->gettypedropdown();
+        $data["isrequired"]=$this->surveyquestion_model->getisrequireddropdown();
+        $data["base_url"]=site_url("site/trialsurvey");
+        $data["title"]="Mini Survey";
+        $this->load->view("template",$data);
+    }
+    public function newsurveysubmit()
+    {
+		$access = array("1");
+		$this->checkaccess($access);
+        $surveyname=$this->input->get_post("surveyname");    
+        $surveydescription=$this->input->get_post("surveydescription");    
+        $question1=$this->input->get_post("question1");    
+        $question2=$this->input->get_post("question2");    
+        $question3=$this->input->get_post("question3");    
+        $question4=$this->input->get_post("question4");    
+        $question5=$this->input->get_post("question5");    
+        $question6=$this->input->get_post("question6");    
+        $question7=$this->input->get_post("question7");    
+        $question8=$this->input->get_post("question8");    
+        $question9=$this->input->get_post("question9");    
+        $question10=$this->input->get_post("question10");    
+        $type1=$this->input->get_post("type1");    
+        $type2=$this->input->get_post("type2");    
+        $type3=$this->input->get_post("type3");    
+        $type4=$this->input->get_post("type4");    
+        $type5=$this->input->get_post("type5");    
+        $type6=$this->input->get_post("type6");    
+        $type7=$this->input->get_post("type7");    
+        $type8=$this->input->get_post("type8");    
+        $type9=$this->input->get_post("type9");    
+        $type10=$this->input->get_post("type10");    
+        $required1=$this->input->get_post("required1");    
+        $required2=$this->input->get_post("required2");    
+        $required3=$this->input->get_post("required3");    
+        $required4=$this->input->get_post("required4");    
+        $required5=$this->input->get_post("required5");    
+        $required6=$this->input->get_post("required6");    
+        $required7=$this->input->get_post("required7");    
+        $required8=$this->input->get_post("required8");    
+        $required9=$this->input->get_post("required9");    
+        $required10=$this->input->get_post("required10");    
+        $message=$this->input->get_post("message");    
+        $option1=$this->input->get_post("option1");    
+        $option2=$this->input->get_post("option2");    
+        $option3=$this->input->get_post("option3");    
+        $option4=$this->input->get_post("option4");    
+        $option5=$this->input->get_post("option5");    
+        $option6=$this->input->get_post("option6");    
+        $option7=$this->input->get_post("option7");    
+        $option8=$this->input->get_post("option8");    
+        $option9=$this->input->get_post("option9");    
+        $option10=$this->input->get_post("option10");    
+        $option11=$this->input->get_post("option11");    
+        $option12=$this->input->get_post("option12");    
+        $option13=$this->input->get_post("option13");    
+        $option14=$this->input->get_post("option14");    
+        $option15=$this->input->get_post("option15");    
+        $option16=$this->input->get_post("option16");    
+        $option17=$this->input->get_post("option17");    
+        $option18=$this->input->get_post("option18");    
+        $option19=$this->input->get_post("option19");    
+        $option20=$this->input->get_post("option20");    
+        $option21=$this->input->get_post("option21");    
+        $option22=$this->input->get_post("option22");    
+        $option23=$this->input->get_post("option23");    
+        $option24=$this->input->get_post("option24");    
+        $option25=$this->input->get_post("option25");    
+        $option26=$this->input->get_post("option26");    
+        $option27=$this->input->get_post("option27");    
+        $option28=$this->input->get_post("option28");    
+        $option29=$this->input->get_post("option29");    
+        $option30=$this->input->get_post("option30");    
+        $option31=$this->input->get_post("option31");    
+        $option32=$this->input->get_post("option32");    
+        $option33=$this->input->get_post("option33");    
+        $option34=$this->input->get_post("option34");    
+        $option35=$this->input->get_post("option35");    
+        $option36=$this->input->get_post("option36");    
+        $option37=$this->input->get_post("option37");    
+        $option38=$this->input->get_post("option38");    
+        $option39=$this->input->get_post("option39");    
+        $option40=$this->input->get_post("option40");    
+        $option41=$this->input->get_post("option41");    
+        $option42=$this->input->get_post("option42");    
+        $option43=$this->input->get_post("option43");    
+        $option44=$this->input->get_post("option44");    
+        $option45=$this->input->get_post("option45");    
+        $option46=$this->input->get_post("option46");    
+        $option47=$this->input->get_post("option47");    
+        $option48=$this->input->get_post("option48");    
+        $option49=$this->input->get_post("option49");    
+        $option50=$this->input->get_post("option50");    
+        $option51=$this->input->get_post("option51");    
+        $option52=$this->input->get_post("option52");    
+        $option53=$this->input->get_post("option53");    
+        $option54=$this->input->get_post("option54");    
+        $option55=$this->input->get_post("option55");    
+        $option56=$this->input->get_post("option56");    
+        $option57=$this->input->get_post("option57");    
+        $option58=$this->input->get_post("option58");    
+        $option59=$this->input->get_post("option59");    
+        $option60=$this->input->get_post("option60");    
+        $option61=$this->input->get_post("option61");    
+        $option62=$this->input->get_post("option62");    
+        $option63=$this->input->get_post("option63");    
+        $option64=$this->input->get_post("option64");    
+        $option65=$this->input->get_post("option65");    
+        $option66=$this->input->get_post("option66");    
+        $option67=$this->input->get_post("option67");    
+        $option68=$this->input->get_post("option68");    
+        $option69=$this->input->get_post("option69");    
+        $option70=$this->input->get_post("option70");    
+        $option71=$this->input->get_post("option71");    
+        $option72=$this->input->get_post("option72");    
+        $option73=$this->input->get_post("option73");    
+        $option74=$this->input->get_post("option74");    
+        $option75=$this->input->get_post("option75");    
+        $option76=$this->input->get_post("option76");    
+        $option77=$this->input->get_post("option77");    
+        $option78=$this->input->get_post("option78");    
+        $option79=$this->input->get_post("option79");    
+        $option80=$this->input->get_post("option80");    
+        $option81=$this->input->get_post("option81");    
+        $option82=$this->input->get_post("option82");    
+        $option83=$this->input->get_post("option83");    
+        $option84=$this->input->get_post("option84");    
+        $option85=$this->input->get_post("option85");    
+        $option86=$this->input->get_post("option86");    
+        $option87=$this->input->get_post("option87");    
+        $option88=$this->input->get_post("option88");    
+        $option89=$this->input->get_post("option89");    
+        $option90=$this->input->get_post("option90");    
+        $option91=$this->input->get_post("option91");    
+        $option92=$this->input->get_post("option92");    
+        $option93=$this->input->get_post("option93");    
+        $option94=$this->input->get_post("option94");    
+        $option95=$this->input->get_post("option95");    
+        $option96=$this->input->get_post("option96");    
+        $option97=$this->input->get_post("option97");    
+        $option98=$this->input->get_post("option98");    
+        $option99=$this->input->get_post("option99");    
+        $option100=$this->input->get_post("option100"); 
+//        print_r($_POST);
+        if($this->surveyquestion_model->newsurveysubmit($surveyname,$surveydescription,$question1,$question2,$question3,$question4,$question5,$question6,$question7,$question8,$question9,$question10,$type1,$type2,$type3,$type4,$type5,$type6,$type7,$type8,$type9,$type10,$required1,$required2,$required3,$required4,$required5,$required6,$required7,$required8,$required9,$required10,$message,$option1,$option2,$option3,$option4,$option5,$option6,$option7,$option8,$option9,$option10,$option11,$option12,$option13,$option14,$option15,$option16,$option17,$option18,$option19,$option20,$option21,$option22,$option23,$option24,$option25,$option26,$option27,$option28,$option29,$option30,$option31,$option32,$option33,$option34,$option35,$option36,$option37,$option38,$option39,$option40,$option41,$option42,$option43,$option44,$option45,$option46,$option47,$option48,$option49,$option50,$option51,$option52,$option53,$option54,$option55,$option56,$option57,$option58,$option59,$option60,$option61,$option62,$option63,$option64,$option65,$option66,$option67,$option68,$option69,$option70,$option71,$option72,$option73,$option74,$option75,$option76,$option77,$option78,$option79,$option80,$option81,$option82,$option83,$option84,$option85,$option86,$option87,$option88,$option89,$option90,$option91,$option92,$option93,$option94,$option95,$option96,$option97,$option98,$option99,$option100)==0)
+$data["alerterror"]="New survey could not be created.";
+else
+$data["alertsuccess"]="Survey Created Successfully.";
+$data["redirect"]="site/viewconclusionfinalsuggestion";
+$this->load->view("redirect",$data);
+	 }
+    public function edittrialsurvey()
+    {
+        $access=array("1","5");
+        $this->checkaccess($access);
+        $data["page"]="edittrialsurvey";
+        $data["before"]=$this->surveyquestion_model->surveybeforeedit($this->input->get('id'));
+        $data["option"]=$this->surveyquestion_model->getoptionforedit($this->input->get('id'));
+        $data["type"]=$this->surveyquestion_model->gettypedropdown();
+        $data["isrequired"]=$this->surveyquestion_model->getisrequireddropdown();
+        $data["title"]="Edit Mini Survey";
+        $this->load->view("template",$data);
+    }
+    public function getsinglesurveydata()
+    {
+        
+        $id=$this->input->get_post('id');
+        $option=$this->surveyquestion_model->getoptionforedit($id);
+        $data['message']=$option;
+        $this->load->view("json",$data);
+    }
+    public function editsurveysubmit()
+    {
+		$access = array("1");
+		$this->checkaccess($access);
+        $surveyid=$this->input->get_post("surveyid");   
+        $surveyname=$this->input->get_post("surveyname");    
+        $surveydescription=$this->input->get_post("surveydescription");    
+        $question1=$this->input->get_post("question1");    
+        $question2=$this->input->get_post("question2");    
+        $question3=$this->input->get_post("question3");    
+        $question4=$this->input->get_post("question4");    
+        $question5=$this->input->get_post("question5");    
+        $question6=$this->input->get_post("question6");    
+        $question7=$this->input->get_post("question7");    
+        $question8=$this->input->get_post("question8");    
+        $question9=$this->input->get_post("question9");    
+        $question10=$this->input->get_post("question10");    
+        $type1=$this->input->get_post("type1");    
+        $type2=$this->input->get_post("type2");    
+        $type3=$this->input->get_post("type3");    
+        $type4=$this->input->get_post("type4");    
+        $type5=$this->input->get_post("type5");    
+        $type6=$this->input->get_post("type6");    
+        $type7=$this->input->get_post("type7");    
+        $type8=$this->input->get_post("type8");    
+        $type9=$this->input->get_post("type9");    
+        $type10=$this->input->get_post("type10");    
+        $required1=$this->input->get_post("required1");    
+        $required2=$this->input->get_post("required2");    
+        $required3=$this->input->get_post("required3");    
+        $required4=$this->input->get_post("required4");    
+        $required5=$this->input->get_post("required5");    
+        $required6=$this->input->get_post("required6");    
+        $required7=$this->input->get_post("required7");    
+        $required8=$this->input->get_post("required8");    
+        $required9=$this->input->get_post("required9");    
+        $required10=$this->input->get_post("required10");    
+        $message=$this->input->get_post("message");   
+        $question1id=$this->input->get_post("question1id");
+        $question2id=$this->input->get_post("question2id");    
+        $question3id=$this->input->get_post("question3id");    
+        $question4id=$this->input->get_post("question4id");    
+        $question5id=$this->input->get_post("question5id");    
+        $question6id=$this->input->get_post("question6id");    
+        $question7id=$this->input->get_post("question7id");    
+        $question8id=$this->input->get_post("question8id");    
+        $question9id=$this->input->get_post("question9id");    
+        $question10id=$this->input->get_post("question10id"); 
+        $option1=$this->input->get_post("option1");    
+        $option2=$this->input->get_post("option2");    
+        $option3=$this->input->get_post("option3");    
+        $option4=$this->input->get_post("option4");    
+        $option5=$this->input->get_post("option5");    
+        $option6=$this->input->get_post("option6");    
+        $option7=$this->input->get_post("option7");    
+        $option8=$this->input->get_post("option8");    
+        $option9=$this->input->get_post("option9");    
+        $option10=$this->input->get_post("option10");    
+        $option11=$this->input->get_post("option11");    
+        $option12=$this->input->get_post("option12");    
+        $option13=$this->input->get_post("option13");    
+        $option14=$this->input->get_post("option14");    
+        $option15=$this->input->get_post("option15");    
+        $option16=$this->input->get_post("option16");    
+        $option17=$this->input->get_post("option17");    
+        $option18=$this->input->get_post("option18");    
+        $option19=$this->input->get_post("option19");    
+        $option20=$this->input->get_post("option20");    
+        $option21=$this->input->get_post("option21");    
+        $option22=$this->input->get_post("option22");    
+        $option23=$this->input->get_post("option23");    
+        $option24=$this->input->get_post("option24");    
+        $option25=$this->input->get_post("option25");    
+        $option26=$this->input->get_post("option26");    
+        $option27=$this->input->get_post("option27");    
+        $option28=$this->input->get_post("option28");    
+        $option29=$this->input->get_post("option29");    
+        $option30=$this->input->get_post("option30");    
+        $option31=$this->input->get_post("option31");    
+        $option32=$this->input->get_post("option32");    
+        $option33=$this->input->get_post("option33");    
+        $option34=$this->input->get_post("option34");    
+        $option35=$this->input->get_post("option35");    
+        $option36=$this->input->get_post("option36");    
+        $option37=$this->input->get_post("option37");    
+        $option38=$this->input->get_post("option38");    
+        $option39=$this->input->get_post("option39");    
+        $option40=$this->input->get_post("option40");    
+        $option41=$this->input->get_post("option41");    
+        $option42=$this->input->get_post("option42");    
+        $option43=$this->input->get_post("option43");    
+        $option44=$this->input->get_post("option44");    
+        $option45=$this->input->get_post("option45");    
+        $option46=$this->input->get_post("option46");    
+        $option47=$this->input->get_post("option47");    
+        $option48=$this->input->get_post("option48");    
+        $option49=$this->input->get_post("option49");    
+        $option50=$this->input->get_post("option50");    
+        $option51=$this->input->get_post("option51");    
+        $option52=$this->input->get_post("option52");    
+        $option53=$this->input->get_post("option53");    
+        $option54=$this->input->get_post("option54");    
+        $option55=$this->input->get_post("option55");    
+        $option56=$this->input->get_post("option56");    
+        $option57=$this->input->get_post("option57");    
+        $option58=$this->input->get_post("option58");    
+        $option59=$this->input->get_post("option59");    
+        $option60=$this->input->get_post("option60");    
+        $option61=$this->input->get_post("option61");    
+        $option62=$this->input->get_post("option62");    
+        $option63=$this->input->get_post("option63");    
+        $option64=$this->input->get_post("option64");    
+        $option65=$this->input->get_post("option65");    
+        $option66=$this->input->get_post("option66");    
+        $option67=$this->input->get_post("option67");    
+        $option68=$this->input->get_post("option68");    
+        $option69=$this->input->get_post("option69");    
+        $option70=$this->input->get_post("option70");    
+        $option71=$this->input->get_post("option71");    
+        $option72=$this->input->get_post("option72");    
+        $option73=$this->input->get_post("option73");    
+        $option74=$this->input->get_post("option74");    
+        $option75=$this->input->get_post("option75");    
+        $option76=$this->input->get_post("option76");    
+        $option77=$this->input->get_post("option77");    
+        $option78=$this->input->get_post("option78");    
+        $option79=$this->input->get_post("option79");    
+        $option80=$this->input->get_post("option80");    
+        $option81=$this->input->get_post("option81");    
+        $option82=$this->input->get_post("option82");    
+        $option83=$this->input->get_post("option83");    
+        $option84=$this->input->get_post("option84");    
+        $option85=$this->input->get_post("option85");    
+        $option86=$this->input->get_post("option86");    
+        $option87=$this->input->get_post("option87");    
+        $option88=$this->input->get_post("option88");    
+        $option89=$this->input->get_post("option89");    
+        $option90=$this->input->get_post("option90");    
+        $option91=$this->input->get_post("option91");    
+        $option92=$this->input->get_post("option92");    
+        $option93=$this->input->get_post("option93");    
+        $option94=$this->input->get_post("option94");    
+        $option95=$this->input->get_post("option95");    
+        $option96=$this->input->get_post("option96");    
+        $option97=$this->input->get_post("option97");    
+        $option98=$this->input->get_post("option98");    
+        $option99=$this->input->get_post("option99");    
+        $option100=$this->input->get_post("option100"); 
+        $option1id=$this->input->get_post("option1id");
+        $option2id=$this->input->get_post("option2id");
+        $option3id=$this->input->get_post("option3id");
+        $option4id=$this->input->get_post("option4id");
+        $option5id=$this->input->get_post("option5id");
+        $option6id=$this->input->get_post("option6id");
+        $option7id=$this->input->get_post("option7id");
+        $option8id=$this->input->get_post("option8id");
+        $option9id=$this->input->get_post("option9id");
+        $option10id=$this->input->get_post("option10id");
+        $option11id=$this->input->get_post("option11id");
+        $option12id=$this->input->get_post("option12id");
+        $option13id=$this->input->get_post("option13id");
+        $option14id=$this->input->get_post("option14id");
+        $option15id=$this->input->get_post("option15id");
+        $option16id=$this->input->get_post("option16id");
+        $option17id=$this->input->get_post("option17id");
+        $option18id=$this->input->get_post("option18id");
+        $option19id=$this->input->get_post("option19id");
+        $option20id=$this->input->get_post("option20id");
+        $option21id=$this->input->get_post("option21id");
+        $option22id=$this->input->get_post("option22id");
+        $option23id=$this->input->get_post("option23id");
+        $option24id=$this->input->get_post("option24id");
+        $option25id=$this->input->get_post("option25id");
+        $option26id=$this->input->get_post("option26id");
+        $option27id=$this->input->get_post("option27id");
+        $option28id=$this->input->get_post("option28id");
+        $option29id=$this->input->get_post("option29id");
+        $option30id=$this->input->get_post("option30id");
+        $option31id=$this->input->get_post("option31id");
+        $option32id=$this->input->get_post("option32id");
+        $option33id=$this->input->get_post("option33id");
+        $option34id=$this->input->get_post("option34id");
+        $option35id=$this->input->get_post("option35id");
+        $option36id=$this->input->get_post("option36id");
+        $option37id=$this->input->get_post("option37id");
+        $option38id=$this->input->get_post("option38id");
+        $option39id=$this->input->get_post("option39id");
+        $option40id=$this->input->get_post("option40id");
+        $option41id=$this->input->get_post("option41id");
+        $option42id=$this->input->get_post("option42id");
+        $option43id=$this->input->get_post("option43id");
+        $option44id=$this->input->get_post("option44id");
+        $option45id=$this->input->get_post("option45id");
+        $option46id=$this->input->get_post("option46id");
+        $option47id=$this->input->get_post("option47id");
+        $option48id=$this->input->get_post("option48id");
+        $option49id=$this->input->get_post("option49id");
+        $option50id=$this->input->get_post("option50id");
+        $option51id=$this->input->get_post("option51id");
+        $option52id=$this->input->get_post("option52id");
+        $option53id=$this->input->get_post("option53id");
+        $option54id=$this->input->get_post("option54id");
+        $option55id=$this->input->get_post("option55id");
+        $option56id=$this->input->get_post("option56id");
+        $option57id=$this->input->get_post("option57id");
+        $option58id=$this->input->get_post("option58id");
+        $option59id=$this->input->get_post("option59id");
+        $option60id=$this->input->get_post("option60id");
+        $option61id=$this->input->get_post("option61id");
+        $option62id=$this->input->get_post("option62id");
+        $option63id=$this->input->get_post("option63id");
+        $option64id=$this->input->get_post("option64id");
+        $option65id=$this->input->get_post("option65id");
+        $option66id=$this->input->get_post("option66id");
+        $option67id=$this->input->get_post("option67id");
+        $option68id=$this->input->get_post("option68id");
+        $option69id=$this->input->get_post("option69id");
+        $option70id=$this->input->get_post("option70id");
+        $option71id=$this->input->get_post("option71id");
+        $option72id=$this->input->get_post("option72id");
+        $option73id=$this->input->get_post("option73id");
+        $option74id=$this->input->get_post("option74id");
+        $option75id=$this->input->get_post("option75id");
+        $option76id=$this->input->get_post("option76id");
+        $option77id=$this->input->get_post("option77id");
+        $option78id=$this->input->get_post("option78id");
+        $option79id=$this->input->get_post("option79id");
+        $option80id=$this->input->get_post("option80id");
+        $option81id=$this->input->get_post("option81id");
+        $option82id=$this->input->get_post("option82id");
+        $option83id=$this->input->get_post("option83id");
+        $option84id=$this->input->get_post("option84id");
+        $option85id=$this->input->get_post("option85id");
+        $option86id=$this->input->get_post("option86id");
+        $option87id=$this->input->get_post("option87id");
+        $option88id=$this->input->get_post("option88id");
+        $option89id=$this->input->get_post("option89id");
+        $option90id=$this->input->get_post("option90id");
+        $option91id=$this->input->get_post("option91id");
+        $option92id=$this->input->get_post("option92id");
+        $option93id=$this->input->get_post("option93id");
+        $option94id=$this->input->get_post("option94id");
+        $option95id=$this->input->get_post("option95id");
+        $option96id=$this->input->get_post("option96id");
+        $option97id=$this->input->get_post("option97id");
+        $option98id=$this->input->get_post("option98id");
+        $option99id=$this->input->get_post("option99id");
+        $option100id=$this->input->get_post("option100id");
+
+//        print_r($_POST);
+        if($this->surveyquestion_model->editsurveysubmit($surveyname,$surveydescription,$question1,$question2,$question3,$question4,$question5,$question6,$question7,$question8,$question9,$question10,$type1,$type2,$type3,$type4,$type5,$type6,$type7,$type8,$type9,$type10,$required1,$required2,$required3,$required4,$required5,$required6,$required7,$required8,$required9,$required10,$message,$surveyid,$question1id,$question2id,$question3id,$question4id,$question5id,$question6id,$question7id,$question8id,$question9id,$question10id,$option1,$option2,$option3,$option4,$option5,$option6,$option7,$option8,$option9,$option10,$option11,$option12,$option13,$option14,$option15,$option16,$option17,$option18,$option19,$option20,$option21,$option22,$option23,$option24,$option25,$option26,$option27,$option28,$option29,$option30,$option31,$option32,$option33,$option34,$option35,$option36,$option37,$option38,$option39,$option40,$option41,$option42,$option43,$option44,$option45,$option46,$option47,$option48,$option49,$option50,$option51,$option52,$option53,$option54,$option55,$option56,$option57,$option58,$option59,$option60,$option61,$option62,$option63,$option64,$option65,$option66,$option67,$option68,$option69,$option70,$option71,$option72,$option73,$option74,$option75,$option76,$option77,$option78,$option79,$option80,$option81,$option82,$option83,$option84,$option85,$option86,$option87,$option88,$option89,$option90,$option91,$option92,$option93,$option94,$option95,$option96,$option97,$option98,$option99,$option100,$option1id,$option2id,$option3id,$option4id,$option5id,$option6id,$option7id,$option8id,$option9id,$option10id,$option11id,$option12id,$option13id,$option14id,$option15id,$option16id,$option17id,$option18id,$option19id,$option20id,$option21id,$option22id,$option23id,$option24id,$option25id,$option26id,$option27id,$option28id,$option29id,$option30id,$option31id,$option32id,$option33id,$option34id,$option35id,$option36id,$option37id,$option38id,$option39id,$option40id,$option41id,$option42id,$option43id,$option44id,$option45id,$option46id,$option47id,$option48id,$option49id,$option50id,$option51id,$option52id,$option53id,$option54id,$option55id,$option56id,$option57id,$option58id,$option59id,$option60id,$option61id,$option62id,$option63id,$option64id,$option65id,$option66id,$option67id,$option68id,$option69id,$option70id,$option71id,$option72id,$option73id,$option74id,$option75id,$option76id,$option77id,$option78id,$option79id,$option80id,$option81id,$option82id,$option83id,$option84id,$option85id,$option86id,$option87id,$option88id,$option89id,$option90id,$option91id,$option92id,$option93id,$option94id,$option95id,$option96id,$option97id,$option98id,$option99id,$option100id)==0)
+$data["alerterror"]="Survey Could Not Be Updated.";
+else
+$data["alertsuccess"]="Survey Updated Successfully.";
+$data["redirect"]="site/viewconclusionfinalsuggestion";
+$this->load->view("redirect",$data);
+	 }
+
+
 }
 ?>

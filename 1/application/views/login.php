@@ -84,7 +84,7 @@
       margin-bottom: 50px;
     }
     .logo img {
-      width: 14%;
+      width: 50%;
     }
     .guys {
       width: 75%;

@@ -950,3 +950,47 @@ button:focus {
 .panel-heading .select-wrapper span.caret {
     color: #3b2417;
 }
+.mb0 {
+  margin-bottom: 0;
+}
+.question-repeater .row {
+  margin-bottom: 0;
+}
+.question-repeater .btn {
+  margin-top: 10px;
+}
+.brdr-bot {
+  display: block;
+  text-transform: uppercase;
+}
+.options .input-field {margin: 0;}
+.options {
+    padding: 0 10px;
+    font-style: italic;
+}
+/*.question-repeater+.question-repeater {
+    border-top: 1px solid #fffbec;
+    margin-top: 15px;
+}*/
+.bold {
+  font-weight: bold;
+}
+.repeat-section {
+    margin-bottom: 30px
+}
+@media screen and (max-width: 600px) {
+  .select-wrapper+label {
+    position: static;
+ }
+}
+.logo-holder img {
+    height: 40px;
+    width: auto;
+}
+.logo-holder {
+  padding: 20px 10px 10px;
+  text-align: center;
+}
+.min-h {
+  /*min-height: 350px;*/
+}

@@ -783,13 +783,15 @@ $accesslevelid=$this->session->userdata("accesslevel");
     if($accesslevelid==1)
     {
         $data["redirect"]="site/viewcompany";
+        $this->load->view("redirect",$data);
     }
     else if($accesslevelid==2)
     {
         $data["redirect"]="site/editcompany?id=".$value;
+        $this->load->view("redirect2",$data);
     }
 
-$this->load->view("redirect2",$data);
+
 }
 
 }
