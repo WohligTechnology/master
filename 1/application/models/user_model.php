@@ -36,10 +36,6 @@ class User_model extends CI_Model
 		else
 			return false;
 	}
-    public function changecredentials($email,$password){
-        $password=md5($password);
-        $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
-    }
 
     public function checkfirstlogin($id){
         

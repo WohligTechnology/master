@@ -623,8 +623,9 @@ $this->load->view("json",$data);
  }
  public function changecredentials(){
      $email=$this->input->get_post('email');
-     $pass=$this->input->get_post('pass');
-     $this->usermodel->changecredentials($email,$pass);
+     $password=$this->input->get_post('pass');
+     $password=md5($password);
+     $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
  }
   public function sendsurveyquestion()
   {

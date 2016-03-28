@@ -62,10 +62,10 @@ you with us on this journey.</p><br>
    
     
     // ASSIGHNING A CREDENTIALS FOR A COMPANY
-    
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
     $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password;
     $exactpathtobackend=$mainurl.$companyid;
-    
       // GET CURL
         $ch = curl_init();  
         $url=$exactpathforcredential;
@@ -77,17 +77,7 @@ you with us on this journey.</p><br>
         $output=curl_exec($ch);
         curl_close($ch);
     
-    //assign package
-//    $this->companypackage_model->assignpackage($companyid,$package);
-    
-    if(!$query)
-    return  0;
-    else
-    return  $id;
-}
-    public function assignpackage($companyid,$package)
-    {
-         // ASSIGHNING A PACKAGE FOR A COMPANY
+      // ASSIGHNING A PACKAGE FOR A COMPANY
     
      $this->load->helper('url');
     $mainurl=$this->config->base_url();
@@ -104,7 +94,15 @@ you with us on this journey.</p><br>
       curl_setopt($ch,CURLOPT_HEADER, false); 
         $output=curl_exec($ch);
         curl_close($ch);
-    }
+    
+   
+    
+    if(!$query)
+    return  0;
+    else
+    return  $id;
+}
+   
      public function checkrandom($length = 10)
 	{
 	$alphabets = range('A', 'Z');
