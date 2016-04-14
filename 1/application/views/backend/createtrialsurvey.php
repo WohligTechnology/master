@@ -18,7 +18,8 @@
 
         <div class="row">
             <div class="input-field col s12 m6">
-                <input type="text" name="surveydescription">
+<!--                <input type="text" name="surveydescription">-->
+                <textarea id="textarea1" name="surveydescription" class="materialize-textarea"></textarea>
                 <label>Add Description</label>
             </div>
         </div>
@@ -1700,7 +1701,8 @@
         </div>
         <div class="row">
             <div class="input-field col s12 m6">
-                <input type="text" name="message">
+<!--                <input type="text" name="message">-->
+               <textarea id="textarea1" name="message" class="materialize-textarea"></textarea>
                 <label>Thank you message</label>
             </div>
         </div>

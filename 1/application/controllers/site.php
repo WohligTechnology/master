@@ -62,8 +62,6 @@ class Site extends CI_Controller
 
             }
         }
-//        $data['totalsum']=number_format((float)$totalsum, 2, '.', '');
-//        $data['totalexpected']=number_format((float)$totalexpected, 2, '.', '');
 
         $data['totalsum']=floor($totalsum);
         $data['totalexpected']=floor($totalexpected);
@@ -73,6 +71,7 @@ class Site extends CI_Controller
 		$data[ 'maritalstatus' ] =$this->user_model->getmaritalstatustypedropdown();
 		$data[ 'designation' ] =$this->user_model->getdesignationtypedropdown();
 		$data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
+		$data[ 'totalusertestgiven' ] =$this->user_model->gettotalusergiventest();
 		$data[ 'page' ] = 'dashboard';
 		$data[ 'title' ] = 'Welcome';
         $data["checkpackage"]=$this->menu_model->checkpackage();
@@ -331,7 +330,7 @@ class Site extends CI_Controller
 		$access = array("1","3","5");
 		$this->checkaccess($access);
 
-		$this->form_validation->set_rules('name','Name','trim|required|max_length[30]');
+		$this->form_validation->set_rules('name','Name','trim|max_length[30]');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('password','Password','trim|min_length[6]|max_length[30]');
 		$this->form_validation->set_rules('confirmpassword','Confirm Password','trim|matches[password]');
@@ -989,8 +988,14 @@ public function viewpillar()
 {
 $access=array("1","2","3");
 $this->checkaccess($access);
-$data["page"]="pillarsecond";
-$data["checkpackage"]=$this->menu_model->checkpackage();
+    $data["checkpackage"]=$this->menu_model->checkpackage();
+    $checkpackage=$this->menu_model->checkpackage();
+    if($checkpackage==1 || $checkpackage==2){
+        $data["page"]="showmessage";
+    }
+    else{$data["page"]="pillarsecond";}
+
+
 $data['before']=$this->pillar_model->getpillarweightforedit();
 $data['showavg']=$this->pillar_model->showavg();
 $data['lastpillardetail']=$this->pillar_model->lastpillardetail();
@@ -1264,7 +1269,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`","WHERE `hq_question`.`id` < 41");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`","WHERE `hq_question`.`id` NOT IN(41,42,43,44)");
 $this->load->view("json",$data);
 }
 
@@ -2348,9 +2353,9 @@ $this->load->view("redirect",$data);
 			else
 			$data['alertsuccess']="Test edited Successfully.";
 
-			$data['redirect']="site/viewtest";
+			$data['redirect']="site/edittest?id=1";
 			//$data['other']="template=$template";
-			$this->load->view("redirect",$data);
+			$this->load->view("redirect2",$data);
 
 
 	}
@@ -2776,7 +2781,43 @@ $this->load->view("redirect",$data);
         $this->load->view("redirect",$data);
     }
 
+ function uploadsurveyusercsv()
+	{
+		$access = array("1");
+		$this->checkaccess($access);
+		$data[ 'page' ] = 'uploadsurveyusercsv';
+		$data[ 'title' ] = 'Upload Survey Users';
+		$this->load->view( 'template', $data );
+	}
+     function uploadsurveyusercsvsubmit()
+	{
+        $access = array("1");
+		$this->checkaccess($access);
+        $id=$this->input->get_post('id');
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = '*';
+        $this->load->library('upload', $config);
+        $filename="file";
+        $file="";
+        if (  $this->upload->do_upload($filename))
+        {
+            $uploaddata = $this->upload->data();
+            $file=$uploaddata['file_name'];
+            $filepath=$uploaddata['file_path'];
+        }
+        $fullfilepath=$filepath."".$file;
+        $file = $this->csvreader->parse_file($fullfilepath);
+        $id1=$this->surveyquestionuser_model->createbycsv($file,$id);
+//        echo $id1;
 
+        if($id1==0)
+        $data['alerterror']="New survey user could not be Uploaded.";
+		else
+		$data['alertsuccess']="Survey user Uploaded Successfully.";
+
+        $data['redirect']="site/viewconclusionfinalsuggestion?id=".$id1;
+        $this->load->view("redirect2",$data);
+    }
 
     function uploadbranchcsv()
 	{
@@ -2785,7 +2826,8 @@ $this->load->view("redirect",$data);
 		$data[ 'page' ] = 'uploadbranchcsv';
 		$data[ 'title' ] = 'Upload branch';
 		$this->load->view( 'template', $data );
-	}
+	} 
+   
 
     function uploadbranchcsvsubmit()
 	{
@@ -4192,6 +4234,7 @@ $this->load->view("template",$data);
 
    }
 	 public function getWelcomePage(){
+         $data['package']=$this->menu_model->checkpackage();
 		 $data["page"]="welcome";
 		 $data["title"]="Welcome to HQ";
 		 $this->load->view("template",$data);

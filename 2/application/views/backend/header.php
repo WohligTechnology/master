@@ -14,13 +14,13 @@
     <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
     <!--  Android 5 Chrome Color-->
     <meta name="theme-color" content="#00ac93">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
 
 
 	<link rel="shortcut icon" href="<?php echo base_url('assets').'/';?>img/favicon.png" type="image/png" />
 	<!-- <link rel="stylesheet" href="<?php echo base_url('assets').'/';?>css/materialize.min.css"> -->
 	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-
+  
 	<link href="<?php echo base_url('assets').'/';?>css/jquery.fancybox.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url('assets').'/';?>css/linearfonts.css">
 	<link href="<?php echo base_url('assets').'/';?>css/style.css" rel="stylesheet">
@@ -29,7 +29,6 @@
 	<script src="<?php echo base_url('assets').'/';?>js/jquery.min.js"></script>
 	<!-- <script src="<?php echo base_url('assets').'/';?>js/materialize.min.js"></script> -->
 	<!-- Compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 	<script src="<?php echo base_url('assets').'/';?>js/chintantable.js"></script>
 	<script src="<?php echo base_url('assets').'/';?>js/jquery.fancybox.pack.js"></script>
 	<script src="<?php echo base_url('assets').'/';?>tinymce/tinymce.min.js"></script>
@@ -43,7 +42,14 @@
     <script src="<?php echo base_url('assets/js/easy-pie-chart.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/highchartsbyavi.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/highcharts-3dbyavi.js'); ?>"></script>
+    
 -->
+
+  
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 

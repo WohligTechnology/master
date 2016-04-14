@@ -737,7 +737,80 @@ WHERE `testquestion`.`test`='$id' AND `hq_question`.`pillar`='$pillar' ";
     }
 
 
+  public function emailer($htmltext,$subject,$toemail,$toname){
+        try {
+    $mandrill = new Mandrill();
+    $message = array(
+        'html' => $htmltext,
+        'text' => 'Happiness Quotient',
+        'subject' => $subject,
+        'from_email' => "info@willnevergrowup.com",
+        'from_name' => "Will Never Grow Up",
+        'to' => array(
+            array(
+                'email' => $toemail,
+                'name' => $toname,
+                'type' => 'to'
+            )
+        ),
+        'headers' => array('Reply-To' => ''),
+        'important' => false,
+        'track_opens' => null,
+        'track_clicks' => null,
+        'auto_text' => null,
+        'auto_html' => null,
+        'inline_css' => null,
+        'url_strip_qs' => null,
+        'preserve_recipients' => null,
+        'view_content_link' => null,
+        'tracking_domain' => null,
+        'signing_domain' => null,
+        'return_path_domain' => null,
+        'merge' => true,
+        'merge_language' => 'mailchimp',
+        'global_merge_vars' => array(
+            array(
+                'name' => 'merge1',
+                'content' => 'merge1 content'
+            )
+        ),
+        'merge_vars' => array(
+            array(
+                'rcpt' => 'recipient.email@example.com',
+                'vars' => array(
+                    array(
+                        'name' => 'merge2',
+                        'content' => 'merge2 content'
+                    )
+                )
+            )
+        )
+    );
+    $async = false;
+    $ip_pool = 'Main Pool';
+    $send_at = 'example send_at';
+    $result = $mandrill->messages->send($message, $async, $ip_pool);
+//     print_r($result);
+    /*
+    Array
+    (
+        [0] => Array
+            (
+                [email] => recipient.email@example.com
+                [status] => sent
+                [reject_reason] => hard-bounce
+                [_id] => abc123abc123abc123abc123abc123
+            )
 
+    )
+    */
+} catch(Mandrill_Error $e) {
+    // Mandrill errors are thrown as exceptions
+//    echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
+    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+    throw $e;
+}
+    }
 
 
 
@@ -1056,25 +1129,24 @@ public function uploadImage(){
         
       
     }
-    public function enablemenu($package)
+    public function enablemenu($package,$expiredate)
     {
-        $this->db->query("UPDATE `user` SET `package`='$package' WHERE 1");
-        $this->db->query("UPDATE `user` SET `isfirst`='' WHERE `id`=1");
+        $this->db->query("UPDATE `user` SET `package`='$package',`expirydate`='$expiredate' WHERE 1");
         if($package==1){
              $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14)");
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=0 WHERE `menu` IN (17,18)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=0 WHERE `menu` IN (15)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=1 WHERE `accesslevel` = 1");
         }
         else if($package==2){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,15)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=1 WHERE `accesslevel` = 1");
         }
         else if($package==3){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,15)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=0 WHERE `accesslevel` = 1");
         }
         else if($package==4){
-             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,17,18)");
+             $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,15)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=0 WHERE `accesslevel` = 1");
         }
     } 

@@ -1,7 +1,8 @@
 <div class="text-center padding-bottom">
     <button class="btn btn-primary waves-effect waves-light blue darken-4" onclick="GlobalFunctions.clearSelection()">Clear Selection</button>
 </div>
-<span>Total Employee Count: <?php echo $empcount;?></span>
+<span>Total Employee Count: <?php echo $empcount;?></span><br>
+<span>Employees Appeared For Test: <?php echo $totalusertestgiven;?></span>
 <form method="post" action="<?php echo site_url('site/getdatabyfiltering');?>">
 
     <div class="cf"></div>
@@ -11,9 +12,7 @@
             <label>Gender</label>
             <select id="1" name="gender" onchange="GlobalFunctions.checkfortwo(1);" style="display:none">
                 <?php  foreach($gender as $key => $value) {?>
-                    <option value=<?php echo $key; ?>>
-                        <?php echo $value; ?>
-                    </option>
+                    <option value=<?php echo $key; ?>><?php echo $value; ?></option>
                     <?php }?>
             </select>
         </div>
@@ -35,8 +34,7 @@
             <label>Marital Status</label>
             <select id="3" name="maritalstatus" onchange="GlobalFunctions.checkfortwo(3);" style="display:none">
                 <?php  foreach($maritalstatus as $key => $value) {?>
-                    <option value="<?php echo $key; ?>">
-                        <?php echo $value; ?>
+                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
                     </option>
                     <?php }?>
             </select>
@@ -45,8 +43,7 @@
             <label>Branch</label>
             <select id="4" name="branch" onchange="GlobalFunctions.checkfortwo(4);" style="display:none">
                 <?php  foreach($branch as $key => $value) {?>
-                    <option value="<?php echo $key; ?>">
-                        <?php echo $value; ?>
+                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
                             <?php }?>
             </select>
         </div>
@@ -56,8 +53,7 @@
             <label>Department</label>
             <select id="5" name="department" onchange="GlobalFunctions.checkfortwo(5);" style="display:none">
                 <?php  foreach($department as $key => $value) {?>
-                    <option value="<?php echo $key; ?>">
-                        <?php echo $value; ?>
+                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
                     </option>
                     <?php }?>
             </select>
@@ -66,8 +62,7 @@
             <label>Designation</label>
             <select id="6" name="designation" onchange="GlobalFunctions.checkfortwo(6);" style="display:none">
                 <?php  foreach($designation as $key => $value) {?>
-                    <option value="<?php echo $key; ?>">
-                        <?php echo $value; ?>
+                    <option value="<?php echo $key; ?>"><?php echo $value; ?>
                     </option>
                     <?php }?>
             </select>

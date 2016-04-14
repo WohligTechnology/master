@@ -36,6 +36,10 @@ class User_model extends CI_Model
 		else
 			return false;
 	}
+    public function changecredentials($email,$password){
+        $password=md5($password);
+        $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
+    }
 
     public function checkfirstlogin($id){
         
@@ -215,16 +219,10 @@ class User_model extends CI_Model
 	{
 		
 		$return=array(
-		"1" => "Per Day",
-		"2" => "Per Two Days",
-		"3" => "Per Three Days",
-		"4" => "Per Four Days",
-		"5" => "Per Five Days",
-		"6" => "Per Six Days",
-		"7" => "Per week",
-		"14" => "Per two week",
-		"21" => "Per three week",
-		"30" => "Per month"
+		"1" => "All 42 Questions Per week",
+		"2" => "All 42 Questions Per two week",
+		"3" => "All 42 Questions Per three week",
+		"4" => "All 42 Questions Per month"
 		);
 		
 		return $return;
@@ -277,6 +275,12 @@ class User_model extends CI_Model
 		}
 		
 		return $return;
+	}
+    public function gettotalusergiventest()
+	{
+		$query=$this->db->query("SELECT COUNT(DISTINCT(`user`)) as `usercount` FROM `hq_useranswer`")->row();
+        $usercount=$query->usercount;
+		return $usercount;
 	} 
 	public function getteamdropdown()
 	{
@@ -693,7 +697,7 @@ class User_model extends CI_Model
             $branch=$row['branch'];
             $team=$row['team'];
             $language=$row['language'];
-            $salary=$row['salary'];
+            $salary=$row['annualsalary'];
             $description=$row['description'];
 
             $checkuser=$this->db->query("SELECT * FROM `user` WHERE `email`= '$email'");
@@ -703,96 +707,96 @@ class User_model extends CI_Model
             }
             else
             {
-                 if(strtolower($maritalstatus)=='Unmarried')
-            {
-                $maritalstatus=1;
-            }
-            else if(strtolower($maritalstatus)=='Married')
-            {
-                $maritalstatus=2;
-            }
-            if(strtolower($gender)=='M')
-            {
-                $gender=1;
-            }
-            else if(strtolower($gender)=='F')
-            {
-                $gender=2;
-            }
-            
-        
-            $designationquery=$this->db->query("SELECT * FROM `hq_designation` WHERE `name`LIKE '$designation'")->row();
-            if(empty($designationquery))
-            {
-                $this->db->query("INSERT INTO `hq_designation`(`name`) VALUES ('$designation')");
-                $designation=$this->db->insert_id();
-            }
-            else
-            {
-                $designation=$designationquery->id;
-            }
-            
-        
-            $departmentquery=$this->db->query("SELECT * FROM `hq_department` WHERE `name`LIKE '$department'")->row();
-            if(empty($departmentquery))
-            {
-                $this->db->query("INSERT INTO `hq_department`(`name`) VALUES ('$department')");
-                $department=$this->db->insert_id();
-            }
-            else
-            {
-                $department=$departmentquery->id;
-            }
-            
-            $branchquery=$this->db->query("SELECT * FROM `hq_branch` WHERE `name`LIKE '$branch'")->row();
-            if(empty($branchquery))
-            {
-                $this->db->query("INSERT INTO `hq_branch`(`name`) VALUES ('$branch')");
-                $branch=$this->db->insert_id();
-            }
-            else
-            {
-                $branch=$branchquery->id;
-            }
-            
-            $teamquery=$this->db->query("SELECT * FROM `hq_team` WHERE `name`LIKE '$team'")->row();
-            if(empty($teamquery))
-            {
-                $this->db->query("INSERT INTO `hq_team`(`name`) VALUES ('$team')");
-                $team=$this->db->insert_id();
-            }
-            else
-            {
-                $team=$teamquery->id;
-            }
-            
-            $data  = array(
-                'name' => $name,
-                'email' => $email,
-                'accesslevel' => 4,
-                'status' => 1,
-                'gender' => $gender,
-                'age' => $age,
-                'maritalstatus' => $maritalstatus,
-                'designation' => $designation,
-                'department' => $department,
-                'noofyearsinorganization' => $experience,
-                'spanofcontrol' => $spanofcontrol,
-                'employeeid' => $employeeid,
-                'branch' => $branch,
-                'language' => 0,
-                'team' => $team,
-                'salary' => $salary,
-                'description' => $description
-            );
-            $query=$this->db->insert( 'user', $data );
-            $id=$this->db->insert_id();
+                             if(strtolower($maritalstatus)=='Unmarried')
+                        {
+                            $maritalstatus=1;
+                        }
+                        else if(strtolower($maritalstatus)=='Married')
+                        {
+                            $maritalstatus=2;
+                        }
+                        if(strtolower($gender)=='M')
+                        {
+                            $gender=1;
+                        }
+                        else if(strtolower($gender)=='F')
+                        {
+                            $gender=2;
+                        }
+
+
+                        $designationquery=$this->db->query("SELECT * FROM `hq_designation` WHERE `name`LIKE '$designation'")->row();
+                        if(empty($designationquery))
+                        {
+                            $this->db->query("INSERT INTO `hq_designation`(`name`) VALUES ('$designation')");
+                            $designation=$this->db->insert_id();
+                        }
+                        else
+                        {
+                            $designation=$designationquery->id;
+                        }
+
+
+                        $departmentquery=$this->db->query("SELECT * FROM `hq_department` WHERE `name`LIKE '$department'")->row();
+                        if(empty($departmentquery))
+                        {
+                            $this->db->query("INSERT INTO `hq_department`(`name`) VALUES ('$department')");
+                            $department=$this->db->insert_id();
+                        }
+                        else
+                        {
+                            $department=$departmentquery->id;
+                        }
+
+                        $branchquery=$this->db->query("SELECT * FROM `hq_branch` WHERE `name`LIKE '$branch'")->row();
+                        if(empty($branchquery))
+                        {
+                            $this->db->query("INSERT INTO `hq_branch`(`name`) VALUES ('$branch')");
+                            $branch=$this->db->insert_id();
+                        }
+                        else
+                        {
+                            $branch=$branchquery->id;
+                        }
+
+                        $teamquery=$this->db->query("SELECT * FROM `hq_team` WHERE `name`LIKE '$team'")->row();
+                        if(empty($teamquery))
+                        {
+                            $this->db->query("INSERT INTO `hq_team`(`name`) VALUES ('$team')");
+                            $team=$this->db->insert_id();
+                        }
+                        else
+                        {
+                            $team=$teamquery->id;
+                        }
+
+                        $data  = array(
+                            'name' => $name,
+                            'email' => $email,
+                            'accesslevel' => 4,
+                            'status' => 1,
+                            'gender' => $gender,
+                            'age' => $age,
+                            'maritalstatus' => $maritalstatus,
+                            'designation' => $designation,
+                            'department' => $department,
+                            'noofyearsinorganization' => $experience,
+                            'spanofcontrol' => $spanofcontrol,
+                            'employeeid' => $employeeid,
+                            'branch' => $branch,
+                            'language' => 0,
+                            'team' => $team,
+                            'salary' => $salary,
+                            'description' => $description
+                        );
+                        $query=$this->db->insert( 'user', $data );
+                        $id=$this->db->insert_id();
          
             
         }
-			return  1;
+			
         }  
-           
+           return  1;
 	}
 }
 ?>

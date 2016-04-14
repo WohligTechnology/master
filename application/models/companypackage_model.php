@@ -13,12 +13,28 @@ public function create($company,$package)
      $data1=array("package" => $package);
     $this->db->where( "id", $company );
     $query=$this->db->update( "master_company", $data1 );
+    //COMPANY PACKAGE
+     $package=$companydetails->package;
+        if($package==1){
+            $package="Starter";
+        }
+        else if($package==2){
+            $package="Advance";
+        }
+        else if($package==3){
+            $package="Pro";
+        }
+        else if($package==4){
+            $package="Pro Plus";
+        }
+    
     
     // SEND CREDENTIALS ON COMPANY CREATE
     
     $companydetails=$this->company_model->getsinglecompany($company);
     $receiver=$companydetails->email;
     $companyid=$companydetails->id;
+    $expiredate=$companydetails->enddate;
     $sender="master@willnevergrowup.in";
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
@@ -33,7 +49,7 @@ public function create($company,$package)
         $message = "<html>
         <p>Hey Happyness Torch-bearer,</p><br>
         <p>Welcome aboard!</p><br>
-        <p>Your company has now been registered on Happyness Quotient.</p><br>
+        <p>Your company has now been registered on Happyness Quotient with <b>$package<b> Package.</p><br>
         <p>Please use the below ID and Password to access your company profile:</p><br>
         <p><span style='font-size:14px;font-weight:bold;padding:10px 0;'>Link: </span>
       <span>$exactpath</span>
@@ -81,7 +97,7 @@ you with us on this journey.</p><br>
     
      $this->load->helper('url');
     $mainurl=$this->config->base_url();
-    $exactpath=$mainurl.$companyid.'/index.php/json/assignpackage?package='.$package;
+    $exactpath=$mainurl.$companyid.'/index.php/json/assignpackage?package='.$package.'&expiredate='.$expiredate;
     $exactpathtobackend=$mainurl.$companyid;
     
       // GET CURL
@@ -139,6 +155,30 @@ you with us on this journey.</p><br>
      $data1=array("package" => $package);
     $this->db->where( "id", $company );
     $query=$this->db->update( "master_company", $data1 );
+        
+    $companydetails=$this->company_model->getsinglecompany($company);
+    $receiver=$companydetails->email;
+    $companyid=$companydetails->id;
+    $expiredate=$companydetails->enddate;
+        
+        
+       // ASSIGHNING A PACKAGE FOR A COMPANY
+    
+     $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpath=$mainurl.$companyid.'/index.php/json/assignpackage?package='.$package.'&expiredate='.$expiredate;
+    $exactpathtobackend=$mainurl.$companyid;
+    
+      // GET CURL
+        $ch = curl_init();  
+        $url=$exactpath;
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+      curl_setopt($ch,CURLOPT_HEADER, false); 
+        $output=curl_exec($ch);
+        curl_close($ch);
     return 1;
 }
     public function delete($id)

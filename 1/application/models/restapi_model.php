@@ -26,20 +26,54 @@ class restapi_model extends CI_Model
         $normalfromhash = base64_decode($user);
         $returnvalue    = explode("&", $normalfromhash);
         $userid         = $returnvalue[0];
-        // get pillar id
         
-        $query1   = $this->db->query("SELECT `pillar` FROM `hq_question` WHERE `id`='$question'")->row();
-        $pillarid = $query1->pillar;
+        // check if answer array
         
-        $data  = array(
-            "user" => $userid,
-            "question" => $question,
-            "option" => $option,
-            "test" => $test,
-            "pillar" => $pillarid
-        );
-        $query = $this->db->insert("hq_useranswer", $data);
-        $id    = $this->db->insert_id();
+        if (strpos($option, ',') !== FALSE)
+        {
+//         explode it
+        $optionarray=explode(",",$option);
+            foreach($optionarray as $singleoption)
+            {
+                $option=$singleoption;
+              // get pillar id
+
+            $query1   = $this->db->query("SELECT `pillar` FROM `hq_question` WHERE `id`='$question'")->row();
+            $pillarid = $query1->pillar;
+
+            $data  = array(
+                "user" => $userid,
+                "question" => $question,
+                "option" => $option,
+                "test" => $test,
+                "pillar" => $pillarid
+            );
+            $query = $this->db->insert("hq_useranswer", $data);
+            $id    = $this->db->insert_id();    
+            }
+        }
+        else
+        {
+            $option=$option;
+              // get pillar id
+
+            $query1   = $this->db->query("SELECT `pillar` FROM `hq_question` WHERE `id`='$question'")->row();
+            $pillarid = $query1->pillar;
+
+            $data  = array(
+                "user" => $userid,
+                "question" => $question,
+                "option" => $option,
+                "test" => $test,
+                "pillar" => $pillarid
+            );
+            $query = $this->db->insert("hq_useranswer", $data);
+            $id    = $this->db->insert_id();    
+        
+        }
+        
+        
+      
         if (!$query)
             return false;
         else
@@ -68,6 +102,19 @@ class restapi_model extends CI_Model
             return true;
     }
     
+    function shuffle_assoc($list) 
+    { 
+          if (!is_array($list)) return $list; 
+
+          $keys = array_keys($list); 
+          shuffle($keys); 
+          $random = array(); 
+          foreach ($keys as $key) { 
+            $random[$key] = $list[$key]; 
+          }
+          return $random; 
+    } 
+    
     public function pingHq($user)
     {
         if($user==''){
@@ -80,20 +127,50 @@ class restapi_model extends CI_Model
         $userid         = $returnvalue[0];
         $todaysdate     = date("Y-m-d");
 	    
-        // query by jags
-        
-//	   $query = $this->db->query("SELECT `testquestion`.`id` as `questionid`, `testquestion`.`test`, `testquestion`.`question`, `testquestion`.`dateandtime`, `hq_question`.`text`, `hq_question`.`type`
-//from `testquestion`
-//inner join `test` ON `testquestion`.`test` = `test`.`id`
-//inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id`
-//where `test`.`startdate` < now()
-//HAVING `questionid` not in (Select `testquestion`.`id` as `questionid` from `testquestion` inner join `test` ON `testquestion`.`test` = `test`.`id` inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id` inner join `hq_useranswer` ON `testquestion`.`question` = `hq_useranswer`.`question` AND `testquestion`.`test` = `hq_useranswer`.`test` where `hq_useranswer`.`user` = '$userid')")->result(); 
-        
+        $checkpackage=$this->db->query("SELECT * FROM `user`")->row();
+        $package=$checkpackage->package;
         //query by pooja
         
+        if($package==4)
+        {
+//            send 46 questions
+                    $query = $this->db->query("SELECT `testquestion`.`question` as `questionid`, `testquestion`.`test`, `testquestion`.`question`, `testquestion`.`dateandtime`, `hq_question`.`text`, `hq_question`.`type`,`hq_question`.`optionselect` FROM `testquestion` 
+INNER JOIN `test` ON `testquestion`.`test` = `test`.`id` 
+INNER JOIN `hq_question` ON `testquestion`.`question` = `hq_question`.`id` 
+WHERE `test`.`startdate` < now() AND `hq_question`.`date` <=NOW()
+HAVING `questionid` NOT IN (SELECT `testquestion`.`question` as `questionid` FROM `testquestion` 
+                            INNER JOIN `test` ON `testquestion`.`test` = `test`.`id` 
+                            INNER JOIN `hq_question` ON `testquestion`.`question` = `hq_question`.`id` 
+                            INNER JOIN `hq_useranswer` ON `testquestion`.`question` = `hq_useranswer`.`question` AND `testquestion`.`test` = `hq_useranswer`.`test` 
+                            WHERE `hq_useranswer`.`user` = '$userid' AND `hq_question`.`id` BETWEEN 1 AND 46) ORDER BY RAND()")->result(); 
+
+        }
+        else
+        {
+//            send 42 questions
+                    $query = $this->db->query("SELECT `testquestion`.`question` as `questionid`, `testquestion`.`test`, `testquestion`.`question`, `testquestion`.`dateandtime`, `hq_question`.`text`, `hq_question`.`type`,`hq_question`.`optionselect` FROM `testquestion` 
+INNER JOIN `test` ON `testquestion`.`test` = `test`.`id` 
+INNER JOIN `hq_question` ON `testquestion`.`question` = `hq_question`.`id` 
+WHERE `test`.`startdate` < now() AND `hq_question`.`date` <=NOW()
+HAVING `questionid` NOT IN (SELECT `testquestion`.`question` as `questionid` FROM `testquestion` 
+                            INNER JOIN `test` ON `testquestion`.`test` = `test`.`id` 
+                            INNER JOIN `hq_question` ON `testquestion`.`question` = `hq_question`.`id` 
+                            INNER JOIN `hq_useranswer` ON `testquestion`.`question` = `hq_useranswer`.`question` AND `testquestion`.`test` = `hq_useranswer`.`test` 
+                            WHERE `hq_useranswer`.`user` = '$userid' AND `hq_question`.`id` BETWEEN 1 AND 42) ORDER BY RAND()")->result(); 
+
+        }
         
-        $query = $this->db->query("SELECT `testquestion`.`question` as `questionid`, `testquestion`.`test`, `testquestion`.`question`, `testquestion`.`dateandtime`, `hq_question`.`text`, `hq_question`.`type` from `testquestion` inner join `test` ON `testquestion`.`test` = `test`.`id` inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id` where `test`.`startdate` < now() HAVING `questionid` not in (Select `testquestion`.`question` as `questionid` from `testquestion` inner join `test` ON `testquestion`.`test` = `test`.`id` inner join `hq_question` ON `testquestion`.`question` = `hq_question`.`id` inner join `hq_useranswer` ON `testquestion`.`question` = `hq_useranswer`.`question` AND `testquestion`.`test` = `hq_useranswer`.`test` where `hq_useranswer`.`user` = '$userid') LIMIT 0,1")->result(); 
-	   
+        
+	   // assign date to questions
+        
+        $testdetail=$this->db->query("SELECT `id`, `name`, `units`, `schedule`, `startdate`, `department`, `branch`, `designation`, `check`, `team`, `timestamp`, `enddate` FROM `test` WHERE 1")->row();
+        $units=$testdetail->units;
+        $schedule=$testdetail->schedule;
+        $startdate=$testdetail->startdate;
+        
+        
+  
+        
         if(empty($query))
         {
 	       

@@ -597,29 +597,31 @@ $this->load->view("json",$data);
  }
    public function sendMailToEachUser()
    {
-       $getUserid=$this->restapi_model->getUsers();
+//       $getUserid=$this->restapi_model->getUsers();
 //       print_r($getUserid);
-        foreach($getUserid as $getUserid){
-            $email=$getUserid->email;
-             $hashvalue=base64_encode ($getUserid->id."&hq");
+//        foreach($getUserid as $getUserid){
+//            $email=$getUserid->email;
+//             $hashvalue=base64_encode ($getUserid->id."&hq");
+             $hashvalue=base64_encode ("16&hq");
        $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
             echo $link;
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
-       $this->email->to($email);
+       $this->email->to('jagruti@wohlig.com');
        $this->email->subject('Test');  
             $message = "Hiii this is the link ".$link;
        $this->email->message($message);
        $this->email->send();
             
-        }
+//        }
     
        return 1;
    }
 
  public function assignpackage(){
      $package=$this->input->get_post('package');
-     $this->menu_model->enablemenu($package);
+     $expiredate=$this->input->get_post('expiredate');
+     $this->menu_model->enablemenu($package,$expiredate);
  }
   public function sendsurveyquestion()
   {
@@ -694,6 +696,12 @@ $this->load->view("json",$data);
      $image=$query->image;
      $data['message']=$query;
     $this->load->view('json',$data);
+ }
+  public function changecredentials(){
+     $email=$this->input->get_post('email');
+     $password=$this->input->get_post('pass');
+     $password=md5($password);
+     $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
  }
  public function checkweight(){
          $range=$this->input->get_post('range');
@@ -789,33 +797,66 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
      
  }
  public function test1(){
-      for($i=1;$i<=100;$i++){
+      for($i=91;$i<=100;$i++){
           $j=10;
-          echo '$option'.$i.'id,';
-//          echo "// create option".$i;
-//          echo "\n";
-//          echo "\n";
-//          echo 'if($question'.$j.' !="" && $option'.$i.'!="")';
-//          echo "\n";
-//          
-//          echo "{";
-//          echo "\n";
-//     echo '$data=array("question" => $question'.$j.'id,"title" => $option'.$i.');';
-//          
-//          echo "\n";
-//      echo   '$query=$this->db->insert( "hq_surveyoption", $data );';
-//          echo "\n";
-//       echo '$option'.$i.'id=$this->db->insert_id();';
-//          echo "\n";
-//          echo "}";
-//          echo "\n";
-//          echo "\n";
-          
-      }
+          echo "//  option".$i;
+          echo "\n";
+          echo "\n";
+          echo 'if($option'.$i.'id =="")';
+          echo "\n";
+          echo "{";
+          echo "\n";
+           echo '       if($option'.$i.' !="")';
+          echo "\n";
+          echo "        {";
+          echo "\n";
+          echo '            $data=array("question" => $question'.$j.'id,"title" => $option'.$i.');';
+          echo "\n";
+          echo   '            $query=$this->db->insert( "hq_surveyoption", $data );';
+          echo "\n";
+          echo '            $option'.$i.'id=$this->db->insert_id();';
+           echo "\n";
+          echo "        }";
+           echo "\n";
+          echo "}";
+           echo "\n";
+          echo "else";
+           echo "\n";
+          echo "        {";
+           echo "\n";
+          echo '            $data=array("question" => $question'.$j.'id,"title" => $option'.$i.');';
+          echo "\n";
+        echo '              $this->db->where( "id", $option'.$i.'id );';
+          echo "\n";
+          echo   '          $query=$this->db->update( "hq_surveyoption", $data );';
+          echo "\n";
+          echo "        }";
+           echo "\n";
+           echo "\n";
+           //  option7
+
+//                    if($option7id =="")
+//                    {
+//                        if($option7 !=''){
+//                    $data=array("question" => $question1id,"title" => $option7);
+//                    $query=$this->db->insert( "hq_surveyoption", $data );
+//                    $option7id=$this->db->insert_id();
+//                    }
+//                    }
+//                    else
+//                    {
+//                    $data=array("question" => $question1id,"title" => $option7);
+//                    $this->db->where( "id", $option7id );
+//                    $query=$this->db->update( "hq_surveyoption", $data );
+//                    }
+      
  }
-     public function test2(){
+ }
+     public function test2()
+     {
          echo '//question '.$j.''; echo "\n";
-      for($i=1;$i<=10;$i++){
+      for($i=1;$i<=10;$i++)
+      {
           $j=1;
     
        echo '//option'.$i.''; echo "\n";
@@ -824,7 +865,119 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
           echo '$query=$this->db->update( "hq_surveyoption", $data );'; echo "\n";echo "\n";
           
       }
+    } 
+ public function abc()
+     {
+     $query = $this->db->query("SELECT * FROM `hq_question`")->result(); 
+     $testdetail=$this->db->query("SELECT * FROM `test`")->row();
+     $startdate=$testdetail->startdate;
+     $schedule=$testdetail->schedule;
+     $checkpackage=$this->db->query("SELECT * FROM `user`")->row();
+     $package=$checkpackage->package;
+     if($package==4){
+         $noofquestions=46;
+     }
+     else{
+        $noofquestions=42;
+     }
+     
+        //ASSIGN DATES ACCORDING TO SCHEDULE
+         if($schedule==1)
+         {
+             $this->db->query('UPDATE `hq_question` SET `date`=null');
+             $noofdays=7;
+             $units=ceil($noofquestions/7);
+               for($i=1;$i<=$noofquestions;$i++)
+               {
+                        $day=ceil($i/$units);
+                        $exactdateday=$day-1;
+                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                }
+            
+         } 
+     
+     if($schedule==2)
+         {
+             $this->db->query('UPDATE `hq_question` SET `date`=null');
+             $noofdays=14;
+             $units=ceil($noofquestions/$noofdays);
+               for($i=1;$i<=$noofquestions;$i++)
+               {
+                        $day=ceil($i/$units);
+                        $exactdateday=$day-1;
+                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                }
+            
+         } 
+     if($schedule==3)
+         {
+             $this->db->query('UPDATE `hq_question` SET `date`=null');
+             $noofdays=21;
+             $units=ceil($noofquestions/$noofdays);
+               for($i=1;$i<=$noofquestions;$i++)
+               {
+                        $day=ceil($i/$units);
+                        $exactdateday=$day-1;
+                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                }
+            
+         } 
+     if($schedule==4)
+         {
+             $this->db->query('UPDATE `hq_question` SET `date`=null');
+             $noofdays=28;
+             $units=ceil($noofquestions/$noofdays);
+               for($i=1;$i<=$noofquestions;$i++)
+               {
+                        $day=ceil($i/$units);
+                        $exactdateday=$day-1;
+                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                }
+            
+         } 
+   
+    }
+ public function setCron()
+ {
+     $query1=$this->db->query("SELECT * FROM `user` WHERE `expirydate` <=NOW()")->row();
+//    don't send que
+     if(empty($query1))
+     {
+         $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW()")->result(); 
+         if(!empty($query))
+         {
+            $getUserid=$this->restapi_model->getUsers();
+            foreach($getUserid as $getUserid)
+            {
+            $email=$getUserid->email;
+            $hashvalue=base64_encode ($getUserid->id."&hq");
+            $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+            $this->load->library('email');
+            $this->email->from('master@willnevergrowup.in', 'HQ');
+            $this->email->to($email);
+            $this->email->subject('Happiness Quotient');
+            $message = "<html>
+            <p>Hello!</p><br>
+          <p>Feel like taking a break from work? Click on this link to have some fun! </p><span>$link</span><br>
+    <p>For any queries/support, contact the HR Team on ___________________</p><br>
+          </html>";
+           $this->email->message($message);
+           $this->email->send();
+            }
+         }
+     }
+     else{
+//         do nothing
+         echo "in else";
+     }
+   
  }
+ 
+ 
  
 
  } ?>

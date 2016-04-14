@@ -1095,55 +1095,188 @@ public function gettypedropdown()
           $query=$this->db->update( "hq_surveyquestion", $data );
         
                         //question 
-                //option1
-                $data=array("question" => $question1id,"title" => $option1);
-                $this->db->where( "id", $option1id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                                       //  option1
 
-                //option2
-                $data=array("question" => $question1id,"title" => $option2);
-                $this->db->where( "id", $option2id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        if($option1id =="")
+                        {
+                               if($option1 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option1);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option1id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option1);
+                                      $this->db->where( "id", $option1id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
 
-                //option3
-                $data=array("question" => $question1id,"title" => $option3);
-                $this->db->where( "id", $option3id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        //  option2
 
-                //option4
-                $data=array("question" => $question1id,"title" => $option4);
-                $this->db->where( "id", $option4id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        if($option2id =="")
+                        {
+                               if($option2 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option2);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option2id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option2);
+                                      $this->db->where( "id", $option2id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
 
-                //option5
-                $data=array("question" => $question1id,"title" => $option5);
-                $this->db->where( "id", $option5id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        //  option3
 
-                //option6
-                $data=array("question" => $question1id,"title" => $option6);
-                $this->db->where( "id", $option6id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        if($option3id =="")
+                        {
+                               if($option3 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option3);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option3id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option3);
+                                      $this->db->where( "id", $option3id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
 
-                //option7
-                $data=array("question" => $question1id,"title" => $option7);
-                $this->db->where( "id", $option7id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        //  option4
 
-                //option8
-                $data=array("question" => $question1id,"title" => $option8);
-                $this->db->where( "id", $option8id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        if($option4id =="")
+                        {
+                               if($option4 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option4);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option4id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option4);
+                                      $this->db->where( "id", $option4id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
 
-                //option9
-                $data=array("question" => $question1id,"title" => $option9);
-                $this->db->where( "id", $option9id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        //  option5
 
-                //option10
-                $data=array("question" => $question1id,"title" => $option10);
-                $this->db->where( "id", $option10id );
-                $query=$this->db->update( "hq_surveyoption", $data );
+                        if($option5id =="")
+                        {
+                               if($option5 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option5);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option5id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option5);
+                                      $this->db->where( "id", $option5id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
+
+                        //  option6
+
+                        if($option6id =="")
+                        {
+                               if($option6 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option6);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option6id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option6);
+                                      $this->db->where( "id", $option6id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
+
+                        //  option7
+
+                        if($option7id =="")
+                        {
+                               if($option7 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option7);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option7id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option7);
+                                      $this->db->where( "id", $option7id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
+
+                        //  option8
+
+                        if($option8id =="")
+                        {
+                               if($option8 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option8);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option8id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option8);
+                                      $this->db->where( "id", $option8id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
+
+                        //  option9
+
+                        if($option9id =="")
+                        {
+                               if($option9 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option9);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option9id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option9);
+                                      $this->db->where( "id", $option9id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
+
+                        //  option10
+
+                        if($option10id =="")
+                        {
+                               if($option10 !="")
+                                {
+                                    $data=array("question" => $question1id,"title" => $option10);
+                                    $query=$this->db->insert( "hq_surveyoption", $data );
+                                    $option10id=$this->db->insert_id();
+                                }
+                        }
+                        else
+                                {
+                                    $data=array("question" => $question1id,"title" => $option10);
+                                      $this->db->where( "id", $option10id );
+                                  $query=$this->db->update( "hq_surveyoption", $data );
+                                }
+
+
+
 
 
         
@@ -1152,45 +1285,1695 @@ public function gettypedropdown()
         $this->db->where( "id", $question2id );
           $query=$this->db->update( "hq_surveyquestion", $data );
         
+                        //  option11
+
+if($option11id =="")
+{
+       if($option11 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option11);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option11id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option11);
+              $this->db->where( "id", $option11id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option12
+
+if($option12id =="")
+{
+       if($option12 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option12);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option12id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option12);
+              $this->db->where( "id", $option12id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option13
+
+if($option13id =="")
+{
+       if($option13 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option13);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option13id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option13);
+              $this->db->where( "id", $option13id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option14
+
+if($option14id =="")
+{
+       if($option14 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option14);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option14id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option14);
+              $this->db->where( "id", $option14id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option15
+
+if($option15id =="")
+{
+       if($option15 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option15);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option15id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option15);
+              $this->db->where( "id", $option15id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option16
+
+if($option16id =="")
+{
+       if($option16 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option16);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option16id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option16);
+              $this->db->where( "id", $option16id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option17
+
+if($option17id =="")
+{
+       if($option17 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option17);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option17id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option17);
+              $this->db->where( "id", $option17id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option18
+
+if($option18id =="")
+{
+       if($option18 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option18);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option18id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option18);
+              $this->db->where( "id", $option18id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option19
+
+if($option19id =="")
+{
+       if($option19 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option19);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option19id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option19);
+              $this->db->where( "id", $option19id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option20
+
+if($option20id =="")
+{
+       if($option20 !="")
+        {
+            $data=array("question" => $question2id,"title" => $option20);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option20id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question2id,"title" => $option20);
+              $this->db->where( "id", $option20id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
+                          
+        
         //question3
         $data=array("type" => $type3,"survey" => $surveyid,"content" => $question3,"isrequired" => $required3);
         $this->db->where( "id", $question3id );
           $query=$this->db->update( "hq_surveyquestion", $data );
+        
+                    //  option21
+
+if($option21id =="")
+{
+       if($option21 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option21);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option21id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option21);
+              $this->db->where( "id", $option21id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option22
+
+if($option22id =="")
+{
+       if($option22 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option22);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option22id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option22);
+              $this->db->where( "id", $option22id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option23
+
+if($option23id =="")
+{
+       if($option23 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option23);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option23id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option23);
+              $this->db->where( "id", $option23id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option24
+
+if($option24id =="")
+{
+       if($option24 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option24);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option24id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option24);
+              $this->db->where( "id", $option24id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option25
+
+if($option25id =="")
+{
+       if($option25 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option25);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option25id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option25);
+              $this->db->where( "id", $option25id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option26
+
+if($option26id =="")
+{
+       if($option26 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option26);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option26id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option26);
+              $this->db->where( "id", $option26id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option27
+
+if($option27id =="")
+{
+       if($option27 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option27);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option27id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option27);
+              $this->db->where( "id", $option27id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option28
+
+if($option28id =="")
+{
+       if($option28 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option28);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option28id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option28);
+              $this->db->where( "id", $option28id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option29
+
+if($option29id =="")
+{
+       if($option29 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option29);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option29id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option29);
+              $this->db->where( "id", $option29id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option30
+
+if($option30id =="")
+{
+       if($option30 !="")
+        {
+            $data=array("question" => $question3id,"title" => $option30);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option30id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question3id,"title" => $option30);
+              $this->db->where( "id", $option30id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
         
         //question4
         $data=array("type" => $type4,"survey" => $surveyid,"content" => $question4,"isrequired" => $required4);
         $this->db->where( "id", $question4id );
           $query=$this->db->update( "hq_surveyquestion", $data );
         
+                    //  option31
+
+if($option31id =="")
+{
+       if($option31 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option31);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option31id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option31);
+              $this->db->where( "id", $option31id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option32
+
+if($option32id =="")
+{
+       if($option32 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option32);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option32id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option32);
+              $this->db->where( "id", $option32id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option33
+
+if($option33id =="")
+{
+       if($option33 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option33);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option33id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option33);
+              $this->db->where( "id", $option33id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option34
+
+if($option34id =="")
+{
+       if($option34 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option34);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option34id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option34);
+              $this->db->where( "id", $option34id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option35
+
+if($option35id =="")
+{
+       if($option35 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option35);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option35id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option35);
+              $this->db->where( "id", $option35id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option36
+
+if($option36id =="")
+{
+       if($option36 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option36);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option36id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option36);
+              $this->db->where( "id", $option36id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option37
+
+if($option37id =="")
+{
+       if($option37 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option37);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option37id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option37);
+              $this->db->where( "id", $option37id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option38
+
+if($option38id =="")
+{
+       if($option38 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option38);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option38id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option38);
+              $this->db->where( "id", $option38id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option39
+
+if($option39id =="")
+{
+       if($option39 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option39);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option39id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option39);
+              $this->db->where( "id", $option39id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option40
+
+if($option40id =="")
+{
+       if($option40 !="")
+        {
+            $data=array("question" => $question4id,"title" => $option40);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option40id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question4id,"title" => $option40);
+              $this->db->where( "id", $option40id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
+
+
+        
         //question5
         $data=array("type" => $type5,"survey" => $surveyid,"content" => $question5,"isrequired" => $required5);
        $this->db->where( "id", $question5id );
           $query=$this->db->update( "hq_surveyquestion", $data );
+        
+                           
+                        //  option41
+
+if($option41id =="")
+{
+       if($option41 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option41);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option41id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option41);
+              $this->db->where( "id", $option41id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option42
+
+if($option42id =="")
+{
+       if($option42 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option42);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option42id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option42);
+              $this->db->where( "id", $option42id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option43
+
+if($option43id =="")
+{
+       if($option43 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option43);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option43id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option43);
+              $this->db->where( "id", $option43id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option44
+
+if($option44id =="")
+{
+       if($option44 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option44);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option44id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option44);
+              $this->db->where( "id", $option44id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option45
+
+if($option45id =="")
+{
+       if($option45 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option45);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option45id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option45);
+              $this->db->where( "id", $option45id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option46
+
+if($option46id =="")
+{
+       if($option46 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option46);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option46id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option46);
+              $this->db->where( "id", $option46id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option47
+
+if($option47id =="")
+{
+       if($option47 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option47);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option47id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option47);
+              $this->db->where( "id", $option47id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option48
+
+if($option48id =="")
+{
+       if($option48 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option48);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option48id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option48);
+              $this->db->where( "id", $option48id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option49
+
+if($option49id =="")
+{
+       if($option49 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option49);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option49id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option49);
+              $this->db->where( "id", $option49id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option50
+
+if($option50id =="")
+{
+       if($option50 !="")
+        {
+            $data=array("question" => $question5id,"title" => $option50);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option50id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question5id,"title" => $option50);
+              $this->db->where( "id", $option50id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
         
         //question6
         $data=array("type" => $type6,"survey" => $surveyid,"content" => $question6,"isrequired" => $required6);
        $this->db->where( "id", $question6id );
           $query=$this->db->update( "hq_surveyquestion", $data );
         
+                            //  option51
+
+if($option51id =="")
+{
+       if($option51 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option51);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option51id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option51);
+              $this->db->where( "id", $option51id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option52
+
+if($option52id =="")
+{
+       if($option52 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option52);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option52id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option52);
+              $this->db->where( "id", $option52id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option53
+
+if($option53id =="")
+{
+       if($option53 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option53);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option53id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option53);
+              $this->db->where( "id", $option53id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option54
+
+if($option54id =="")
+{
+       if($option54 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option54);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option54id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option54);
+              $this->db->where( "id", $option54id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option55
+
+if($option55id =="")
+{
+       if($option55 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option55);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option55id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option55);
+              $this->db->where( "id", $option55id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option56
+
+if($option56id =="")
+{
+       if($option56 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option56);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option56id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option56);
+              $this->db->where( "id", $option56id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option57
+
+if($option57id =="")
+{
+       if($option57 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option57);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option57id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option57);
+              $this->db->where( "id", $option57id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option58
+
+if($option58id =="")
+{
+       if($option58 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option58);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option58id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option58);
+              $this->db->where( "id", $option58id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option59
+
+if($option59id =="")
+{
+       if($option59 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option59);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option59id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option59);
+              $this->db->where( "id", $option59id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option60
+
+if($option60id =="")
+{
+       if($option60 !="")
+        {
+            $data=array("question" => $question6id,"title" => $option60);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option60id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question6id,"title" => $option60);
+              $this->db->where( "id", $option60id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
+
+        
         //question7
         $data=array("type" => $type7,"survey" => $surveyid,"content" => $question7,"isrequired" => $required7);
         $this->db->where( "id", $question7id );
           $query=$this->db->update( "hq_surveyquestion", $data );
+        
+                           
+                    //  option61
+
+if($option61id =="")
+{
+       if($option61 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option61);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option61id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option61);
+              $this->db->where( "id", $option61id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option62
+
+if($option62id =="")
+{
+       if($option62 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option62);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option62id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option62);
+              $this->db->where( "id", $option62id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option63
+
+if($option63id =="")
+{
+       if($option63 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option63);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option63id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option63);
+              $this->db->where( "id", $option63id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option64
+
+if($option64id =="")
+{
+       if($option64 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option64);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option64id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option64);
+              $this->db->where( "id", $option64id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option65
+
+if($option65id =="")
+{
+       if($option65 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option65);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option65id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option65);
+              $this->db->where( "id", $option65id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option66
+
+if($option66id =="")
+{
+       if($option66 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option66);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option66id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option66);
+              $this->db->where( "id", $option66id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option67
+
+if($option67id =="")
+{
+       if($option67 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option67);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option67id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option67);
+              $this->db->where( "id", $option67id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option68
+
+if($option68id =="")
+{
+       if($option68 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option68);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option68id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option68);
+              $this->db->where( "id", $option68id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option69
+
+if($option69id =="")
+{
+       if($option69 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option69);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option69id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option69);
+              $this->db->where( "id", $option69id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option70
+
+if($option70id =="")
+{
+       if($option70 !="")
+        {
+            $data=array("question" => $question7id,"title" => $option70);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option70id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question7id,"title" => $option70);
+              $this->db->where( "id", $option70id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
+
         
         //question8
         $data=array("type" => $type8,"survey" => $surveyid,"content" => $question8,"isrequired" => $required8);
         $this->db->where( "id", $question8id );
           $query=$this->db->update( "hq_surveyquestion", $data );
         
+                               //  option71
+
+if($option71id =="")
+{
+       if($option71 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option71);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option71id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option71);
+              $this->db->where( "id", $option71id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option72
+
+if($option72id =="")
+{
+       if($option72 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option72);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option72id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option72);
+              $this->db->where( "id", $option72id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option73
+
+if($option73id =="")
+{
+       if($option73 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option73);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option73id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option73);
+              $this->db->where( "id", $option73id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option74
+
+if($option74id =="")
+{
+       if($option74 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option74);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option74id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option74);
+              $this->db->where( "id", $option74id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option75
+
+if($option75id =="")
+{
+       if($option75 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option75);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option75id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option75);
+              $this->db->where( "id", $option75id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option76
+
+if($option76id =="")
+{
+       if($option76 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option76);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option76id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option76);
+              $this->db->where( "id", $option76id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option77
+
+if($option77id =="")
+{
+       if($option77 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option77);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option77id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option77);
+              $this->db->where( "id", $option77id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option78
+
+if($option78id =="")
+{
+       if($option78 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option78);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option78id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option78);
+              $this->db->where( "id", $option78id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option79
+
+if($option79id =="")
+{
+       if($option79 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option79);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option79id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option79);
+              $this->db->where( "id", $option79id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option80
+
+if($option80id =="")
+{
+       if($option80 !="")
+        {
+            $data=array("question" => $question8id,"title" => $option80);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option80id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question8id,"title" => $option80);
+              $this->db->where( "id", $option80id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
+
+        
         //question9
         $data=array("type" => $type9,"survey" => $surveyid,"content" => $question9,"isrequired" => $required9);
         $this->db->where( "id", $question9id );
           $query=$this->db->update( "hq_surveyquestion", $data );
+ 
+                            //  option81
+
+if($option81id =="")
+{
+       if($option81 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option81);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option81id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option81);
+              $this->db->where( "id", $option81id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option82
+
+if($option82id =="")
+{
+       if($option82 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option82);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option82id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option82);
+              $this->db->where( "id", $option82id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option83
+
+if($option83id =="")
+{
+       if($option83 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option83);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option83id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option83);
+              $this->db->where( "id", $option83id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option84
+
+if($option84id =="")
+{
+       if($option84 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option84);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option84id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option84);
+              $this->db->where( "id", $option84id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option85
+
+if($option85id =="")
+{
+       if($option85 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option85);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option85id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option85);
+              $this->db->where( "id", $option85id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option86
+
+if($option86id =="")
+{
+       if($option86 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option86);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option86id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option86);
+              $this->db->where( "id", $option86id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option87
+
+if($option87id =="")
+{
+       if($option87 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option87);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option87id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option87);
+              $this->db->where( "id", $option87id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option88
+
+if($option88id =="")
+{
+       if($option88 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option88);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option88id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option88);
+              $this->db->where( "id", $option88id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option89
+
+if($option89id =="")
+{
+       if($option89 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option89);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option89id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option89);
+              $this->db->where( "id", $option89id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option90
+
+if($option90id =="")
+{
+       if($option90 !="")
+        {
+            $data=array("question" => $question9id,"title" => $option90);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option90id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question9id,"title" => $option90);
+              $this->db->where( "id", $option90id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
+
+
         
         //question10
         $data=array("type" => $type10,"survey" => $surveyid,"content" => $question10,"isrequired" => $required10);
        $this->db->where( "id", $question10id );
           $query=$this->db->update( "hq_surveyquestion", $data );
+        
+                        //  option91
+
+if($option91id =="")
+{
+       if($option91 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option91);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option91id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option91);
+              $this->db->where( "id", $option91id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option92
+
+if($option92id =="")
+{
+       if($option92 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option92);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option92id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option92);
+              $this->db->where( "id", $option92id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option93
+
+if($option93id =="")
+{
+       if($option93 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option93);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option93id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option93);
+              $this->db->where( "id", $option93id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option94
+
+if($option94id =="")
+{
+       if($option94 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option94);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option94id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option94);
+              $this->db->where( "id", $option94id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option95
+
+if($option95id =="")
+{
+       if($option95 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option95);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option95id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option95);
+              $this->db->where( "id", $option95id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option96
+
+if($option96id =="")
+{
+       if($option96 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option96);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option96id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option96);
+              $this->db->where( "id", $option96id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option97
+
+if($option97id =="")
+{
+       if($option97 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option97);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option97id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option97);
+              $this->db->where( "id", $option97id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option98
+
+if($option98id =="")
+{
+       if($option98 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option98);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option98id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option98);
+              $this->db->where( "id", $option98id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option99
+
+if($option99id =="")
+{
+       if($option99 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option99);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option99id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option99);
+              $this->db->where( "id", $option99id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+//  option100
+
+if($option100id =="")
+{
+       if($option100 !="")
+        {
+            $data=array("question" => $question10id,"title" => $option100);
+            $query=$this->db->insert( "hq_surveyoption", $data );
+            $option100id=$this->db->insert_id();
+        }
+}
+else
+        {
+            $data=array("question" => $question10id,"title" => $option100);
+              $this->db->where( "id", $option100id );
+          $query=$this->db->update( "hq_surveyoption", $data );
+        }
+
+
+
+
         
 
         

@@ -129,7 +129,7 @@
            <div class="row">
             <div class="input-field col m6 s12">
                 <label for="spanofcontrol">Span of control</label>
-                <input type="number" min="1" max="20" id="spanofcontrol" name="spanofcontrol" value="<?php echo set_value('spanofcontrol');?>">
+                <input type="text" min="1" max="20" id="spanofcontrol" name="spanofcontrol" value="<?php echo set_value('spanofcontrol');?>">
             </div>
         </div>
         <div class="row">

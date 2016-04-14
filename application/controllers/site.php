@@ -1165,10 +1165,46 @@ public function blockCompany()
     $companyid=$this->input->get("id");
     $companydetails=$this->company_model->getsinglecompany($companyid);
     $receiver=$companydetails->email;
+        // create random password
+        
+        $password=$this->companypackage_model->checkrandom();
+        // COMPANY PACKAGE
+    $package=$companydetails->package;
+        if($package==1){
+            $package="Starter";
+        }
+        else if($package==2){
+            $package="Advance";
+        }
+        else if($package==3){
+            $package="Pro";
+        }
+        else if($package==4){
+            $package="Pro Plus";
+        }
     $sender="master@willnevergrowup.in";
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$companyid;
+        
+        // curl commnad to chaneg id and pass
+        
+         // ASSIGHNING A CREDENTIALS FOR A COMPANY
+    $this->load->helper('url');
+    $mainurl=$this->config->base_url();
+    $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password;
+    $exactpathtobackend=$mainurl.$companyid;
+      // GET CURL
+        $ch = curl_init();  
+        $url=$exactpathforcredential;
+        curl_setopt($ch,CURLOPT_URL,$url);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+      curl_setopt($ch,CURLOPT_HEADER, false); 
+        $output=curl_exec($ch);
+        curl_close($ch);
+        
     // send email
         
         $this->load->library('email');
@@ -1178,18 +1214,18 @@ public function blockCompany()
           $message = "<html>
         <p>Hey Happyness Torch-bearer,</p><br>
         <p>Welcome aboard!</p><br>
-        <p>Your company has now been registered on Happyness Quotient.</p><br>
+        <p>Your company has now been registered on Happyness Quotient with <b>$package<b> Package.</p><br>
         <p>Please use the below ID and Password to access your company profile:</p><br>
         <p><span style='font-size:14px;font-weight:bold;padding:10px 0;'>Link: </span>
       <span>$exactpath</span>
       </p><br>
         <p>
           <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Email: </span>
-          <span>wohlig@wohlig.com</span>
+          <span>$receiver</span>
           </p><br>
       <p>
       <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Password: </span>
-      <span>wohlig123</span>
+      <span>$password</span>
       </p><br>
       <p>Let's make a difference in your company by measuring Happyness at Work. We are exciting to have 
 you with us on this journey.</p><br>

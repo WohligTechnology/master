@@ -994,3 +994,9 @@ button:focus {
 .min-h {
   /*min-height: 350px;*/
 }
+.showmessage{
+        text-align: center;
+    font-size: 18px;
+    min-height: 200px;
+    padding-top: 65px;
+}

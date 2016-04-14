@@ -64,5 +64,41 @@ return $query;
         else
             return 0;
 }
+    public function createbycsv($file,$id)
+{
+//     start
+        foreach ($file as $row)
+        {
+            $email=$row['email'];
+            $surveyname=$row['survey'];
+            $query=$this->db->query("SELECT * FROM `user` WHERE `email` LIKE '$email'")->row();
+            
+            if(empty($query))
+            {
+            }
+            else
+            {
+                $surveynamequery=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `conclusion` LIKE '$surveyname'")->row();
+                $surveyid=$surveynamequery->id;
+                $checkifmailpresent=$this->db->query("SELECT * FROM `hq_surveyquestionuser` WHERE `email` LIKE '$email'")->row();
+                if(empty($checkifmailpresent))
+                {
+                    //                  email matches
+                $userid=$query->id;
+                $data  = array(
+                    'email' => $email,
+                    'userid' => $userid,
+                    'survey' => $surveyid
+                );
+                $query=$this->db->insert( 'hq_surveyquestionuser', $data );
+                $id=$this->db->insert_id();
+                }
+
+            }
+	    }
+        
+//        end
+			return  $id;
+}
 }
 ?>
