@@ -1,5 +1,5 @@
 <?php if ( ! defined("BASEPATH")) exit("No direct script access allowed");
-class Json extends CI_Controller 
+class Json extends CI_Controller
 {function getallcompany()
 {
 $elements=array();
@@ -52,7 +52,7 @@ $id=$this->input->get_post("id");
 $data["message"]=$this->company_model->getsinglecompany($id);
 $this->load->view("json",$data);
 }
- 
+
  public function createDatabase() {
      $receiver="pooja.wohlig@gmail.com";
          $password=$this->companypackage_model->checkrandom();
@@ -63,18 +63,18 @@ $this->load->view("json",$data);
      $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password;
      echo $exactpathforcredential;
     $exactpathtobackend=$mainurl.$companyid;
-    
+
 //      // GET CURL
-//        $ch = curl_init();  
+//        $ch = curl_init();
 //        $url=$exactpathforcredential;
 //        curl_setopt($ch,CURLOPT_URL,$url);
 //        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
 //        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 //        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-//      curl_setopt($ch,CURLOPT_HEADER, false); 
+//      curl_setopt($ch,CURLOPT_HEADER, false);
 //        $output=curl_exec($ch);
 //        curl_close($ch);
-     
+
 //     post
      $ch = curl_init();
  $url=$exactpathforcredential;
@@ -88,7 +88,7 @@ $server_output = curl_exec ($ch);
 
 curl_close ($ch);
  }
- 
+
  public function greatest(){
        $mainurl = $this->input->get("mainurl");
        $company = $this->input->get("company");
@@ -98,20 +98,24 @@ curl_close ($ch);
     $exactpathtobackend=$mainurl.$company;
     echo $exactpath;
       // GET CURL
-        $ch = curl_init();  
+        $ch = curl_init();
         $url=$exactpath;
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-      curl_setopt($ch,CURLOPT_HEADER, false); 
+      curl_setopt($ch,CURLOPT_HEADER, false);
         $output=curl_exec($ch);
         curl_close($ch);
  }
-  
+
  public function getpackageexpirecompanies() {
     $a=$this->company_model->getpackageexpirecompanies();
      print_r($a);
+ }
+ public function test() {
+   $htmltext = $this->load->view('emailers/needtodo', $data, true);
+ $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!','pooja.wohlig@gmail.com',"Sir/Madam");
  }
 
 } ?>

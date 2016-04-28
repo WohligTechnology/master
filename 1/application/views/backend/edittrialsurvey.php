@@ -23,7 +23,7 @@
         <div class="row">
             <div class="input-field col s12 m6">
                 <!--                <input type="text" name="surveydescription" value="<?php echo $before['survey']->conclusionsuggestion;?>">-->
-    <textarea id="textarea1" name="surveydescription" class="materialize-textarea" value="<?php echo $before['survey']->conclusionsuggestion;?>"><?php echo $before['survey']->conclusionsuggestion;?></textarea>
+                <textarea id="textarea1" name="surveydescription" class="materialize-textarea" value="<?php echo $before['survey']->conclusionsuggestion;?>"><?php echo $before['survey']->conclusionsuggestion;?></textarea>
                 <label>Add Description</label>
             </div>
         </div>
@@ -59,7 +59,7 @@
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
-                            <div onclick="hidedelete('option1',<?php $option[0]->options[0]->id;?>)" class="btn btn-xs less-pad">
+                            <div onclick="hidedelete('option1')" class="btn btn-xs less-pad">
                                 <i class="material-icons propericon">delete</i>
                             </div>
                             <div onclick="showoption('option1','option2')" class="btn btn-xs less-pad">
@@ -461,8 +461,8 @@
                 <div class="option23">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option23" value="<?php echo $option[2]->options[23]->title;?>" id="option23">
-                            <input type="hidden" name="option23id" value="<?php echo $option[2]->options[23]->id;?>" id="option23id">
+                            <input type="text" name="option23" value="<?php echo $option[2]->options[2]->title;?>" id="option23">
+                            <input type="hidden" name="option23id" value="<?php echo $option[2]->options[2]->id;?>" id="option23id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -478,8 +478,8 @@
                 <div class="option24">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option24" value="<?php echo $option[2]->options[24]->title;?>" id="option24">
-                            <input type="hidden" name="option24id" value="<?php echo $option[2]->options[24]->id;?>" id="option24id">
+                            <input type="text" name="option24" value="<?php echo $option[2]->options[3]->title;?>" id="option24">
+                            <input type="hidden" name="option24id" value="<?php echo $option[2]->options[3]->id;?>" id="option24id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -495,8 +495,8 @@
                 <div class="option25">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option25" value="<?php echo $option[2]->options[25]->title;?>" id="option25">
-                            <input type="hidden" name="option25id" value="<?php echo $option[2]->options[25]->id;?>" id="option25id">
+                            <input type="text" name="option25" value="<?php echo $option[2]->options[4]->title;?>" id="option25">
+                            <input type="hidden" name="option25id" value="<?php echo $option[2]->options[4]->id;?>" id="option25id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -512,8 +512,8 @@
                 <div class="option26">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option26" value="<?php echo $option[2]->options[26]->title;?>" id="option26">
-                            <input type="hidden" name="option26id" value="<?php echo $option[2]->options[26]->id;?>" id="option26id">
+                            <input type="text" name="option26" value="<?php echo $option[2]->options[5]->title;?>" id="option26">
+                            <input type="hidden" name="option26id" value="<?php echo $option[2]->options[5]->id;?>" id="option26id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -529,8 +529,8 @@
                 <div class="option27">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option27" value="<?php echo $option[2]->options[27]->title;?>" id="option27">
-                            <input type="hidden" name="option27id" value="<?php echo $option[2]->options[27]->id;?>" id="option27id">
+                            <input type="text" name="option27" value="<?php echo $option[2]->options[6]->title;?>" id="option27">
+                            <input type="hidden" name="option27id" value="<?php echo $option[2]->options[6]->id;?>" id="option27id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -546,8 +546,8 @@
                 <div class="option28">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option28" value="<?php echo $option[2]->options[28]->title;?>" id="option28">
-                            <input type="hidden" name="option28id" value="<?php echo $option[2]->options[28]->id;?>" id="option28id">
+                            <input type="text" name="option28" value="<?php echo $option[2]->options[7]->title;?>" id="option28">
+                            <input type="hidden" name="option28id" value="<?php echo $option[2]->options[7]->id;?>" id="option28id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -563,8 +563,8 @@
                 <div class="option29">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option29" value="<?php echo $option[2]->options[29]->title;?>" id="option29">
-                            <input type="hidden" name="option29id" value="<?php echo $option[2]->options[29]->id;?>" id="option29id">
+                            <input type="text" name="option29" value="<?php echo $option[2]->options[8]->title;?>" id="option29">
+                            <input type="hidden" name="option29id" value="<?php echo $option[2]->options[8]->id;?>" id="option29id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -580,8 +580,8 @@
                 <div class="option30">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option30" value="<?php echo $option[2]->options[30]->title;?>" id="option30">
-                            <input type="hidden" name="option30id" value="<?php echo $option[2]->options[30]->id;?>" id="option30id">
+                            <input type="text" name="option30" value="<?php echo $option[2]->options[9]->title;?>" id="option30">
+                            <input type="hidden" name="option30id" value="<?php echo $option[2]->options[9]->id;?>" id="option30id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1906,16 +1906,14 @@
         </div>
         <div class="row">
             <div class="input-field col s12 m6">
-                <!--                <input type="text" name="message" value="<?php echo $before['survey']->message;?>">-->
                 <textarea id="textarea1" name="message" class="materialize-textarea" value="<?php echo $before['survey']->message;?>"><?php echo $before['survey']->message;?></textarea>
-                <!--         <label>Thank you message</label>-->
             </div>
         </div>
 
         <div class="text-center middle">
             <button class="btn waves-effect waves-light" type="submit" name="action">Save</button>
             <!--     <button class="btn waves-effect waves-light" type="submit" name="action">Cancel</button>-->
-            <a href="<?php echo site_url(" site/viewconclusionfinalsuggestion "); ?>" class="btn waves-effect waves-light">Cancel</a>
+            <a href="<?php echo site_url("site/viewconclusionfinalsuggestion"); ?>" class="btn waves-effect waves-light">Cancel</a>
         </div>
     </form>
 </div>
@@ -1940,65 +1938,65 @@
             var k = 11;
             for (var j = 1; j <= data[1].options.length; j++) {
                 if (data[1].type != 1 && data[1].type != 2) {
-                $(".option" + k).show();
-            }
+                    $(".option" + k).show();
+                }
                 k++;
             }
             var a = 21;
             for (var j = 1; j <= data[2].options.length; j++) {
-                 if (data[2].type != 1 && data[2].type != 2) {
-                $(".option" + a).show();
-                a++;
-                 }
+                if (data[2].type != 1 && data[2].type != 2) {
+                    $(".option" + a).show();
+                    a++;
+                }
             }
             var b = 31;
             for (var j = 1; j <= data[3].options.length; j++) {
-                 if (data[3].type != 1 && data[3].type != 2) {
-                $(".option" + b).show();
-                b++;
-                 }
+                if (data[3].type != 1 && data[3].type != 2) {
+                    $(".option" + b).show();
+                    b++;
+                }
             }
             var c = 41;
             for (var j = 1; j <= data[4].options.length; j++) {
-                 if (data[4].type != 1 && data[4].type != 2) {
-                $(".option" + c).show();
-                c++;
-                 }
+                if (data[4].type != 1 && data[4].type != 2) {
+                    $(".option" + c).show();
+                    c++;
+                }
             }
             var d = 51;
             for (var j = 1; j <= data[5].options.length; j++) {
-                 if (data[5].type != 1 && data[5].type != 2) {
-                $(".option" + d).show();
-                d++;
-                 }
+                if (data[5].type != 1 && data[5].type != 2) {
+                    $(".option" + d).show();
+                    d++;
+                }
             }
             var e = 61;
             for (var j = 1; j <= data[6].options.length; j++) {
-                 if (data[6].type != 1 && data[6].type != 2) {
-                $(".option" + e).show();
-                e++;
-                 }
+                if (data[6].type != 1 && data[6].type != 2) {
+                    $(".option" + e).show();
+                    e++;
+                }
             }
             var f = 71;
             for (var j = 1; j <= data[7].options.length; j++) {
-                 if (data[7].type != 1 && data[7].type != 2) {
-                $(".option" + f).show();
-                f++;
-                 }
+                if (data[7].type != 1 && data[7].type != 2) {
+                    $(".option" + f).show();
+                    f++;
+                }
             }
             var h = 81;
             for (var j = 1; j <= data[8].options.length; j++) {
-                 if (data[8].type != 1 && data[8].type != 2) {
-                $(".option" + h).show();
-                h++;
-                 }
+                if (data[8].type != 1 && data[8].type != 2) {
+                    $(".option" + h).show();
+                    h++;
+                }
             }
             var l = 91;
             for (var j = 1; j <= data[9].options.length; j++) {
-                 if (data[9].type != 1 && data[9].type != 2) {
-                $(".option" + l).show();
-                l++;
-                 }
+                if (data[9].type != 1 && data[9].type != 2) {
+                    $(".option" + l).show();
+                    l++;
+                }
             }
 
         });
@@ -2030,9 +2028,22 @@
 
     }
 
-    function hidedelete(option,optionid) {
+    function hidedelete(option) {
+        var element = document.getElementById(option + "id");
+        console.log(element.value);
+        var optionid = option.substring(6);
         console.log(optionid);
         $("." + option).hide();
+        $.ajax({
+            url: '<?php echo site_url("site/deleteoption");?>',
+            data: {
+                id: element.value
+            },
+            type: 'post',
+            success: function(output) {
+                console.log("done");
+            }
+        });
         $('#' + option).val('');
     }
 

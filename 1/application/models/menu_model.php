@@ -315,7 +315,7 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         }
         return count($abc);
     }
-    
+
 
     function drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch)
     {
@@ -363,21 +363,21 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
             $experience1='8';
             $experience2='';
         }
-          
+
           // FOR SALARY
-          
+
              if($salary== '0-2'){
-               
+
             $salary1=0;
             $salary2=2;
         }
         else if($salary== '2-4'){
-           
+
             $salary1=2;
             $salary2=4;
-        } 
+        }
           else if($salary== '5-7'){
-             
+
             $salary1=5;
             $salary2=7;
         }
@@ -388,7 +388,7 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         else if($salary== '11-13'){
             $salary1=11;
             $salary2=13;
-        } 
+        }
         else if($salary== 14-16){
             $salary1=14;
             $salary2=16;
@@ -398,11 +398,11 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
             $salary2=19;
         }
         else if($salary== 19){
-           
+
             $salary1=19;
             $salary2='';
         }
-          
+
         $where="";
            if ($salary != "") {
             if($salary2 !='' ){
@@ -447,8 +447,8 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
             }
 
         }
-      
-        if ($branch != "") 
+
+        if ($branch != "")
         {
             $where .= "AND `user`.`branch`='$branch' ";
         }
@@ -458,7 +458,7 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         $testquery=$this->db->query("SELECT * FROM `test` ORDER BY `id` DESC LIMIT 0,1")->row();
         $row1  = $testquery;
             $testid=$row1->id;
-            
+
         $checkpack=$this->db->query("SELECT * FROM `user`")->row();
         $checkpackage=$checkpack->package;
         if($checkpackage==4){
@@ -467,8 +467,8 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         else{
             $query=$this->db->query("SELECT * FROM `hq_pillar` WHERE `id` != 11 ORDER BY `id` ASC")->result();
         }
-        
-            
+
+
             foreach($query as $row)
             {
                 $pillarid = $row->id;
@@ -483,7 +483,7 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
                 $row->testexpectedweight=$testexpectedweight;
             }
             $arr = $query;
-      
+
         return $arr;
     }
     function getpillarforpie()
@@ -519,7 +519,7 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         }
 
         return $arr;
-    }  
+    }
     function drawpillarjsononhrdashboaard()
     {
         $arr = array();
@@ -737,79 +737,41 @@ WHERE `testquestion`.`test`='$id' AND `hq_question`.`pillar`='$pillar' ";
     }
 
 
-  public function emailer($htmltext,$subject,$toemail,$toname){
-        try {
-    $mandrill = new Mandrill();
-    $message = array(
-        'html' => $htmltext,
-        'text' => 'Happiness Quotient',
-        'subject' => $subject,
-        'from_email' => "info@willnevergrowup.com",
-        'from_name' => "Will Never Grow Up",
-        'to' => array(
-            array(
-                'email' => $toemail,
-                'name' => $toname,
-                'type' => 'to'
-            )
-        ),
-        'headers' => array('Reply-To' => ''),
-        'important' => false,
-        'track_opens' => null,
-        'track_clicks' => null,
-        'auto_text' => null,
-        'auto_html' => null,
-        'inline_css' => null,
-        'url_strip_qs' => null,
-        'preserve_recipients' => null,
-        'view_content_link' => null,
-        'tracking_domain' => null,
-        'signing_domain' => null,
-        'return_path_domain' => null,
-        'merge' => true,
-        'merge_language' => 'mailchimp',
-        'global_merge_vars' => array(
-            array(
-                'name' => 'merge1',
-                'content' => 'merge1 content'
-            )
-        ),
-        'merge_vars' => array(
-            array(
-                'rcpt' => 'recipient.email@example.com',
-                'vars' => array(
-                    array(
-                        'name' => 'merge2',
-                        'content' => 'merge2 content'
-                    )
-                )
-            )
-        )
-    );
-    $async = false;
-    $ip_pool = 'Main Pool';
-    $send_at = 'example send_at';
-    $result = $mandrill->messages->send($message, $async, $ip_pool);
-//     print_r($result);
-    /*
-    Array
-    (
-        [0] => Array
-            (
-                [email] => recipient.email@example.com
-                [status] => sent
-                [reject_reason] => hard-bounce
-                [_id] => abc123abc123abc123abc123abc123
-            )
+		public function emailer($htmltext,$subject,$toemail,$toname)
+		{
+					$query=$this->db->query("SELECT * FROM `emailer`")->row();
+					$username=$query->username;
+					$password=$query->password;
+					$url = 'https://api.sendgrid.com/';
+					$user=base64_decode($username);
+					$pass=base64_decode($password);
+					$params = array(
+							'api_user'  => $user,
+							'api_key'   => $pass,
+							'to'        => $toemail,
+							'subject'   => $subject,
+							'html'      => $htmltext,
+							'text'      => 'Will Never Grow Up',
+							'from'      => 'info@willnevergrowup.com',
+							'fromname'      => 'Happyness Quotient'
+						);
 
-    )
-    */
-} catch(Mandrill_Error $e) {
-    // Mandrill errors are thrown as exceptions
-//    echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();
-    // A mandrill error occurred: Mandrill_Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-    throw $e;
-}
+					$request =  $url.'api/mail.send.json';
+					$session = curl_init($request);
+					curl_setopt ($session, CURLOPT_POST, true);
+					curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+					curl_setopt($session, CURLOPT_HEADER, false);
+					curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);//New line
+					curl_setopt($session, CURLOPT_SSL_VERIFYHOST, false);//New line
+
+					curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+					$response = curl_exec($session);
+
+					// print everything out
+					////var_dump($response,curl_error($session),curl_getinfo($session));
+	//        print_r($response);
+					curl_close($session);
+
     }
 
 
@@ -967,7 +929,7 @@ public function uploadImage(){
         else
             return false;
     }
-    
+
         function getinterlinkage($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch)
     {
         //SPAN OF CONTROL
@@ -1014,21 +976,21 @@ public function uploadImage(){
             $experience1='8';
             $experience2='';
         }
-          
+
           // FOR SALARY
-          
+
              if($salary== '0-2'){
-               
+
             $salary1=0;
             $salary2=2;
         }
         else if($salary== '2-4'){
-           
+
             $salary1=2;
             $salary2=4;
-        } 
+        }
           else if($salary== '5-7'){
-             
+
             $salary1=5;
             $salary2=7;
         }
@@ -1039,7 +1001,7 @@ public function uploadImage(){
         else if($salary== '11-13'){
             $salary1=11;
             $salary2=13;
-        } 
+        }
         else if($salary== 14-16){
             $salary1=14;
             $salary2=16;
@@ -1049,11 +1011,11 @@ public function uploadImage(){
             $salary2=19;
         }
         else if($salary== 19){
-           
+
             $salary1=19;
             $salary2='';
         }
-          
+
         $where="";
            if ($salary != "") {
             if($salary2 !='' ){
@@ -1098,8 +1060,8 @@ public function uploadImage(){
             }
 
         }
-      
-        if ($branch != "") 
+
+        if ($branch != "")
         {
             $where .= " `user`.`branch`='$branch' AND";
         }
@@ -1112,22 +1074,22 @@ public function uploadImage(){
                $userquery="SELECT `id` FROM `user` WHERE $where";
           }
           // GET USERS
-          
+
           $conclusionquery=$this->db->query("SELECT `id`, `order`, `name` FROM `hq_conclusion` WHERE 1")->result();
           if(!empty($conclusionquery))
           {
-            
+
                foreach($conclusionquery as $conclusion)
                {
-                   
+
                 $conclusion->averagepercent=$this->db->query("SELECT IFNULL(AVG(`hq_options`.`weight`),0) as `averagepercent` FROM `hq_options` LEFT OUTER JOIN `hq_useranswer` ON `hq_useranswer`.`option`=`hq_options`.`id` WHERE `hq_useranswer`.`user` IN ($userquery) AND `hq_useranswer`.`question` IN (SELECT `hq_conclusionquestion`.`question` FROM `hq_conclusionquestion` LEFT OUTER JOIN `hq_conclusion` ON `hq_conclusion`.`id`=`hq_conclusionquestion`.`conclusion` WHERE `hq_conclusion`.`id`='$conclusion->id')")->row();
-             
-                
+
+
                }
           }
           return $conclusionquery;
-        
-      
+
+
     }
     public function enablemenu($package,$expiredate)
     {
@@ -1149,20 +1111,20 @@ public function uploadImage(){
              $query=$this->db->query("UPDATE `menuaccess` SET `access`=1 WHERE `menu` IN (1,2,3,4,5,6,7,8,9,12,14,15)");
              $query1=$this->db->query("UPDATE `user` SET `isfirst`=0 WHERE `accesslevel` = 1");
         }
-    } 
+    }
     public function getimagebyid()
     {
         $query=$this->db->query("SELECT `image` FROM `logo` WHERE `id`=1")->row();
         $image=$query->image;
         return $image;
-     
+
     }
     public function getinterlinkageoptions($question1,$question2)
     {
        $query=$this->db->query("SELECT `option1`,`table1`.`id1`,`option2`,`table1`.`id2`,IFNULL(`count`,0) as `countuser`
 FROM
 (
-    
+
     SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `id1`,`option2`.`optiontext` as `option2`,`option2`.`id` as `id2` FROM `hq_options` as `option1` , `hq_options` as `option2` WHERE `option1`.`question`='1' AND `option2`.`question`='9'
 
 ) as `table1`
@@ -1171,39 +1133,39 @@ LEFT OUTER JOIN
 
 (
 SELECT `option1`.`optiontext` as `option1text`,`option1`.`id` as `id1` ,`option2`.`optiontext` as `option2text`,`option2`.`id` as `id2`,COUNT(`user`) as `count`
-FROM 
+FROM
 (SELECT MAX(`option1id`) as `option1id`,MAX(`option2id`) as `option2id`,`user`,COUNT(`question1`) as `count` FROM (SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `option1id`,0 as `option2`,0 as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option1`  ON `option1`.`id` = `hq_useranswer`.`option`
 
 WHERE `option1`.`question`='$question1'
 
-UNION 
+UNION
 
 SELECT 0 as `option1`,0 as `option1id`,`option2`.`optiontext` as `option2`,`option2`.`id` as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option2`  ON `option2`.`id` = `hq_useranswer`.`option`
 
 WHERE `option2`.`question`='$question2'
 
-) as `tab1` GROUP BY `user` ) 
+) as `tab1` GROUP BY `user` )
 
-as `tab2` 
+as `tab2`
 INNER JOIN `hq_options` as `option1` ON `option1`.`id` = `option1id`
 INNER JOIN `hq_options` as `option2` ON `option2`.`id` = `option2id`
 WHERE `count` >= 2
 GROUP BY `option1id`,`option2id`) as `table2` ON `table1`.`id1`=`table2`.`id1` AND `table1`.`id2`=`table2`.`id2`")->result();
         return $query;
-     
+
     }
     public function createimage($image)
     {
         $query=$this->db->query("UPDATE `logo` SET `image`='$image' WHERE `id`=1");
         return $image;
-     
+
     }
     public function checkpackage()
     {
         $query=$this->db->query("SELECT `package` FROM `user` WHERE 1")->row();
         $package=$query->package;
         return $package;
-     
+
     }
 }
 ?>
