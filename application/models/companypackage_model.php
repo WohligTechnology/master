@@ -28,7 +28,7 @@ public function create($company,$package)
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $password=$this->companypackage_model->checkrandom();
-    $data['password']=$this->companypackage_model->checkrandom();
+    $data['password']=$password;
     $exactpath=$mainurl.$id;
     $data['exactpath']=$mainurl.$id;
     // send email

@@ -694,10 +694,15 @@ $this->load->view("json",$data);
  }
   public function changecredentials(){
      $email=$this->input->get_post('email');
+     echo " password ".$password;
      $password=$this->input->get_post('pass');
      $package=$this->input->get_post('package');
      $expiredate=$this->input->get_post('expiredate');
      $password=md5($password);
+     echo "email ".$email;
+     echo " password ".$password;
+     echo " package ".$package;
+     echo " expiredate ".$expiredate;
      $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
      $this->db->query(" UPDATE `user` SET `package`='$package',`expirydate`='$expiredate'");
  }
