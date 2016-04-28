@@ -634,26 +634,15 @@ $this->load->view("json",$data);
         $surveyid=$this->input->get('id');
 
       $gettotalemails=$this->db->query("SELECT `id`, `survey`, `email`, `status`, `userid` FROM `hq_surveyquestionuser` WHERE `survey`='$surveyid'")->result();
-//      foreach($gettotalemails as $row)
-//      {
-//          $checkuseransweredsurvey=$this->db->query("SELECT `survey` FROM `hq_surveyquestionanswer` WHERE `user`='$row->id' AND `survey`='$surveyid'")->result();
-//      }
-
-
         foreach($gettotalemails as $gettotalemail)
         {
             $email=$gettotalemail->email;
             $userid=$gettotalemail->userid;
             $hashvalue=base64_encode ($userid."&hq");
             $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-            echo $link;
-            $this->load->library('email');
-            $this->email->from('master@willnevergrowup.in', 'HQ');
-            $this->email->to($email);
-            $this->email->subject('Test');
-            $message = "Hiii this is survey    ".$link;
-            $this->email->message($message);
-            $this->email->send();
+            $data['link']=$link;
+    				  $htmltext = $this->load->view('emailers/opinion', $data, true);
+    				$this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
 	 }
        redirect( base_url() . 'index.php/site/viewconclusionfinalsuggestion', 'refresh' );
   }
@@ -965,18 +954,34 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
             $email=$getUserid->email;
             $hashvalue=base64_encode ($getUserid->id."&hq");
             $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-            $this->load->library('email');
-            $this->email->from('master@willnevergrowup.in', 'HQ');
-            $this->email->to($email);
-            $this->email->subject('Happiness Quotient');
-            $message = "<html>
-            <p>Hello!</p><br>
-          <p>Feel like taking a break from work? Click on this link to have some fun! </p><span>$link</span><br>
-    <p>For any queries/support, contact the HR Team on ___________________</p><br>
-          </html>";
-           $this->email->message($message);
-           $this->email->send();
+            $data['link']=$link;
+              $htmltext = $this->load->view('emailers/userquestion', $data, true);
+            $this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
+
+           }
             }
+            // new journey mainurl
+            $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
+            $lastdate=$getdate->date;
+            $todaysdate = date('Y-m-d');
+            if($lastdate==$todaysdate){
+              $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
+              $adminemail=$adminmail->email;
+              $htmltext = $this->load->view('emailers/thankyou', $data, true);
+              $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
+
+
+                  $dateafter7day=date_add($lastdate,date_interval_create_from_date_string("7 days"));
+                  if($dateafter7day==$todaysdate){
+                    // new journey mail
+                    $data['link']=site_url('site/viewconclusionfinalsuggestion');
+                    $htmltext = $this->load->view('emailers/newjourney', $data, true);
+                    $this->menu_model->emailer($htmltext,'Another Happyness Journey Begins!',$adminemail,"Sir/Madam");
+                    // mini survey intro
+                    $htmltext = $this->load->view('emailers/mini-survey', $data, true);
+                    $this->menu_model->emailer($htmltext,'Mini Surveys-Here’s What You Need To Do!',$adminemail,"Sir/Madam");
+                  }
+
          }
      }
      else{
