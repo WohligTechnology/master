@@ -1165,34 +1165,37 @@ public function blockCompany()
     $companyid=$this->input->get("id");
     $companydetails=$this->company_model->getsinglecompany($companyid);
     $receiver=$companydetails->email;
+		$expiredate=$companydetails->enddate;
+		$package=$companydetails->package;
         // create random password
 
         $password=$this->companypackage_model->checkrandom();
         // COMPANY PACKAGE
     $package=$companydetails->package;
         if($package==1){
-            $package="Starter";
+					$htmltext = $this->load->view('emailers/starterpackage', $data, true);
+					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
         }
         else if($package==2){
-            $package="Advance";
+					$htmltext = $this->load->view('emailers/advancedpackage', $data, true);
+					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
         }
         else if($package==3){
-            $package="Pro";
+					$htmltext = $this->load->view('emailers/propackage', $data, true);
+					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
         }
         else if($package==4){
-            $package="Pro Plus";
+					$htmltext = $this->load->view('emailers/propluspackage', $data, true);
+					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
         }
     $sender="master@willnevergrowup.in";
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$companyid;
-
-        // curl commnad to chaneg id and pass
-
          // ASSIGHNING A CREDENTIALS FOR A COMPANY
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
-    $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password;
+    $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password.'&package='.$package.'&expiredate='.$expiredate;
     $exactpathtobackend=$mainurl.$companyid;
       // GET CURL
         $ch = curl_init();
@@ -1205,40 +1208,6 @@ public function blockCompany()
         $output=curl_exec($ch);
         curl_close($ch);
 
-    // send email
-
-        $this->load->library('email');
-        $this->email->from($sender, 'Never Grow Up');
-        $this->email->to($receiver);
-        $this->email->subject('Welcome to never grow up');
-          $message = "<html>
-        <p>Hey Happyness Torch-bearer,</p><br>
-        <p>Welcome aboard!</p><br>
-        <p>Your company has now been registered on Happyness Quotient with <b>$package<b> Package.</p><br>
-        <p>Please use the below ID and Password to access your company profile:</p><br>
-        <p><span style='font-size:14px;font-weight:bold;padding:10px 0;'>Link: </span>
-      <span>$exactpath</span>
-      </p><br>
-        <p>
-          <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Email: </span>
-          <span>$receiver</span>
-          </p><br>
-      <p>
-      <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Password: </span>
-      <span>$password</span>
-      </p><br>
-      <p>Let's make a difference in your company by measuring Happyness at Work. We are exciting to have
-you with us on this journey.</p><br>
-<p>Happy to help!</p><br>
-<p>Regards,</p><br>
-<p>Team Never Grow Up</p><br>
-<p>-------------------------------------------------------------------------------</p><br>
-<p>Note: This is a system generated email, do not respond to this.</p><br>
-
-</html>";
-        $this->email->message($message);
-        $this->email->send();
-        $data["message"] = $this->email->print_debugger();
         $this->load->view("json",$data);
 }
     public function provideAccess()

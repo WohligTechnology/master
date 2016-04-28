@@ -64,17 +64,6 @@ $this->load->view("json",$data);
      echo $exactpathforcredential;
     $exactpathtobackend=$mainurl.$companyid;
 
-//      // GET CURL
-//        $ch = curl_init();
-//        $url=$exactpathforcredential;
-//        curl_setopt($ch,CURLOPT_URL,$url);
-//        curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-//      curl_setopt($ch,CURLOPT_HEADER, false);
-//        $output=curl_exec($ch);
-//        curl_close($ch);
-
 //     post
      $ch = curl_init();
  $url=$exactpathforcredential;

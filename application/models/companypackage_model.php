@@ -18,7 +18,7 @@ public function create($company,$package)
 
     $companydetails=$this->company_model->getsinglecompany($company);
     //COMPANY PACKAGE
-     $package=$companydetails->package;
+    $package=$companydetails->package;
     $receiver=$companydetails->email;
     $email=$receiver;
     $data['email']=$receiver;

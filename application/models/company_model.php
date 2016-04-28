@@ -61,9 +61,9 @@ return $query;
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
-	} 
+	}
     public function getSectorDropDown()
 	{
 		$query=$this->db->query("SELECT * FROM `sector`  ORDER BY `id` ASC")->result();
@@ -74,7 +74,7 @@ return $query;
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
 	}
 
@@ -87,7 +87,7 @@ return $query;
         $query=$this->db->query("SELECT COUNT(*)as `countcompany` FROM `master_company` WHERE `isblock`=1")->row();
         $query=$query->countcompany;
         return $query;
-    } 
+    }
     public function getcompanysector() {
         $query=$this->db->query("SELECT * FROM `sector`")->result();
         foreach($query as $row)
@@ -95,7 +95,7 @@ return $query;
              $row->sectorcount=$this->db->query("SELECT COUNT(*) as `sector` FROM `master_company` WHERE `sector` =$row->id")->row();
         }
         return $query;
-    }  
+    }
     public function getcompanypackage() {
         $query=$this->db->query("SELECT * FROM `package`")->result();
         foreach($query as $row)
@@ -117,16 +117,16 @@ return $query;
         $query=$this->db->query("SELECT COUNT(*) as `packageexpire` FROM `master_company` WHERE `enddate`='$expiredate'")->row();
         $packageexpirecount=$query->packageexpire;
         return $packageexpirecount;
-    }  
+    }
     public function getpackageexpirecompanies() {
         $expiredate=date('Y-m-d', strtotime("+30 days"));
         $query=$this->db->query("SELECT `id` FROM `master_company` WHERE `enddate`='$expiredate'")->result();
        return $query;
-    } 
+    }
     public function blockCompanyModel($companyid)
 {
         // END MAIL
-        
+
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$companyid.'/index.php/json/blockBackend';
@@ -143,55 +143,11 @@ return $query;
 
     // close cURL resource, and free up system resources
     curl_close($ch);
-        
-        // MAIL SENT 
-        
-     $companydetails=$this->company_model->getsinglecompany($companyid);
-    $receiver=$companydetails->email;
-    $sender="master@willnevergrowup.in";
-//        $this->load->library('email');
-        $this->email->from($sender, 'Never Grow Up');
-        $this->email->to($receiver);
-        $this->email->subject('Package expired:');
-        $message = "<html>
-        <p>Hey Happyness Torch-bearer,</p><br>
-      <p>This is to inform you that your Happyness Quotient package has expired. To continue measuring 
-Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.</p><br>
-<p>For any queries/support, you can contact us on ___________________</p><br>
-<p>Happy to help!</p><br>
-<p>Regards,</p><br>
-<p>Team Never Grow Up</p><br>
-<p>-------------------------------------------------------------------------------</p><br>
-<p>Note: This is a system generated email, do not respond to this.</p><br>
-      </html>";
-        $this->email->message($message);
-        $this->email->send();
-        
-        
-        
-        $sender="master@willnevergrowup.in";
-        $this->email->from($sender, 'Never Grow Up');
-        $this->email->to($receiver);
-        $this->email->subject('Package expired:');
-        $message = "<html>
-        <p>Hey Happyness Torch-bearer,</p><br>
-      <p>Hello there! Now that your company has been registered on Happyness Quotient, here’s what you need to do next:</p><br>
-<p>Upload your company logo</p><br>
-<p>Upload a CSV file of your employee data</p><br>
-<p>Decide when you want to send the questions</p><br>
-<p>Begin the journey of measuring happyness at work! </p><br>
-<p>For any queries/support, you can contact us on ___________________</p><br>
-<p>Happy to help!</p><br>
-<p>Regards,</p><br>
-<p>Team Never Grow Up</p><br>
-<p>-------------------------------------------------------------------------------</p><br>
-<p>Note: This is a system generated email, do not respond to this.</p><br>
-      </html>";
-        $this->email->message($message);
-        $this->email->send();
+
+      
 
 }
-   
+
 }
 
 
