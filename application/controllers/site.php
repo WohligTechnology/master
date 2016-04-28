@@ -1,10 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Site extends CI_Controller 
+class Site extends CI_Controller
 {
 	public function __construct( )
 	{
 		parent::__construct();
-		
+
 		$this->is_logged_in();
 	}
 	function is_logged_in( )
@@ -45,7 +45,7 @@ class Site extends CI_Controller
         }
         $data["message"]=true;
         $this->load->view("json",$data);
-        
+
     }
 	public function index()
 	{
@@ -61,25 +61,25 @@ class Site extends CI_Controller
         else{
             $data[ 'page' ] = 'dashboard';
         }
-		
+
         $data['company']=$this->company_model->getcompanycount();
 		$data[ 'title' ] = 'Welcome';
-		$this->load->view( 'template', $data );	
+		$this->load->view( 'template', $data );
 	}
     public function getcompanysector(){
          $data['message']=$this->company_model->getcompanysector();
          $this->load->view("json",$data);
-        
-    } 
+
+    }
     public function getcompanypackage(){
          $data['message']=$this->company_model->getcompanypackage();
          $this->load->view("json",$data);
-        
-    } 
+
+    }
     public function getcompanypackageschart(){
          $data['message']=$this->company_model->getCompanyPackagesChart();
          $this->load->view("json",$data);
-        
+
     }
 	public function createuser()
 	{
@@ -92,7 +92,7 @@ class Site extends CI_Controller
 //        $data['category']=$this->category_model->getcategorydropdown();
 		$data[ 'page' ] = 'createuser';
 		$data[ 'title' ] = 'Create User';
-		$this->load->view( 'template', $data );	
+		$this->load->view( 'template', $data );
 	}
 	function createusersubmit()
 	{
@@ -107,7 +107,7 @@ class Site extends CI_Controller
 		$this->form_validation->set_rules('socialid','Socialid','trim');
 		$this->form_validation->set_rules('logintype','logintype','trim');
 		$this->form_validation->set_rules('json','json','trim');
-		if($this->form_validation->run() == FALSE)	
+		if($this->form_validation->run() == FALSE)
 		{
 			$data['alerterror'] = validation_errors();
             $data['gender']=$this->user_model->getgenderdropdown();
@@ -116,7 +116,7 @@ class Site extends CI_Controller
             $data[ 'logintype' ] =$this->user_model->getlogintypedropdown();
             $data[ 'page' ] = 'createuser';
             $data[ 'title' ] = 'Create User';
-            $this->load->view( 'template', $data );	
+            $this->load->view( 'template', $data );
 		}
 		else
 		{
@@ -137,7 +137,7 @@ class Site extends CI_Controller
             $billingcountry=$this->input->post('billingcountry');
             $billingpincode=$this->input->post('billingpincode');
             $billingcontact=$this->input->post('billingcontact');
-            
+
             $shippingaddress=$this->input->post('shippingaddress');
             $shippingcity=$this->input->post('shippingcity');
             $shippingstate=$this->input->post('shippingstate');
@@ -153,7 +153,7 @@ class Site extends CI_Controller
             $country=$this->input->post('country');
             $fax=$this->input->post('fax');
             $gender=$this->input->post('gender');
-            	
+
             $config['upload_path'] = './uploads/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
 			$this->load->library('upload', $config);
@@ -163,7 +163,7 @@ class Site extends CI_Controller
 			{
 				$uploaddata = $this->upload->data();
 				$image=$uploaddata['file_name'];
-                
+
                 $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
                 $config_r['maintain_ratio'] = TRUE;
                 $config_t['create_thumb'] = FALSE;///add this
@@ -172,13 +172,13 @@ class Site extends CI_Controller
                 $config_r['quality']    = 100;
                 //end of configs
 
-                $this->load->library('image_lib', $config_r); 
+                $this->load->library('image_lib', $config_r);
                 $this->image_lib->initialize($config_r);
                 if(!$this->image_lib->resize())
                 {
                     echo "Failed." . $this->image_lib->display_errors();
                     //return false;
-                }  
+                }
                 else
                 {
                     //print_r($this->image_lib->dest_image);
@@ -186,9 +186,9 @@ class Site extends CI_Controller
                     $image=$this->image_lib->dest_image;
                     //return false;
                 }
-                
+
 			}
-            
+
 			if($this->user_model->create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$firstname,$lastname,$phone,$billingaddress,$billingcity,$billingstate,$billingcountry,$billingpincode,$billingcontact,$shippingaddress,$shippingcity,$shippingstate,$shippingcountry,$shippingpincode,$shippingcontact,$shippingname,$currency,$credit,$companyname,$registrationno,$vatnumber,$country,$fax,$gender)==0)
 			$data['alerterror']="New user could not be created.";
 			else
@@ -203,67 +203,67 @@ class Site extends CI_Controller
 		$this->checkaccess($access);
 		$data['page']='viewusers';
         $data['base_url'] = site_url("site/viewusersjson");
-        
+
 		$data['title']='View Users';
 		$this->load->view('template',$data);
-	} 
+	}
     function viewusersjson()
 	{
 		$access = array("1");
 		$this->checkaccess($access);
-        
-        
+
+
         $elements=array();
         $elements[0]=new stdClass();
         $elements[0]->field="`user`.`id`";
         $elements[0]->sort="1";
         $elements[0]->header="ID";
         $elements[0]->alias="id";
-        
-        
+
+
         $elements[1]=new stdClass();
         $elements[1]->field="`user`.`name`";
         $elements[1]->sort="1";
         $elements[1]->header="Name";
         $elements[1]->alias="name";
-        
+
         $elements[2]=new stdClass();
         $elements[2]->field="`user`.`email`";
         $elements[2]->sort="1";
         $elements[2]->header="Email";
         $elements[2]->alias="email";
-        
+
         $elements[3]=new stdClass();
         $elements[3]->field="`user`.`socialid`";
         $elements[3]->sort="1";
         $elements[3]->header="SocialId";
         $elements[3]->alias="socialid";
-        
+
         $elements[4]=new stdClass();
         $elements[4]->field="`user`.`logintype`";
         $elements[4]->sort="1";
         $elements[4]->header="Logintype";
         $elements[4]->alias="logintype";
-        
+
         $elements[5]=new stdClass();
         $elements[5]->field="`user`.`json`";
         $elements[5]->sort="1";
         $elements[5]->header="Json";
         $elements[5]->alias="json";
-       
+
         $elements[6]=new stdClass();
         $elements[6]->field="`accesslevel`.`name`";
         $elements[6]->sort="1";
         $elements[6]->header="Accesslevel";
         $elements[6]->alias="accesslevelname";
-       
+
         $elements[7]=new stdClass();
         $elements[7]->field="`statuses`.`name`";
         $elements[7]->sort="1";
         $elements[7]->header="Status";
         $elements[7]->alias="status";
-       
-        
+
+
         $search=$this->input->get_post("search");
         $pageno=$this->input->get_post("pageno");
         $orderby=$this->input->get_post("orderby");
@@ -273,19 +273,19 @@ class Site extends CI_Controller
         {
             $maxrow=20;
         }
-        
+
         if($orderby=="")
         {
             $orderby="id";
             $orderorder="ASC";
         }
-       
+
         $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `user` LEFT OUTER JOIN `logintype` ON `logintype`.`id`=`user`.`logintype` LEFT OUTER JOIN `accesslevel` ON `accesslevel`.`id`=`user`.`accesslevel` LEFT OUTER JOIN `statuses` ON `statuses`.`id`=`user`.`status`");
-        
+
 		$this->load->view("json",$data);
-	} 
-    
-    
+	}
+
+
 	function edituser()
 	{
 		$access = array("1");
@@ -309,7 +309,7 @@ class Site extends CI_Controller
 	{
 		$access = array("1");
 		$this->checkaccess($access);
-		
+
 		$this->form_validation->set_rules('name','Name','trim|required|max_length[30]');
 		$this->form_validation->set_rules('email','Email','trim|required|valid_email');
 		$this->form_validation->set_rules('password','Password','trim|min_length[6]|max_length[30]');
@@ -319,7 +319,7 @@ class Site extends CI_Controller
 		$this->form_validation->set_rules('socialid','Socialid','trim');
 		$this->form_validation->set_rules('logintype','logintype','trim');
 		$this->form_validation->set_rules('json','json','trim');
-		if($this->form_validation->run() == FALSE)	
+		if($this->form_validation->run() == FALSE)
 		{
 			$data['alerterror'] = validation_errors();
 			$data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -334,7 +334,7 @@ class Site extends CI_Controller
 		}
 		else
 		{
-            
+
             $id=$this->input->get_post('id');
             $name=$this->input->get_post('name');
             $email=$this->input->get_post('email');
@@ -354,7 +354,7 @@ class Site extends CI_Controller
             $billingcountry=$this->input->post('billingcountry');
             $billingpincode=$this->input->post('billingpincode');
             $billingcontact=$this->input->post('billingcontact');
-            
+
             $shippingaddress=$this->input->post('shippingaddress');
             $shippingcity=$this->input->post('shippingcity');
             $shippingstate=$this->input->post('shippingstate');
@@ -379,7 +379,7 @@ class Site extends CI_Controller
 			{
 				$uploaddata = $this->upload->data();
 				$image=$uploaddata['file_name'];
-                
+
                 $config_r['source_image']   = './uploads/' . $uploaddata['file_name'];
                 $config_r['maintain_ratio'] = TRUE;
                 $config_t['create_thumb'] = FALSE;///add this
@@ -388,13 +388,13 @@ class Site extends CI_Controller
                 $config_r['quality']    = 100;
                 //end of configs
 
-                $this->load->library('image_lib', $config_r); 
+                $this->load->library('image_lib', $config_r);
                 $this->image_lib->initialize($config_r);
                 if(!$this->image_lib->resize())
                 {
                     echo "Failed." . $this->image_lib->display_errors();
                     //return false;
-                }  
+                }
                 else
                 {
                     //print_r($this->image_lib->dest_image);
@@ -402,28 +402,28 @@ class Site extends CI_Controller
                     $image=$this->image_lib->dest_image;
                     //return false;
                 }
-                
+
 			}
-            
+
             if($image=="")
             {
             $image=$this->user_model->getuserimagebyid($id);
                // print_r($image);
                 $image=$image->image;
             }
-            
+
 			if($this->user_model->edit($id,$name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$firstname,$lastname,$phone,$billingaddress,$billingcity,$billingstate,$billingcountry,$billingpincode,$billingcontact,$shippingaddress,$shippingcity,$shippingstate,$shippingcountry,$shippingpincode,$shippingcontact,$shippingname,$currency,$credit,$companyname,$registrationno,$vatnumber,$country,$fax,$gender)==0)
 			$data['alerterror']="User Editing was unsuccesful";
 			else
 			$data['alertsuccess']="User edited Successfully.";
-			
+
 			$data['redirect']="site/viewusers";
 			//$data['other']="template=$template";
 			$this->load->view("redirect",$data);
-			
+
 		}
 	}
-	
+
 	function deleteuser()
 	{
 		$access = array("1");
@@ -490,7 +490,7 @@ $elements[4]->field="`fynx_cart`.`timestamp`";
 $elements[4]->sort="1";
 $elements[4]->header="Timestamp";
 $elements[4]->alias="timestamp";
-    
+
 $elements[5]=new stdClass();
 $elements[5]->field="`fynx_cart`.`size`";
 $elements[5]->sort="1";
@@ -558,7 +558,7 @@ $elements[3]->field="`fynx_wishlist`.`timestamp`";
 $elements[3]->sort="1";
 $elements[3]->header="Timestamp";
 $elements[3]->alias="timestamp";
-    
+
 $elements[4]=new stdClass();
 $elements[4]->field="`fynx_product`.`name`";
 $elements[4]->sort="1";
@@ -581,10 +581,10 @@ $orderorder="ASC";
 $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `fynx_wishlist` LEFT OUTER JOIN `fynx_product` ON `fynx_product`.`id`=`fynx_wishlist`.`product`","WHERE `fynx_wishlist`.`user`='$user'");
 $this->load->view("json",$data);
 }
-    
-    
-    
-    
+
+
+
+
 public function viewcompany()
 {
 $access=array("1");
@@ -602,7 +602,7 @@ $data["page"]="viewcompany";
 $data["base_url"]=site_url("site/viewcompanyjson1?id=1");
 $data["title"]="View company";
 $this->load->view("template",$data);
-}  
+}
     public function viewblockcompanies()
 {
 $access=array("1");
@@ -641,32 +641,32 @@ function viewcompanyjson1()
         // expire
     $where="WHERE `master_company`.`id` IN $companyids";
     }
-  
+
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`master_company`.`id`";
 $elements[0]->sort="1";
 $elements[0]->header="Id";
 $elements[0]->alias="id";
-    
+
 $elements[1]=new stdClass();
 $elements[1]->field="`master_company`.`name`";
 $elements[1]->sort="1";
 $elements[1]->header="Contact Name";
 $elements[1]->alias="name";
-    
+
 $elements[2]=new stdClass();
 $elements[2]->field="`master_company`.`email`";
 $elements[2]->sort="1";
 $elements[2]->header="Contact Email";
 $elements[2]->alias="email";
-    
+
 $elements[3]=new stdClass();
 $elements[3]->field="`master_company`.`package`";
 $elements[3]->sort="1";
 $elements[3]->header="Package";
 $elements[3]->alias="package";
-    
+
 $elements[4]=new stdClass();
 $elements[4]->field="`master_company`.`isblock`";
 $elements[4]->sort="1";
@@ -691,32 +691,32 @@ $this->load->view("json",$data);
 }
     function viewcompanyjson()
 {
-   
+
 $elements=array();
 $elements[0]=new stdClass();
 $elements[0]->field="`master_company`.`id`";
 $elements[0]->sort="1";
 $elements[0]->header="Id";
 $elements[0]->alias="id";
-    
+
 $elements[1]=new stdClass();
 $elements[1]->field="`master_company`.`name`";
 $elements[1]->sort="1";
 $elements[1]->header="Contact Name";
 $elements[1]->alias="name";
-    
+
 $elements[2]=new stdClass();
 $elements[2]->field="`master_company`.`email`";
 $elements[2]->sort="1";
 $elements[2]->header=" Contact Email";
 $elements[2]->alias="email";
-    
+
 $elements[3]=new stdClass();
 $elements[3]->field="`master_company`.`package`";
 $elements[3]->sort="1";
 $elements[3]->header="Package";
 $elements[3]->alias="package";
-    
+
 $elements[4]=new stdClass();
 $elements[4]->field="`master_company`.`isblock`";
 $elements[4]->sort="1";
@@ -749,7 +749,7 @@ $data['sector']=$this->company_model->getSectorDropDown();
 $data["title"]="Create company";
 $this->load->view("template",$data);
 }
-public function createcompanysubmit() 
+public function createcompanysubmit()
 {
 $access=array("1","2");
 $this->checkaccess($access);
@@ -854,7 +854,7 @@ $data["redirect"]="site/viewcompany";
 $this->load->view("redirect",$data);
 }
     // PACKAGE
-    
+
     public function viewpackage()
 {
 $access=array("1");
@@ -920,7 +920,7 @@ $data["page"]="createpackage";
 $data["title"]="Create package";
 $this->load->view("template",$data);
 }
-public function createpackagesubmit() 
+public function createpackagesubmit()
 {
     $access=array("1","2");
     $this->checkaccess($access);
@@ -928,7 +928,7 @@ public function createpackagesubmit()
     $status=$this->input->get_post("status");
     $startdate=$this->input->get_post("startdate");
     $enddate=$this->input->get_post("enddate");
-  
+
     if($this->package_model->create($name,$status,$startdate,$enddate)==0)
     $data["alerterror"]="New package could not be created.";
     else
@@ -1005,7 +1005,7 @@ $elements[2]->field="`package`.`name`";
 $elements[2]->sort="1";
 $elements[2]->header="Name";
 $elements[2]->alias="name";
-    
+
 $elements[3]=new stdClass();
 $elements[3]->field="`package`.`startdate`";
 $elements[3]->sort="1";
@@ -1039,7 +1039,7 @@ $data["company"]=$this->company_model->getCompanyDropDown();
 $data["title"]="Create companypackage";
 $this->load->view("template",$data);
 }
-public function createcompanypackagesubmit() 
+public function createcompanypackagesubmit()
 {
 $access=array("1","2");
 $this->checkaccess($access);
@@ -1078,19 +1078,19 @@ if($this->companypackage_model->edit($id,$company,$package)==0)
 $data["alerterror"]="New companypackage could not be Updated.";
 else
      // ASSIGHNING A PACKAGE FOR A COMPANY
-    
+
      $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$company.'/index.php/json/assignpackage?package='.$package;
     $exactpathtobackend=$mainurl.$company;
       // GET CURL
-        $ch = curl_init();  
+        $ch = curl_init();
         $url=$exactpath;
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-      curl_setopt($ch,CURLOPT_HEADER, false); 
+      curl_setopt($ch,CURLOPT_HEADER, false);
         $output=curl_exec($ch);
         curl_close($ch);
 $data["alertsuccess"]="companypackage Updated Successfully.";
@@ -1129,7 +1129,7 @@ public function blockCompany()
     curl_close($ch);
      $data["message"] = 1;
     $this->load->view("json", $data);
-    
+
 
 }
     public function unBlockCompany()
@@ -1155,7 +1155,7 @@ public function blockCompany()
     curl_close($ch);
      $data["message"] = 1;
     $this->load->view("json", $data);
-    
+
 
 }
     public function resendEmail()
@@ -1166,7 +1166,7 @@ public function blockCompany()
     $companydetails=$this->company_model->getsinglecompany($companyid);
     $receiver=$companydetails->email;
         // create random password
-        
+
         $password=$this->companypackage_model->checkrandom();
         // COMPANY PACKAGE
     $package=$companydetails->package;
@@ -1186,27 +1186,27 @@ public function blockCompany()
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$companyid;
-        
+
         // curl commnad to chaneg id and pass
-        
+
          // ASSIGHNING A CREDENTIALS FOR A COMPANY
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password;
     $exactpathtobackend=$mainurl.$companyid;
       // GET CURL
-        $ch = curl_init();  
+        $ch = curl_init();
         $url=$exactpathforcredential;
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-      curl_setopt($ch,CURLOPT_HEADER, false); 
+      curl_setopt($ch,CURLOPT_HEADER, false);
         $output=curl_exec($ch);
         curl_close($ch);
-        
+
     // send email
-        
+
         $this->load->library('email');
         $this->email->from($sender, 'Never Grow Up');
         $this->email->to($receiver);
@@ -1227,20 +1227,20 @@ public function blockCompany()
       <span style='font-size:14px;font-weight:bold;padding:10px 0;'>Password: </span>
       <span>$password</span>
       </p><br>
-      <p>Let's make a difference in your company by measuring Happyness at Work. We are exciting to have 
+      <p>Let's make a difference in your company by measuring Happyness at Work. We are exciting to have
 you with us on this journey.</p><br>
 <p>Happy to help!</p><br>
 <p>Regards,</p><br>
 <p>Team Never Grow Up</p><br>
 <p>-------------------------------------------------------------------------------</p><br>
 <p>Note: This is a system generated email, do not respond to this.</p><br>
-      
+
 </html>";
         $this->email->message($message);
         $this->email->send();
         $data["message"] = $this->email->print_debugger();
         $this->load->view("json",$data);
-} 
+}
     public function provideAccess()
 {
     $access=array("1");
@@ -1250,7 +1250,7 @@ you with us on this journey.</p><br>
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$companyid.'/index.php/login/validate';
     $exactpathtobackend=$mainurl.$companyid;
-   
+
      $fields = array(
                         'username' => "master@master.com",
                         'password' => 'master123'
@@ -1266,10 +1266,10 @@ you with us on this journey.</p><br>
         $result = curl_exec($ch);
         $result = json_decode($result);
 //        echo $result->access_token;
-        curl_close($ch);  
+        curl_close($ch);
         redirect($exactpathtobackend);
-       
-}  
+
+}
     public function changePassword()
 {
     $access=array("1");
@@ -1279,8 +1279,8 @@ you with us on this journey.</p><br>
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$companyid.'/index.php/site/edituser?id=1';
         redirect($exactpath);
-       
-}  
+
+}
     public function viewInterlinkage()
 {
     $access=array("1");
@@ -1290,10 +1290,11 @@ you with us on this journey.</p><br>
     $mainurl=$this->config->base_url();
     $exactpath=$mainurl.$companyid.'/index.php/login/interlinkage';
         redirect($exactpath);
-       
+
 }
-     public function checkblockpackage() 
+     public function checkblockpackage()
     {
+			//package will expiure
         // willbe included in cron
          $todaysdate=date("Y-m-d");
          $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` <= '$todaysdate' AND `isblock`=0")->result();
@@ -1302,12 +1303,16 @@ you with us on this journey.</p><br>
             foreach($query as $row)
             {
                 $companyid=$row->id;
+                $email=$row->email;
+								$htmltext = $this->load->view('emailers/expired', $data, true);
+								$this->menu_model->emailer($htmltext,'Your Happyness Quotient Package Has Expired!',$email,"Sir/Madam");
                 $this->company_model->blockCompanyModel($companyid);
             }
         }
     }
-    public function checkpackagesendemail() 
+    public function checkpackagesendemail()
     {
+			// reminder package will expire
         // willbe included in cron
          $dayafter30days=date("Y-m-d",strtotime("+30 days"));
          $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$dayafter30days' AND `isblock`=0")->result();
@@ -1317,60 +1322,33 @@ you with us on this journey.</p><br>
             {
                 $companyid=$row->id;
                 $companyname=$row->name;
-                $receiver=$row->email;
-                
+                $email=$row->email;
+
                 $sender="master@willnevergrowup.in";
-                $this->email->from($sender, 'Never Grow Up');
-                $this->email->to($receiver);
-                $this->email->subject('Package expired:');
-                $message = "<html>
-        <p>Hey Happyness Torch-bearer,</p><br>
-      <p>Trust you are doing great and are having an awesome experience with Happyness Quotient. </p><br>
-<p>This is a reminder that your package will expire in the next 30 days.  To continue measuring Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.</p><br>
-<p>For any queries/support, you can contact us on ___________________</p><br>
-<p>Happy to help!</p><br>
-<p>Regards,</p><br>
-<p>Team Never Grow Up</p><br>
-<p>-------------------------------------------------------------------------------</p><br>
-<p>Note: This is a system generated email, do not respond to this.</p><br>
-      </html>";
-                $this->email->message($message);
-                $this->email->send();
+								$htmltext = $this->load->view('emailers/expirenote', $data, true);
+							$this->menu_model->emailer($htmltext,'Your Happyness Quotient Package Is About To Expire!',$email,"Sir/Madam");
             }
         }
     }
-    public function packageexpiremail() 
-    {
-        // willbe included in cron
-         $todaysdate=date("Y-m-d");
-         $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$todaysdate' AND `isblock`=0")->result();
-        if(!empty($query))
-        {
-            foreach($query as $row)
-            {
-                $companyid=$row->id;
-                $companyname=$row->name;
-                $receiver=$row->email;
-                
-                $sender="master@willnevergrowup.in";
-                $this->email->from($sender, 'Never Grow Up');
-                $this->email->to($receiver);
-                $this->email->subject('Package expired:');
-                $message = "<html>
-        <p>Hey Happyness Torch-bearer,</p><br>
-      <p>This is to inform you that your Happyness Quotient package has expired. To continue measuring Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.</p><br>
-<p>For any queries/support, you can contact us on ___________________</p><br>
-<p>Happy to help!</p><br>
-<p>Regards,</p><br>
-<p>Team Never Grow Up</p><br>
-<p>-------------------------------------------------------------------------------</p><br>
-<p>Note: This is a system generated email, do not respond to this.</p><br>
-      </html>";
-                $this->email->message($message);
-                $this->email->send();
-            }
-        }
-    }
+    // public function packageexpiremail()
+    // {
+    //     // willbe included in cron
+    //      $todaysdate=date("Y-m-d");
+    //      $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$todaysdate' AND `isblock`=0")->result();
+    //     if(!empty($query))
+    //     {
+    //         foreach($query as $row)
+    //         {
+    //             $companyid=$row->id;
+    //             $companyname=$row->name;
+    //             $email=$row->email;
+		//
+    //             $sender="master@willnevergrowup.in";
+		// 						$htmltext = $this->load->view('emailers/expirenote', $data, true);
+		// 					$this->menu_model->emailer($htmltext,'Your Happyness Quotient Package Is About To Expire!',$email,"Sir/Madam");
+    //         }
+    //     }
+    // }
 
 }
 ?>
