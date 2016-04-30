@@ -1162,37 +1162,46 @@ public function blockCompany()
 {
     $access=array("1");
     $this->checkaccess($access);
-    $companyid=$this->input->get("id");
-    $companydetails=$this->company_model->getsinglecompany($companyid);
-    $receiver=$companydetails->email;
-		$expiredate=$companydetails->enddate;
-		$package=$companydetails->package;
-        // create random password
+    $company=$this->input->get_post("id");
+		// SEND CREDENTIALS ON COMPANY CREATE
 
-        $password=$this->companypackage_model->checkrandom();
-        // COMPANY PACKAGE
+    $companydetails=$this->company_model->getsinglecompany($company);
+    // COMPANY PACKAGE
     $package=$companydetails->package;
-        if($package==1){
-					$htmltext = $this->load->view('emailers/starterpackage', $data, true);
-					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-        }
-        else if($package==2){
-					$htmltext = $this->load->view('emailers/advancedpackage', $data, true);
-					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-        }
-        else if($package==3){
-					$htmltext = $this->load->view('emailers/propackage', $data, true);
-					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-        }
-        else if($package==4){
-					$htmltext = $this->load->view('emailers/propluspackage', $data, true);
-					$this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-        }
+    $receiver=$companydetails->email;
+    $email=$receiver;
+    $data['email']=$receiver;
+    $companyid=$companydetails->id;
+    $expiredate=$companydetails->enddate;
     $sender="master@willnevergrowup.in";
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
-    $exactpath=$mainurl.$companyid;
-         // ASSIGHNING A CREDENTIALS FOR A COMPANY
+    $password=$this->companypackage_model->checkrandom();
+    $data['password']=$password;
+    $exactpath=$mainurl.$company;
+    $data['exactpath']=$mainurl.$company;
+    // send email
+    if($package==1){
+          $htmltext = $this->load->view('emailers/starterpackage', $data, true);
+        $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+    }
+    else if($package==2){
+
+        $htmltext = $this->load->view('emailers/advancedpackage', $data, true);
+      $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+    }
+    else if($package==3){
+      $htmltext = $this->load->view('emailers/propackage', $data, true);
+    $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+
+    }
+    else if($package==4){
+      $htmltext = $this->load->view('emailers/propluspackage', $data, true);
+    $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+
+    }
+
+    // ASSIGHNING A CREDENTIALS FOR A COMPANY
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password.'&package='.$package.'&expiredate='.$expiredate;
@@ -1285,6 +1294,7 @@ public function blockCompany()
         // willbe included in cron
          $dayafter30days=date("Y-m-d",strtotime("+30 days"));
          $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$dayafter30days' AND `isblock`=0")->result();
+			
         if(!empty($query))
         {
             foreach($query as $row)
@@ -1292,32 +1302,11 @@ public function blockCompany()
                 $companyid=$row->id;
                 $companyname=$row->name;
                 $email=$row->email;
-
-                $sender="master@willnevergrowup.in";
 								$htmltext = $this->load->view('emailers/expirenote', $data, true);
 							$this->menu_model->emailer($htmltext,'Your Happyness Quotient Package Is About To Expire!',$email,"Sir/Madam");
             }
         }
     }
-    // public function packageexpiremail()
-    // {
-    //     // willbe included in cron
-    //      $todaysdate=date("Y-m-d");
-    //      $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$todaysdate' AND `isblock`=0")->result();
-    //     if(!empty($query))
-    //     {
-    //         foreach($query as $row)
-    //         {
-    //             $companyid=$row->id;
-    //             $companyname=$row->name;
-    //             $email=$row->email;
-		//
-    //             $sender="master@willnevergrowup.in";
-		// 						$htmltext = $this->load->view('emailers/expirenote', $data, true);
-		// 					$this->menu_model->emailer($htmltext,'Your Happyness Quotient Package Is About To Expire!',$email,"Sir/Madam");
-    //         }
-    //     }
-    // }
 
 }
 ?>
