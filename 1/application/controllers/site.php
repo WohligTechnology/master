@@ -4215,24 +4215,13 @@ $this->load->view("template",$data);
        $getUserid=$this->restapi_model->getUsers();
         foreach($getUserid as $getUserid){
         $email=$getUserid->email;
+				echo $email;
         $hashvalue=base64_encode ($getUserid->id."&hq");
         $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+				echo $link;
 				$data['link']=$link;
 				  $htmltext = $this->load->view('emailers/userquestion', $data, true);
 				$this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
-//                $this->load->library('email');
-//        $this->email->from('master@willnevergrowup.in', 'HQ');
-//        $this->email->to($email);
-//        $this->email->subject('Your Happiness at Work matters!');
-//        $message = "<html>
-//         <p>Dear Colleagues,</p><br>
-//       <p>We've always believed that you are the driving force of this organization and that your happiness at work is what matters to ensure that we meet our goals. As a part of this belief and efforts in this area, here's a fun and simple survey we'd like you to take part in </p><span>$link</span><br>
-// <p>Quick tip: Pick the answer you believe in. All responses are kept confidential. </p><br>
-// <p>Please feel free to reach out to the HR Team in case of any queries. We are happy to help. </p><br>
-// <p>Team HR </p><br>
-//       </html>";
-//        $this->email->message($message);
-//        $this->email->send();
         }
     $data["redirect"]="site/getSchedule";
          $this->load->view("redirect",$data);

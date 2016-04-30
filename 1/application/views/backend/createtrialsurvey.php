@@ -1692,14 +1692,14 @@
             </div>
         </div>
 
-        <div class="row mb0">
+        <div class="row mb0" style="display:none">
             <div class="col s12">
                 <b class="brdr-bot">
            Add a Thank You Message
          </b>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display:none">
             <div class="input-field col s12 m6">
 <!--                <input type="text" name="message">-->
                <textarea id="textarea1" name="message" class="materialize-textarea"></textarea>

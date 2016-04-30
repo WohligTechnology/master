@@ -1294,11 +1294,12 @@ public function blockCompany()
         // willbe included in cron
          $dayafter30days=date("Y-m-d",strtotime("+30 days"));
          $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$dayafter30days' AND `isblock`=0")->result();
-			
+				 echo "SELECT * FROM `master_company` WHERE `enddate` = '$dayafter30days' AND `isblock`=0";
         if(!empty($query))
         {
             foreach($query as $row)
             {
+							echo "in mailer";
                 $companyid=$row->id;
                 $companyname=$row->name;
                 $email=$row->email;

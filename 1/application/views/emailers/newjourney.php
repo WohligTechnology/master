@@ -16,10 +16,10 @@
             Because of the package that you have chosen, your Happyness Quotient journey does not end here.
           </p>
           <p style="margin:0 0 15px 0;">
-            To understand what your employees are thinking about other aspects of life at work, create a mini survey right here!
+            To understand what your employees are thinking about other aspects of life at work,
 
             <!-- insert Link -->
-            <a href="#" target="_blank" style="color:#000;text-decoration:none;"><?php echo $link;?></a>
+            <a href="<?php echo $link;?>" target="_blank">create a mini survey right here!</a>
             <!--End Link -->
 
           </p>

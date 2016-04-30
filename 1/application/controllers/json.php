@@ -639,7 +639,7 @@ $this->load->view("json",$data);
             $email=$gettotalemail->email;
             $userid=$gettotalemail->userid;
             $hashvalue=base64_encode ($userid."&hq");
-            $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+            $link="http://wohlig.co.in/hqfront/#/playing/$hashvalue";
             $data['link']=$link;
     				  $htmltext = $this->load->view('emailers/opinion', $data, true);
     				$this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
@@ -694,15 +694,10 @@ $this->load->view("json",$data);
  }
   public function changecredentials(){
      $email=$this->input->get_post('email');
-     echo " password ".$password;
      $password=$this->input->get_post('pass');
      $package=$this->input->get_post('package');
      $expiredate=$this->input->get_post('expiredate');
      $password=md5($password);
-     echo "email ".$email;
-     echo " password ".$password;
-     echo " package ".$package;
-     echo " expiredate ".$expiredate;
      $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
      $this->db->query(" UPDATE `user` SET `package`='$package',`expirydate`='$expiredate'");
  }
@@ -946,7 +941,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
     }
  public function setCron()
  {
-     $query1=$this->db->query("SELECT * FROM `user` WHERE `expirydate` <=NOW()")->row();
+     $query1=$this->db->query("SELECT * FROM `user` WHERE `expirydate` >NOW()")->row();
 //    don't send que
      if(empty($query1))
      {
@@ -963,7 +958,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
               $htmltext = $this->load->view('emailers/userquestion', $data, true);
             $this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
 
-           }
+            }
             }
             // new journey mainurl
             $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
@@ -994,6 +989,29 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
          echo "in else";
      }
 
+ }
+ public function testcron(){
+   // new journey mainurl
+   $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
+   $lastdate=$getdate->date;
+   $todaysdate = date('Y-m-d');
+   if($lastdate==$todaysdate){
+           $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
+           $adminemail=$adminmail->email;
+          //  $htmltext = $this->load->view('emailers/thankyou', $data, true);
+          //  $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
+
+
+           // new journey mail
+           $data['link']=site_url('site/viewconclusionfinalsuggestion');
+           $htmltext = $this->load->view('emailers/newjourney', $data, true);
+           $this->menu_model->emailer($htmltext,'Another Happyness Journey Begins!',$adminemail,"Sir/Madam");
+           // mini survey intro
+          //  $htmltext = $this->load->view('emailers/mini-survey', $data, true);
+          //  $this->menu_model->emailer($htmltext,'Mini Surveys-Here’s What You Need To Do!',$adminemail,"Sir/Madam");
+
+
+}
  }
 
 

@@ -11,7 +11,7 @@
           <p style="margin:15px 0px;">Dear Colleagues,
           </p>
           <p style="margin:0 0 15px 0;">
-            We've always believed that you are the driving force of this organization and that your happiness at work is what matters to ensure that we meet our goals.As a part of this belief and efforts in this area, here's a fun and simple survey we'd like you to take part in <!-- insert Link --><a href="#" target="_blank" style="color:#000;text-decoration:none;"><?php echo $link; ?>.</a>
+            We've always believed that you are the driving force of this organization and that your happiness at work is what matters to ensure that we meet our goals. As a part of this belief and efforts in this area, here's a fun and simple survey we'd like you to take part in <!-- insert Link --><a href="#" target="_blank" style="color:#000;text-decoration:none;"><?php echo $link; ?>.</a>
             <!--End Link -->
           </p>
 
