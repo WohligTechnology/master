@@ -1525,10 +1525,11 @@
                     <div class="input-field col s3 m3" onchange="checkforquestion('question10','type10','required10','option91')">
                         <?php echo form_dropdown("type10",$type,set_value('type')," id='type10'");?>
                     </div>
-                    <div class="input-field col s2 m2">
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question10','type10','required10','option91')">
                         <?php echo form_dropdown("required10",$isrequired,set_value('required10'),"id='required10'")?>
                     </div>
                 </div>
+
                 <div class="option91">
                     <div class="row">
                         <div class="input-field col s8 m8">
@@ -1723,11 +1724,13 @@
 
     // if question is present show option 1
     function checkforquestion(question, type, required, option) {
-        console.log($("#" + question).val());
+        // console.log($("#" + question).val());
         if ($("#" + question).val() != '' && $("#" + type).val() != '' && $("#" + required).val() != '' && $("#" + type).val() != 1 && $("#" + type).val() != 2) {
             $("." + option).show();
+            // console.log("show opt");
         } else {
             $("." + option).hide();
+              // console.log("hide opt");
         }
     }
 

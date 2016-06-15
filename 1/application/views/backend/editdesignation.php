@@ -10,14 +10,14 @@
                 <input type="text" id="name" name="name" value='<?php echo set_value(' name ',$before->name);?>'>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display:none">
             <div class="input-field col s12 m6">
                 <?php echo form_dropdown('language', $language, set_value('language',$before->language)); ?>
                 <label>Language</label>
             </div>
         </div>
-       
-       
+
+
         <div class="row">
             <div class="col s12 m6">
                     <div class=" form-group">

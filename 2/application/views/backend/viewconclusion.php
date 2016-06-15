@@ -160,7 +160,7 @@
           }
 
           function addRow(name, averagePercent,id) {
-              $("table tbody.datatobeinserted").append("<tr><td>" + name + "</td><td>" + averagePercent + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad' href='<?php echo site_url('site/viewconclude?id=');?>"+ id +"'><i class='material-icons propericon'>visibility</i></a></td></tr>");
+              $("table tbody.datatobeinserted").append("<tr><td>" + name + "</td><td>" + averagePercent + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad tooltipped' href='<?php echo site_url('site/viewconclude?id=');?>"+ id +"'  data-position='top' data-delay='50' data-tooltip='View'><i class='material-icons propericon'>visibility</i></a></td></tr>");
 
           }
   //

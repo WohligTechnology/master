@@ -67,6 +67,7 @@ class User_model extends CI_Model
 
 	public function create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$username,$gender,$age,$maritalstatus,$designation,$department,$noofyearsinorganization,$spanofcontrol,$description,$employeeid,$branch,$language,$team,$salary)
 	{
+
 		$data  = array(
 			'name' => $name,
 			'email' => $email,
@@ -93,6 +94,14 @@ class User_model extends CI_Model
 		);
 		$query=$this->db->insert( 'user', $data );
 		$id=$this->db->insert_id();
+
+		$hashvalue=base64_encode ($id."&hq");
+
+		$data  = array(
+			'hashuser' =>$hashvalue
+		);
+		$this->db->where('id',$id);
+		$query=$this->db->update( 'user', $data );
 
 		if(!$query)
 			return  0;
@@ -795,6 +804,14 @@ class User_model extends CI_Model
                         );
                         $query=$this->db->insert( 'user', $data );
                         $id=$this->db->insert_id();
+
+												$hashvalue=base64_encode ($id."&hq");
+
+												$data1  = array(
+													'hashuser' =>$hashvalue
+												);
+												$this->db->where('id',$id);
+												$query=$this->db->update( 'user', $data1 );
 
 
         }

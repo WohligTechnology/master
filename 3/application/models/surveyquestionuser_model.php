@@ -5,16 +5,26 @@ class surveyquestionuser_model extends CI_Model
 {
 public function create($survey,$email,$status)
 {
-    
+
     $getuserid=$this->db->query("SELECT * FROM `user` WHERE `email`='$email'")->row();
     $userid=$getuserid->id;
-$data=array("survey" => $survey,"email" => $email,"status" => $status,"userid" => $userid);
-$query=$this->db->insert( "hq_surveyquestionuser", $data );
-$id=$this->db->insert_id();
-if(!$query)
-return  0;
-else
-return  $id;
+    if($userid)
+    {
+      $hashvalue=base64_encode ($userid."&hq");
+      $data=array("survey" => $survey,"email" => $email,"status" => $status,"userid" => $userid,"hashuser" =>$hashvalue);
+      $query=$this->db->insert( "hq_surveyquestionuser", $data );
+      $id=$this->db->insert_id();
+      if(!$query)
+      return  0;
+      else
+      return  $id;
+    }
+    else
+    {
+      return  0;
+    }
+
+
 }
 public function beforeedit($id)
 {
@@ -31,10 +41,18 @@ public function edit($id,$survey,$email,$status)
 {
     $getuserid=$this->db->query("SELECT * FROM `user` WHERE `email`='$email'")->row();
     $userid=$getuserid->id;
-  $data=array("survey" => $survey,"email" => $email,"status" => $status,"userid" => $userid);
-$this->db->where( "id", $id );
-$query=$this->db->update( "hq_surveyquestionuser", $data );
-return 1;
+    if($userid)
+    {
+       $hashvalue=base64_encode ($userid."&hq");
+       $data=array("survey" => $survey,"email" => $email,"status" => $status,"userid" => $userid,"hashuser" =>$hashvalue);
+       $this->db->where( "id", $id );
+       $query=$this->db->update( "hq_surveyquestionuser", $data );
+       return 1;
+    }
+    else
+    {
+       return 0;
+    }
 }
 public function delete($id)
 {
@@ -54,7 +72,7 @@ return $query;
             return 1;
         else
             return 0;
-} 
+}
     public function enableCompany($id)
 {
         $query=$this->db->query("UPDATE `hq_surveyquestionuser` SET `status`=2 WHERE `id`='$id'");
@@ -63,6 +81,45 @@ return $query;
             return 1;
         else
             return 0;
+}
+    public function createbycsv($file,$id)
+{
+//     start
+        foreach ($file as $row)
+        {
+            $email=$row['email'];
+            $surveyname=$row['survey'];
+            $query=$this->db->query("SELECT * FROM `user` WHERE `email` LIKE '$email'")->row();
+
+            if(empty($query))
+            {
+            }
+            else
+            {
+                $surveynamequery=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `conclusion` LIKE '$surveyname'")->row();
+                $surveyid=$surveynamequery->id;
+                $checkifmailpresent=$this->db->query("SELECT * FROM `hq_surveyquestionuser` WHERE `email` LIKE '$email'")->row();
+                if(empty($checkifmailpresent))
+                {
+                    //                  email matches
+                $userid=$query->id;
+                $hashvalue=base64_encode ($userid."&hq");
+                $data  = array(
+                    'email' => $email,
+                    'userid' => $userid,
+                    'survey' => $surveyid,
+                    	'hashuser' =>$hashvalue
+
+                );
+                $query=$this->db->insert( 'hq_surveyquestionuser', $data );
+                $id=$this->db->insert_id();
+                }
+
+            }
+	    }
+
+//        end
+			return  $id;
 }
 }
 ?>

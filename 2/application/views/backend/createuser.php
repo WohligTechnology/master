@@ -3,7 +3,7 @@
         <h4 class="pad-left-15">Company Profile</h4>
     </div>
     <form class="col s12" method="post" action="<?php echo site_url('site/createusersubmit');?>" enctype="multipart/form-data">
-        <div class="row">
+        <div class="row" style="display:none">
             <div class="input-field col m6 s12">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" value="<?php echo set_value('name');?>">
@@ -34,7 +34,7 @@
                 <input type="text" id="socialid" name="socialid" value="<?php echo set_value('socialid');?>">
             </div>
         </div>
-    
+
         <div class="row">
             <div class="input-field col m6 s12">
                 <select name="logintype" value="<?php echo set_value('logintype');?>" style="display:none">

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col s12 right">
 <div class="button1 pull-right">
-   
+
 <a class="waves-effect waves-light btn waves-effect waves-light btn blue darken-4" href="<?php echo site_url('site/viewconclusionfinalsuggestion'); ?>">Back</a>
 <a class="waves-effect waves-light btn pleft waves-effect waves-light btn blue darken-4" href="<?php echo base_url('uploads/surveyuser.csv');?>"><i class='material-icons propericon' style="
     margin-right: 5px;
@@ -14,11 +14,11 @@
 </div>
    <div class="row">
     <div class="col s12">
-       
+
 
     </div>
     <form class="col s12" method="post" action="<?php echo site_url('site/uploadsurveyusercsvsubmit');?>" enctype="multipart/form-data">
-<input name="id" type="text" value="<?php echo $this->input->get('id');?>">
+<input name="id" type="hidden" value="<?php echo $this->input->get('id');?>">
        	<div class="row">
 			<div class="file-field input-field col m6 s12">
 				<div class="btn blue darken-4">
@@ -30,7 +30,7 @@
 				</div>
 			</div>
 		</div>
-       
+
         <div class="row">
             <div class="col s12 m6">
                     <div class=" form-group">

@@ -10,15 +10,15 @@
                 <input type="text" id="name" name="name" value="<?php echo set_value('name');?>">
             </div>
         </div>
-      
-        <div class="row">
+
+        <div class="row" style="display:none">
             <div class="input-field col s12 m6">
                 <label for="deptid">Dept Id</label>
                 <input type="text" id="deptid" name="deptid" value="<?php echo set_value('deptid');?>">
             </div>
         </div>
-     
-       
+
+
         <div class="row">
             <div class="col s12 m6">
                     <div class=" form-group">

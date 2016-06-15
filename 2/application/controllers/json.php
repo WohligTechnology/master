@@ -1,5 +1,5 @@
 <?php if ( ! defined("BASEPATH")) exit("No direct script access allowed");
-class Json extends CI_Controller 
+class Json extends CI_Controller
 {function getallbranch()
 {
 $elements=array();
@@ -538,21 +538,21 @@ $id=$this->input->get_post("id");
 $data["message"]=$this->content_model->getsinglecontent($id);
 $this->load->view("json",$data);
 }
- 
+
  //functions by avinash
- 
+
      public function generatejson()
      {
          $data1=$this->menu_model->getgeneratedjson();
          $data['message']=$data1;
          $this->load->view('json',$data);
      }
- 
+
  public function getQuestionAnswer()
      {
          $data['message']=$this->restapi_model->getQuestionAnswer();
          $this->load->view('json',$data);
-     } 
+     }
  public function getSingleQuestionAndOption()
      {
          $id=$this->input->get_post("id");
@@ -561,7 +561,7 @@ $this->load->view("json",$data);
      }
 
 
- 
+
  public function viewfirstpage()
  {
      $data['id']=$this->input->get('id');
@@ -576,7 +576,7 @@ $this->load->view("json",$data);
  {
       $data['pillardata']=$this->menu_model->blockBackend();
       $this->load->view('pillar',$data);
- } 
+ }
  public function unBlockCompany()
  {
       $data['pillardata']=$this->menu_model->unBlockCompany();
@@ -604,17 +604,23 @@ $this->load->view("json",$data);
 //             $hashvalue=base64_encode ($getUserid->id."&hq");
              $hashvalue=base64_encode ("16&hq");
        $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-            echo $link;
+
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
        $this->email->to('jagruti@wohlig.com');
-       $this->email->subject('Test');  
-            $message = "Hiii this is the link ".$link;
+         $this->email->subject('Your Happiness at Work matters!');
+       $message = "<html>
+        <p>Dear Colleagues,</p><br>
+      <p>We've always believed that you are the driving force of this organization and that your happiness at work is what matters to ensure that we meet our goals. As a part of this belief and efforts in this area, here's a fun and simple survey we'd like you to take part in </p><span>$link</span><br>
+<p>Quick tip: Pick the answer you believe in. All responses are kept confidential. </p><br>
+<p>Please feel free to reach out to the HR Team in case of any queries. We are happy to help. </p><br>
+<p>Team HR </p><br>
+      </html>";
        $this->email->message($message);
        $this->email->send();
-            
+
 //        }
-    
+
        return 1;
    }
 
@@ -626,34 +632,23 @@ $this->load->view("json",$data);
   public function sendsurveyquestion()
   {
         $surveyid=$this->input->get('id');
-      
+
       $gettotalemails=$this->db->query("SELECT `id`, `survey`, `email`, `status`, `userid` FROM `hq_surveyquestionuser` WHERE `survey`='$surveyid'")->result();
-//      foreach($gettotalemails as $row)
-//      {
-//          $checkuseransweredsurvey=$this->db->query("SELECT `survey` FROM `hq_surveyquestionanswer` WHERE `user`='$row->id' AND `survey`='$surveyid'")->result();
-//      }
-      
-       
         foreach($gettotalemails as $gettotalemail)
         {
             $email=$gettotalemail->email;
             $userid=$gettotalemail->userid;
             $hashvalue=base64_encode ($userid."&hq");
-            $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-            echo $link;
-            $this->load->library('email');
-            $this->email->from('master@willnevergrowup.in', 'HQ');
-            $this->email->to($email);
-            $this->email->subject('Test');   
-            $message = "Hiii this is survey    ".$link;
-            $this->email->message($message);
-            $this->email->send();
+            $link="http://wohlig.co.in/hqfront/#/playing/$hashvalue";
+            $data['link']=$link;
+    				  $htmltext = $this->load->view('emailers/opinion', $data, true);
+    				$this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
 	 }
        redirect( base_url() . 'index.php/site/viewconclusionfinalsuggestion', 'refresh' );
   }
   public function pingHqForSurvey()
  	{
-     
+
       $data = json_decode(file_get_contents('php://input'), true);
       $user=$data["user"];
       $survey=$data["survey"];
@@ -665,7 +660,7 @@ $this->load->view("json",$data);
       $data = json_decode(file_get_contents('php://input'), true);
       $user=$data["user"];
 	 	$data['message'] = $this->restapi_model->pingHq($user);
-    
+
 	 	$this->load->view('json', $data);
  	}
  public function storeUserAnswer()
@@ -681,7 +676,7 @@ $this->load->view("json",$data);
      else{
          $data['message']=$this->restapi_model->storeUserAnswer($user,$option,$question,$test);
      }
-         
+
          $this->load->view('json',$data);
      }
  public function storeSurveyAnswer()
@@ -697,11 +692,21 @@ $this->load->view("json",$data);
      $data['message']=$query;
     $this->load->view('json',$data);
  }
+ public function checkKey(){
+   $data = json_decode(file_get_contents('php://input'), true);
+     $key=$data["key"];
+     $data['message']=$this->restapi_model->checkKey($key);
+     $this->load->view('json',$data);
+
+ }
   public function changecredentials(){
      $email=$this->input->get_post('email');
      $password=$this->input->get_post('pass');
+     $package=$this->input->get_post('package');
+     $expiredate=$this->input->get_post('expiredate');
      $password=md5($password);
      $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
+     $this->db->query(" UPDATE `user` SET `package`='$package',`expirydate`='$expiredate'");
  }
  public function checkweight(){
          $range=$this->input->get_post('range');
@@ -729,7 +734,7 @@ $this->load->view("json",$data);
         $getsurveyname=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `id`=1")->row();
         $surveyname=$getsurveyname->conclusion;
         $textoption=$this->db->query("SELECT `type` FROM `hq_surveyquestion` WHERE `survey`='$surveyid' AND `type` IN (1,2)")->result();
-   
+
         foreach($textoption as $row){
             $query=$this->db->query("SELECT  `hq_surveyquestionanswer`.`user`,`user`.`email` as `Email`, `hq_surveyquestionanswer`.`question`,`hq_surveyquestion`.`content`, `hq_surveyquestionanswer`.`option`, `hq_surveyquestionanswer`.`survey` FROM `hq_surveyquestionanswer`
 INNER JOIN `user` ON `user`.`id`=`hq_surveyquestionanswer`.`user`
@@ -747,11 +752,11 @@ WHERE `hq_surveyquestionanswer`.`survey`='$surveyid' AND `hq_surveyquestion`.`su
 ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
         }
      $arr=array_merge($query,$query1);
-     
+
 //     $mdarr=array();
 //      for($i=0; $i<count($arr);$i++){
 //          $temp = array();
-//          
+//
 //          array_push($temp,$arr[$i]->user,$arr[$i]->content,$arr[$i]->option);
 //          array_push($mdarr,$temp);
 //     }
@@ -760,8 +765,8 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
  print_r($arr);
 
  }
- 
- 
+
+
   /* <div class="option2">
                     <div class="row">
                         <div class="input-field col s8 m8">
@@ -780,7 +785,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
                     </div>
                 </div>
                 */
- 
+
  public function test(){
      for($i=91;$i<=100;$i++){
          $j = $i+1;
@@ -793,82 +798,13 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
          <div onclick="hidedelete(\'option'.$i.'\')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
           <div onclick="showoption(\'option'.$i.'\',\'option'.$j.'\')" class="btn btn-xs less-pad"><i class="material-icons propericon">add</i></div></div></div></div>';
      }
-     
-     
- }
- public function test1(){
-      for($i=91;$i<=100;$i++){
-          $j=10;
-          echo "//  option".$i;
-          echo "\n";
-          echo "\n";
-          echo 'if($option'.$i.'id =="")';
-          echo "\n";
-          echo "{";
-          echo "\n";
-           echo '       if($option'.$i.' !="")';
-          echo "\n";
-          echo "        {";
-          echo "\n";
-          echo '            $data=array("question" => $question'.$j.'id,"title" => $option'.$i.');';
-          echo "\n";
-          echo   '            $query=$this->db->insert( "hq_surveyoption", $data );';
-          echo "\n";
-          echo '            $option'.$i.'id=$this->db->insert_id();';
-           echo "\n";
-          echo "        }";
-           echo "\n";
-          echo "}";
-           echo "\n";
-          echo "else";
-           echo "\n";
-          echo "        {";
-           echo "\n";
-          echo '            $data=array("question" => $question'.$j.'id,"title" => $option'.$i.');';
-          echo "\n";
-        echo '              $this->db->where( "id", $option'.$i.'id );';
-          echo "\n";
-          echo   '          $query=$this->db->update( "hq_surveyoption", $data );';
-          echo "\n";
-          echo "        }";
-           echo "\n";
-           echo "\n";
-           //  option7
 
-//                    if($option7id =="")
-//                    {
-//                        if($option7 !=''){
-//                    $data=array("question" => $question1id,"title" => $option7);
-//                    $query=$this->db->insert( "hq_surveyoption", $data );
-//                    $option7id=$this->db->insert_id();
-//                    }
-//                    }
-//                    else
-//                    {
-//                    $data=array("question" => $question1id,"title" => $option7);
-//                    $this->db->where( "id", $option7id );
-//                    $query=$this->db->update( "hq_surveyoption", $data );
-//                    }
-      
+
  }
- }
-     public function test2()
-     {
-         echo '//question '.$j.''; echo "\n";
-      for($i=1;$i<=10;$i++)
-      {
-          $j=1;
-    
-       echo '//option'.$i.''; echo "\n";
-        echo '$data=array("question" => $question'.$j.'id,"title" => $option'.$i.');'; echo "\n";
-       echo '$this->db->where( "id", $option'.$i.'id );'; echo "\n";
-          echo '$query=$this->db->update( "hq_surveyoption", $data );'; echo "\n";echo "\n";
-          
-      }
-    } 
+
  public function abc()
      {
-     $query = $this->db->query("SELECT * FROM `hq_question`")->result(); 
+     $query = $this->db->query("SELECT * FROM `hq_question`")->result();
      $testdetail=$this->db->query("SELECT * FROM `test`")->row();
      $startdate=$testdetail->startdate;
      $schedule=$testdetail->schedule;
@@ -880,7 +816,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
      else{
         $noofquestions=42;
      }
-     
+
         //ASSIGN DATES ACCORDING TO SCHEDULE
          if($schedule==1)
          {
@@ -892,11 +828,11 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
                         $day=ceil($i/$units);
                         $exactdateday=$day-1;
                         $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
                 }
-            
-         } 
-     
+
+         }
+
      if($schedule==2)
          {
              $this->db->query('UPDATE `hq_question` SET `date`=null');
@@ -907,10 +843,10 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
                         $day=ceil($i/$units);
                         $exactdateday=$day-1;
                         $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
                 }
-            
-         } 
+
+         }
      if($schedule==3)
          {
              $this->db->query('UPDATE `hq_question` SET `date`=null');
@@ -921,10 +857,10 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
                         $day=ceil($i/$units);
                         $exactdateday=$day-1;
                         $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
                 }
-            
-         } 
+
+         }
      if($schedule==4)
          {
              $this->db->query('UPDATE `hq_question` SET `date`=null');
@@ -935,19 +871,19 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
                         $day=ceil($i/$units);
                         $exactdateday=$day-1;
                         $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");   
+                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
                 }
-            
-         } 
-   
+
+         }
+
     }
  public function setCron()
  {
-     $query1=$this->db->query("SELECT * FROM `user` WHERE `expirydate` <=NOW()")->row();
+     $query1=$this->db->query("SELECT * FROM `user` WHERE `expirydate` >NOW()")->row();
 //    don't send que
      if(empty($query1))
      {
-         $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW()")->result(); 
+         $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW()")->result();
          if(!empty($query))
          {
             $getUserid=$this->restapi_model->getUsers();
@@ -956,28 +892,67 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
             $email=$getUserid->email;
             $hashvalue=base64_encode ($getUserid->id."&hq");
             $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-            $this->load->library('email');
-            $this->email->from('master@willnevergrowup.in', 'HQ');
-            $this->email->to($email);
-            $this->email->subject('Happiness Quotient');
-            $message = "<html>
-            <p>Hello!</p><br>
-          <p>Feel like taking a break from work? Click on this link to have some fun! </p><span>$link</span><br>
-    <p>For any queries/support, contact the HR Team on ___________________</p><br>
-          </html>";
-           $this->email->message($message);
-           $this->email->send();
+            $data['link']=$link;
+              $htmltext = $this->load->view('emailers/userquestion', $data, true);
+            $this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
+
             }
+            }
+            // new journey mainurl
+            $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
+            $lastdate=$getdate->date;
+            $todaysdate = date('Y-m-d');
+            if($lastdate==$todaysdate){
+              $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
+              $adminemail=$adminmail->email;
+              $htmltext = $this->load->view('emailers/thankyou', $data, true);
+              $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
+
+
+                  $dateafter7day=date_add($lastdate,date_interval_create_from_date_string("7 days"));
+                  if($dateafter7day==$todaysdate){
+                    // new journey mail
+                    $data['link']=site_url('site/viewconclusionfinalsuggestion');
+                    $htmltext = $this->load->view('emailers/newjourney', $data, true);
+                    $this->menu_model->emailer($htmltext,'Another Happyness Journey Begins!',$adminemail,"Sir/Madam");
+                    // mini survey intro
+                    $htmltext = $this->load->view('emailers/mini-survey', $data, true);
+                    $this->menu_model->emailer($htmltext,'Mini Surveys-Here’s What You Need To Do!',$adminemail,"Sir/Madam");
+                  }
+
          }
      }
      else{
 //         do nothing
-         echo "in else";
+
      }
-   
+
  }
- 
- 
- 
+ public function testcron(){
+   // new journey mainurl
+   $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
+   $lastdate=$getdate->date;
+   $todaysdate = date('Y-m-d');
+   if($lastdate==$todaysdate){
+           $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
+           $adminemail=$adminmail->email;
+          //  $htmltext = $this->load->view('emailers/thankyou', $data, true);
+          //  $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
+
+
+           // new journey mail
+           $data['link']=site_url('site/viewconclusionfinalsuggestion');
+           $htmltext = $this->load->view('emailers/newjourney', $data, true);
+           $this->menu_model->emailer($htmltext,'Another Happyness Journey Begins!',$adminemail,"Sir/Madam");
+           // mini survey intro
+          //  $htmltext = $this->load->view('emailers/mini-survey', $data, true);
+          //  $this->menu_model->emailer($htmltext,'Mini Surveys-Here’s What You Need To Do!',$adminemail,"Sir/Madam");
+
+
+}
+ }
+
+
+
 
  } ?>

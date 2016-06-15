@@ -22,7 +22,8 @@
 
         <div class="row">
             <div class="input-field col s12 m6">
-                <input type="text" name="surveydescription" value="<?php echo $before['survey']->conclusionsuggestion;?>">
+                <!--                <input type="text" name="surveydescription" value="<?php echo $before['survey']->conclusionsuggestion;?>">-->
+                <textarea id="textarea1" name="surveydescription" class="materialize-textarea" value="<?php echo $before['survey']->conclusionsuggestion;?>"><?php echo $before['survey']->conclusionsuggestion;?></textarea>
                 <label>Add Description</label>
             </div>
         </div>
@@ -53,8 +54,8 @@
                 <div class="option1">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option1" value="<?php echo $option[0]->options[1]->title;?>" id="option1">
-                            <input type="hidden" name="option1id" value="<?php echo $option[0]->options[1]->id;?>" id="option1id">
+                            <input type="text" name="option1" value="<?php echo $option[0]->options[0]->title;?>" id="option1">
+                            <input type="hidden" name="option1id" value="<?php echo $option[0]->options[0]->id;?>" id="option1id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -70,8 +71,8 @@
                 <div class="option2">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option2" value="<?php echo $option[0]->options[2]->title;?>" id="option2">
-                            <input type="hidden" name="option2id" value="<?php echo $option[0]->options[2]->id;?>" id="option2id">
+                            <input type="text" name="option2" value="<?php echo $option[0]->options[1]->title;?>" id="option2">
+                            <input type="hidden" name="option2id" value="<?php echo $option[0]->options[1]->id;?>" id="option2id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -87,8 +88,8 @@
                 <div class="option3">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option3" value="<?php echo $option[0]->options[3]->title;?>" id="option3">
-                            <input type="hidden" name="option3id" value="<?php echo $option[0]->options[3]->id;?>" id="option3id">
+                            <input type="text" name="option3" value="<?php echo $option[0]->options[2]->title;?>" id="option3">
+                            <input type="hidden" name="option3id" value="<?php echo $option[0]->options[2]->id;?>" id="option3id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -104,8 +105,8 @@
                 <div class="option4">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option4" value="<?php echo $option[0]->options[4]->title;?>" id="option4">
-                            <input type="hidden" name="option4id" value="<?php echo $option[0]->options[4]->id;?>" id="option4id">
+                            <input type="text" name="option4" value="<?php echo $option[0]->options[3]->title;?>" id="option4">
+                            <input type="hidden" name="option4id" value="<?php echo $option[0]->options[3]->id;?>" id="option4id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -121,8 +122,8 @@
                 <div class="option5">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option5" value="<?php echo $option[0]->options[5]->title;?>" id="option5">
-                            <input type="hidden" name="option5id" value="<?php echo $option[0]->options[5]->id;?>" id="option5id">
+                            <input type="text" name="option5" value="<?php echo $option[0]->options[4]->title;?>" id="option5">
+                            <input type="hidden" name="option5id" value="<?php echo $option[0]->options[4]->id;?>" id="option5id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -138,8 +139,8 @@
                 <div class="option6">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option6" value="<?php echo $option[0]->options[6]->title;?>" id="option6">
-                            <input type="hidden" name="option6id" value="<?php echo $option[0]->options[6]->id;?>" id="option6id">
+                            <input type="text" name="option6" value="<?php echo $option[0]->options[5]->title;?>" id="option6">
+                            <input type="hidden" name="option6id" value="<?php echo $option[0]->options[5]->id;?>" id="option6id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -155,8 +156,8 @@
                 <div class="option7">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option7" value="<?php echo $option[0]->options[7]->title;?>" id="option7">
-                            <input type="hidden" name="option7id" value="<?php echo $option[0]->options[7]->id;?>" id="option7id">
+                            <input type="text" name="option7" value="<?php echo $option[0]->options[6]->title;?>" id="option7">
+                            <input type="hidden" name="option7id" value="<?php echo $option[0]->options[6]->id;?>" id="option7id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -172,8 +173,8 @@
                 <div class="option8">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option8" value="<?php echo $option[0]->options[8]->title;?>" id="option8">
-                            <input type="hidden" name="option8id" value="<?php echo $option[0]->options[8]->id;?>" id="option8id">
+                            <input type="text" name="option8" value="<?php echo $option[0]->options[7]->title;?>" id="option8">
+                            <input type="hidden" name="option8id" value="<?php echo $option[0]->options[7]->id;?>" id="option8id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -189,8 +190,8 @@
                 <div class="option9">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option9" value="<?php echo $option[0]->options[9]->title;?>" id="option9">
-                            <input type="hidden" name="option9id" value="<?php echo $option[0]->options[9]->id;?>" id="option9id">
+                            <input type="text" name="option9" value="<?php echo $option[0]->options[8]->title;?>" id="option9">
+                            <input type="hidden" name="option9id" value="<?php echo $option[0]->options[8]->id;?>" id="option9id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -206,8 +207,8 @@
                 <div class="option10">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option10" value="<?php echo $option[0]->options[10]->title;?>" id="option10">
-                            <input type="hidden" name="option10id" value="<?php echo $option[0]->options[10]->id;?>" id="option10id">
+                            <input type="text" name="option10" value="<?php echo $option[0]->options[9]->title;?>" id="option10">
+                            <input type="hidden" name="option10id" value="<?php echo $option[0]->options[9]->id;?>" id="option10id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -240,8 +241,8 @@
                 <div class="option11">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option11" value="<?php echo $option[0]->options[11]->title;?>" id="option11">
-                            <input type="hidden" name="option11id" value="<?php echo $option[0]->options[11]->id;?>" id="option11id">
+                            <input type="text" name="option11" value="<?php echo $option[1]->options[0]->title;?>" id="option11">
+                            <input type="hidden" name="option11id" value="<?php echo $option[1]->options[0]->id;?>" id="option11id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -257,8 +258,8 @@
                 <div class="option12">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option12" value="<?php echo $option[0]->options[12]->title;?>" id="option12">
-                            <input type="hidden" name="option12id" value="<?php echo $option[0]->options[12]->id;?>" id="option12id">
+                            <input type="text" name="option12" value="<?php echo $option[1]->options[1]->title;?>" id="option12">
+                            <input type="hidden" name="option12id" value="<?php echo $option[1]->options[1]->id;?>" id="option12id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -274,8 +275,8 @@
                 <div class="option13">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option13" value="<?php echo $option[0]->options[13]->title;?>" id="option13">
-                            <input type="hidden" name="option13id" value="<?php echo $option[0]->options[13]->id;?>" id="option13id">
+                            <input type="text" name="option13" value="<?php echo $option[1]->options[2]->title;?>" id="option13">
+                            <input type="hidden" name="option13id" value="<?php echo $option[1]->options[2]->id;?>" id="option13id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -291,8 +292,8 @@
                 <div class="option14">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option14" value="<?php echo $option[0]->options[14]->title;?>" id="option14">
-                            <input type="hidden" name="option14id" value="<?php echo $option[0]->options[14]->id;?>" id="option14id">
+                            <input type="text" name="option14" value="<?php echo $option[1]->options[3]->title;?>" id="option14">
+                            <input type="hidden" name="option14id" value="<?php echo $option[1]->options[3]->id;?>" id="option14id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -308,8 +309,8 @@
                 <div class="option15">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option15" value="<?php echo $option[0]->options[15]->title;?>" id="option15">
-                            <input type="hidden" name="option15id" value="<?php echo $option[0]->options[15]->id;?>" id="option15id">
+                            <input type="text" name="option15" value="<?php echo $option[1]->options[4]->title;?>" id="option15">
+                            <input type="hidden" name="option15id" value="<?php echo $option[1]->options[4]->id;?>" id="option15id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -325,8 +326,8 @@
                 <div class="option16">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option16" value="<?php echo $option[0]->options[16]->title;?>" id="option16">
-                            <input type="hidden" name="option16id" value="<?php echo $option[0]->options[16]->id;?>" id="option16id">
+                            <input type="text" name="option16" value="<?php echo $option[1]->options[5]->title;?>" id="option16">
+                            <input type="hidden" name="option16id" value="<?php echo $option[1]->options[5]->id;?>" id="option16id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -342,8 +343,8 @@
                 <div class="option17">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option17" value="<?php echo $option[0]->options[17]->title;?>" id="option17">
-                            <input type="hidden" name="option17id" value="<?php echo $option[0]->options[17]->id;?>" id="option17id">
+                            <input type="text" name="option17" value="<?php echo $option[1]->options[6]->title;?>" id="option17">
+                            <input type="hidden" name="option17id" value="<?php echo $option[1]->options[6]->id;?>" id="option17id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -359,8 +360,8 @@
                 <div class="option18">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option18" value="<?php echo $option[0]->options[18]->title;?>" id="option18">
-                            <input type="hidden" name="option18id" value="<?php echo $option[0]->options[18]->id;?>" id="option18id">
+                            <input type="text" name="option18" value="<?php echo $option[1]->options[7]->title;?>" id="option18">
+                            <input type="hidden" name="option18id" value="<?php echo $option[1]->options[7]->id;?>" id="option18id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -376,8 +377,8 @@
                 <div class="option19">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option19" value="<?php echo $option[0]->options[19]->title;?>" id="option19">
-                            <input type="hidden" name="option19id" value="<?php echo $option[0]->options[19]->id;?>" id="option19id">
+                            <input type="text" name="option19" value="<?php echo $option[1]->options[8]->title;?>" id="option19">
+                            <input type="hidden" name="option19id" value="<?php echo $option[1]->options[8]->id;?>" id="option19id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -393,8 +394,8 @@
                 <div class="option20">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option20" value="<?php echo $option[0]->options[20]->title;?>" id="option20">
-                            <input type="hidden" name="option20id" value="<?php echo $option[0]->options[20]->id;?>" id="option20id">
+                            <input type="text" name="option20" value="<?php echo $option[1]->options[9]->title;?>" id="option20">
+                            <input type="hidden" name="option20id" value="<?php echo $option[1]->options[9]->id;?>" id="option20id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -426,8 +427,8 @@
                 <div class="option21">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option21" value="<?php echo $option[0]->options[21]->title;?>" id="option21">
-                            <input type="hidden" name="option21id" value="<?php echo $option[0]->options[21]->id;?>" id="option21id">
+                            <input type="text" name="option21" value="<?php print_r($option[2]->options[0]->title);?>" id="option21">
+                            <input type="hidden" name="option21id" value="<?php echo $option[2]->options[0]->id;?>" id="option21id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -443,8 +444,8 @@
                 <div class="option22">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option22" value="<?php echo $option[0]->options[22]->title;?>" id="option22">
-                            <input type="hidden" name="option22id" value="<?php echo $option[0]->options[22]->id;?>" id="option22id">
+                            <input type="text" name="option22" value="<?php echo $option[2]->options[1]->title;?>" id="option22">
+                            <input type="hidden" name="option22id" value="<?php echo $option[2]->options[1]->id;?>" id="option22id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -460,8 +461,8 @@
                 <div class="option23">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option23" value="<?php echo $option[0]->options[23]->title;?>" id="option23">
-                            <input type="hidden" name="option23id" value="<?php echo $option[0]->options[23]->id;?>" id="option23id">
+                            <input type="text" name="option23" value="<?php echo $option[2]->options[2]->title;?>" id="option23">
+                            <input type="hidden" name="option23id" value="<?php echo $option[2]->options[2]->id;?>" id="option23id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -477,8 +478,8 @@
                 <div class="option24">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option24" value="<?php echo $option[0]->options[24]->title;?>" id="option24">
-                            <input type="hidden" name="option24id" value="<?php echo $option[0]->options[24]->id;?>" id="option24id">
+                            <input type="text" name="option24" value="<?php echo $option[2]->options[3]->title;?>" id="option24">
+                            <input type="hidden" name="option24id" value="<?php echo $option[2]->options[3]->id;?>" id="option24id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -494,8 +495,8 @@
                 <div class="option25">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option25" value="<?php echo $option[0]->options[25]->title;?>" id="option25">
-                            <input type="hidden" name="option25id" value="<?php echo $option[0]->options[25]->id;?>" id="option25id">
+                            <input type="text" name="option25" value="<?php echo $option[2]->options[4]->title;?>" id="option25">
+                            <input type="hidden" name="option25id" value="<?php echo $option[2]->options[4]->id;?>" id="option25id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -511,8 +512,8 @@
                 <div class="option26">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option26" value="<?php echo $option[0]->options[26]->title;?>" id="option26">
-                            <input type="hidden" name="option26id" value="<?php echo $option[0]->options[26]->id;?>" id="option26id">
+                            <input type="text" name="option26" value="<?php echo $option[2]->options[5]->title;?>" id="option26">
+                            <input type="hidden" name="option26id" value="<?php echo $option[2]->options[5]->id;?>" id="option26id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -528,8 +529,8 @@
                 <div class="option27">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option27" value="<?php echo $option[0]->options[27]->title;?>" id="option27">
-                            <input type="hidden" name="option27id" value="<?php echo $option[0]->options[27]->id;?>" id="option27id">
+                            <input type="text" name="option27" value="<?php echo $option[2]->options[6]->title;?>" id="option27">
+                            <input type="hidden" name="option27id" value="<?php echo $option[2]->options[6]->id;?>" id="option27id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -545,8 +546,8 @@
                 <div class="option28">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option28" value="<?php echo $option[0]->options[28]->title;?>" id="option28">
-                            <input type="hidden" name="option28id" value="<?php echo $option[0]->options[28]->id;?>" id="option28id">
+                            <input type="text" name="option28" value="<?php echo $option[2]->options[7]->title;?>" id="option28">
+                            <input type="hidden" name="option28id" value="<?php echo $option[2]->options[7]->id;?>" id="option28id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -562,8 +563,8 @@
                 <div class="option29">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option29" value="<?php echo $option[0]->options[29]->title;?>" id="option29">
-                            <input type="hidden" name="option29id" value="<?php echo $option[0]->options[29]->id;?>" id="option29id">
+                            <input type="text" name="option29" value="<?php echo $option[2]->options[8]->title;?>" id="option29">
+                            <input type="hidden" name="option29id" value="<?php echo $option[2]->options[8]->id;?>" id="option29id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -579,15 +580,15 @@
                 <div class="option30">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option30" value="<?php echo $option[0]->options[30]->title;?>" id="option30">
-                            <input type="hidden" name="option30id" value="<?php echo $option[0]->options[30]->id;?>" id="option30id">
+                            <input type="text" name="option30" value="<?php echo $option[2]->options[9]->title;?>" id="option30">
+                            <input type="hidden" name="option30id" value="<?php echo $option[2]->options[9]->id;?>" id="option30id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option30')" class="btn btn-xs less-pad">
                                 <i class="material-icons propericon">delete</i>
                             </div>
-                            <div onclick="showoption('option30','option31')" class="btn btn-xs less-pad">
+                            <div onclick="showoption('option30','option0')" class="btn btn-xs less-pad">
                                 <i class="material-icons propericon">add</i>
                             </div>
                         </div>
@@ -612,8 +613,8 @@
                 <div class="option31">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option31" value="<?php echo $option[0]->options[31]->title;?>" id="option31">
-                            <input type="hidden" name="option31id" value="<?php echo $option[0]->options[31]->id;?>" id="option31id">
+                            <input type="text" name="option31" value="<?php echo $option[3]->options[0]->title;?>" id="option31">
+                            <input type="hidden" name="option31id" value="<?php echo $option[3]->options[0]->id;?>" id="option31id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -629,8 +630,8 @@
                 <div class="option32">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option32" value="<?php echo $option[0]->options[32]->title;?>" id="option32">
-                            <input type="hidden" name="option32id" value="<?php echo $option[0]->options[32]->id;?>" id="option32id">
+                            <input type="text" name="option32" value="<?php echo $option[3]->options[1]->title;?>" id="option32">
+                            <input type="hidden" name="option32id" value="<?php echo $option[3]->options[1]->id;?>" id="option32id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -646,8 +647,8 @@
                 <div class="option33">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option33" value="<?php echo $option[0]->options[33]->title;?>" id="option33">
-                            <input type="hidden" name="option33id" value="<?php echo $option[0]->options[33]->id;?>" id="option33id">
+                            <input type="text" name="option33" value="<?php echo $option[3]->options[2]->title;?>" id="option33">
+                            <input type="hidden" name="option33id" value="<?php echo $option[3]->options[2]->id;?>" id="option33id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -663,8 +664,8 @@
                 <div class="option34">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option34" value="<?php echo $option[0]->options[34]->title;?>" id="option34">
-                            <input type="hidden" name="option34id" value="<?php echo $option[0]->options[34]->id;?>" id="option34id">
+                            <input type="text" name="option34" value="<?php echo $option[3]->options[3]->title;?>" id="option34">
+                            <input type="hidden" name="option34id" value="<?php echo $option[3]->options[3]->id;?>" id="option34id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -680,8 +681,8 @@
                 <div class="option35">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option35" value="<?php echo $option[0]->options[35]->title;?>" id="option35">
-                            <input type="hidden" name="option35id" value="<?php echo $option[0]->options[35]->id;?>" id="option35id">
+                            <input type="text" name="option35" value="<?php echo $option[3]->options[4]->title;?>" id="option35">
+                            <input type="hidden" name="option35id" value="<?php echo $option[3]->options[4]->id;?>" id="option35id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -697,8 +698,8 @@
                 <div class="option36">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option36" value="<?php echo $option[0]->options[36]->title;?>" id="option36">
-                            <input type="hidden" name="option36id" value="<?php echo $option[0]->options[36]->id;?>" id="option36id">
+                            <input type="text" name="option36" value="<?php echo $option[3]->options[5]->title;?>" id="option36">
+                            <input type="hidden" name="option36id" value="<?php echo $option[3]->options[5]->id;?>" id="option36id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -714,8 +715,8 @@
                 <div class="option37">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option37" value="<?php echo $option[0]->options[37]->title;?>" id="option37">
-                            <input type="hidden" name="option37id" value="<?php echo $option[0]->options[37]->id;?>" id="option37id">
+                            <input type="text" name="option37" value="<?php echo $option[3]->options[6]->title;?>" id="option37">
+                            <input type="hidden" name="option37id" value="<?php echo $option[3]->options[6]->id;?>" id="option37id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -731,8 +732,8 @@
                 <div class="option38">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option38" value="<?php echo $option[0]->options[38]->title;?>" id="option38">
-                            <input type="hidden" name="option38id" value="<?php echo $option[0]->options[38]->id;?>" id="option38id">
+                            <input type="text" name="option38" value="<?php echo $option[3]->options[7]->title;?>" id="option38">
+                            <input type="hidden" name="option38id" value="<?php echo $option[3]->options[7]->id;?>" id="option38id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -748,8 +749,8 @@
                 <div class="option39">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option39" value="<?php echo $option[0]->options[39]->title;?>" id="option39">
-                            <input type="hidden" name="option39id" value="<?php echo $option[0]->options[39]->id;?>" id="option39id">
+                            <input type="text" name="option39" value="<?php echo $option[3]->options[8]->title;?>" id="option39">
+                            <input type="hidden" name="option39id" value="<?php echo $option[3]->options[8]->id;?>" id="option39id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -765,15 +766,15 @@
                 <div class="option40">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option40" value="<?php echo $option[0]->options[40]->title;?>" id="option40">
-                            <input type="hidden" name="option40id" value="<?php echo $option[0]->options[40]->id;?>" id="option40id">
+                            <input type="text" name="option40" value="<?php echo $option[3]->options[9]->title;?>" id="option40">
+                            <input type="hidden" name="option40id" value="<?php echo $option[3]->options[9]->id;?>" id="option40id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option40')" class="btn btn-xs less-pad">
                                 <i class="material-icons propericon">delete</i>
                             </div>
-                            <div onclick="showoption('option40','option41')" class="btn btn-xs less-pad">
+                            <div onclick="showoption('option40','option0')" class="btn btn-xs less-pad">
                                 <i class="material-icons propericon">add</i>
                             </div>
                         </div>
@@ -798,8 +799,8 @@
                 <div class="option41">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option41" value="<?php echo $option[0]->options[41]->title;?>" id="option41">
-                            <input type="hidden" name="option41id" value="<?php echo $option[0]->options[41]->id;?>" id="option41id">
+                            <input type="text" name="option41" value="<?php echo $option[4]->options[0]->title;?>" id="option41">
+                            <input type="hidden" name="option41id" value="<?php echo $option[4]->options[0]->id;?>" id="option41id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -815,8 +816,8 @@
                 <div class="option42">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option42" value="<?php echo $option[0]->options[42]->title;?>" id="option42">
-                            <input type="hidden" name="option42id" value="<?php echo $option[0]->options[42]->id;?>" id="option42id">
+                            <input type="text" name="option42" value="<?php echo $option[4]->options[1]->title;?>" id="option42">
+                            <input type="hidden" name="option42id" value="<?php echo $option[4]->options[1]->id;?>" id="option42id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -832,8 +833,8 @@
                 <div class="option43">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option43" value="<?php echo $option[0]->options[43]->title;?>" id="option43">
-                            <input type="hidden" name="option43id" value="<?php echo $option[0]->options[43]->id;?>" id="option43id">
+                            <input type="text" name="option43" value="<?php echo $option[4]->options[2]->title;?>" id="option43">
+                            <input type="hidden" name="option43id" value="<?php echo $option[4]->options[2]->id;?>" id="option43id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -849,8 +850,8 @@
                 <div class="option44">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option44" value="<?php echo $option[0]->options[44]->title;?>" id="option44">
-                            <input type="hidden" name="option44id" value="<?php echo $option[0]->options[44]->id;?>" id="option44id">
+                            <input type="text" name="option44" value="<?php echo $option[4]->options[3]->title;?>" id="option44">
+                            <input type="hidden" name="option44id" value="<?php echo $option[4]->options[3]->id;?>" id="option44id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -866,8 +867,8 @@
                 <div class="option45">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option45" value="<?php echo $option[0]->options[45]->title;?>" id="option45">
-                            <input type="hidden" name="option45id" value="<?php echo $option[0]->options[45]->id;?>" id="option45id">
+                            <input type="text" name="option45" value="<?php echo $option[4]->options[4]->title;?>" id="option45">
+                            <input type="hidden" name="option45id" value="<?php echo $option[4]->options[4]->id;?>" id="option45id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -883,8 +884,8 @@
                 <div class="option46">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option46" value="<?php echo $option[0]->options[46]->title;?>" id="option46">
-                            <input type="hidden" name="option46id" value="<?php echo $option[0]->options[46]->id;?>" id="option46id">
+                            <input type="text" name="option46" value="<?php echo $option[4]->options[5]->title;?>" id="option46">
+                            <input type="hidden" name="option46id" value="<?php echo $option[4]->options[5]->id;?>" id="option46id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -900,8 +901,8 @@
                 <div class="option47">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option47" value="<?php echo $option[0]->options[47]->title;?>" id="option47">
-                            <input type="hidden" name="option47id" value="<?php echo $option[0]->options[47]->id;?>" id="option47id">
+                            <input type="text" name="option47" value="<?php echo $option[4]->options[6]->title;?>" id="option47">
+                            <input type="hidden" name="option47id" value="<?php echo $option[4]->options[6]->id;?>" id="option47id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -917,8 +918,8 @@
                 <div class="option48">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option48" value="<?php echo $option[0]->options[48]->title;?>" id="option48">
-                            <input type="hidden" name="option48id" value="<?php echo $option[0]->options[48]->id;?>" id="option48id">
+                            <input type="text" name="option48" value="<?php echo $option[4]->options[7]->title;?>" id="option48">
+                            <input type="hidden" name="option48id" value="<?php echo $option[4]->options[7]->id;?>" id="option48id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -934,8 +935,8 @@
                 <div class="option49">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option49" value="<?php echo $option[0]->options[49]->title;?>" id="option49">
-                            <input type="hidden" name="option49id" value="<?php echo $option[0]->options[49]->id;?>" id="option49id">
+                            <input type="text" name="option49" value="<?php echo $option[4]->options[8]->title;?>" id="option49">
+                            <input type="hidden" name="option49id" value="<?php echo $option[4]->options[8]->id;?>" id="option49id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -951,8 +952,8 @@
                 <div class="option50">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option50" value="<?php echo $option[0]->options[50]->title;?>" id="option50">
-                            <input type="hidden" name="option50id" value="<?php echo $option[0]->options[50]->id;?>" id="option50id">
+                            <input type="text" name="option50" value="<?php echo $option[4]->options[9]->title;?>" id="option50">
+                            <input type="hidden" name="option50id" value="<?php echo $option[4]->options[9]->id;?>" id="option50id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -984,8 +985,8 @@
                 <div class="option51">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option51" value="<?php echo $option[0]->options[51]->title;?>" id="option51">
-                            <input type="hidden" name="option51id" value="<?php echo $option[0]->options[51]->id;?>" id="option51id">
+                            <input type="text" name="option51" value="<?php echo $option[5]->options[0]->title;?>" id="option51">
+                            <input type="hidden" name="option51id" value="<?php echo $option[5]->options[0]->id;?>" id="option51id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1001,8 +1002,8 @@
                 <div class="option52">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option52" value="<?php echo $option[0]->options[52]->title;?>" id="option52">
-                            <input type="hidden" name="option52id" value="<?php echo $option[0]->options[52]->id;?>" id="option52id">
+                            <input type="text" name="option52" value="<?php echo $option[5]->options[1]->title;?>" id="option52">
+                            <input type="hidden" name="option52id" value="<?php echo $option[5]->options[1]->id;?>" id="option52id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1018,8 +1019,8 @@
                 <div class="option53">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option53" value="<?php echo $option[0]->options[53]->title;?>" id="option53">
-                            <input type="hidden" name="option53id" value="<?php echo $option[0]->options[53]->id;?>" id="option53id">
+                            <input type="text" name="option53" value="<?php echo $option[5]->options[2]->title;?>" id="option53">
+                            <input type="hidden" name="option53id" value="<?php echo $option[5]->options[2]->id;?>" id="option53id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1035,8 +1036,8 @@
                 <div class="option54">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option54" value="<?php echo $option[0]->options[54]->title;?>" id="option54">
-                            <input type="hidden" name="option54id" value="<?php echo $option[0]->options[54]->id;?>" id="option54id">
+                            <input type="text" name="option54" value="<?php echo $option[5]->options[3]->title;?>" id="option54">
+                            <input type="hidden" name="option54id" value="<?php echo $option[5]->options[3]->id;?>" id="option54id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1052,8 +1053,8 @@
                 <div class="option55">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option55" value="<?php echo $option[0]->options[55]->title;?>" id="option55">
-                            <input type="hidden" name="option55id" value="<?php echo $option[0]->options[55]->id;?>" id="option55id">
+                            <input type="text" name="option55" value="<?php echo $option[5]->options[4]->title;?>" id="option55">
+                            <input type="hidden" name="option55id" value="<?php echo $option[5]->options[4]->id;?>" id="option55id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1069,8 +1070,8 @@
                 <div class="option56">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option56" value="<?php echo $option[0]->options[56]->title;?>" id="option56">
-                            <input type="hidden" name="option56id" value="<?php echo $option[0]->options[56]->id;?>" id="option56id">
+                            <input type="text" name="option56" value="<?php echo $option[5]->options[5]->title;?>" id="option56">
+                            <input type="hidden" name="option56id" value="<?php echo $option[5]->options[5]->id;?>" id="option56id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1086,8 +1087,8 @@
                 <div class="option57">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option57" value="<?php echo $option[0]->options[57]->title;?>" id="option57">
-                            <input type="hidden" name="option57id" value="<?php echo $option[0]->options[57]->id;?>" id="option57id">
+                            <input type="text" name="option57" value="<?php echo $option[5]->options[6]->title;?>" id="option57">
+                            <input type="hidden" name="option57id" value="<?php echo $option[5]->options[6]->id;?>" id="option57id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1103,8 +1104,8 @@
                 <div class="option58">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option58" value="<?php echo $option[0]->options[58]->title;?>" id="option58">
-                            <input type="hidden" name="option58id" value="<?php echo $option[0]->options[58]->id;?>" id="option58id">
+                            <input type="text" name="option58" value="<?php echo $option[5]->options[7]->title;?>" id="option58">
+                            <input type="hidden" name="option58id" value="<?php echo $option[5]->options[7]->id;?>" id="option58id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1120,8 +1121,8 @@
                 <div class="option59">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option59" value="<?php echo $option[0]->options[59]->title;?>" id="option59">
-                            <input type="hidden" name="option59id" value="<?php echo $option[0]->options[59]->id;?>" id="option59id">
+                            <input type="text" name="option59" value="<?php echo $option[5]->options[8]->title;?>" id="option59">
+                            <input type="hidden" name="option59id" value="<?php echo $option[5]->options[8]->id;?>" id="option59id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1137,15 +1138,15 @@
                 <div class="option60">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option60" value="<?php echo $option[0]->options[60]->title;?>" id="option60">
-                            <input type="hidden" name="option60id" value="<?php echo $option[0]->options[60]->id;?>" id="option60id">
+                            <input type="text" name="option60" value="<?php echo $option[5]->options[9]->title;?>" id="option60">
+                            <input type="hidden" name="option60id" value="<?php echo $option[5]->options[9]->id;?>" id="option60id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option60')" class="btn btn-xs less-pad">
                                 <i class="material-icons propericon">delete</i>
                             </div>
-                            <div onclick="showoption('option60','option61')" class="btn btn-xs less-pad">
+                            <div onclick="showoption('option60','option0')" class="btn btn-xs less-pad">
                                 <i class="material-icons propericon">add</i>
                             </div>
                         </div>
@@ -1170,8 +1171,8 @@
                 <div class="option61">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option61" value="<?php echo $option[0]->options[61]->title;?>" id="option61">
-                            <input type="hidden" name="option61id" value="<?php echo $option[0]->options[61]->id;?>" id="option61id">
+                            <input type="text" name="option61" value="<?php echo $option[6]->options[0]->title;?>" id="option61">
+                            <input type="hidden" name="option61id" value="<?php echo $option[6]->options[0]->id;?>" id="option61id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1187,8 +1188,8 @@
                 <div class="option62">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option62" value="<?php echo $option[0]->options[62]->title;?>" id="option62">
-                            <input type="hidden" name="option62id" value="<?php echo $option[0]->options[62]->id;?>" id="option62id">
+                            <input type="text" name="option62" value="<?php echo $option[6]->options[1]->title;?>" id="option62">
+                            <input type="hidden" name="option62id" value="<?php echo $option[6]->options[1]->id;?>" id="option62id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1204,8 +1205,8 @@
                 <div class="option63">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option63" value="<?php echo $option[0]->options[63]->title;?>" id="option63">
-                            <input type="hidden" name="option63id" value="<?php echo $option[0]->options[63]->id;?>" id="option63id">
+                            <input type="text" name="option63" value="<?php echo $option[6]->options[2]->title;?>" id="option63">
+                            <input type="hidden" name="option63id" value="<?php echo $option[6]->options[2]->id;?>" id="option63id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1221,8 +1222,8 @@
                 <div class="option64">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option64" value="<?php echo $option[0]->options[64]->title;?>" id="option64">
-                            <input type="hidden" name="option64id" value="<?php echo $option[0]->options[64]->id;?>" id="option64id">
+                            <input type="text" name="option64" value="<?php echo $option[6]->options[3]->title;?>" id="option64">
+                            <input type="hidden" name="option64id" value="<?php echo $option[6]->options[3]->id;?>" id="option64id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1238,8 +1239,8 @@
                 <div class="option65">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option65" value="<?php echo $option[0]->options[65]->title;?>" id="option65">
-                            <input type="hidden" name="option65id" value="<?php echo $option[0]->options[65]->id;?>" id="option65id">
+                            <input type="text" name="option65" value="<?php echo $option[6]->options[4]->title;?>" id="option65">
+                            <input type="hidden" name="option65id" value="<?php echo $option[6]->options[4]->id;?>" id="option65id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1255,8 +1256,8 @@
                 <div class="option66">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option66" value="<?php echo $option[0]->options[66]->title;?>" id="option66">
-                            <input type="hidden" name="option66id" value="<?php echo $option[0]->options[66]->id;?>" id="option66id">
+                            <input type="text" name="option66" value="<?php echo $option[6]->options[5]->title;?>" id="option66">
+                            <input type="hidden" name="option66id" value="<?php echo $option[6]->options[5]->id;?>" id="option66id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1272,8 +1273,8 @@
                 <div class="option67">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option67" value="<?php echo $option[0]->options[67]->title;?>" id="option67">
-                            <input type="hidden" name="option67id" value="<?php echo $option[0]->options[67]->id;?>" id="option67id">
+                            <input type="text" name="option67" value="<?php echo $option[6]->options[6]->title;?>" id="option67">
+                            <input type="hidden" name="option67id" value="<?php echo $option[6]->options[6]->id;?>" id="option67id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1289,8 +1290,8 @@
                 <div class="option68">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option68" value="<?php echo $option[0]->options[68]->title;?>" id="option68">
-                            <input type="hidden" name="option68id" value="<?php echo $option[0]->options[68]->id;?>" id="option68id">
+                            <input type="text" name="option68" value="<?php echo $option[6]->options[7]->title;?>" id="option68">
+                            <input type="hidden" name="option68id" value="<?php echo $option[6]->options[7]->id;?>" id="option68id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1306,8 +1307,8 @@
                 <div class="option69">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option69" value="<?php echo $option[0]->options[69]->title;?>" id="option69">
-                            <input type="hidden" name="option69id" value="<?php echo $option[0]->options[69]->id;?>" id="option69id">
+                            <input type="text" name="option69" value="<?php echo $option[6]->options[8]->title;?>" id="option69">
+                            <input type="hidden" name="option69id" value="<?php echo $option[6]->options[8]->id;?>" id="option69id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1323,8 +1324,8 @@
                 <div class="option70">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option70" value="<?php echo $option[0]->options[70]->title;?>" id="option70">
-                            <input type="hidden" name="option70id" value="<?php echo $option[0]->options[70]->id;?>" id="option70id">
+                            <input type="text" name="option70" value="<?php echo $option[6]->options[9]->title;?>" id="option70">
+                            <input type="hidden" name="option70id" value="<?php echo $option[6]->options[9]->id;?>" id="option70id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1355,8 +1356,8 @@
                 <div class="option71">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option71" value="<?php echo $option[0]->options[71]->title;?>" id="option71">
-                            <input type="hidden" name="option71id" value="<?php echo $option[0]->options[71]->id;?>" id="option71id">
+                            <input type="text" name="option71" value="<?php echo $option[7]->options[0]->title;?>" id="option71">
+                            <input type="hidden" name="option71id" value="<?php echo $option[7]->options[0]->id;?>" id="option71id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1372,8 +1373,8 @@
                 <div class="option72">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option72" value="<?php echo $option[0]->options[72]->title;?>" id="option72">
-                            <input type="hidden" name="option72id" value="<?php echo $option[0]->options[72]->id;?>" id="option72id">
+                            <input type="text" name="option72" value="<?php echo $option[7]->options[1]->title;?>" id="option72">
+                            <input type="hidden" name="option72id" value="<?php echo $option[7]->options[1]->id;?>" id="option72id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1389,8 +1390,8 @@
                 <div class="option73">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option73" value="<?php echo $option[0]->options[73]->title;?>" id="option73">
-                            <input type="hidden" name="option73id" value="<?php echo $option[0]->options[73]->id;?>" id="option73id">
+                            <input type="text" name="option73" value="<?php echo $option[7]->options[2]->title;?>" id="option73">
+                            <input type="hidden" name="option73id" value="<?php echo $option[7]->options[2]->id;?>" id="option73id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1406,8 +1407,8 @@
                 <div class="option74">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option74" value="<?php echo $option[0]->options[74]->title;?>" id="option74">
-                            <input type="hidden" name="option74id" value="<?php echo $option[0]->options[74]->id;?>" id="option74id">
+                            <input type="text" name="option74" value="<?php echo $option[7]->options[3]->title;?>" id="option74">
+                            <input type="hidden" name="option74id" value="<?php echo $option[7]->options[3]->id;?>" id="option74id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1423,8 +1424,8 @@
                 <div class="option75">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option75" value="<?php echo $option[0]->options[75]->title;?>" id="option75">
-                            <input type="hidden" name="option75id" value="<?php echo $option[0]->options[75]->id;?>" id="option75id">
+                            <input type="text" name="option75" value="<?php echo $option[7]->options[4]->title;?>" id="option75">
+                            <input type="hidden" name="option75id" value="<?php echo $option[7]->options[4]->id;?>" id="option75id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1440,8 +1441,8 @@
                 <div class="option76">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option76" value="<?php echo $option[0]->options[76]->title;?>" id="option76">
-                            <input type="hidden" name="option76id" value="<?php echo $option[0]->options[76]->id;?>" id="option76id">
+                            <input type="text" name="option76" value="<?php echo $option[7]->options[5]->title;?>" id="option76">
+                            <input type="hidden" name="option76id" value="<?php echo $option[7]->options[5]->id;?>" id="option76id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1457,10 +1458,8 @@
                 <div class="option77">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option77" value="
-                                                                <?php echo $option[0]->options[77]->title;?>" id="option77">
-                            <input type="hidden" name="option77id" value="
-                                                                    <?php echo $option[0]->options[77]->id;?>" id="option77id">
+                            <input type="text" name="option77" value="<?php echo $option[7]->options[6]->title;?>" id="option77">
+                            <input type="hidden" name="option77id" value="<?php echo $option[7]->options[6]->id;?>" id="option77id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1476,8 +1475,8 @@
                 <div class="option78">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option78" value="<?php echo $option[0]->options[78]->title;?>" id="option78">
-                            <input type="hidden" name="option78id" value="<?php echo $option[0]->options[78]->id;?>" id="option78id">
+                            <input type="text" name="option78" value="<?php echo $option[7]->options[7]->title;?>" id="option78">
+                            <input type="hidden" name="option78id" value="<?php echo $option[7]->options[7]->id;?>" id="option78id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1493,10 +1492,8 @@
                 <div class="option79">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option79" value="
-                                                                                <?php echo $option[0]->options[79]->title;?>" id="option79">
-                            <input type="hidden" name="option79id" value="
-                                                                                    <?php echo $option[0]->options[79]->id;?>" id="option79id">
+                            <input type="text" name="option79" value="<?php echo $option[7]->options[8]->title;?>" id="option79">
+                            <input type="hidden" name="option79id" value="<?php echo $option[7]->options[8]->id;?>" id="option79id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1512,8 +1509,8 @@
                 <div class="option80">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option80" value="<?php echo $option[0]->options[80]->title;?>" id="option80">
-                            <input type="hidden" name="option80id" value="<?php echo $option[0]->options[80]->id;?>" id="option80id">
+                            <input type="text" name="option80" value="<?php echo $option[7]->options[9]->title;?>" id="option80">
+                            <input type="hidden" name="option80id" value="<?php echo $option[7]->options[9]->id;?>" id="option80id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1544,8 +1541,8 @@
                 <div class="option81">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option81" value="<?php echo $option[0]->options[81]->title;?>" id="option81">
-                            <input type="hidden" name="option81id" value="<?php echo $option[0]->options[81]->id;?>" id="option81id">
+                            <input type="text" name="option81" value="<?php echo $option[8]->options[0]->title;?>" id="option81">
+                            <input type="hidden" name="option81id" value="<?php echo $option[8]->options[0]->id;?>" id="option81id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1561,8 +1558,8 @@
                 <div class="option82">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option82" value="<?php echo $option[0]->options[82]->title;?>" id="option82">
-                            <input type="hidden" name="option82id" value="<?php echo $option[0]->options[82]->id;?>" id="option82id">
+                            <input type="text" name="option82" value="<?php echo $option[8]->options[1]->title;?>" id="option82">
+                            <input type="hidden" name="option82id" value="<?php echo $option[8]->options[1]->id;?>" id="option82id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1578,8 +1575,8 @@
                 <div class="option83">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option83" value="<?php echo $option[0]->options[83]->title;?>" id="option83">
-                            <input type="hidden" name="option83id" value="<?php echo $option[0]->options[83]->id;?>" id="option83id">
+                            <input type="text" name="option83" value="<?php echo $option[8]->options[2]->title;?>" id="option83">
+                            <input type="hidden" name="option83id" value="<?php echo $option[8]->options[2]->id;?>" id="option83id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1595,8 +1592,8 @@
                 <div class="option84">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option84" value="<?php echo $option[0]->options[84]->title;?>" id="option84">
-                            <input type="hidden" name="option84id" value="<?php echo $option[0]->options[84]->id;?>" id="option84id">
+                            <input type="text" name="option84" value="<?php echo $option[8]->options[3]->title;?>" id="option84">
+                            <input type="hidden" name="option84id" value="<?php echo $option[8]->options[3]->id;?>" id="option84id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1612,8 +1609,8 @@
                 <div class="option85">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option85" value="<?php echo $option[0]->options[85]->title;?>" id="option85">
-                            <input type="hidden" name="option85id" value="<?php echo $option[0]->options[85]->id;?>" id="option85id">
+                            <input type="text" name="option85" value="<?php echo $option[8]->options[4]->title;?>" id="option85">
+                            <input type="hidden" name="option85id" value="<?php echo $option[8]->options[4]->id;?>" id="option85id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1629,8 +1626,8 @@
                 <div class="option86">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option86" value="<?php echo $option[0]->options[86]->title;?>" id="option86">
-                            <input type="hidden" name="option86id" value="<?php echo $option[0]->options[86]->id;?>" id="option86id">
+                            <input type="text" name="option86" value="<?php echo $option[8]->options[5]->title;?>" id="option86">
+                            <input type="hidden" name="option86id" value="<?php echo $option[8]->options[5]->id;?>" id="option86id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1646,8 +1643,8 @@
                 <div class="option87">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option87" value="<?php echo $option[0]->options[87]->title;?>" id="option87">
-                            <input type="hidden" name="option87id" value="<?php echo $option[0]->options[87]->id;?>" id="option87id">
+                            <input type="text" name="option87" value="<?php echo $option[8]->options[6]->title;?>" id="option87">
+                            <input type="hidden" name="option87id" value="<?php echo $option[8]->options[6]->id;?>" id="option87id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1663,8 +1660,8 @@
                 <div class="option88">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option88" value="<?php echo $option[0]->options[88]->title;?>" id="option88">
-                            <input type="hidden" name="option88id" value="<?php echo $option[0]->options[88]->id;?>" id="option88id">
+                            <input type="text" name="option88" value="<?php echo $option[8]->options[7]->title;?>" id="option88">
+                            <input type="hidden" name="option88id" value="<?php echo $option[8]->options[7]->id;?>" id="option88id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1680,8 +1677,8 @@
                 <div class="option89">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option89" value="<?php echo $option[0]->options[89]->title;?>" id="option89">
-                            <input type="hidden" name="option89id" value="<?php echo $option[0]->options[89]->id;?>" id="option89id">
+                            <input type="text" name="option89" value="<?php echo $option[8]->options[8]->title;?>" id="option89">
+                            <input type="hidden" name="option89id" value="<?php echo $option[8]->options[8]->id;?>" id="option89id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1697,8 +1694,8 @@
                 <div class="option90">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option90" value="<?php echo $option[0]->options[90]->title;?>" id="option90">
-                            <input type="hidden" name="option90id" value="<?php echo $option[0]->options[90]->id;?>" id="option90id">
+                            <input type="text" name="option90" value="<?php echo $option[8]->options[9]->title;?>" id="option90">
+                            <input type="hidden" name="option90id" value="<?php echo $option[8]->options[9]->id;?>" id="option90id">
                             <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
@@ -1726,198 +1723,197 @@
                         <?php echo form_dropdown("required10",$isrequired,set_value('required10',$before['question'][9]->isrequired))?>
                     </div>
                 </div>
-                      <div class="option91">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option91" value="<?php echo $option[0]->options[91]->title;?>" id="option91">
-                        <input type="hidden" name="option91id" value="<?php echo $option[0]->options[91]->id;?>" id="option91id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option91')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
+                <div class="option91">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option91" value="<?php echo $option[9]->options[0]->title;?>" id="option91">
+                            <input type="hidden" name="option91id" value="<?php echo $option[9]->options[0]->id;?>" id="option91id">
+                            <label>Option</label>
                         </div>
-                        <div onclick="showoption('option91','option92')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="option92">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option92" value="<?php echo $option[0]->options[92]->title;?>" id="option92">
-                        <input type="hidden" name="option92id" value="<?php echo $option[0]->options[92]->id;?>" id="option92id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option92')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
-                        </div>
-                        <div onclick="showoption('option92','option93')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option91')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option91','option92')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="option93">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option93" value="<?php echo $option[0]->options[93]->title;?>" id="option93">
-                        <input type="hidden" name="option93id" value="<?php echo $option[0]->options[93]->id;?>" id="option93id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option93')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
+                <div class="option92">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option92" value="<?php echo $option[9]->options[1]->title;?>" id="option92">
+                            <input type="hidden" name="option92id" value="<?php echo $option[9]->options[1]->id;?>" id="option92id">
+                            <label>Option</label>
                         </div>
-                        <div onclick="showoption('option93','option94')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="option94">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option94" value="<?php echo $option[0]->options[94]->title;?>" id="option94">
-                        <input type="hidden" name="option94id" value="<?php echo $option[0]->options[94]->id;?>" id="option94id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option94')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
-                        </div>
-                        <div onclick="showoption('option94','option95')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option92')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option92','option93')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="option95">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option95" value="<?php echo $option[0]->options[95]->title;?>" id="option95">
-                        <input type="hidden" name="option95id" value="<?php echo $option[0]->options[95]->id;?>" id="option95id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option95')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
+                <div class="option93">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option93" value="<?php echo $option[9]->options[2]->title;?>" id="option93">
+                            <input type="hidden" name="option93id" value="<?php echo $option[9]->options[2]->id;?>" id="option93id">
+                            <label>Option</label>
                         </div>
-                        <div onclick="showoption('option95','option96')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="option96">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option96" value="<?php echo $option[0]->options[96]->title;?>" id="option96">
-                        <input type="hidden" name="option96id" value="<?php echo $option[0]->options[96]->id;?>" id="option96id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option96')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
-                        </div>
-                        <div onclick="showoption('option96','option97')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option93')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option93','option94')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="option97">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option97" value="<?php echo $option[0]->options[97]->title;?>" id="option97">
-                        <input type="hidden" name="option97id" value="<?php echo $option[0]->options[97]->id;?>" id="option97id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option97')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
+                <div class="option94">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option94" value="<?php echo $option[9]->options[3]->title;?>" id="option94">
+                            <input type="hidden" name="option94id" value="<?php echo $option[9]->options[3]->id;?>" id="option94id">
+                            <label>Option</label>
                         </div>
-                        <div onclick="showoption('option97','option98')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="option98">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option98" value="<?php echo $option[0]->options[98]->title;?>" id="option98">
-                        <input type="hidden" name="option98id" value="<?php echo $option[0]->options[98]->id;?>" id="option98id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option98')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
-                        </div>
-                        <div onclick="showoption('option98','option99')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option94')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option94','option95')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="option99">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option99" value="<?php echo $option[0]->options[99]->title;?>" id="option99">
-                        <input type="hidden" name="option99id" value="<?php echo $option[0]->options[99]->id;?>" id="option99id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option99')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
+                <div class="option95">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option95" value="<?php echo $option[9]->options[4]->title;?>" id="option95">
+                            <input type="hidden" name="option95id" value="<?php echo $option[9]->options[4]->id;?>" id="option95id">
+                            <label>Option</label>
                         </div>
-                        <div onclick="showoption('option99','option100')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="option100">
-                <div class="row">
-                    <div class="input-field col s8 m8">
-                        <input type="text" name="option100" value="<?php echo $option[0]->options[100]->title;?>" id="option100">
-                        <input type="hidden" name="option100id" value="<?php echo $option[0]->options[100]->id;?>" id="option100id">
-                        <label>Option</label>
-                    </div>
-                    <div class="input-field col s2 m2">
-                        <div onclick="hidedelete('option100')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">delete</i>
-                        </div>
-                        <div onclick="showoption('option100','option101')" class="btn btn-xs less-pad">
-                            <i class="material-icons propericon">add</i>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option95')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option95','option96')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-  
-            </div>
-            </div>
+                <div class="option96">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option96" value="<?php echo $option[9]->options[5]->title;?>" id="option96">
+                            <input type="hidden" name="option96id" value="<?php echo $option[9]->options[5]->id;?>" id="option96id">
+                            <label>Option</label>
+                        </div>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option96')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option96','option97')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option97">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option97" value="<?php echo $option[9]->options[6]->title;?>" id="option97">
+                            <input type="hidden" name="option97id" value="<?php echo $option[9]->options[6]->id;?>" id="option97id">
+                            <label>Option</label>
+                        </div>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option97')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option97','option98')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option98">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option98" value="<?php echo $option[9]->options[7]->title;?>" id="option98">
+                            <input type="hidden" name="option98id" value="<?php echo $option[9]->options[7]->id;?>" id="option98id">
+                            <label>Option</label>
+                        </div>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option98')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option98','option99')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option99">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option99" value="<?php echo $option[9]->options[8]->title;?>" id="option99">
+                            <input type="hidden" name="option99id" value="<?php echo $option[9]->options[8]->id;?>" id="option99id">
+                            <label>Option</label>
+                        </div>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option99')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option99','option100')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="option100">
+                    <div class="row">
+                        <div class="input-field col s8 m8">
+                            <input type="text" name="option100" value="<?php echo $option[9]->options[9]->title;?>" id="option100">
+                            <input type="hidden" name="option100id" value="<?php echo $option[9]->options[9]->id;?>" id="option100id">
+                            <label>Option</label>
+                        </div>
+                        <div class="input-field col s2 m2">
+                            <div onclick="hidedelete('option100')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">delete</i>
+                            </div>
+                            <div onclick="showoption('option100','option101')" class="btn btn-xs less-pad">
+                                <i class="material-icons propericon">add</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="row mb0">
+            </div>
+        </div>
+
+        <div class="row mb0" style="display:none">
             <div class="col s12">
                 <b class="brdr-bot">
            Add a Thank You Message
          </b>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display:none">
             <div class="input-field col s12 m6">
-                <input type="text" name="message" value="<?php echo $before['survey']->message;?>">
-                <!--         <label>Thank you message</label>-->
+                <textarea id="textarea1" name="message" class="materialize-textarea" value="<?php echo $before['survey']->message;?>"><?php echo $before['survey']->message;?></textarea>
             </div>
         </div>
 
         <div class="text-center middle">
             <button class="btn waves-effect waves-light" type="submit" name="action">Save</button>
             <!--     <button class="btn waves-effect waves-light" type="submit" name="action">Cancel</button>-->
-            <a href="<?php echo site_url(" site/viewconclusionfinalsuggestion "); ?>" class="btn waves-effect waves-light">Cancel</a>
+            <a href="<?php echo site_url("site/viewconclusionfinalsuggestion"); ?>" class="btn waves-effect waves-light">Cancel</a>
         </div>
     </form>
 </div>
@@ -1929,49 +1925,78 @@
         $(".add1").hide();
         var url = window.location.href;
         var id = /id=(\d+)/.exec(url)[1];
-        console.log(id);
         $.get("<?php echo base_url(); ?>index.php/site/getsinglesurveydata?id=" + id, function(data, status) {
             var data = $.parseJSON(data);
             console.log(data);
             // show question 1 option
-            for (var j = 1; j < data[0].options.length; j++) {
-                $(".option" + j).show();
+            for (var j = 1; j <= data[0].options.length; j++) {
+                if (data[0].type != 1 && data[0].type != 2) {
+                    $(".option" + j).show();
+                }
+
             }
-            // show question 2 option
-            for (var j = 11; j < data[1].options.length; j++) {
-                $(".option" + j).show();
+            var k = 11;
+            for (var j = 1; j <= data[1].options.length; j++) {
+                if (data[1].type != 1 && data[1].type != 2) {
+                    $(".option" + k).show();
+                }
+                k++;
             }
-            // show question 3 option
-            for (var j = 21; j < data[2].options.length; j++) {
-                $(".option" + j).show();
+            var a = 21;
+            for (var j = 1; j <= data[2].options.length; j++) {
+                if (data[2].type != 1 && data[2].type != 2) {
+                    $(".option" + a).show();
+                    a++;
+                }
             }
-            // show question 4 option
-            for (var j = 31; j < data[3].options.length; j++) {
-                $(".option" + j).show();
+            var b = 31;
+            for (var j = 1; j <= data[3].options.length; j++) {
+                if (data[3].type != 1 && data[3].type != 2) {
+                    $(".option" + b).show();
+                    b++;
+                }
             }
-            // show question 5 option
-            for (var j = 41; j < data[4].options.length; j++) {
-                $(".option" + j).show();
+            var c = 41;
+            for (var j = 1; j <= data[4].options.length; j++) {
+                if (data[4].type != 1 && data[4].type != 2) {
+                    $(".option" + c).show();
+                    c++;
+                }
             }
-            // show question 6 option
-            for (var j = 51; j < data[5].options.length; j++) {
-                $(".option" + j).show();
+            var d = 51;
+            for (var j = 1; j <= data[5].options.length; j++) {
+                if (data[5].type != 1 && data[5].type != 2) {
+                    $(".option" + d).show();
+                    d++;
+                }
             }
-            // show question 7 option
-            for (var j = 61; j < data[6].options.length; j++) {
-                $(".option" + j).show();
+            var e = 61;
+            for (var j = 1; j <= data[6].options.length; j++) {
+                if (data[6].type != 1 && data[6].type != 2) {
+                    $(".option" + e).show();
+                    e++;
+                }
             }
-            // show question 8 option
-            for (var j = 71; j < data[7].options.length; j++) {
-                $(".option" + j).show();
+            var f = 71;
+            for (var j = 1; j <= data[7].options.length; j++) {
+                if (data[7].type != 1 && data[7].type != 2) {
+                    $(".option" + f).show();
+                    f++;
+                }
             }
-            // show question 9 option
-            for (var j = 81; j < data[8].options.length; j++) {
-                $(".option" + j).show();
+            var h = 81;
+            for (var j = 1; j <= data[8].options.length; j++) {
+                if (data[8].type != 1 && data[8].type != 2) {
+                    $(".option" + h).show();
+                    h++;
+                }
             }
-            // show question 10 option
-            for (var j = 91; j < data[9].options.length; j++) {
-                $(".option" + j).show();
+            var l = 91;
+            for (var j = 1; j <= data[9].options.length; j++) {
+                if (data[9].type != 1 && data[9].type != 2) {
+                    $(".option" + l).show();
+                    l++;
+                }
             }
 
         });
@@ -2004,7 +2029,21 @@
     }
 
     function hidedelete(option) {
+        var element = document.getElementById(option + "id");
+        console.log(element.value);
+        var optionid = option.substring(6);
+        console.log(optionid);
         $("." + option).hide();
+        $.ajax({
+            url: '<?php echo site_url("site/deleteoption");?>',
+            data: {
+                id: element.value
+            },
+            type: 'post',
+            success: function(output) {
+                console.log("done");
+            }
+        });
         $('#' + option).val('');
     }
 

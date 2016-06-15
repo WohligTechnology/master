@@ -6,10 +6,10 @@ class User_model extends CI_Model
 	protected $id,$username ,$password;
 	public function validate($username,$password )
 	{
-		
+
 		$password=md5($password);
 		$query ="SELECT `user`.`id`,`user`.`name` as `name`,`email`,`user`.`accesslevel`,`accesslevel`.`name` as `access` FROM `user`
-		INNER JOIN `accesslevel` ON `user`.`accesslevel` = `accesslevel`.`id` 
+		INNER JOIN `accesslevel` ON `user`.`accesslevel` = `accesslevel`.`id`
 		WHERE `email` LIKE '$username' AND `password` LIKE '$password' AND `status`=1 AND `isblock`=0 AND `accesslevel` IN (1,2,3,5)";
 		$row =$this->db->query( $query );
 		if ( $row->num_rows() > 0 ) {
@@ -25,12 +25,12 @@ class User_model extends CI_Model
 				'logged_in' => 'true',
 			);
 			$this->session->set_userdata( $newdata );
-            
-            
-            
+
+
+
             // CHECK FIRST LOGIN
-            
-           
+
+
 			return true;
 		} //count( $row_array ) == 1
 		else
@@ -42,7 +42,7 @@ class User_model extends CI_Model
     }
 
     public function checkfirstlogin($id){
-        
+
 //        $this->db->query(" UPDATE `user` SET `isfirst`='1' WHERE `id`='$this->id'")
         $query=$this->db->query("SELECT `isfirst` FROM `user` WHERE `id`='$id'")->row();
         if($query->isfirst==1){
@@ -51,22 +51,23 @@ class User_model extends CI_Model
         else{
             return true;
         }
-    } 
+    }
     public function makeuserold($id){
   $this->db->query(" UPDATE `user` SET `isfirst`='1' WHERE `id`='$id'");
     }
     public function makeusernew($id){
   $this->db->query(" UPDATE `user` SET `isfirst`='' WHERE `id`='$id'");
-    } 
+    }
     public function getEmployeeCount(){
   $query=$this->db->query("SELECT COUNT(*) as `empcount` FROM `user` WHERE `accesslevel`=4")->row();
         $empcount=$query->empcount;
         return $empcount;
     }
-	
-	
+
+
 	public function create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$username,$gender,$age,$maritalstatus,$designation,$department,$noofyearsinorganization,$spanofcontrol,$description,$employeeid,$branch,$language,$team,$salary)
 	{
+
 		$data  = array(
 			'name' => $name,
 			'email' => $email,
@@ -93,13 +94,21 @@ class User_model extends CI_Model
 		);
 		$query=$this->db->insert( 'user', $data );
 		$id=$this->db->insert_id();
-        
+
+		$hashvalue=base64_encode ($id."&hq");
+
+		$data  = array(
+			'hashuser' =>$hashvalue
+		);
+		$this->db->where('id',$id);
+		$query=$this->db->update( 'user', $data );
+
 		if(!$query)
 			return  0;
 		else
 			return  1;
 	}
-    
+
 	function viewusers($startfrom,$totallength)
 	{
 		$user = $this->session->userdata('accesslevel');
@@ -115,10 +124,10 @@ class User_model extends CI_Model
 		{
 			$query .= " WHERE `user`.`accesslevel`> '$accesslevel' ";
 		}
-		
+
 	   $query.=" ORDER BY `user`.`id` ASC LIMIT $startfrom,$totallength";
 		$query=$this->db->query($query)->result();
-        
+
         $return=new stdClass();
         $return->query=$query;
         $return->totalcount=$this->db->query("SELECT count(*) as `totalcount` FROM `user`
@@ -132,7 +141,7 @@ class User_model extends CI_Model
 		$query=$this->db->get( 'user' )->row();
 		return $query;
 	}
-	
+
 	public function edit($id,$name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$username,$gender,$age,$maritalstatus,$designation,$department,$noofyearsinorganization,$spanofcontrol,$description,$employeeid,$branch,$timestamp,$language,$team,$salary)
 	{
 		$data  = array(
@@ -160,14 +169,18 @@ class User_model extends CI_Model
 			'team' => $team,
 			'salary' => $salary
 		);
-		if($password != "")
-			$data['password'] =md5($password);
+		if($password != ""){
+				$data['password'] =md5($password);
+				$htmltext = $this->load->view('emailers/change-password', $data, true);
+			$this->menu_model->emailer($htmltext,'A Change In Your Happyness Quotient Password!',$email,"Sir/Madam");
+		}
+
 		$this->db->where( 'id', $id );
 		$query=$this->db->update( 'user', $data );
-        
+
 		return 1;
 	}
-    
+
 	public function getuserimagebyid($id)
 	{
 		$query=$this->db->query("SELECT `image` FROM `user` WHERE `id`='$id'")->row();
@@ -189,7 +202,7 @@ class User_model extends CI_Model
 		else
 			return  1;
 	}
-    
+
     public function getuserdropdown()
 	{
 		$query=$this->db->query("SELECT * FROM `user`  ORDER BY `id` ASC")->result();
@@ -200,34 +213,34 @@ class User_model extends CI_Model
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
-	}  
+	}
     public function getcheckdropdown()
 	{
-		
+
 		$return=array(
 		"1" => "Organization",
 		"2" => "Branch",
 		"3" => "Department",
 		"4" => "Team"
 		);
-		
+
 		return $return;
 	}
     public function getscheduledropdown()
 	{
-		
+
 		$return=array(
 		"1" => "All 42 Questions Per week",
-		"2" => "All 42 Questions Per two week",
-		"3" => "All 42 Questions Per three week",
+		"2" => "All 42 Questions Per two weeks",
+		"3" => "All 42 Questions Per three weeks",
 		"4" => "All 42 Questions Per month"
 		);
-		
+
 		return $return;
 	}
-    
+
 	public function getaccesslevels()
 	{
 		$return=array();
@@ -261,7 +274,7 @@ class User_model extends CI_Model
 					}
 				}
 			}
-	
+
 		return $return;
 	}
     public function getstatusdropdown()
@@ -273,7 +286,7 @@ class User_model extends CI_Model
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
 	}
     public function gettotalusergiventest()
@@ -281,7 +294,7 @@ class User_model extends CI_Model
 		$query=$this->db->query("SELECT COUNT(DISTINCT(`user`)) as `usercount` FROM `hq_useranswer`")->row();
         $usercount=$query->usercount;
 		return $usercount;
-	} 
+	}
 	public function getteamdropdown()
 	{
 		$query=$this->db->query("SELECT * FROM `hq_team`  ORDER BY `id` ASC")->result();
@@ -291,7 +304,7 @@ class User_model extends CI_Model
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
 	}
 
@@ -303,7 +316,7 @@ class User_model extends CI_Model
 			"1"=>"Married"
 		);
 
-		
+
 		return $maritalstatus;
 	}
 	public function getgendertypedropdown()
@@ -311,21 +324,21 @@ class User_model extends CI_Model
 		$gender=array(
 			""=>"Choose Gender",
 			"0"=>"Male",
-			"1"=>"Female" 
+			"1"=>"Female"
 		);
 
-		
+
 		return $gender;
-	} 	
+	}
 	public function getlanguagetypedropdown()
 	{
 		$language=array(
 			"0"=>"English"
 		);
 
-		
+
 		return $language;
-	} 
+	}
 	public function getdesignationtypedropdown()
 	{
 		$query=$this->db->query("SELECT * FROM `hq_designation`  ORDER BY `id` ASC")->result();
@@ -336,9 +349,9 @@ class User_model extends CI_Model
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
-	} 
+	}
 	public function getdepartmenttypedropdown()
 	{
 		$query=$this->db->query("SELECT * FROM `hq_department`  ORDER BY `id` ASC")->result();
@@ -349,7 +362,7 @@ class User_model extends CI_Model
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
 	}
 	public function getbranchtypedropdown()
@@ -362,11 +375,11 @@ class User_model extends CI_Model
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
 	}
-	
-	
+
+
 	function changestatus($id)
 	{
 		$query=$this->db->query("SELECT `status` FROM `user` WHERE `id`='$id'")->row();
@@ -396,7 +409,7 @@ class User_model extends CI_Model
 			'city' => $city,
 			'pincode' => $pincode,
 		);
-		
+
 		$this->db->where( 'id', $id );
 		$query=$this->db->update( 'user', $data );
 		if($query)
@@ -405,7 +418,7 @@ class User_model extends CI_Model
 		}
 		return 1;
 	}
-	
+
 	function saveuserlog($id,$status)
 	{
 //		$fromuser = $this->session->userdata('id');
@@ -416,9 +429,9 @@ class User_model extends CI_Model
 		$query2=$this->db->insert( 'userlog', $data2 );
         $query=$this->db->query("UPDATE `user` SET `status`='$status' WHERE `id`='$user'");
 	}
-    function signup($email,$password) 
+    function signup($email,$password)
     {
-         $password=md5($password);   
+         $password=md5($password);
         $query=$this->db->query("SELECT `id` FROM `user` WHERE `email`='$email' ");
         if($query->num_rows == 0)
         {
@@ -432,18 +445,18 @@ class User_model extends CI_Model
             );
 
             $this->session->set_userdata($newdata);
-            
+
           //  $queryorganizer=$this->db->query("INSERT INTO `organizer`(`name`, `description`, `email`, `info`, `website`, `contact`, `user`) VALUES(NULL,NULL,NULL,NULL,NULL,NULL,'$user')");
-            
-            
+
+
            return $user;
         }
         else
          return false;
-        
-        
+
+
     }
-    function login($email,$password) 
+    function login($email,$password)
     {
         $password=md5($password);
         $query=$this->db->query("SELECT `id` FROM `user` WHERE `email`='$email' AND `password`= '$password'");
@@ -451,7 +464,7 @@ class User_model extends CI_Model
         {
             $user=$query->row();
             $user=$user->id;
-            
+
 
             $newdata = array(
                 'email'     => $email,
@@ -480,8 +493,8 @@ class User_model extends CI_Model
          return $userid;
         }
     }
-    
-    function frontendauthenticate($email,$password) 
+
+    function frontendauthenticate($email,$password)
     {
         $query=$this->db->query("SELECT `id`, `name`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json` FROM `user` WHERE `email` LIKE '$email' AND `password`='$password' LIMIT 0,1");
         if ($query->num_rows() > 0)
@@ -508,9 +521,9 @@ class User_model extends CI_Model
                     $this->saveuserlog($id,$status);
 //                }
             }
-            
+
         $query2=$this->db->query("SELECT `id`, `name`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json` FROM `user` WHERE `id`='$id' LIMIT 0,1")->row();
-            
+
         $newdata        = array(
 				'id' => $query2->id,
 				'email' => $query2->email,
@@ -520,8 +533,8 @@ class User_model extends CI_Model
 				'logged_in' => 'true',
 			);
 			$this->session->set_userdata( $newdata );
-            
-            
+
+
             $accesslevel=$query->accesslevel;
             if($accesslevel==2)
             {
@@ -529,13 +542,13 @@ class User_model extends CI_Model
             }
         	return $data;
         }
-        else 
+        else
         {
         	return false;
         }
     }
-    
-    function frontendregister($name,$email,$password,$socialid,$logintype,$json) 
+
+    function frontendregister($name,$email,$password,$socialid,$logintype,$json)
     {
         $data  = array(
 			'name' => $name,
@@ -550,7 +563,7 @@ class User_model extends CI_Model
 		$query=$this->db->insert( 'user', $data );
 		$id=$this->db->insert_id();
         $queryselect=$this->db->query("SELECT * FROM `user` WHERE `id` LIKE '$id' LIMIT 0,1")->row();
-        
+
         $accesslevel=$queryselect->accesslevel;
 //        $queryselect=$query;
         $data1['user']=$queryselect;
@@ -560,18 +573,18 @@ class User_model extends CI_Model
         }
         return $data1;
     }
-    
+
 	function getallinfoofuser($id)
 	{
 		$user = $this->session->userdata('accesslevel');
 		$query="SELECT DISTINCT `user`.`id` as `id`,`user`.`firstname` as `firstname`,`user`.`lastname` as `lastname`,`accesslevel`.`name` as `accesslevel`	,`user`.`email` as `email`,`user`.`contact` as `contact`,`user`.`status` as `status`,`user`.`accesslevel` as `access`
 		FROM `user`
-	   INNER JOIN `accesslevel` ON `user`.`accesslevel`=`accesslevel`.`id` 
+	   INNER JOIN `accesslevel` ON `user`.`accesslevel`=`accesslevel`.`id`
        WHERE `user`.`id`='$id'";
 		$query=$this->db->query($query)->row();
 		return $query;
 	}
-    
+
 	public function getlogintypedropdown()
 	{
 		$query=$this->db->query("SELECT * FROM `logintype`  ORDER BY `id` ASC")->result();
@@ -581,10 +594,10 @@ class User_model extends CI_Model
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
 	}
-    
+
 	public function frontendlogout($user)
 	{
         $query=$this->db->query("SELECT `id`, `name`, `email`, `accesslevel`, `timestamp`, `status`, `image`, `username`, `socialid`, `logintype`, `json` FROM `user` WHERE `id`='$user' LIMIT 0,1")->row();
@@ -608,17 +621,17 @@ class User_model extends CI_Model
 //            }
         }
 //        $updatequery=$this->db->query("UPDATE `user` SET `status`=5 WHERE `id`='$user'");
-        
+
 //        if(!$updatequery)
 //            return 0;
 //        else
 //        {
-            
+
 		$this->session->sess_destroy();
             return 1;
 //        }
 	}
-	
+
     function sociallogin($user_profile,$provider)
     {
         $query=$this->db->query("SELECT * FROM `user` WHERE `user`.`socialid`='$user_profile->identifier'");
@@ -676,10 +689,10 @@ class User_model extends CI_Model
             return $newdata;
         }
     }
-    
+
     //avinash function
-    
-    
+
+
 	public function createbycsv($file)
 	{
         foreach ($file as $row)
@@ -701,9 +714,9 @@ class User_model extends CI_Model
             $description=$row['description'];
 
             $checkuser=$this->db->query("SELECT * FROM `user` WHERE `email`= '$email'");
-            
+
             if($checkuser->num_rows() > 0){
-                
+
             }
             else
             {
@@ -791,11 +804,19 @@ class User_model extends CI_Model
                         );
                         $query=$this->db->insert( 'user', $data );
                         $id=$this->db->insert_id();
-         
-            
+
+												$hashvalue=base64_encode ($id."&hq");
+
+												$data1  = array(
+													'hashuser' =>$hashvalue
+												);
+												$this->db->where('id',$id);
+												$query=$this->db->update( 'user', $data1 );
+
+
         }
-			
-        }  
+
+        }
            return  1;
 	}
 }

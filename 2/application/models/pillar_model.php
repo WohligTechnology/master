@@ -18,149 +18,150 @@ return  $id;
         $data1  = array(
          "text" => $questionone
 		);
-        $this->db->where( "id", 41 );   
+        $this->db->where( "id", 43 );
 $query=$this->db->update( "hq_question", $data1 );
         $data2  = array(
          "text" => $questiontwo
 		);
-         $this->db->where( "id", 42 );   
+         $this->db->where( "id", 44 );
 $query=$this->db->update( "hq_question", $data2);
         $data3  = array(
          "text" => $questionthree
 		);
-        $this->db->where( "id", 43 );   
+        $this->db->where( "id", 45 );
 $query=$this->db->update( "hq_question", $data3);
         $data4  = array(
          "text" => $questionfour
 		);
-          $this->db->where( "id", 44 );   
+          $this->db->where( "id", 46 );
 $query=$this->db->update( "hq_question", $data4);
-        
+
         // INSERT OPTIONS
-        
+
         $data5  = array(
          "optiontext" => $optionone,
          "text" => $optionone
-		); 
-        $this->db->where( "id", 186 );   
+		);
+        $this->db->where( "id", 194 );
+
 $query=$this->db->update( "hq_options", $data5);
         $data6 = array(
          "optiontext" => $optiontwo,
          "text" => $optiontwo
 		);
-        $this->db->where( "id", 187 );   
+        $this->db->where( "id", 195 );
 $query=$this->db->update( "hq_options", $data6);
-        
-        
+
+
         $data7 = array(
          "optiontext" => $optionthree,
          "text" => $optionthree
 		);
-            $this->db->where( "id", 188 );   
+            $this->db->where( "id", 196 );
 $query=$this->db->update( "hq_options", $data7);
-        
+
         $data8 = array(
          "optiontext" => $optionfour,
          "text" => $optionfour
 		);
-         $this->db->where( "id", 189 );   
+         $this->db->where( "id", 197 );
 $query=$this->db->update( "hq_options", $data8);
-        
-        
+
+
         $data9 = array(
          "optiontext" => $optionfive,
          "text" => $optionfive,
-		);  
-        $this->db->where( "id", 190 );   
+		);
+        $this->db->where( "id", 198 );
 $query=$this->db->update( "hq_options", $data9);
-        
+
         $data9 = array(
          "optiontext" => $optionsix,
          "text" => $optionsix
 		);
-         $this->db->where( "id", 191 );   
+         $this->db->where( "id", 199 );
 $query=$this->db->update( "hq_options", $data9);
-        
+
         $data10 = array(
          "optiontext" => $optionseven,
          "text" => $optionseven
-		); 
-          $this->db->where( "id", 192 );   
+		);
+          $this->db->where( "id", 200 );
 $query=$this->db->update( "hq_options", $data10);
-        
-        
+
+
         $data11 = array(
          "optiontext" => $optioneight,
          "text" => $optioneight
-		); 
-        $this->db->where( "id", 193 );   
+		);
+        $this->db->where( "id", 201 );
 $query=$this->db->update( "hq_options", $data11);
-        
-        
+
+
         $data12 = array(
          "optiontext" => $optionnine,
          "text" => $optionnine
-		); 
-         $this->db->where( "id", 194 );   
+		);
+         $this->db->where( "id", 202 );
 $query=$this->db->update( "hq_options", $data12);
-        
-        
+
+
         $data13 = array(
          "text" => $optionten,
          "optiontext" => $optionten
 		);
-        $this->db->where( "id", 195 );   
+        $this->db->where( "id", 203 );
 $query=$this->db->update( "hq_options", $data13);
-        
-        
+
+
         $data14 = array(
          "text" => $optioneleven,
          "optiontext" => $optioneleven
-		); 
-        $this->db->where( "id", 196 );   
+		);
+        $this->db->where( "id", 204 );
 $query=$this->db->update( "hq_options", $data14);
-        
-        
+
+
         $data15 = array(
          "optiontext" => $optiontwelve,
          "text" => $optiontwelve
 		);
-        $this->db->where( "id", 197 );   
+        $this->db->where( "id", 205 );
 $query=$this->db->update( "hq_options", $data15);
-        
-        
+
+
         $data16 = array(
          "optiontext" => $optionthirteen,
             "text" => $optionthirteen
-		); 
-         $this->db->where( "id", 198 );   
+		);
+         $this->db->where( "id", 206 );
 $query=$this->db->update( "hq_options", $data16);
-        
-        
+
+
         $data17= array(
          "optiontext" => $optionfourteen,
          "text" => $optionfourteen
 		);
-        $this->db->where( "id", 199 );   
+        $this->db->where( "id", 207 );
 $query=$this->db->update( "hq_options", $data17);
-        
-        
+
+
         $data18= array(
          "optiontext" => $optionfifteen,
          "text" => $optionfifteen
 		);
-        $this->db->where( "id", 200 );   
+        $this->db->where( "id", 208 );
 $query=$this->db->update( "hq_options", $data18);
-        
+
         $data19= array(
          "optiontext" => $optionsixteen,
          "text" => $optionsixteen
 		);
-        $this->db->where( "id", 201 );   
+        $this->db->where( "id", 209 );
 $query=$this->db->update( "hq_options", $data19);
-        
-        
-        
+
+
+
 if(!$query)
 return  0;
 else
@@ -203,7 +204,7 @@ return $query;
 {
 $query=$this->db->query("SELECT * FROM `hq_pillar`  ORDER BY `id` ASC")->result();
 return $query;
-} 
+}
     public function editchangeexpected($expected1,$expected2,$expected3,$expected4,$expected5,$expected6,$expected7,$expected8,$expected9,$expected10,$expected11)
 {
             $data=array("expectedweight" => $expected1);
@@ -250,7 +251,7 @@ return $query;
             $this->db->where( "id", 11 );
             $query=$this->db->update( "hq_pillar", $data10 );
         return 1;
-}  
+}
     public function updateweightage($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11)
 {
         $sumofweight=$range + $range1 + $range2 + $range3 + $range4 + $range5 + $range6 + $range7 + $range8 + $range9 + $range11;
@@ -298,22 +299,22 @@ return $query;
             $data10=array("weight" => $range11);
             $this->db->where( "id", 11 );
             $query=$this->db->update( "hq_pillar", $data10 );
-            
+
             return 1;
         }
         else{
             return 0;
         }
 
-        
-        
 
-} 
-    
-    
+
+
+}
+
+
     public function updateweightageviewpillar($range,$range1,$range2,$range3,$range4,$range5,$range6,$range7,$range8,$range9,$range11)
 {
-       
+
             $data=array("weight" => $range);
             $this->db->where( "id", 1 );
             $query=$this->db->update( "hq_pillar", $data );
@@ -358,14 +359,14 @@ return $query;
             $this->db->where( "id", 11 );
             $query=$this->db->update( "hq_pillar", $data11 );
               return 1;
-          
+
 }
 	public function showavg()
 	{
 		$query=$this->db->query("SELECT SUM(`weight`) as `weight` FROM `hq_pillar`")->row();
 		$totalweightpercent=$query->weight;
-        
-        
+
+
         return number_format((float)$totalweightpercent, 2, '.', '');
 	}
     public function lastpillardetail()
@@ -382,17 +383,17 @@ return $query;
 		{
 			$return[$row->id]=$row->name;
 		}
-		
+
 		return $return;
 	}
     public function getelevenpillarquestion()
 	{
-        $query=$this->db->query("SELECT * FROM `hq_question` WHERE `id` BETWEEN '41' AND '44'")->result();
+        $query=$this->db->query("SELECT * FROM `hq_question` WHERE `id` BETWEEN '43' AND '46'")->result();
         return $query;
-	} 
+	}
     public function getelevenpillaroption()
 	{
-        $query=$this->db->query("SELECT * FROM `hq_options` WHERE `id` BETWEEN '186' AND '201'")->result();
+        $query=$this->db->query("SELECT * FROM `hq_options` WHERE `id` BETWEEN '194' AND '209'")->result();
         return $query;
 	}
     public function getelevenpillar()

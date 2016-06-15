@@ -10,23 +10,23 @@
                 <input type="text" id="name" name="name" value='<?php echo set_value(' name ',$before->name);?>'>
             </div>
         </div>
-       <div class="row">
+       <div class="row" style="display:none">
 			<div class="input-field col m6 s12">
 				<?php echo form_dropdown('language', $language, set_value('language',$before->language)); ?>
 					<label>Language</label>
 			</div>
 		</div>
-        <div class="row">
+        <div class="row" style="display:none">
             <div class="input-field col s12 m6">
                 <label for="branchid">Branch Id</label>
                 <input type="text" id="branchid" name="branchid"  value="<?php echo set_value('branchid',$before->branchid);?>">
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="display:none">
            <div class="col s12 m6"> <label for="address">Address</label><textarea name="address" class="materialize-textarea" placeholder="address"><?php echo set_value('address',$before->address);?></textarea>
            </div>
         </div>
-       
+
         <div class="row">
             <div class="col s12 m6">
                     <div class=" form-group">

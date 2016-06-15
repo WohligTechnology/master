@@ -53,16 +53,22 @@ return $query;
 }
 public function getsurveyoptiondropdown()
 {
-$query=$this->db->query("SELECT * FROM `hq_surveyoption`  ORDER BY `id` ASC")->result();
-$return=array(
-"" => "Choose Option"
-);
-foreach($query as $row)
-{
-  $return[$row->id]=$row->title;
-}
+    $query=$this->db->query("SELECT * FROM `hq_surveyoption`  ORDER BY `id` ASC")->result();
+    $return=array(
+    "" => "Choose Option"
+    );
+    foreach($query as $row)
+    {
+      $return[$row->id]=$row->title;
+    }
 
-return $return;
+    return $return;
+}
+    
+    public function deleteoption($id)
+{
+    $query=$this->db->query("DELETE FROM `hq_surveyoption` WHERE `id`='$id'");
+        return $query;
 }
 }
 ?>

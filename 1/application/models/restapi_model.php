@@ -20,6 +20,32 @@ class restapi_model extends CI_Model
         $query->options = $this->db->query("SELECT `id`, `question`, `representation`, `actualorder`, `image`, `order`, `weight`, `optiontext`, `text` FROM `hq_options` WHERE `question`='$query->id'")->result();
         return $query;
     }
+    public function checkKey($key)
+    {
+      if($key !=='' || $key !==null || $key !==undefined)
+      {
+            $query   = $this->db->query("SELECT * FROM `user` WHERE `hashuser`='$key'");
+            if($query->num_rows() > 0)
+            {
+                  $object = new stdClass();
+                  $object->value = true;
+                  return $object;
+            }
+            else{
+                  $object = new stdClass();
+                  $object->value = false;
+                  return $object;
+                }
+      }
+      else
+      {
+                $object = new stdClass();
+                $object->value = false;
+                return $object;
+      }
+
+
+    }
 
     public function storeUserAnswer($user, $option, $question, $test)
     {
@@ -159,7 +185,7 @@ HAVING `questionid` NOT IN (SELECT `testquestion`.`question` as `questionid` FRO
                             WHERE `hq_useranswer`.`user` = '$userid' ) ORDER BY RAND()")->result();
 
         }
-        
+
 	   // assign date to questions
 
         $testdetail=$this->db->query("SELECT `id`, `name`, `units`, `schedule`, `startdate`, `department`, `branch`, `designation`, `check`, `team`, `timestamp`, `enddate` FROM `test` WHERE 1")->row();

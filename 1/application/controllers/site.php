@@ -1011,6 +1011,7 @@ $this->checkaccess($access);
 $data["page"]="question";
 $data['lastpillardetail']=$this->pillar_model->lastpillardetail();
 $data['getelevenpillarquestion']=$this->pillar_model->getelevenpillarquestion();
+
 $data['getelevenpillaroption']=$this->pillar_model->getelevenpillaroption();
 $data["title"]="New pillar question";
 $this->load->view("template",$data);
@@ -4215,11 +4216,12 @@ $this->load->view("template",$data);
        $getUserid=$this->restapi_model->getUsers();
         foreach($getUserid as $getUserid){
         $email=$getUserid->email;
-				echo $email;
+				// echo $email;
         $hashvalue=base64_encode ($getUserid->id."&hq");
         $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-				echo $link;
+				// echo $link;
 				$data['link']=$link;
+				$data['hashuser']=$hashvalue;
 				  $htmltext = $this->load->view('emailers/userquestion', $data, true);
 				$this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
         }
