@@ -952,7 +952,10 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
 }
  }
 
-
+public function testing(){
+  $data=$this->question_model->getFillerQuestion();
+  print_r($data);
+}
 
 
  } ?>

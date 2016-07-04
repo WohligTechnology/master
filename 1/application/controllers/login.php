@@ -29,7 +29,7 @@ class Login extends CI_Controller
             {
                 redirect( base_url() . 'index.php/site', 'refresh' );
             }
-			
+
 		} //$validate
 		else {
             $checkifblockquery=$this->db->query("SELECT `isblock` FROM `user`")->row();
@@ -38,7 +38,7 @@ class Login extends CI_Controller
                 $data['alerterror']="Your Username OR Password is Invalid!!";
             }
 			else if($checkifblock==1){
-                $data['alerterror']="Oops your Package is Expired!!";
+                $data['alerterror']="Oops! Looks like you aren't able to access Happyness Quotient today. To know more, get in touch with Team Never Grow Up. Happy to help!";
             }
 			//$data[ 'page' ]  = 'login';
 			//$data[ 'title' ]      = 'Login Page';
@@ -60,7 +60,7 @@ class Login extends CI_Controller
 			);
 			$this->session->set_userdata( $newdata );
         redirect( base_url() . 'index.php/site', 'refresh' );
-    } 
+    }
     public function validatemasterto() {
        $newdata        = array(
 				'id' => 0,
@@ -94,7 +94,7 @@ class Login extends CI_Controller
 			);
 			$this->session->set_userdata( $newdata );
         redirect( base_url() . 'index.php/site/viewconclusion', 'refresh' );
-    } 
+    }
     public function viewchangeexpected() {
        $newdata        = array(
 				'id' => 0,
