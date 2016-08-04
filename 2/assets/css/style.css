@@ -471,7 +471,6 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 .toast {
     text-transform: capitalize;
 }
-
 [type="checkbox"]+label {
     padding-left: 15px;
     margin-bottom: -9px;
@@ -534,7 +533,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 }
 .progress-bar p {
     margin: 0px;
-    color: #FFFBED;
+    color: #FFFBEC;
     margin-bottom: 4px;
 }
 .input-border {
@@ -548,7 +547,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
     padding: 5px 0px;
     text-align: center;
     border-radius: 4px;
-    color: #FFFBED;
+    color: #FFFBEC;
 }
 .padtop {
     margin-top: 90px;
@@ -999,4 +998,24 @@ button:focus {
     font-size: 18px;
     min-height: 200px;
     padding-top: 65px;
+}
+.mb15 {
+  margin-bottom: 15px;
+}
+.small-images {
+  float: left;
+  text-align: center;
+  font-size: 22px;
+  margin-top: 10px;
+}
+.small-images+.small-images {
+  margin-left: 5px;
+}
+.small-images img {
+    display: block;
+    height: 130px;
+    width: auto;
+}
+.jquestion {
+    font-size: 19px;
 }

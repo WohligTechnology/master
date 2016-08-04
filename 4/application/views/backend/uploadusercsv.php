@@ -4,7 +4,7 @@
 <div class="button1 pull-right">
    
 <a class="waves-effect waves-light btn waves-effect waves-light btn blue darken-4" href="<?php echo site_url('site/viewusers'); ?>">Back</a>
-<a class="waves-effect waves-light btn pleft waves-effect waves-light btn blue darken-4" href="<?php echo base_url('uploads/hquser.csv');?>"><i class='material-icons propericon' style="
+<a class="waves-effect waves-light btn pleft waves-effect waves-light btn blue darken-4" href="<?php echo base_url('uploads/userupload.csv');?>"><i class='material-icons propericon' style="
     margin-right: 5px;
     vertical-align: sub;">system_update_alt</i>Download CSV Format</a>
 </div>

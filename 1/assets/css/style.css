@@ -471,7 +471,6 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 .toast {
     text-transform: capitalize;
 }
-
 [type="checkbox"]+label {
     padding-left: 15px;
     margin-bottom: -9px;
@@ -534,7 +533,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
 }
 .progress-bar p {
     margin: 0px;
-    color: #000;
+    color: #FFFBEC;
     margin-bottom: 4px;
 }
 .input-border {
@@ -548,7 +547,7 @@ input[type=text], input[type=password], input[type=email], input[type=url], inpu
     padding: 5px 0px;
     text-align: center;
     border-radius: 4px;
-    color: #000;
+    color: #FFFBEC;
 }
 .padtop {
     margin-top: 90px;
@@ -1005,7 +1004,6 @@ button:focus {
 }
 .small-images {
   float: left;
-  width: 15%;
   text-align: center;
   font-size: 22px;
   margin-top: 10px;
@@ -1014,7 +1012,9 @@ button:focus {
   margin-left: 5px;
 }
 .small-images img {
-    max-width: 100%;
+    display: block;
+    height: 130px;
+    width: auto;
 }
 .jquestion {
     font-size: 19px;

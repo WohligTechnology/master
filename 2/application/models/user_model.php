@@ -232,10 +232,11 @@ class User_model extends CI_Model
 	{
 
 		$return=array(
-		"1" => "All 42 Questions Per week",
-		"2" => "All 42 Questions Per two weeks",
-		"3" => "All 42 Questions Per three weeks",
-		"4" => "All 42 Questions Per month"
+		"1" => "All 42 questions at one time",
+		"2" => "All 42 Questions Per week",
+		"3" => "All 42 Questions Per two weeks",
+		"4" => "All 42 Questions Per three weeks",
+		"5" => "All 42 Questions Per month"
 		);
 
 		return $return;

@@ -40,7 +40,6 @@ class Site extends CI_Controller
         $branch=$this->input->get('branch');
 
         $pillarsdata=$this->menu_model->drawpillarjsononhrdashboaard1($gender,$maritalstatus,$designation,$department,$spanofcontrol,$experience,$salary,$branch);
-
         $data["message"] = $pillarsdata;
 
 		$this->load->view( 'json', $data );
@@ -64,6 +63,7 @@ class Site extends CI_Controller
             }
         }
 
+        $data['fillerquestion']=$this->question_model->getFillerQuestion();
         $data['totalsum']=floor($totalsum);
         $data['totalexpected']=floor($totalexpected);
         $data[ 'branch' ] =$this->user_model->getbranchtypedropdown();
@@ -92,6 +92,25 @@ class Site extends CI_Controller
 		$data[ 'title' ] = 'Welcome';
 		$this->load->view( 'template', $data );
 
+	}
+    public function getDataForExcelExport()
+	{
+		$bargraphdata=$this->input->get_post('data');
+		$truncatedemo=$this->db->query('TRUNCATE TABLE `demo`');
+		if($truncatedemo==1 && !empty($bargraphdata)){
+
+				$this->pillar_model->getDataForExcelExport($bargraphdata);
+
+		}
+		else if(empty($bargraphdata)){
+			echo "err";
+
+		}
+		else{
+			echo "In err";
+		}
+		$data['redirect']="site/index";
+		$this->load->view("redirect",$data);
 	}
 
 	public function createuser()
@@ -4218,7 +4237,8 @@ $this->load->view("template",$data);
         $email=$getUserid->email;
 				// echo $email;
         $hashvalue=base64_encode ($getUserid->id."&hq");
-        $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+        // $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+        $link="<a href='http://wohlig.co.in/hqfront/#/welcome/$hashvalue'>Click here </a> to get questions";
 				// echo $link;
 				$data['link']=$link;
 				$data['hashuser']=$hashvalue;

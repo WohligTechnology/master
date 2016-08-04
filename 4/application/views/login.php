@@ -84,7 +84,7 @@
       margin-bottom: 50px;
     }
     .logo img {
-      width: 14%;
+      width: 50%;
     }
     .guys {
       width: 75%;
@@ -93,6 +93,24 @@
     }
     @media (max-width:480px) {
 
+    }
+    #toast-container {
+        left: 50%;
+        top: 10px;
+        position: absolute;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        max-width: 900px;
+    }
+    #toast-container .toast {
+        display: block;
+        text-align: center;
+        color: white;
+        box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.35);
+        border: 1px solid white;
+        background-color: #e22f4a;
+        border-radius: 2px;
+        padding: 10px;
     }
   </style>
 

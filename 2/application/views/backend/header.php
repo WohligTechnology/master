@@ -20,7 +20,7 @@
 	<link rel="shortcut icon" href="<?php echo base_url('assets').'/';?>img/favicon.png" type="image/png" />
 	<!-- <link rel="stylesheet" href="<?php echo base_url('assets').'/';?>css/materialize.min.css"> -->
 	<!-- Compiled and minified CSS -->
-  
+
 	<link href="<?php echo base_url('assets').'/';?>css/jquery.fancybox.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url('assets').'/';?>css/linearfonts.css">
 	<link href="<?php echo base_url('assets').'/';?>css/style.css" rel="stylesheet">
@@ -42,10 +42,10 @@
     <script src="<?php echo base_url('assets/js/easy-pie-chart.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/highchartsbyavi.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/highcharts-3dbyavi.js'); ?>"></script>
-    
+
 -->
 
-  
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>

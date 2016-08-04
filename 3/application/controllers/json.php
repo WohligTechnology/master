@@ -706,7 +706,7 @@ $this->load->view("json",$data);
      $expiredate=$this->input->get_post('expiredate');
      $password=md5($password);
      $this->db->query(" UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`='1'");
-     $this->db->query(" UPDATE `user` SET `package`='$package',`expirydate`='$expiredate'");
+     $this->db->query(" UPDATE `user` SET `package`='$package',`expirydate`='$expiredate',`isfirst`=''");
  }
  public function checkweight(){
          $range=$this->input->get_post('range');
@@ -953,6 +953,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
  }
 
 
+}
 
 
  } ?>

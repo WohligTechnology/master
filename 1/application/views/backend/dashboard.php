@@ -465,7 +465,7 @@
                     data: pillAraverage
 
                 }, {
-                    name: 'NGU Weightageß',
+                    name: 'NGU Weightage',
                     data: expectedWeight
 
                 }]

@@ -51,28 +51,37 @@ return $query;
 		{
 			$return[$row->id]=$row->text;
 		}
-		
+
 		return $return;
 	}
 	public function getnoofansdropdown()
 	{
-		
+
 		$return=array(
 			"0"=>"Single",
 			"1"=>"Multiple"
 		);
-		
-		
+
+
 		return $return;
 	}
-    
+	     public function getFillerQuestion()
+    	{
+        $query=$this->db->query("SELECT * FROM `hq_question` WHERE `id`IN (41,42)")->result();
+        foreach($query as $row)
+        {
+            $row->options=$this->db->query("SELECT * FROM `hq_options` WHERE `question` = '$row->id'")->result();
+        }
+        return $query;
+    	}
+
     public function getquestiondatabyid($questionid)
     {
-        $query=$this->db->query("SELECT `hq_question`.`id`, `hq_question`.`pillar`,`hq_question`. `noofans`,`hq_question`. `order`,`hq_question`. `timestamp`,`hq_question`. `text`,`hq_pillar`.`name` AS `pillarname` 
+        $query=$this->db->query("SELECT `hq_question`.`id`, `hq_question`.`pillar`,`hq_question`. `noofans`,`hq_question`. `order`,`hq_question`. `timestamp`,`hq_question`. `text`,`hq_pillar`.`name` AS `pillarname`
         FROM `hq_question` LEFT OUTER JOIN `hq_pillar` ON `hq_pillar`.`id`=`hq_question`.`pillar`
         WHERE `hq_question`.`id`='$questionid'")->row();
-        $queryoptions=$this->db->query("SELECT `id`, `question`, `representation`, `actualorder`, `image`, `order`, `weight`, `optiontext`, `text` 
-FROM `hq_options` 
+        $queryoptions=$this->db->query("SELECT `id`, `question`, `representation`, `actualorder`, `image`, `order`, `weight`, `optiontext`, `text`
+FROM `hq_options`
 WHERE `question`='$questionid'")->result();
         $query->options=$queryoptions;
         return $query;

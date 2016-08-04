@@ -4238,7 +4238,7 @@ $this->load->view("template",$data);
 				// echo $email;
         $hashvalue=base64_encode ($getUserid->id."&hq");
         // $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-        $link="<a href='http://wohlig.co.in/hqfront/#/welcome/$hashvalue'>Click here </a> To get questions.";
+        $link="<a href='http://wohlig.co.in/hqfront/#/welcome/$hashvalue'>Click here </a> to get questions";
 				// echo $link;
 				$data['link']=$link;
 				$data['hashuser']=$hashvalue;
