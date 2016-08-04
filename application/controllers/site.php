@@ -1049,8 +1049,8 @@ if($this->companypackage_model->create($company,$package)==0)
 $data["alerterror"]="New companypackage could not be created.";
 else
 $data["alertsuccess"]="companypackage created Successfully.";
-$data["redirect"]="site/viewcompanypackage?id=".$company;
-$this->load->view("redirect2",$data);
+// $data["redirect"]="site/viewcompanypackage?id=".$company;
+// $this->load->view("redirect2",$data);
 }
 
 public function editcompanypackage()

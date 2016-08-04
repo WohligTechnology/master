@@ -22,7 +22,7 @@ public function create($company,$package)
     $receiver=$companydetails->email;
     $email=$receiver;
     $data['email']=$receiver;
-    $companyid=$companydetails->id;
+    $companyid=$id;
     $expiredate=$companydetails->enddate;
     $sender="master@willnevergrowup.in";
     $this->load->helper('url');
@@ -32,45 +32,49 @@ public function create($company,$package)
     $exactpath=$mainurl.$id;
     $data['exactpath']=$mainurl.$id;
     // send email
-    if($package==1){
-
-          $htmltext = $this->load->view('emailers/starterpackage', $data, true);
-        $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-
-          $htmltext = $this->load->view('emailers/needtodo', $data, true);
-        $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
-    }
-    else if($package==2){
-
-        $htmltext = $this->load->view('emailers/advancedpackage', $data, true);
-      $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-
-      $htmltext = $this->load->view('emailers/needtodo', $data, true);
-    $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
-    }
-    else if($package==3){
-      $htmltext = $this->load->view('emailers/propackage', $data, true);
-    $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-
-    $htmltext = $this->load->view('emailers/needtodo', $data, true);
-  $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
-
-    }
-    else if($package==4){
-      $htmltext = $this->load->view('emailers/propluspackage', $data, true);
-    $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
-
-    $htmltext = $this->load->view('emailers/needtodo', $data, true);
-  $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
-
-    }
+  //   if($package==1){
+  //
+  //         $htmltext = $this->load->view('emailers/starterpackage', $data, true);
+  //       $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+  //
+  //         $htmltext = $this->load->view('emailers/needtodo', $data, true);
+  //       $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
+  //   }
+  //   else if($package==2){
+  //
+  //       $htmltext = $this->load->view('emailers/advancedpackage', $data, true);
+  //     $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+  //
+  //     $htmltext = $this->load->view('emailers/needtodo', $data, true);
+  //   $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
+  //   }
+  //   else if($package==3){
+  //     $htmltext = $this->load->view('emailers/propackage', $data, true);
+  //   $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+  //
+  //   $htmltext = $this->load->view('emailers/needtodo', $data, true);
+  // $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
+  //
+  //   }
+  //   else if($package==4){
+  //     $htmltext = $this->load->view('emailers/propluspackage', $data, true);
+  //   $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
+  //
+  //   $htmltext = $this->load->view('emailers/needtodo', $data, true);
+  // $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
+  //
+  //   }
 
     // ASSIGHNING A CREDENTIALS FOR A COMPANY
     $this->load->helper('url');
     $mainurl=$this->config->base_url();
     $exactpathforcredential=$mainurl.$companyid.'/index.php/json/changecredentials?email='.$receiver.'&pass='.$password.'&package='.$package.'&expiredate='.$expiredate;
     $exactpathtobackend=$mainurl.$companyid;
+    echo $companyid;
+    echo $exactpathforcredential;
       // GET CURL
+      echo "curl init ";
+      echo $ch;
         $ch = curl_init();
         $url=$exactpathforcredential;
         curl_setopt($ch,CURLOPT_URL,$url);
@@ -79,6 +83,9 @@ public function create($company,$package)
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
       curl_setopt($ch,CURLOPT_HEADER, false);
         $output=curl_exec($ch);
+        echo "%%%%%%%%%%%%%%%%";
+        echo $output;
+        print_r($output);
         curl_close($ch);
 
 
