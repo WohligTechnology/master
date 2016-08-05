@@ -928,18 +928,18 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
      }
 
  }
- public function testcron(){
+ public function testcron()
+ {
    // new journey mainurl
-   $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
-   $lastdate=$getdate->date;
-   $todaysdate = date('Y-m-d');
-   if($lastdate==$todaysdate){
+           $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
+           $lastdate=$getdate->date;
+           $todaysdate = date('Y-m-d');
+           if($lastdate==$todaysdate)
+           {
            $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
            $adminemail=$adminmail->email;
           //  $htmltext = $this->load->view('emailers/thankyou', $data, true);
           //  $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
-
-
            // new journey mail
            $data['link']=site_url('site/viewconclusionfinalsuggestion');
            $htmltext = $this->load->view('emailers/newjourney', $data, true);
@@ -947,13 +947,8 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
            // mini survey intro
           //  $htmltext = $this->load->view('emailers/mini-survey', $data, true);
           //  $this->menu_model->emailer($htmltext,'Mini Surveys-Here’s What You Need To Do!',$adminemail,"Sir/Madam");
-
-
-}
+          }
  }
-
-
-}
 
 
  } ?>
