@@ -22,7 +22,7 @@ public function create($company,$package)
     $receiver=$companydetails->email;
     $email=$receiver;
     $data['email']=$receiver;
-    $companyid=$id;
+    $companyid=$companydetails->id;
     $expiredate=$companydetails->enddate;
     $sender="master@willnevergrowup.in";
     $this->load->helper('url');
@@ -30,7 +30,7 @@ public function create($company,$package)
     $password=$this->companypackage_model->checkrandom();
     $data['password']=$password;
     $exactpath=$mainurl.$id;
-    $data['exactpath']=$mainurl.$id;
+    $data['exactpath']=$mainurl.$companyid;
     // send email
     if($package==1){
 
