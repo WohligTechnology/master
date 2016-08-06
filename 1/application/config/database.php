@@ -55,7 +55,7 @@ $ip = substr($myserver,0,7);
 if($myserver != "localhost"  && $ip != "192.168")
 {
     $db['default']['hostname'] = 'localhost';
-	$db['default']['username'] = '1';
+	$db['default']['username'] = 'root';
 	$db['default']['password'] = 'SE7aeQ7a';
 	$db['default']['database'] = '1';
 	$db['default']['dbdriver'] = 'mysql';

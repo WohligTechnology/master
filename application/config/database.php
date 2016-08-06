@@ -55,7 +55,7 @@ $myserver=$_SERVER['SERVER_NAME'];
 if($myserver!="localhost")
 {
     $db['default']['hostname'] = 'localhost';
-    $db['default']['username'] = 'master';
+    $db['default']['username'] = 'root';
     $db['default']['password'] = 'SE7aeQ7a';
     $db['default']['database'] = 'master';
     $db['default']['dbdriver'] = 'mysql';
