@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="input-field col s12 m6">
-                <input type="text" name="surveyname">
+                <input type="text" name="surveyname" required>
                 <label>Name Your Survey</label>
             </div>
         </div>
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="input-field col s12 m6">
 <!--                <input type="text" name="surveydescription">-->
-                <textarea id="textarea1" name="surveydescription" class="materialize-textarea"></textarea>
+                <textarea id="textarea1" name="surveydescription" class="materialize-textarea" required></textarea>
                 <label>Add Description</label>
             </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question1" id="question1" onkeypress="checkforquestion('question1','type1','required1','option1')">
+                        <input type="text" name="question1" id="question1" onkeypress="checkforquestion('question1','type1','required1','option1')" required>
                         <label>Question 1</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question1','type1','required1','option1')">
@@ -183,7 +183,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question2" id="question2" onkeypress="checkforquestion('question2','type2','required2','option11')">
+                        <input type="text" name="question2" id="question2" onkeypress="checkforquestion('question2','type2','required2','option11')" required>
                         <label>Question 2</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question2','type2','required2','option11')">
@@ -330,7 +330,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question3" id="question3" onkeypress="checkforquestion('question3','type3','required3','option21')">
+                        <input type="text" name="question3" id="question3" onkeypress="checkforquestion('question3','type3','required3','option21')" required>
                         <label>Question 3</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question1','type1','required1','option21')">
@@ -475,7 +475,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question4" id="question4" onkeypress="checkforquestion('question4','type4','required4','option31')">
+                        <input type="text" name="question4" id="question4" onkeypress="checkforquestion('question4','type4','required4','option31')" required>
                         <label>Question 4</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question4','type4','required4','option31')">
@@ -649,7 +649,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question5" id="question5" onkeypress="checkforquestion('question5','type5','required5','option41')">
+                        <input type="text" name="question5" id="question5" onkeypress="checkforquestion('question5','type5','required5','option41')" required>
                         <label>Question 5</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question5','type5','required5','option41')">
@@ -823,7 +823,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question6" id="question6" onkeypress="checkforquestion('question6','type6','required6','option51')">
+                        <input type="text" name="question6" id="question6" onkeypress="checkforquestion('question6','type6','required6','option51')" required>
                         <label>Question 6</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question6','type6','required6','option51')">
@@ -997,7 +997,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question7" id="question7" onkeypress="checkforquestion('question7','type7','required7','option61')">
+                        <input type="text" name="question7" id="question7" onkeypress="checkforquestion('question7','type7','required7','option61')" required>
                         <label>Question 7</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question7','type7','required7','option61')">
@@ -1171,7 +1171,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question8" id="question8" onkeypress="checkforquestion('question8','type8','required8','option71')">
+                        <input type="text" name="question8" id="question8" onkeypress="checkforquestion('question8','type8','required8','option71')" required>
                         <label>Question 8</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question8','type8','required8','option71')">
@@ -1345,7 +1345,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question9" id="question9" onkeypress="checkforquestion('question9','type9','required9','option81')">
+                        <input type="text" name="question9" id="question9" onkeypress="checkforquestion('question9','type9','required9','option81')" required>
                         <label>Question 9</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question9','type9','required9','option81')">
@@ -1519,7 +1519,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question10" id="question10" onkeypress="checkforquestion('question10','type10','required10','option91')">
+                        <input type="text" name="question10" id="question10" onkeypress="checkforquestion('question10','type10','required10','option91')" required>
                         <label>Question 10</label>
                     </div>
                     <div class="input-field col s3 m3" onchange="checkforquestion('question10','type10','required10','option91')">

@@ -33,6 +33,7 @@ return 1;
 public function delete($id)
 {
 $query=$this->db->query("DELETE FROM `hq_conclusionfinalsuggestion` WHERE `id`='$id'");
+$query=$this->db->query("DELETE FROM `hq_surveyquestion` WHERE `survey`='$id'");
 return $query;
 }
 public function getimagebyid($id)
@@ -50,9 +51,9 @@ return $query;
 		{
 			$return[$row->id]=$row->conclusion;
 		}
-		
+
 		return $return;
-	
+
     }
 }
 ?>

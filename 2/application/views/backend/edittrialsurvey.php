@@ -23,7 +23,7 @@
         <div class="row">
             <div class="input-field col s12 m6">
                 <!--                <input type="text" name="surveydescription" value="<?php echo $before['survey']->conclusionsuggestion;?>">-->
-                <textarea id="textarea1" name="surveydescription" class="materialize-textarea" value="<?php echo $before['survey']->conclusionsuggestion;?>"><?php echo $before['survey']->conclusionsuggestion;?></textarea>
+                <textarea id="textarea1" name="surveydescription" class="materialize-textarea" value="<?php echo $before['survey']->conclusionsuggestion;?>" required><?php echo $before['survey']->conclusionsuggestion;?></textarea>
                 <label>Add Description</label>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question1" value="<?php echo $before['question'][0]->content;?>" id="question1" onkeypress="checkforquestion('question1','type1','required1','option1')">
+                        <input type="text" name="question1" value="<?php echo $before['question'][0]->content;?>" id="question1" onkeypress="checkforquestion('question1','type1','required1','option1')" required>
                         <input type="hidden" name="question1id" value="<?php echo $before['question'][0]->id;?>">
                         <label>Question 1</label>
                     </div>
@@ -227,7 +227,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question2" value="<?php echo $before['question'][1]->content;?>" id="question2" onkeypress="checkforquestion('question2','type2','required2','option11')">
+                        <input type="text" name="question2" value="<?php echo $before['question'][1]->content;?>" id="question2" onkeypress="checkforquestion('question2','type2','required2','option11')" required>
                         <input type="hidden" name="question2id" value="<?php echo $before['question'][1]->id;?>">
                         <label>Question 2</label>
                     </div>
@@ -413,7 +413,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question3" value="<?php echo $before['question'][2]->content;?>"  id="question3" onkeypress="checkforquestion('question3','type3','required3','option21')">
+                        <input type="text" name="question3" value="<?php echo $before['question'][2]->content;?>"  id="question3" onkeypress="checkforquestion('question3','type3','required3','option21')" required>
                         <input type="hidden" name="question3id" value="<?php echo $before['question'][2]->id;?>">
                         <label>Question 3</label>
                     </div>
@@ -427,7 +427,7 @@
                 <div class="option21">
                     <div class="row">
                         <div class="input-field col s8 m8">
-                            <input type="text" name="option21" value="<?php print_r($option[2]->options[0]->title);?>" id="option21">
+                            <input type="text" name="option21" value="<?php print_r($option[2]->options[0]->title);?>" id="option21" >
                             <input type="hidden" name="option21id" value="<?php echo $option[2]->options[0]->id;?>" id="option21id">
                             <label>Option</label>
                         </div>
@@ -599,7 +599,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question4" value="<?php echo $before['question'][3]->content;?>" id="question4" onkeypress="checkforquestion('question4','type4','required4','option31')">
+                        <input type="text" name="question4" value="<?php echo $before['question'][3]->content;?>" id="question4" onkeypress="checkforquestion('question4','type4','required4','option31')" required>
                         <input type="hidden" name="question4id" value="<?php echo $before['question'][3]->id;?>">
                         <label>Question 4</label>
                     </div>
@@ -785,7 +785,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question5" value="<?php echo $before['question'][4]->content;?>" id="question5" onkeypress="checkforquestion('question5','type5','required5','option41')">
+                        <input type="text" name="question5" value="<?php echo $before['question'][4]->content;?>" id="question5" onkeypress="checkforquestion('question5','type5','required5','option41')" required>
                         <input type="hidden" name="question5id" value="<?php echo $before['question'][4]->id;?>">
                         <label>Question 5</label>
                     </div>
@@ -971,7 +971,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question6" value="<?php echo $before['question'][5]->content;?>" id="question6" onkeypress="checkforquestion('question6','type6','required6','option51')">
+                        <input type="text" name="question6" value="<?php echo $before['question'][5]->content;?>" id="question6" onkeypress="checkforquestion('question6','type6','required6','option51')" required>
                         <input type="hidden" name="question6id" value="<?php echo $before['question'][5]->id;?>">
                         <label>Question 6</label>
                     </div>
@@ -1157,7 +1157,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question7" value="<?php echo $before['question'][6]->content;?>" id="question7" onkeypress="checkforquestion('question7','type7','required7','option61')">
+                        <input type="text" name="question7" value="<?php echo $before['question'][6]->content;?>" id="question7" onkeypress="checkforquestion('question7','type7','required7','option61')" required>
                         <input type="hidden" name="question7id" value="<?php echo $before['question'][6]->id;?>">
                         <label>Question 7</label>
                     </div>
@@ -1342,7 +1342,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question8" value="<?php echo $before['question'][7]->content;?>" id="question8" onkeypress="checkforquestion('question8','type8','required8','option71')">
+                        <input type="text" name="question8" value="<?php echo $before['question'][7]->content;?>" id="question8" onkeypress="checkforquestion('question8','type8','required8','option71')" required>
                         <input type="hidden" name="question8id" value="<?php echo $before['question'][7]->id;?>">
                         <label>Question 8</label>
                     </div>
@@ -1527,7 +1527,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question9" value="<?php echo $before['question'][8]->content;?>" id="question9" onkeypress="checkforquestion('question9','type9','required9','option81')">
+                        <input type="text" name="question9" value="<?php echo $before['question'][8]->content;?>" id="question9" onkeypress="checkforquestion('question9','type9','required9','option81')" required>
                         <input type="hidden" name="question9id" value="<?php echo $before['question'][8]->id;?>">
                         <label>Question 9</label>
                     </div>
@@ -1712,7 +1712,7 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question10" value="<?php echo $before['question'][9]->content;?>" id="question10" onkeypress="checkforquestion('question10','type10','required10','option91')">
+                        <input type="text" name="question10" value="<?php echo $before['question'][9]->content;?>" id="question10" onkeypress="checkforquestion('question10','type10','required10','option91')" required>
                         <input type="hidden" name="question10id" value="<?php echo $before['question'][9]->id;?>">
                         <label>Question 10</label>
                     </div>
