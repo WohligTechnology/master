@@ -29,7 +29,7 @@ class Site extends CI_Controller
     }
     public function getdatabyfiltering(){
         $access = array("1","2","3","5");
-		$this->checkaccess($access);
+				$this->checkaccess($access);
         $gender=$this->input->get('gender');
         $maritalstatus=$this->input->get('maritalstatus');
         $designation=$this->input->get('designation');
@@ -4354,10 +4354,10 @@ $this->load->view("template",$data);
     public function exportsurveyresultcsv(){
 		$access = array("1");
 		$this->checkaccess($access);
-        $surveyid=$this->input->get('id');
+    $surveyid=$this->input->get('id');
 		$this->surveyquestionanswer_model->exportsurveyresultcsv($surveyid);
-        $data['redirect']="site/viewconclusion";
-        $this->load->view("redirect",$data);
+    $data['redirect']="site/viewconclusionfinalsuggestion";
+    $this->load->view("redirect",$data);
 	 }
 
     public function trialsurvey()
@@ -4510,11 +4510,11 @@ $this->load->view("template",$data);
         $option100=$this->input->get_post("option100");
 //        print_r($_POST);
         if($this->surveyquestion_model->newsurveysubmit($surveyname,$surveydescription,$question1,$question2,$question3,$question4,$question5,$question6,$question7,$question8,$question9,$question10,$type1,$type2,$type3,$type4,$type5,$type6,$type7,$type8,$type9,$type10,$required1,$required2,$required3,$required4,$required5,$required6,$required7,$required8,$required9,$required10,$message,$option1,$option2,$option3,$option4,$option5,$option6,$option7,$option8,$option9,$option10,$option11,$option12,$option13,$option14,$option15,$option16,$option17,$option18,$option19,$option20,$option21,$option22,$option23,$option24,$option25,$option26,$option27,$option28,$option29,$option30,$option31,$option32,$option33,$option34,$option35,$option36,$option37,$option38,$option39,$option40,$option41,$option42,$option43,$option44,$option45,$option46,$option47,$option48,$option49,$option50,$option51,$option52,$option53,$option54,$option55,$option56,$option57,$option58,$option59,$option60,$option61,$option62,$option63,$option64,$option65,$option66,$option67,$option68,$option69,$option70,$option71,$option72,$option73,$option74,$option75,$option76,$option77,$option78,$option79,$option80,$option81,$option82,$option83,$option84,$option85,$option86,$option87,$option88,$option89,$option90,$option91,$option92,$option93,$option94,$option95,$option96,$option97,$option98,$option99,$option100)==0)
-$data["alerterror"]="New survey could not be created.";
-else
-$data["alertsuccess"]="Survey Created Successfully.";
-$data["redirect"]="site/viewconclusionfinalsuggestion";
-$this->load->view("redirect",$data);
+				$data["alerterror"]="New survey could not be created.";
+				else
+				$data["alertsuccess"]="Survey Created Successfully.";
+				$data["redirect"]="site/viewconclusionfinalsuggestion";
+				$this->load->view("redirect",$data);
 	 }
     public function edittrialsurvey()
     {

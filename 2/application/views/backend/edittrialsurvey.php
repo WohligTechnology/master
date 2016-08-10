@@ -227,15 +227,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question2" value="<?php echo $before['question'][1]->content;?>" required>
+                        <input type="text" name="question2" value="<?php echo $before['question'][1]->content;?>" id="question2" onkeypress="checkforquestion('question2','type2','required2','option11')">
                         <input type="hidden" name="question2id" value="<?php echo $before['question'][1]->id;?>">
                         <label>Question 2</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type2",$type,set_value('type',$before['question'][1]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question2','type2','required2','option11')">
+                        <?php echo form_dropdown("type2",$type,set_value('type',$before['question'][1]->type),"id='type2'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required2",$isrequired,set_value('required2',$before['question'][1]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question2','type2','required2','option11')">
+                        <?php echo form_dropdown("required2",$isrequired,set_value('required2',$before['question'][1]->isrequired),"id='required2'")?>
                     </div>
                 </div>
                 <div class="option11">
@@ -413,15 +413,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question3" value="<?php echo $before['question'][2]->content;?>" required>
+                        <input type="text" name="question3" value="<?php echo $before['question'][2]->content;?>"  id="question3" onkeypress="checkforquestion('question3','type3','required3','option21')">
                         <input type="hidden" name="question3id" value="<?php echo $before['question'][2]->id;?>">
                         <label>Question 3</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type3",$type,set_value('type',$before['question'][2]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question3','type3','required3','option21')">
+                        <?php echo form_dropdown("type3",$type,set_value('type',$before['question'][2]->type),"id='type3'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required3",$isrequired,set_value('required3',$before['question'][2]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question3','type3','required3','option21')">
+                        <?php echo form_dropdown("required3",$isrequired,set_value('required3',$before['question'][2]->isrequired),"id='required3'")?>
                     </div>
                 </div>
                 <div class="option21">
@@ -599,15 +599,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question4" value="<?php echo $before['question'][3]->content;?>" required>
+                        <input type="text" name="question4" value="<?php echo $before['question'][3]->content;?>" id="question4" onkeypress="checkforquestion('question4','type4','required4','option31')">
                         <input type="hidden" name="question4id" value="<?php echo $before['question'][3]->id;?>">
                         <label>Question 4</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type4",$type,set_value('type',$before['question'][3]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question4','type4','required4','option31')">
+                        <?php echo form_dropdown("type4",$type,set_value('type',$before['question'][3]->type),"id='type4'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required4",$isrequired,set_value('required4',$before['question'][3]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question4','type4','required4','option31')">
+                        <?php echo form_dropdown("required4",$isrequired,set_value('required4',$before['question'][3]->isrequired),"id='required4'")?>
                     </div>
                 </div>
                 <div class="option31">
@@ -785,15 +785,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question5" value="<?php echo $before['question'][4]->content;?>" required>
+                        <input type="text" name="question5" value="<?php echo $before['question'][4]->content;?>" id="question5" onkeypress="checkforquestion('question5','type5','required5','option41')">
                         <input type="hidden" name="question5id" value="<?php echo $before['question'][4]->id;?>">
                         <label>Question 5</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type5",$type,set_value('type',$before['question'][4]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question5','type5','required5','option41')">
+                        <?php echo form_dropdown("type5",$type,set_value('type',$before['question'][4]->type),"id='type5'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required5",$isrequired,set_value('required5',$before['question'][4]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question5','type5','required5','option41')">
+                        <?php echo form_dropdown("required5",$isrequired,set_value('required5',$before['question'][4]->isrequired),"id='required5'")?>
                     </div>
                 </div>
                 <div class="option41">
@@ -971,15 +971,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question6" value="<?php echo $before['question'][5]->content;?>" required>
+                        <input type="text" name="question6" value="<?php echo $before['question'][5]->content;?>" id="question6" onkeypress="checkforquestion('question6','type6','required6','option51')">
                         <input type="hidden" name="question6id" value="<?php echo $before['question'][5]->id;?>">
                         <label>Question 6</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type6",$type,set_value('type',$before['question'][5]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question6','type6','required6','option51')">
+                        <?php echo form_dropdown("type6",$type,set_value('type',$before['question'][5]->type),"id='type6'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required6",$isrequired,set_value('required6',$before['question'][5]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question6','type6','required6','option51')">
+                        <?php echo form_dropdown("required6",$isrequired,set_value('required6',$before['question'][5]->isrequired),"id='required6'")?>
                     </div>
                 </div>
                 <div class="option51">
@@ -1157,15 +1157,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question7" value="<?php echo $before['question'][6]->content;?>" required>
+                        <input type="text" name="question7" value="<?php echo $before['question'][6]->content;?>" id="question7" onkeypress="checkforquestion('question7','type7','required7','option61')">
                         <input type="hidden" name="question7id" value="<?php echo $before['question'][6]->id;?>">
                         <label>Question 7</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type7",$type,set_value('type',$before['question'][6]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question7','type7','required7','option61')">
+                        <?php echo form_dropdown("type7",$type,set_value('type',$before['question'][6]->type),"id='type7'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required7",$isrequired,set_value('required7',$before['question'][6]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question7','type7','required7','option61')">
+                        <?php echo form_dropdown("required7",$isrequired,set_value('required7',$before['question'][6]->isrequired),"id='required7'")?>
                     </div>
                 </div>
                 <div class="option61">
@@ -1342,15 +1342,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question8" value="<?php echo $before['question'][7]->content;?>" required>
+                        <input type="text" name="question8" value="<?php echo $before['question'][7]->content;?>" id="question8" onkeypress="checkforquestion('question8','type8','required8','option71')">
                         <input type="hidden" name="question8id" value="<?php echo $before['question'][7]->id;?>">
                         <label>Question 8</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type8",$type,set_value('type',$before['question'][7]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question8','type8','required8','option71')">
+                        <?php echo form_dropdown("type8",$type,set_value('type',$before['question'][7]->type),"id='type8'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required8",$isrequired,set_value('required8',$before['question'][7]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question8','type8','required8','option71')">
+                        <?php echo form_dropdown("required8",$isrequired,set_value('required8',$before['question'][7]->isrequired),"id='required8'")?>
                     </div>
                 </div>
                 <div class="option71">
@@ -1527,15 +1527,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question9" value="<?php echo $before['question'][8]->content;?>" required>
+                        <input type="text" name="question9" value="<?php echo $before['question'][8]->content;?>" id="question9" onkeypress="checkforquestion('question9','type9','required9','option81')">
                         <input type="hidden" name="question9id" value="<?php echo $before['question'][8]->id;?>">
                         <label>Question 9</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type9",$type,set_value('type',$before['question'][8]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question9','type9','required9','option81')">
+                        <?php echo form_dropdown("type9",$type,set_value('type',$before['question'][8]->type),"id='type9'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required9",$isrequired,set_value('required9',$before['question'][8]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question9','type9','required9','option81')">
+                        <?php echo form_dropdown("required9",$isrequired,set_value('required9',$before['question'][8]->isrequired),"id='required9'")?>
                     </div>
                 </div>
                 <div class="option81">
@@ -1712,15 +1712,15 @@
             <div class="question-repeater">
                 <div class="row bold">
                     <div class="input-field col s5 m5">
-                        <input type="text" name="question10" value="<?php echo $before['question'][9]->content;?>" required>
+                        <input type="text" name="question10" value="<?php echo $before['question'][9]->content;?>" id="question10" onkeypress="checkforquestion('question10','type10','required10','option91')">
                         <input type="hidden" name="question10id" value="<?php echo $before['question'][9]->id;?>">
                         <label>Question 10</label>
                     </div>
-                    <div class="input-field col s3 m3">
-                        <?php echo form_dropdown("type10",$type,set_value('type',$before['question'][9]->type));?>
+                    <div class="input-field col s3 m3" onchange="checkforquestion('question10','type10','required10','option91')">
+                        <?php echo form_dropdown("type10",$type,set_value('type',$before['question'][9]->type),"id='type10'");?>
                     </div>
-                    <div class="input-field col s2 m2">
-                        <?php echo form_dropdown("required10",$isrequired,set_value('required10',$before['question'][9]->isrequired))?>
+                    <div class="input-field col s2 m2" onchange="checkforquestion('question10','type10','required10','option91')">
+                        <?php echo form_dropdown("required10",$isrequired,set_value('required10',$before['question'][9]->isrequired),"id='required10'")?>
                     </div>
                 </div>
                 <div class="option91">
@@ -2005,10 +2005,27 @@
 
     // if question is present show option 1
     function checkforquestion(question, type, required, option) {
+      var optionname=option;
+      var optionid=optionname.substring(6);
+      console.log(optionid);
+      var j=optionid+9;
         console.log($("#" + question).val());
         if ($("#" + question).val() != '' && $("#" + type).val() != '' && $("#" + required).val() != '' && $("#" + type).val() != 1 && $("#" + type).val() != 2) {
             $("." + option).show();
-        } else {
+        }
+        else if(       $("#" + type).val() == 1 || $("#" + type).val() == 2    )
+        {
+          console.log("in else if");
+          for(var i=optionid;i<=j;i++){
+            var optionidname="option"+i;
+            console.log(optionidname);
+            console.log(i);
+            $('#' + optionidname).val('');
+            $("." + optionidname).hide();
+
+          }
+        }
+        else {
             $("." + option).hide();
         }
     }

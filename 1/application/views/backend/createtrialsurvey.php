@@ -1724,13 +1724,31 @@
 
     // if question is present show option 1
     function checkforquestion(question, type, required, option) {
-        // console.log($("#" + question).val());
+      console.log(question);
+      console.log(type);
+      console.log(required);
+      console.log(option);
+      var optionname=option;
+      var optionid=optionname.substring(6);
+      console.log(optionid);
+      var j=optionid+9;
         if ($("#" + question).val() != '' && $("#" + type).val() != '' && $("#" + required).val() != '' && $("#" + type).val() != 1 && $("#" + type).val() != 2) {
             $("." + option).show();
-            // console.log("show opt");
-        } else {
+        }
+        else if(       $("#" + type).val() == 1 || $("#" + type).val() == 2    )
+        {
+          console.log("in else if");
+          for(var i=optionid;i<=j;i++){
+            var optionidname="option"+i;
+            console.log(optionidname);
+            console.log(i);
+            $('#' + optionidname).val('');
+            $("." + optionidname).hide();
+
+          }
+        }
+        else {
             $("." + option).hide();
-              // console.log("hide opt");
         }
     }
 
