@@ -65,13 +65,13 @@ return $return;
           //$data = 'Some file data';
           $timestamp=new DateTime();
           $timestamp=$timestamp->format('Y-m-d_H.i.s');
-          if ( ! write_file("./uploads/productfile_$timestamp.csv", $content))
+          if ( ! write_file("./uploads/surveyanswer_$timestamp.csv", $content))
           {
               // echo 'Unable to write the file';
           }
           else
           {
-                  redirect(base_url("uploads/productfile_$timestamp.csv"));
+                  redirect(base_url("uploads/surveyanswer_$timestamp.csv"));
               //  echo 'File written!';
           }
 
