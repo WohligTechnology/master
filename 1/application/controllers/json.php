@@ -951,9 +951,16 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
 
 }
  }
+ public function checkurl(){
+   $url =  $_SERVER['REQUEST_URI'];
+   $urll=explode("/",$url);
+   print_r($urll);
+   echo $urll[2];
+
+ }
 
 
-}
+
 
 
  } ?>

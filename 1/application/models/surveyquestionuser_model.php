@@ -90,7 +90,7 @@ return $query;
             $email=$row['email'];
             $surveyname=$row['survey'];
             $query=$this->db->query("SELECT * FROM `user` WHERE `email` LIKE '$email'")->row();
-
+            $companyid=$this->user_model->getCompanyId();
             if(empty($query))
             {
             }
@@ -103,7 +103,7 @@ return $query;
                 {
                     //                  email matches
                 $userid=$query->id;
-                $hashvalue=base64_encode ($userid."&hq");
+                $hashvalue=base64_encode ($userid."&hq&".$companyid);
                 $data  = array(
                     'email' => $email,
                     'userid' => $userid,
