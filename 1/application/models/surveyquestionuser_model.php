@@ -96,7 +96,7 @@ return $query;
             }
             else
             {
-                $surveynamequery=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `conclusion` LIKE '$surveyname'")->row();
+                $surveynamequery=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `conclusion` LIKE '%$surveyname%'")->row();
                 $surveyid=$surveynamequery->id;
                 $checkifmailpresent=$this->db->query("SELECT * FROM `hq_surveyquestionuser` WHERE `email` LIKE '$email'")->row();
                 if(empty($checkifmailpresent))
@@ -108,7 +108,7 @@ return $query;
                     'email' => $email,
                     'userid' => $userid,
                     'survey' => $surveyid,
-                    	'hashuser' =>$hashvalue
+                    'hashuser' =>$hashvalue
 
                 );
                 $query=$this->db->insert( 'hq_surveyquestionuser', $data );
@@ -119,7 +119,7 @@ return $query;
 	    }
 
 //        end
-			return  $id;
+			return  1;
 }
 }
 ?>
