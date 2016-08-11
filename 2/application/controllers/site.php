@@ -4235,7 +4235,8 @@ $this->load->view("template",$data);
         foreach($getUserid as $getUserid){
         $email=$getUserid->email;
 				// echo $email;
-        $hashvalue=base64_encode ($getUserid->id."&hq");
+					$companyid=$this->user_model->getCompanyId();
+        $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
         // $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
         $link="<a href='http://wohlig.co.in/hqfront/#/welcome/$hashvalue'>Click here </a> to get questions";
 				// echo $link;
