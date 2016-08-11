@@ -90,25 +90,25 @@ return $query;
             $email=$row['email'];
             $surveyname=$row['survey'];
             $query=$this->db->query("SELECT * FROM `user` WHERE `email` LIKE '$email'")->row();
-
+            $companyid=$this->user_model->getCompanyId();
             if(empty($query))
             {
             }
             else
             {
-                $surveynamequery=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `conclusion` LIKE '$surveyname'")->row();
+                $surveynamequery=$this->db->query("SELECT * FROM `hq_conclusionfinalsuggestion` WHERE `conclusion` LIKE '%$surveyname%'")->row();
                 $surveyid=$surveynamequery->id;
                 $checkifmailpresent=$this->db->query("SELECT * FROM `hq_surveyquestionuser` WHERE `email` LIKE '$email'")->row();
                 if(empty($checkifmailpresent))
                 {
                     //                  email matches
                 $userid=$query->id;
-                $hashvalue=base64_encode ($userid."&hq");
+                $hashvalue=base64_encode ($userid."&hq&".$companyid);
                 $data  = array(
                     'email' => $email,
                     'userid' => $userid,
                     'survey' => $surveyid,
-                    	'hashuser' =>$hashvalue
+                    'hashuser' =>$hashvalue
 
                 );
                 $query=$this->db->insert( 'hq_surveyquestionuser', $data );
@@ -119,7 +119,7 @@ return $query;
 	    }
 
 //        end
-			return  $id;
+			return  1;
 }
 }
 ?>

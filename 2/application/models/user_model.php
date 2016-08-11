@@ -63,11 +63,16 @@ class User_model extends CI_Model
         $empcount=$query->empcount;
         return $empcount;
     }
-
+		public function getCompanyId()
+		{
+			 $url =  $_SERVER['REQUEST_URI'];
+	 	   $urll=explode("/",$url);
+			 return $urll[2];
+    }
 
 	public function create($name,$email,$password,$accesslevel,$status,$socialid,$logintype,$image,$json,$username,$gender,$age,$maritalstatus,$designation,$department,$noofyearsinorganization,$spanofcontrol,$description,$employeeid,$branch,$language,$team,$salary)
 	{
-
+		$companyid=$this->user_model->getCompanyId();
 		$data  = array(
 			'name' => $name,
 			'email' => $email,
@@ -95,7 +100,7 @@ class User_model extends CI_Model
 		$query=$this->db->insert( 'user', $data );
 		$id=$this->db->insert_id();
 
-		$hashvalue=base64_encode ($id."&hq");
+		$hashvalue=base64_encode ($id."&hq&".$companyid);
 
 		$data  = array(
 			'hashuser' =>$hashvalue
@@ -805,8 +810,8 @@ class User_model extends CI_Model
                         );
                         $query=$this->db->insert( 'user', $data );
                         $id=$this->db->insert_id();
-
-												$hashvalue=base64_encode ($id."&hq");
+												$companyid=$this->user_model->getCompanyId();
+												$hashvalue=base64_encode ($id."&hq&".$companyid);
 
 												$data1  = array(
 													'hashuser' =>$hashvalue

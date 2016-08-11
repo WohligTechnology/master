@@ -2813,7 +2813,6 @@ $this->load->view("redirect",$data);
 	{
         $access = array("1");
 		$this->checkaccess($access);
-        $id=$this->input->get_post('id');
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = '*';
         $this->load->library('upload', $config);
@@ -2827,7 +2826,7 @@ $this->load->view("redirect",$data);
         }
         $fullfilepath=$filepath."".$file;
         $file = $this->csvreader->parse_file($fullfilepath);
-        $id1=$this->surveyquestionuser_model->createbycsv($file,$id);
+        $id1=$this->surveyquestionuser_model->createbycsv($file);
 //        echo $id1;
 
         if($id1==0)

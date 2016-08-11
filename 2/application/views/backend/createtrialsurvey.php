@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option1" id="option1">
-                            <label>Option 1</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -65,7 +65,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option2" id="option2">
-                            <label>Option 2</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option2')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -78,7 +78,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option3" id="option3">
-                            <label>Option 3</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option3')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -91,7 +91,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option4" id="option4">
-                            <label>Option 4</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option4')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -104,7 +104,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option5" id="option5">
-                            <label>Option 5</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option5')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -117,7 +117,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option6" id="option6">
-                            <label>Option 6</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option6')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -130,7 +130,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option7" id="option7">
-                            <label>Option 7</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option7')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -143,7 +143,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option8" id="option8">
-                            <label>Option 8</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option8')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -156,7 +156,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option9" id="option9">
-                            <label>Option 9</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option9')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -169,7 +169,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option10" id="option10">
-                            <label>Option 10</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
                             <div onclick="hidedelete('option10')" class="btn btn-xs less-pad"><i class="material-icons propericon">delete</i></div>
@@ -197,7 +197,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option11" id="option11">
-                            <label>Option 11</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -211,7 +211,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option12" id="option12">
-                            <label>Option 12</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -225,7 +225,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option13" id="option13">
-                            <label>Option 13</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -238,7 +238,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option14" id="option14">
-                            <label>Option 14</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -251,7 +251,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option15" id="option15">
-                            <label>Option 15</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -264,7 +264,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option16" id="option16">
-                            <label>Option 16</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -277,7 +277,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option17" id="option17">
-                            <label>Option 17</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -290,7 +290,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option18" id="option18">
-                            <label>Option 18</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -303,7 +303,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option19" id="option19">
-                            <label>Option 19</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
@@ -316,7 +316,7 @@
                     <div class="row">
                         <div class="input-field col s8 m8">
                             <input type="text" name="option20" id="option20">
-                            <label>Option 20</label>
+                            <label>Option</label>
                         </div>
                         <div class="input-field col s2 m2">
 
