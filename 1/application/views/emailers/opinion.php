@@ -12,7 +12,7 @@
           </p>
           <p style="margin:15px 0px;">In this organization, we believe that every opinion matters. Every voice deserves a platform and that's what we are here to provide.</p>
           <dpiv style="margin:0 0 15px 0;">
-            In order for your voice to be heard, here's a quick survey that we'd like you to take part in
+            In order for your voice to be heard, here's a quick survey that we'd like you to take part in.
             <!-- insert Link --><a href="<?php echo $link;?>" target="_blank">Click here to start.</a>
             <!--End Link -->
         </div>
