@@ -54,10 +54,10 @@ $ip = substr($myserver,0,7);
 //if($myserver != "localhost")
 if($myserver != "localhost"  && $ip != "192.168")
 {
-    $db['default']['hostname'] = 'localhost';
-	$db['default']['username'] = 'root';
-	$db['default']['password'] = 'SE7aeQ7a';
-	$db['default']['database'] = '1';
+  $db['default']['hostname'] = 'localhost';
+  $db['default']['username'] = 'wohligco_1';
+	$db['default']['password'] = 'chintan123';
+	$db['default']['database'] = 'wohligco_1';
 	$db['default']['dbdriver'] = 'mysql';
 	$db['default']['dbprefix'] = '';
 	$db['default']['pconnect'] = TRUE;
