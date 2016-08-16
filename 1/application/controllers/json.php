@@ -632,13 +632,13 @@ $this->load->view("json",$data);
   public function sendsurveyquestion()
   {
         $surveyid=$this->input->get('id');
-
+        $companyid=$this->user_model->getCompanyId();
       $gettotalemails=$this->db->query("SELECT `id`, `survey`, `email`, `status`, `userid` FROM `hq_surveyquestionuser` WHERE `survey`='$surveyid'")->result();
         foreach($gettotalemails as $gettotalemail)
         {
             $email=$gettotalemail->email;
             $userid=$gettotalemail->userid;
-            $hashvalue=base64_encode ($userid."&hq");
+            $hashvalue=base64_encode ($userid."&hq&".$companyid);
             $link="http://wohlig.co.in/hqfront/#/playing/$hashvalue";
             $data['link']=$link;
     				  $htmltext = $this->load->view('emailers/opinion', $data, true);
