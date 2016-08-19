@@ -639,6 +639,7 @@ $this->load->view("json",$data);
             $email=$gettotalemail->email;
             $userid=$gettotalemail->userid;
             $hashvalue=base64_encode ($userid."&hq&".$companyid);
+            $data['hashvalue']=base64_encode ($userid."&hq&".$companyid);
             $link="http://wohlig.co.in/hqfront/#/playing/$hashvalue";
             $data['link']=$link;
     				  $htmltext = $this->load->view('emailers/opinion', $data, true);
