@@ -19,7 +19,7 @@
               <p>
                 <b>Step 1-Creation of Mini Survey</b>
               </p>
-              <p>Click on the 'Mini Survey' Option in the menu.
+              <p>Click on the 'Mini Survey' option in the menu.
               </p>
               <p>Click on the bottom right '+' icon to create a Mini Survey. </p>
             </div>
@@ -31,10 +31,11 @@
               <p>There are five types of questions that can be created in a Mini Survey:</p>
               <p>Text: The employee can write a phrase for one’s response</p>
               <p>Paragraph Text: The employee can write a paragraph for one’s response</p>
-              <p>Multiple Choice: The employee can choose as many out of the options provided</p>
-              <p>Drop Down: The employee can choose any one from the range of options provided</p>
+              <p>Multiple Choice: The employee can choose more than one option from the options provided</p>
+              <p>Drop Down: The employee can choose any one option from the options provided</p>
               <p>Radio Button: The employee can choose any one from the options provided</p>
               <p>Remember: The survey needs to consist of 10 questions. Also, the number of options provided for Multiple Choice, Drop Down and Radio Button is up to you.</p>
+                    <p>Click on the ‘Save’ option before moving on to the next step.</p>
             </div>
             <div style="margin:0 0 15px 0;">
               <p>
@@ -42,12 +43,25 @@
               </p>
               <p>The CSV File with the employee data can only be uploaded once the survey has been created.
               </p>
-              <p>Depending on who you want to send the mini survey to, only the e-mail IDs of the respective employees need to be given in the CSV File.
+              <p>Click on the ‘Survey Users’ option.
+              </p>
+              <p>Click on the ‘Upload CSV’ option followed by the ‘Download CSV Format’ to upload the file.
               </p>
               <p>Key points to remember while uploading the data in the CSV File are as follows:</p>
-              <p>Ensure there are no gaps and uppercase letters used in the first row of the data i.e. the titles</p>
-              <p>Apostrophes cannot be used</p>
-              <p>Upload the CSV File and send it to the employees.</p>
+              <p>You need to feed in the e-mail IDs and the name of the survey in the CSV File.</p>
+              <p>The e-mail IDs provided need to be in the CSV file that was uploaded in the Company Profile.</p>
+            </div>
+
+
+
+
+
+            <div style="margin:0 0 15px 0;">
+              <p>
+                <b>Step 4-Send the mini survey</b>
+              </p>
+              <p>Click on the ‘Send Survey’ option to send the mini survey to all the employees.
+              </p>
             </div>
           </div>
           <p style="margin:0 0 15px 0;">

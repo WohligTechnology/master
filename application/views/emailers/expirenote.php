@@ -14,7 +14,7 @@
             Trust you are doing great and are having an awesome experience with Happyness Quotient.
           </p>
           <p style="margin:0 0 15px 0;">
-            This is a reminder that your package will expire in the next 30 days.
+            This is a reminder that your package will expire in the next 15 days.
           </p>
           <p style="margin:0 0 15px 0;">
             To continue measuring Happyness at Work, kindly renew/upgrade your package by getting in touch with our team.

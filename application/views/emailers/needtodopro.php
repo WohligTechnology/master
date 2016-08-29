@@ -16,32 +16,37 @@
           <div style="margin:0 0 30px 0;">
             <div style="margin:0 0 15px 0;">
               <p>
-                <b>Step 1-Customising the tool</b>
+                <b>Step 1-Customising the weightages</b>
               </p>
-              <p>Since the weightages are pre-determined, start with customising the tool for your company.</p>
-              <p>Click on the 'Logo' Option in the menu.</p>
-              <p>Click on the 'Image' Option to upload the logo of your company.</p>
+              <p>Choose the weightages for every pillar based on what works for your company. Remember, the total weightage of all the pillars needs to be 100%.</p>
             </div>
             <div style="margin:0 0 15px 0;">
-              <p> <b>Step 2-Uploading employee data</b>
+              <p>
+                <b>Step 2-Customising the tool</b>
+              </p>
+              <p>Click on the 'Logo' Option in the menu.</p>
+              <p>Click on the 'Image' Option to upload the logo of your organization.</p>
+            </div>
+            <div style="margin:0 0 15px 0;">
+              <p> <b>Step 3-Uploading employee data</b>
               </p>
               <p>Click on the 'Company Profile' option in the menu.</p>
               <p>Click on the 'Upload CSV' option.</p>
               <p>Click on the 'Download CSV Format' option to understand the format in which data of the employees needs to be uploaded.</p>
-              <p>Click on the ‘User CSV File’ option to upload the file and click the ‘Save’ option before moving on to the next step.</p>
+              <p>Click on the ‘User CSV File’ option to upload the file and click the ‘Save’ option.</p>
             </div>
             <div style="margin:0 0 15px 0;">
               <p>
-                <b>Step 3-Scheduling of questions:</b>
+                <b>Step 4-Scheduling of questions:</b>
               </p>
               <p>Click on the 'Start HQ' option in the menu.</p>
               <p>Provide a start and end date depending on how long you would like the package to last.</p>
               <p>Schedule how the questions are to be sent over the span of a month from the starting date.</p>
-              <p>Save the details.</p>
+              <p>Save the details before moving on to the next step.</p>
             </div>
             <div>
               <p>
-                <b>Step 4-Begin the journey of measuring happyness at work!</b>
+                <b>Step 5-Begin the journey of measuring happyness at work!</b>
               </p>
               <p>Click on the ‘Send All Questions’ option after finishing Step 3. </p>
             </div>

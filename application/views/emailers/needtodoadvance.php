@@ -19,8 +19,8 @@
                 <b>Step 1-Customising the tool</b>
               </p>
               <p>Since the weightages are pre-determined, start with customising the tool for your company.</p>
-              <p>Click on the 'Logo' Option in the menu.</p>
-              <p>Click on the 'Image' Option to upload the logo of your company.</p>
+              <p>Click on the 'Logo' option in the menu.</p>
+              <p>Click on the 'Image' option to upload the logo of your company.</p>
             </div>
             <div style="margin:0 0 15px 0;">
               <p> <b>Step 2-Uploading employee data</b>

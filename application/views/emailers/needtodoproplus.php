@@ -16,14 +16,34 @@
           <div style="margin:0 0 30px 0;">
             <div style="margin:0 0 15px 0;">
               <p>
-                <b>Step 1-Customising the tool</b>
+                <b>Step 1-Customising the weightages</b>
               </p>
-              <p>Since the weightages are pre-determined, start with customising the tool for your company.</p>
-              <p>Click on the 'Logo' Option in the menu.</p>
-              <p>Click on the 'Image' Option to upload the logo of your company.</p>
+              <p>Choose the weightages for every pillar based on what works for your company. Remember, the total weightage of all the pillars needs to be 100%.</p>
+            </div>
+
+
+
+
+            <div style="margin:0 0 15px 0;">
+              <p>
+                <b>Step 2-The 11th pillar</b>
+              </p>
+              <p>Click on the ‘Pillar’ option in the menu.</p>
+              <p>Click on the ‘Edit’ option to name the 11th pillar.</p>
+              <p>Once the total weightage adds up to 100%, click on the ‘Go to Question’ option to draft
+	the four questions. </p>
+              <p>For every question in the 11th pillar, the scoring of the options is pre-determined (with option 4 being the highest score).</p>
+              <p>Click on the ‘Save’ option before moving on to the next step.</p>
             </div>
             <div style="margin:0 0 15px 0;">
-              <p> <b>Step 2-Uploading employee data</b>
+              <p>
+                <b>Step 3-Customising the tool</b>
+              </p>
+              <p>Click on the 'Logo' Option in the menu.</p>
+              <p>Click on the 'Image' Option to upload the logo of your organization.</p>
+            </div>
+            <div style="margin:0 0 15px 0;">
+              <p> <b>Step 4-Uploading employee data</b>
               </p>
               <p>Click on the 'Company Profile' option in the menu.</p>
               <p>Click on the 'Upload CSV' option.</p>
@@ -32,7 +52,7 @@
             </div>
             <div style="margin:0 0 15px 0;">
               <p>
-                <b>Step 3-Scheduling of questions:</b>
+                <b>Step 5-Scheduling of questions:</b>
               </p>
               <p>Click on the 'Start HQ' option in the menu.</p>
               <p>Provide a start and end date depending on how long you would like the package to last.</p>
@@ -41,7 +61,7 @@
             </div>
             <div>
               <p>
-                <b>Step 4-Begin the journey of measuring happyness at work!</b>
+                <b>Step 6-Begin the journey of measuring happyness at work!</b>
               </p>
               <p>Click on the ‘Send All Questions’ option after finishing Step 3. </p>
             </div>
