@@ -45,14 +45,14 @@ public function create($company,$package)
         $htmltext = $this->load->view('emailers/advancedpackage', $data, true);
       $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
 
-      $htmltext = $this->load->view('emailers/needtodo', $data, true);
+      $htmltext = $this->load->view('emailers/needtodoadvance', $data, true);
     $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
     }
     else if($package==3){
       $htmltext = $this->load->view('emailers/propackage', $data, true);
     $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
 
-    $htmltext = $this->load->view('emailers/needtodo', $data, true);
+    $htmltext = $this->load->view('emailers/needtodopro', $data, true);
   $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
 
     }
@@ -60,7 +60,7 @@ public function create($company,$package)
       $htmltext = $this->load->view('emailers/propluspackage', $data, true);
     $this->menu_model->emailer($htmltext,'Welcome to Happyness Quotient!',$email,"Sir/Madam");
 
-    $htmltext = $this->load->view('emailers/needtodo', $data, true);
+    $htmltext = $this->load->view('emailers/needtodoproplus', $data, true);
   $this->menu_model->emailer($htmltext,'Happyness Quotient-Here’s What You Need To Do!',$email,"Sir/Madam");
 
     }

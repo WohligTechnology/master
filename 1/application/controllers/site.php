@@ -80,7 +80,6 @@ class Site extends CI_Controller
         $data['showavg']=$this->pillar_model->showavg();
         $data['lastpillardetail']=$this->pillar_model->lastpillardetail();
 		$this->load->view( 'template', $data );
-//        }
 
 	}
 
