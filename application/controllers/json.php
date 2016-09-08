@@ -145,5 +145,11 @@ public function checkpackagesendemail()
         }
     }
 }
+public function check()
+{
+  $data=array("status" => 1);
+  $query=$this->db->insert( "cron", $data );
+  $id=$this->db->insert_id();
+}
 
 } ?>
