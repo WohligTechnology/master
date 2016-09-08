@@ -4,7 +4,7 @@
   <section style="width: 600px; margin:0 auto;">
     <div style="border:0;">
       <div style="text-align:center;">
-        <img src="http://wohlig.co.in/hqemailerimg/2.png" alt="" width="100%;">
+        <img src="https://storage.googleapis.com/hqemailerimg/2.png" alt="" width="100%;">
       </div>
       <div style="padding: 0px 25px 0px;">
         <div style="padding:10px 0">
@@ -19,7 +19,7 @@
             To understand what your employees are thinking about other aspects of life at work, you can create as many mini surveys as you like!
           </p>
           <p style="margin:0 0 15px 0;">
-          All of you have to do is log on to your company profile and click the 'Mini Survey' option in the menu. 
+          All of you have to do is log on to your company profile and click the 'Mini Survey' option in the menu.
           </p>
 
 
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div style="padding-bottom:10px">
-        <img src="http://wohlig.co.in/hqemailerimg/14.png" alt="" width="100%;">
+        <img src="https://storage.googleapis.com/hqemailerimg/14.png" alt="" width="100%;">
       </div>
     </div>
   </section>

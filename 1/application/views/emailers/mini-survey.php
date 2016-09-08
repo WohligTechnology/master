@@ -4,7 +4,7 @@
   <section style="width: 600px; margin:0 auto;">
     <div style="border:0;">
       <div style="text-align:center;">
-        <img src="http://wohlig.co.in/hqemailerimg/10.png" alt="" width="100%;">
+        <img src="https://storage.googleapis.com/hqemailerimg/10.png" alt="" width="100%;">
       </div>
       <div style="padding: 0px 25px 0px;">
         <div style="padding:10px 0">
@@ -77,7 +77,7 @@
         </div>
       </div>
       <div style="padding-bottom:10px">
-        <img src="http://wohlig.co.in/hqemailerimg/14.png" alt="" width="100%;">
+        <img src="https://storage.googleapis.com/hqemailerimg/14.png" alt="" width="100%;">
       </div>
     </div>
   </section>
