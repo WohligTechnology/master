@@ -803,81 +803,81 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
 
  }
 
- public function abc()
-     {
-     $query = $this->db->query("SELECT * FROM `hq_question`")->result();
-     $testdetail=$this->db->query("SELECT * FROM `test`")->row();
-     $startdate=$testdetail->startdate;
-     $schedule=$testdetail->schedule;
-     $checkpackage=$this->db->query("SELECT * FROM `user`")->row();
-     $package=$checkpackage->package;
-     if($package==4){
-         $noofquestions=46;
-     }
-     else{
-        $noofquestions=42;
-     }
-
-        //ASSIGN DATES ACCORDING TO SCHEDULE
-         if($schedule==1)
-         {
-             $this->db->query('UPDATE `hq_question` SET `date`=null');
-             $noofdays=7;
-             $units=ceil($noofquestions/7);
-               for($i=1;$i<=$noofquestions;$i++)
-               {
-                        $day=ceil($i/$units);
-                        $exactdateday=$day-1;
-                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
-                }
-
-         }
-
-     if($schedule==2)
-         {
-             $this->db->query('UPDATE `hq_question` SET `date`=null');
-             $noofdays=14;
-             $units=ceil($noofquestions/$noofdays);
-               for($i=1;$i<=$noofquestions;$i++)
-               {
-                        $day=ceil($i/$units);
-                        $exactdateday=$day-1;
-                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
-                }
-
-         }
-     if($schedule==3)
-         {
-             $this->db->query('UPDATE `hq_question` SET `date`=null');
-             $noofdays=21;
-             $units=ceil($noofquestions/$noofdays);
-               for($i=1;$i<=$noofquestions;$i++)
-               {
-                        $day=ceil($i/$units);
-                        $exactdateday=$day-1;
-                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
-                }
-
-         }
-     if($schedule==4)
-         {
-             $this->db->query('UPDATE `hq_question` SET `date`=null');
-             $noofdays=28;
-             $units=ceil($noofquestions/$noofdays);
-               for($i=1;$i<=$noofquestions;$i++)
-               {
-                        $day=ceil($i/$units);
-                        $exactdateday=$day-1;
-                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
-                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
-                }
-
-         }
-
-    }
+ // public function abc()
+ //     {
+ //     $query = $this->db->query("SELECT * FROM `hq_question`")->result();
+ //     $testdetail=$this->db->query("SELECT * FROM `test`")->row();
+ //     $startdate=$testdetail->startdate;
+ //     $schedule=$testdetail->schedule;
+ //     $checkpackage=$this->db->query("SELECT * FROM `user`")->row();
+ //     $package=$checkpackage->package;
+ //     if($package==4){
+ //         $noofquestions=46;
+ //     }
+ //     else{
+ //        $noofquestions=42;
+ //     }
+ //
+ //        //ASSIGN DATES ACCORDING TO SCHEDULE
+ //         if($schedule==1)
+ //         {
+ //             $this->db->query('UPDATE `hq_question` SET `date`=null');
+ //             $noofdays=7;
+ //             $units=ceil($noofquestions/7);
+ //               for($i=1;$i<=$noofquestions;$i++)
+ //               {
+ //                        $day=ceil($i/$units);
+ //                        $exactdateday=$day-1;
+ //                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+ //                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
+ //                }
+ //
+ //         }
+ //
+ //     if($schedule==2)
+ //         {
+ //             $this->db->query('UPDATE `hq_question` SET `date`=null');
+ //             $noofdays=14;
+ //             $units=ceil($noofquestions/$noofdays);
+ //               for($i=1;$i<=$noofquestions;$i++)
+ //               {
+ //                        $day=ceil($i/$units);
+ //                        $exactdateday=$day-1;
+ //                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+ //                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
+ //                }
+ //
+ //         }
+ //     if($schedule==3)
+ //         {
+ //             $this->db->query('UPDATE `hq_question` SET `date`=null');
+ //             $noofdays=21;
+ //             $units=ceil($noofquestions/$noofdays);
+ //               for($i=1;$i<=$noofquestions;$i++)
+ //               {
+ //                        $day=ceil($i/$units);
+ //                        $exactdateday=$day-1;
+ //                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+ //                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
+ //                }
+ //
+ //         }
+ //     if($schedule==4)
+ //         {
+ //             $this->db->query('UPDATE `hq_question` SET `date`=null');
+ //             $noofdays=28;
+ //             $units=ceil($noofquestions/$noofdays);
+ //               for($i=1;$i<=$noofquestions;$i++)
+ //               {
+ //                        $day=ceil($i/$units);
+ //                        $exactdateday=$day-1;
+ //                        $newdate = date('Y-m-d', strtotime($startdate . ' +'.$exactdateday.' day'));
+ //                        $this->db->query("UPDATE `hq_question` SET `date`='$newdate' WHERE `date` IS null AND `id`='$i'");
+ //                }
+ //
+ //         }
+ //
+ //    }
  public function setCron()
  {
      $query1=$this->db->query("SELECT * FROM `user` WHERE `expirydate` >NOW()")->row();
@@ -885,20 +885,22 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
      if(empty($query1))
      {
          $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW()")->result();
+         	$companyid=$this->user_model->getCompanyId();
          if(!empty($query))
          {
             $getUserid=$this->restapi_model->getUsers();
             foreach($getUserid as $getUserid)
             {
             $email=$getUserid->email;
-            $hashvalue=base64_encode ($getUserid->id."&hq");
+            $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
             $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
             $data['link']=$link;
+            	$data['hashuser']=$hashvalue;
               $htmltext = $this->load->view('emailers/userquestion', $data, true);
             $this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
 
             }
-            }
+      }
             // new journey mainurl
             $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
             $lastdate=$getdate->date;
@@ -929,6 +931,11 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
      }
 
  }
+
+
+ // CRON SHOULD RUN DAILY
+
+ // TO SEND MINISRUVEY AFTER ALL QUESTIION
  public function testcron(){
    $checkpackage=$this->menu_model->checkpackage();
    if($checkpackage !=1){

@@ -154,9 +154,9 @@ class User_model extends CI_Model
 			'email' => $email,
 			'accesslevel' => $accesslevel,
 			'status' => $status,
-            'socialid'=> $socialid,
-            'image'=> $image,
-            'json'=> $json,
+      'socialid'=> $socialid,
+      'image'=> $image,
+      'json'=> $json,
 			'logintype' => $logintype,
 			'username' => $username,
 			'gender' => $gender,
@@ -181,6 +181,14 @@ class User_model extends CI_Model
 		}
 
 		$this->db->where( 'id', $id );
+		$query=$this->db->update( 'user', $data );
+
+		$companyid=$this->user_model->getCompanyId();
+		$hashvalue=base64_encode ($id."&hq&".$companyid);
+		$data  = array(
+			'hashuser' =>$hashvalue
+		);
+		$this->db->where('id',$id);
 		$query=$this->db->update( 'user', $data );
 
 		return 1;
