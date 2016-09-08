@@ -908,8 +908,8 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
             if($lastdate==$todaysdate){
               $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
               $adminemail=$adminmail->email;
-              $htmltext = $this->load->view('emailers/thankyou', $data, true);
-              $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
+              // $htmltext = $this->load->view('emailers/thankyou', $data, true);
+              // $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
 
 
                   $dateafter7day=date_add($lastdate,date_interval_create_from_date_string("7 days"));
@@ -936,33 +936,33 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
  // CRON SHOULD RUN DAILY
 
  // TO SEND MINISRUVEY AFTER ALL QUESTIION
- public function testcron(){
-   $checkpackage=$this->menu_model->checkpackage();
-   if($checkpackage !=1){
-     // new journey mainurl
-     $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
-     $lastdate=$getdate->date;
-     $todaysdate = date('Y-m-d');
-     if($lastdate==$todaysdate){
-             $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
-             $adminemail=$adminmail->email;
-            //  $htmltext = $this->load->view('emailers/thankyou', $data, true);
-            //  $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
-
-
-             // new journey mail
-             $data['link']=site_url('site/viewconclusionfinalsuggestion');
-             $htmltext = $this->load->view('emailers/newjourney', $data, true);
-             $this->menu_model->emailer($htmltext,'Another Happyness Journey Begins!',$adminemail,"Sir/Madam");
-             // mini survey intro
-            //  $htmltext = $this->load->view('emailers/mini-survey', $data, true);
-            //  $this->menu_model->emailer($htmltext,'Mini Surveys-Here’s What You Need To Do!',$adminemail,"Sir/Madam");
-
-
-  }
-   }
-
- }
+ // public function testcron(){
+ //   $checkpackage=$this->menu_model->checkpackage();
+ //   if($checkpackage !=1){
+ //     // new journey mainurl
+ //     $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
+ //     $lastdate=$getdate->date;
+ //     $todaysdate = date('Y-m-d');
+ //     if($lastdate==$todaysdate){
+ //             $adminmail=$this->db->query("SELECT * FROM `user` WHERE `id`=1")->row();
+ //             $adminemail=$adminmail->email;
+ //            //  $htmltext = $this->load->view('emailers/thankyou', $data, true);
+ //            //  $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
+ //
+ //
+ //             // new journey mail
+ //             $data['link']=site_url('site/viewconclusionfinalsuggestion');
+ //             $htmltext = $this->load->view('emailers/newjourney', $data, true);
+ //             $this->menu_model->emailer($htmltext,'Another Happyness Journey Begins!',$adminemail,"Sir/Madam");
+ //             // mini survey intro
+ //            //  $htmltext = $this->load->view('emailers/mini-survey', $data, true);
+ //            //  $this->menu_model->emailer($htmltext,'Mini Surveys-Here’s What You Need To Do!',$adminemail,"Sir/Madam");
+ //
+ //
+ //  }
+ //   }
+ //
+ // }
  public function checkurl(){
    $url =  $_SERVER['REQUEST_URI'];
    $urll=explode("/",$url);
