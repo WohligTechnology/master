@@ -884,7 +884,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
 //    don't send que
      if(empty($query1))
      {
-         $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW()")->result();
+         $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW() AND `date` !='0000-00-00'")->result();
          	$companyid=$this->user_model->getCompanyId();
          if(!empty($query))
          {
@@ -964,10 +964,12 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
  //
  // }
  public function checkurl(){
-   $url =  $_SERVER['REQUEST_URI'];
-   $urll=explode("/",$url);
-   print_r($urll);
-   echo $urll[2];
+  //  $url =  $_SERVER['REQUEST_URI'];
+  //  $urll=explode("/",$url);
+  //  print_r($urll);
+  //  echo $urll[2];
+   $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW() AND `date` !='0000-00-00'")->result();
+  print_r($query);
 
  }
 
