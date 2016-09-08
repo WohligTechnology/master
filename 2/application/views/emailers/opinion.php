@@ -16,7 +16,9 @@
             <!-- insert Link --><a href="<?php echo $link;?>" target="_blank">Click here to start.</a>
             <!--End Link -->
         </div>
-
+        <p style="margin:0 0 15px 0;">
+          In case you are using the survey on your Android or iOS phone, do enter the following code when prompted:<p><?php echo $hashuser;?></p>
+        </p>
         <div style="margin:0 0 15px 0;">
           Quick tip: Pick the answer you believe in. All responses are kept confidential.
         </div>

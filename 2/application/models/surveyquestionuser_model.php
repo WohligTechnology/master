@@ -6,7 +6,7 @@ class surveyquestionuser_model extends CI_Model
 public function create($survey,$email,$status)
 {
   	$companyid=$this->user_model->getCompanyId();
-    $getuserid=$this->db->query("SELECT * FROM `user` WHERE `email`='$email'")->row();
+    $getuserid=$this->db->query("SELECT * FROM `user` WHERE `email`='$email' AND `accesslevel`='4'")->row();
     $userid=$getuserid->id;
     if($userid)
     {

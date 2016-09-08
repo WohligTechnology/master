@@ -80,7 +80,6 @@ class Site extends CI_Controller
         $data['showavg']=$this->pillar_model->showavg();
         $data['lastpillardetail']=$this->pillar_model->lastpillardetail();
 		$this->load->view( 'template', $data );
-//        }
 
 	}
 
@@ -4263,6 +4262,7 @@ $this->load->view("template",$data);
     public function viewchangeexpected(){
         $access=array("1","5");
         $this->checkaccess($access);
+				 $data['package']=$this->menu_model->checkpackage();
         $data['before']=$this->pillar_model->getallpillarsbypackage();
         $data['elevenpillar']=$this->pillar_model->getelevenpillar();
         $data["page"]="viewchangeexpected";

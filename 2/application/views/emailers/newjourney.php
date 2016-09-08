@@ -16,17 +16,13 @@
             Because of the package that you have chosen, your Happyness Quotient journey does not end here.
           </p>
           <p style="margin:0 0 15px 0;">
-            To understand what your employees are thinking about other aspects of life at work,
-
-            <!-- insert Link -->
-            <a href="<?php echo $link;?>" target="_blank">create a mini survey right here!</a>
-            <!--End Link -->
-
+            To understand what your employees are thinking about other aspects of life at work, you can create as many mini surveys as you like!
           </p>
-
           <p style="margin:0 0 15px 0;">
-            You can create as many mini surveys as you like.
+          All of you have to do is log on to your company profile and click the 'Mini Survey' option in the menu. 
           </p>
+
+
           <p style="margin:0 0 15px 0;">
             Happy to help!</p>
           <p style="margin:0 0 15px 0;">
