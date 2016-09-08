@@ -1270,42 +1270,7 @@ public function blockCompany()
         redirect($exactpath);
 
 }
-     public function checkblockpackage()
-    {
-			//package will expiure
-        // willbe included in cron
-         $todaysdate=date("Y-m-d");
-         $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` <= '$todaysdate' AND `isblock`=0")->result();
-        if(!empty($query))
-        {
-            foreach($query as $row)
-            {
-                $companyid=$row->id;
-                $email=$row->email;
-								$htmltext = $this->load->view('emailers/expired', $data, true);
-								$this->menu_model->emailer($htmltext,'Your Happyness Quotient Package Has Expired!',$email,"Sir/Madam");
-                $this->company_model->blockCompanyModel($companyid);
-            }
-        }
-    }
-    public function checkpackagesendemail()
-    {
-			// reminder package will expire
-        // willbe included in cron
-         $dayafter30days=date("Y-m-d",strtotime("+15 days"));
-         $query=$this->db->query("SELECT * FROM `master_company` WHERE `enddate` = '$dayafter30days' AND `isblock`=0")->result();
-        if(!empty($query))
-        {
-            foreach($query as $row)
-            {
-                $companyid=$row->id;
-                $companyname=$row->name;
-                $email=$row->email;
-								$htmltext = $this->load->view('emailers/expirenote', $data, true);
-							$this->menu_model->emailer($htmltext,'Your Happyness Quotient Package Is About To Expire!',$email,"Sir/Madam");
-            }
-        }
-    }
+  
 
 }
 ?>
