@@ -377,10 +377,37 @@
                 </div>
             </div>
         </div>
+
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="row">
+            <div class="all-range">
+                <div class="col s2">
+                    <div class="progress-bar out-top" style="margin:0px;">
+                        <output for="rangeavg" class="output">
+                            <span id="demo"></span>
+                        </output>
+                    </div>
+                </div>
+                <div class="col s10">
+                    <div class="left-side">
+                        <div class="progress-bar">
+                            <p class="pt7">Out Of 100% (Reach 100% to Proceed)</p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+
+
         <div class="row">
             <div class="col s12">
                 <div class="text-center">
-                     <button type="submit" class="waves-effect waves-light btn blue-btn">OK</button>
+                     <button type="submit" class="waves-effect waves-light btn blue-btn showok">OK</button>
 <!--                    <a class="waves-effect waves-light btn blue-btn" id="submit1">OK</a>-->
                 </div>
             </div>
@@ -390,17 +417,27 @@
        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <!--  <script src="<?php echo base_url('assets').'/';?>js/index.js"></script>-->
 <script>
-$( document ).ready(function() {
-
-     var new_base_url = "<?php echo site_url(); ?>";
-     $.getJSON(new_base_url + '/site/getPillarWeight', {
-            }, function(data) {
-                console.log("datd");
-                console.log(data);
-            });
+    $(document).ready(function() {
 
 
-     $("[name=range]").on("change", function() {
+
+        var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+
+        if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+
+        console.log(totalsum);
+        if (totalsum != 100) {
+            $(".showok").hide();
+            $("#demo").text(totalsum);
+        } else if (totalsum = 100) {
+            $(".showok").show();
+            $("#demo").text(totalsum);
+        }
+
+        $("[name=range]").on("change", function() {
             $("[for=range]").val(this.value + "%");
         }).trigger("change");
 
@@ -446,5 +483,191 @@ $( document ).ready(function() {
         $("[name=rangeeleven]").on("change", function() {
             $("[for=rangeeleven]").val(this.value + "%");
         }).trigger("change");
+
+
+
+        $("[name=range]").on("change", function() {
+            console.log(document.getElementById("demo"));
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            console.log(totalsum);
+
+        if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            if (totalsum != 100) {
+                $(".showok").hide();
+                //                document.getElementById("demo").innerHTML = totalsum;
+                $("#demo").text(totalsum);
+            } else if (totalsum == 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangeone]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+
+        if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangetwo]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangethree]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangefour]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangefive]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangesix]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangeseven]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangeeight]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangenine]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+        $("[name=rangeeleven]").on("change", function() {
+            var totalsum = parseFloat($("[name=range]").val()) + parseFloat($("[name=rangeone]").val()) + parseFloat($("[name=rangetwo]").val()) + parseFloat($("[name=rangethree]").val()) + parseFloat($("[name=rangefour]").val()) + parseFloat($("[name=rangefive]").val()) + parseFloat($("[name=rangesix]").val()) + parseFloat($("[name=rangeseven]").val()) + parseFloat($("[name=rangeeight]").val()) + parseFloat($("[name=rangenine]").val());
+            if($("[name=rangeeleven]").val()){
+            console.log("in if");
+            totalsum +=  parseFloat($("[name=rangeeleven]").val());
+        }
+            console.log(totalsum);
+            if (totalsum != 100) {
+                $(".showok").hide();
+                $("#demo").text(totalsum);
+            } else if (totalsum = 100) {
+                $(".showok").show();
+                $("#demo").text(totalsum);
+            }
+        });
+
+
     });
+
 </script>

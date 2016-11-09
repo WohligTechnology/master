@@ -152,4 +152,41 @@ public function check()
   $id=$this->db->insert_id();
 }
 
+
+	public function emailer()
+		{
+					$query=$this->db->query("SELECT * FROM `emailer`")->row();
+					$username=$query->username;
+					$password=$query->password;
+					$url = 'https://api.sendgrid.com/';
+					$user=base64_decode($username);
+					$pass=base64_decode($password);
+					$params = array(
+							'api_user'  => $user,
+							'api_key'   => $pass,
+							'to'        => "pooja@wohlig.com",
+							'subject'   => "Test",
+							'html'      => "<p>Hiii</p>",
+							'text'      => 'Will Never Grow Up',
+							'from'      => 'info@willnevergrowup.com',
+							'fromname'      => 'Happyness Quotient',
+						);
+
+					$request =  $url.'api/mail.send.json';
+					$session = curl_init($request);
+					curl_setopt ($session, CURLOPT_POST, true);
+					curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+					curl_setopt($session, CURLOPT_HEADER, false);
+					curl_setopt($session, CURLOPT_SSL_VERIFYPEER, false);//New line
+					curl_setopt($session, CURLOPT_SSL_VERIFYHOST, false);//New line
+
+					curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+					$response = curl_exec($session);
+
+					// print everything out
+					////var_dump($response,curl_error($session),curl_getinfo($session));
+	       print_r($response);
+					curl_close($session);
+
+		}
 } ?>

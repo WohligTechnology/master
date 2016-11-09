@@ -714,7 +714,7 @@ class User_model extends CI_Model
             $name=$row['name'];
             $email=$row['email'];
             $gender=$row['gender'];
-            $age=$row['age'];
+            // $age=$row['age'];
             $maritalstatus=$row['maritalstatus'];
             $designation=$row['designation'];
             $department=$row['department'];
@@ -803,7 +803,6 @@ class User_model extends CI_Model
                             'accesslevel' => 4,
                             'status' => 1,
                             'gender' => $gender,
-                            'age' => $age,
                             'maritalstatus' => $maritalstatus,
                             'designation' => $designation,
                             'department' => $department,
