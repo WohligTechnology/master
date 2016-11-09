@@ -100,7 +100,7 @@
 			</div>
 		</div>
 -->
-		<div class="row">
+		<div class="row"  style="display:none">
 			<div class="input-field col m6 s12">
 				<label for="age">Age</label>
 				<input type="text" id="age" name="age" value="<?php echo set_value('age',$before->age);?>">
