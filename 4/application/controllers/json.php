@@ -603,7 +603,7 @@ $this->load->view("json",$data);
 //            $email=$getUserid->email;
 //             $hashvalue=base64_encode ($getUserid->id."&hq");
              $hashvalue=base64_encode ("16&hq");
-       $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+       $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> to get questions.";
 
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
@@ -893,7 +893,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
             {
             $email=$getUserid->email;
             $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
-            $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+            $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> to get questions.";
             $data['link']=$link;
             	$data['hashuser']=$hashvalue;
               $htmltext = $this->load->view('emailers/userquestion', $data, true);
