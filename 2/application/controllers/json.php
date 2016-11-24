@@ -603,7 +603,7 @@ $this->load->view("json",$data);
 //            $email=$getUserid->email;
 //             $hashvalue=base64_encode ($getUserid->id."&hq");
              $hashvalue=base64_encode ("16&hq");
-       $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> to get questions.";
+       $link="<a href='http://104.197.47.126/frontend/#/playing/$hashvalue'>Click here </a> to get the questions.";
 
                $this->load->library('email');
        $this->email->from('master@willnevergrowup.in', 'HQ');
@@ -640,7 +640,7 @@ $this->load->view("json",$data);
             $userid=$gettotalemail->userid;
             $hashvalue=base64_encode ($userid."&hq&".$companyid);
             $data['hashuser']=base64_encode ($userid."&hq&".$companyid);
-            $link="http://wohlig.co.in/hqfront/#/playing/$hashvalue";
+            $link="http://104.197.47.126/frontend/#/playing/$hashvalue";
             $data['link']=$link;
     				  $htmltext = $this->load->view('emailers/opinion', $data, true);
     				$this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
@@ -893,7 +893,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
             {
             $email=$getUserid->email;
             $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
-            $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> to get questions.";
+            $link="<a href='http://104.197.47.126/frontend/#/playing/$hashvalue'>Click here </a> to get questions.";
             $data['link']=$link;
             	$data['hashuser']=$hashvalue;
               $htmltext = $this->load->view('emailers/userquestion', $data, true);

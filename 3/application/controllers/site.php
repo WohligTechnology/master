@@ -4237,7 +4237,7 @@ $this->load->view("template",$data);
 					$companyid=$this->user_model->getCompanyId();
         $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
         // $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
-        $link="<a href='http://wohlig.co.in/hqfront/#/welcome/$hashvalue'>Click here </a> to get questions";
+        $link="<a href='http://104.197.47.126/frontend/#/welcome/$hashvalue'>Click here </a> to get the questions.";
 				// echo $link;
 				$data['link']=$link;
 				$data['hashuser']=$hashvalue;

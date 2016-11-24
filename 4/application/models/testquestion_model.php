@@ -20,7 +20,7 @@ return  $id;
         foreach($getUserid as $getUserid){
             $email=$getUserid->email;
              $hashvalue=base64_encode ($getUserid->id."&hq");
-       $link="<a href='http://wohlig.co.in/hqfront/#/playing/$hashvalue'>Click here </a> To get questions.";
+       $link="<a href='http://104.197.47.126/frontend/#/playing/$hashvalue'>Click here </a> to get the questions.";
                $this->load->library('email');
        $this->email->from('vigwohlig@gmail.com', 'HQ');
        $this->email->to($email);
