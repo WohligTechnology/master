@@ -893,7 +893,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
             {
             $email=$getUserid->email;
             $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
-            $link="<a href='http://104.197.47.126/frontend/#/playing/$hashvalue'>Click here </a> to get questions.";
+            $link="<a href='http://104.197.47.126/frontend/#/playing/$hashvalue'>Click here </a> to get the questions.";
             $data['link']=$link;
             	$data['hashuser']=$hashvalue;
               $htmltext = $this->load->view('emailers/userquestion', $data, true);
