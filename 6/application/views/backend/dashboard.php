@@ -617,6 +617,7 @@
 
 
 
+
 <script>
 var basepath="<?php echo base_url('uploads').'/'?>";
 function options() {
@@ -624,7 +625,8 @@ function options() {
   $("#imgoptions").html("");
 console.log(groupedData);
 if(groupedData){
-  for(var i=0;i<groupedData.group41.length;i++){
+    if(groupedData.group41 && _.isArray(groupedData.group41)) {
+for(var i=0;i<groupedData.group41.length;i++){
     var imagediv=document.createElement("div");
     imagediv.className = "small-images";
     var imagenode = document.createElement("img");
@@ -634,6 +636,8 @@ if(groupedData){
     imagediv.appendChild(textnode);
     document.getElementById("imgoptions").appendChild(imagediv);
   }
+    }
+  
 }
 
 }
@@ -647,7 +651,7 @@ function options1() {
   // var image1=groupedData.group41[0].image;
     $("#imgoptions1").html("");
     console.log(groupedData);
-if(groupedData.group42.length !=0){
+ if(groupedData.group42 && _.isArray(groupedData.group42)) {
   for(var i=0;i<groupedData.group42.length;i++){
     var imagediv=document.createElement("div");
     imagediv.className = "small-images";
@@ -659,9 +663,6 @@ if(groupedData.group42.length !=0){
     document.getElementById("imgoptions1").appendChild(imagediv);
   }
 }
-
-
-
 }
 </script>
 <!-- <div>

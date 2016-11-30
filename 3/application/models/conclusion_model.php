@@ -215,6 +215,7 @@ return $query;
                 
                }
           }
+        //   print_r($conclusionquery);
           return $conclusionquery;
         
       

@@ -199,64 +199,6 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
 			WHERE `hq_useranswer`.`pillar`='$pillarid' AND `hq_useranswer`.`user`='$userid'")->row();
             $row->pillaraveragebyuserid=$pillaraveragebyuserid->totalweight;
         }
-
-//        $teamquery=$this->db->query("SELECT * FROM `user` WHERE `id`='$userid'")->row();
-//        $teamid=$teamquery->team;
-//        $allteamusers=$this->db->query("SELECT * FROM `user` WHERE `team`='$teamid'")->result();
-//        $totalusersinteam=count($allteamusers);
-//
-//        $alluseridsofteam="(";
-//        foreach($allteamusers as $key=>$value)
-//        {
-//            if($key==0)
-//            {
-//                $alluseridsofteam.=$value->id;
-//            }
-//            else
-//            {
-//                $alluseridsofteam.=",".$value->id;
-//            }
-//        }
-//        $alluseridsofteam=")";
-//
-//        foreach($query as $row)
-//        {
-//			$pillarid = $row->id;
-//			$pillaraveragebyteam=$this->db->query("SELECT IFNULL(SUM(`hq_options`.`weight`),0) AS `totalweight`
-//FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_useranswer`.`option`  LEFT OUTER JOIN `user` ON `user`.`id`=`hq_useranswer`.`user`
-//			WHERE `hq_useranswer`.`pillar`='$pillarid' AND `hq_useranswer`.`user` IN $alluseridsofteam ")->row();
-//            $totalweight=($pillaraveragebyteam->totalweight)/$totalusersinteam;
-//            $row->pillaraveragebyteam=$totalweight;
-//        }
-//
-//
-//        $allorganizationusers=$this->db->query("SELECT * FROM `user` WHERE `accesslevel`=4")->result();
-//        $totalusersinorganization=count($allorganizationusers);
-//
-//        $alluseridsoforganization="(";
-//        foreach($allorganizationusers as $key=>$value)
-//        {
-//            if($key==0)
-//            {
-//                $alluseridsoforganization.=$value->id;
-//            }
-//            else
-//            {
-//                $alluseridsoforganization.=",".$value->id;
-//            }
-//        }
-//        $alluseridsoforganization=")";
-//
-//
-//        foreach($query as $row)
-//        {
-//			$pillarid = $row->id;
-//			$pillaraveragebyorganization=$this->db->query("SELECT IFNULL(SUM(`hq_options`.`weight`),0) AS `totalweight`
-//FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_useranswer`.`option`  LEFT OUTER JOIN `user` ON `user`.`id`=`hq_useranswer`.`user`
-//			WHERE `hq_useranswer`.`pillar`='$pillarid'")->row();
-//            $totalweight=($pillaraveragebyorganization->totalweight)/$totalusersinorganization;
-//            $row->pillaraveragebyorganization=$totalweight;
-//        }
         return $query;
     }
 
@@ -1128,36 +1070,21 @@ public function uploadImage(){
     }
     public function getinterlinkageoptions($question1,$question2)
     {
-       $query=$this->db->query("SELECT `option1`,`table1`.`id1`,`option2`,`table1`.`id2`,IFNULL(`count`,0) as `countuser`
-FROM
-(
-
-    SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `id1`,`option2`.`optiontext` as `option2`,`option2`.`id` as `id2` FROM `hq_options` as `option1` , `hq_options` as `option2` WHERE `option1`.`question`='$question1' AND `option2`.`question`='$question2'
-
-) as `table1`
-
-LEFT OUTER JOIN
-
-(
-SELECT `option1`.`optiontext` as `option1text`,`option1`.`id` as `id1` ,`option2`.`optiontext` as `option2text`,`option2`.`id` as `id2`,COUNT(`user`) as `count`
-FROM
-(SELECT MAX(`option1id`) as `option1id`,MAX(`option2id`) as `option2id`,`user`,COUNT(`question1`) as `count` FROM (SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `option1id`,0 as `option2`,0 as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option1`  ON `option1`.`id` = `hq_useranswer`.`option`
-
-WHERE `option1`.`question`='$question1'
-
-UNION
-
-SELECT 0 as `option1`,0 as `option1id`,`option2`.`optiontext` as `option2`,`option2`.`id` as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option2`  ON `option2`.`id` = `hq_useranswer`.`option`
-
-WHERE `option2`.`question`='$question2'
-
-) as `tab1` GROUP BY `user` )
-
-as `tab2`
-INNER JOIN `hq_options` as `option1` ON `option1`.`id` = `option1id`
-INNER JOIN `hq_options` as `option2` ON `option2`.`id` = `option2id`
-WHERE `count` >= 2
-GROUP BY `option1id`,`option2id`) as `table2` ON `table1`.`id1`=`table2`.`id1` AND `table1`.`id2`=`table2`.`id2`")->result();
+  //         SELECT `option1`,`table1`.`id1`,`option2`,`table1`.`id2`,IFNULL(`count`,0) as `countuser`
+// FROM
+// (SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `id1`,`option2`.`optiontext` as `option2`,`option2`.`id` as `id2` FROM `hq_options` as `option1` , `hq_options` as `option2` WHERE `option1`.`question`='$question1' AND `option2`.`question`='$question2') as `table1`LEFT OUTER JOIN
+// (SELECT `option1`.`optiontext` as `option1text`,`option1`.`id` as `id1` ,`option2`.`optiontext` as `option2text`,`option2`.`id` as `id2`,COUNT(`user`) as `count`
+// FROM(SELECT MAX(`option1id`) as `option1id`,MAX(`option2id`) as `option2id`,`user`,COUNT(`question1`) as `count` FROM (SELECT `option1`.`optiontext` as `option1`,`option1`.`id` as `option1id`,0 as `option2`,0 as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option1`  ON `option1`.`id` = `hq_useranswer`.`option`
+// WHERE `option1`.`question`='$question1' UNION SELECT 0 as `option1`,0 as `option1id`,`option2`.`optiontext` as `option2`,`option2`.`id` as `option2id`,`hq_useranswer`.`user`,1 as `question1` FROM  `hq_useranswer` LEFT OUTER JOIN `hq_options` as `option2`  ON `option2`.`id` = `hq_useranswer`.`option`
+// WHERE `option2`.`question`='$question2'
+// ) as `tab1` GROUP BY `user` )
+// as `tab2`
+// INNER JOIN `hq_options` as `option1` ON `option1`.`id` = `option1id`
+// INNER JOIN `hq_options` as `option2` ON `option2`.`id` = `option2id`
+// WHERE `count` >= 2
+// GROUP BY `option1id`,`option2id`) as `table2` ON `table1`.`id1`=`table2`.`id1` AND `table1`.`id2`=`table2`.`id2`
+       $query=$this->db->query("SELECT `user1`,`user2`,`question1`,`option1`,`question2`,`option2`,`count` as `countuser`,`optiontable1`.`text` as `option1`,`optiontable2`.`text` as `option2` FROM (SELECT `user1`,`user2`,`question1`,`option1`,`question2`,`option2`,count(`user1`) as `count` FROM (SELECT `user` as `user2`, `option` as `option2`,`question` as `question2` FROM `hq_useranswer` WHERE `question` = '$question1') as `tab1` INNER JOIN  (SELECT `user` as `user1`,`option` as `option1`,`question` as `question1` FROM `hq_useranswer` WHERE `question` = '$question2') as `tab2` ON `user1` = `user2` GROUP BY `option1`,`option2`) as `table1` INNER JOIN `hq_options` as `optiontable1` ON `table1`.`option1`= `optiontable1`.`id`  
+ INNER JOIN `hq_options` as `optiontable2` ON `table1`.`option2`= `optiontable2`.`id`")->result();
 
         return $query;
 
