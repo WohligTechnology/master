@@ -9,7 +9,7 @@
                 <table class="highlight responsive-table">
                     <thead>
                         <tr>
-                            <th data-field="id">Id</th>
+                            <!--<th data-field="id">Id</th>-->
                         <!-- <th data-field="name">Name</th> -->
                         <th data-field="email">Email</th>
                         <th data-field="accesslevelname">accesslevel</th>
@@ -39,7 +39,7 @@
 </div>
 <script>
     function drawtable(resultrow) {
-        return "<tr><td>" + resultrow.id + "</td><td>" + resultrow.email + "</td><td>" + resultrow.accesslevelname + "</td><td>" + resultrow.status + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad tooltipped' href='<?php echo site_url('site/edituser?id=');?>" + resultrow.id + "' data-position='top' data-delay='50' data-tooltip='Edit'><i class='material-icons'>mode_edit</i></a></td></tr>";
+        return "<tr><td>" + resultrow.email + "</td><td>" + resultrow.accesslevelname + "</td><td>" + resultrow.status + "</td><td><a class='btn btn-primary btn-xs waves-effect waves-light blue darken-4 z-depth-0 less-pad tooltipped' href='<?php echo site_url('site/edituser?id=');?>" + resultrow.id + "' data-position='top' data-delay='50' data-tooltip='Edit'><i class='material-icons'>mode_edit</i></a></td></tr>";
 
 
     }
