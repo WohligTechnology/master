@@ -882,25 +882,34 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
  {
      $query1=$this->db->query("SELECT * FROM `user` WHERE `expirydate` >NOW()")->row();
 //    don't send que
-     if(empty($query1))
+     if(!empty($query1))
      {
-         $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW() AND `date` !='0000-00-00'")->result();
-         	$companyid=$this->user_model->getCompanyId();
-         if(!empty($query))
-         {
-            $getUserid=$this->restapi_model->getUsers();
-            foreach($getUserid as $getUserid)
-            {
-            $email=$getUserid->email;
-            $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
-            $link="<a href='http://104.197.47.126/frontend/#/playing/$hashvalue'>Click here </a> to get the questions.";
-            $data['link']=$link;
-            	$data['hashuser']=$hashvalue;
-              $htmltext = $this->load->view('emailers/userquestion', $data, true);
-            $this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
+            $query = $this->db->query("SELECT * FROM `hq_question` WHERE `date`<=NOW() AND `date` !='0000-00-00'")->result();
+            $companyid=$this->user_model->getCompanyId();
+            $getdate1=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
+            $lastdateofquestion=$getdate1->date;
+            $todaysdate = date('Y-m-d');
+            $test=$todaysdate <=$lastdateofquestion;
+           
+        if($test)
+        {
 
+            if(!empty($query))
+            {
+                $getUserid=$this->restapi_model->getUsers();
+                foreach($getUserid as $getUserid)
+                {
+                $email=$getUserid->email;
+                $hashvalue=base64_encode ($getUserid->id."&hq&".$companyid);
+                $link="<a href='http://104.197.47.126/frontend/#/playing/$hashvalue'>Click here </a> to get the questions.";
+                $data['link']=$link;
+                $data['hashuser']=$hashvalue;
+                $htmltext = $this->load->view('emailers/userquestion', $data, true);
+                $this->menu_model->emailer($htmltext,'Your Happiness at Work matters!',$email,"Sir/Madam");
+
+                }
             }
-      }
+          }
             // new journey mainurl
             $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
             $lastdate=$getdate->date;
