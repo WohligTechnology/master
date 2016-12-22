@@ -149,9 +149,35 @@
             bigJson.Average_score=data[j].pillaraveragevalues;
             bigArr.push(bigJson);
         }
-
+// console.log(bigArr);
         $('.barchartexport').click(function(){
+            var data=[];
+            var datatemp=[];
         var data = bigArr;
+        var datatemp = bigArr;
+        var nguweightage=0;
+        var companyweightage=0;
+        var avg=0.0;
+        
+        ////////
+    for (var i = 0; i < datatemp.length; i++) {
+            nguweightage =nguweightage +   parseFloat(datatemp[i].Ngu_weightage);
+            companyweightage = companyweightage + parseFloat(datatemp[i].Company_weightage);
+            avg = parseFloat(avg) + parseFloat(datatemp[i].Average_score);
+    }
+
+        var calculatelength=parseFloat(datatemp.length);
+        avg=parseInt(avg/calculatelength);
+        companyweightage=parseInt(companyweightage/calculatelength);
+        nguweightage=parseInt(nguweightage/calculatelength);
+        data.push({
+               Pillar_name: "Overall",
+                 Ngu_weightage: nguweightage,
+                   Company_weightage: companyweightage,
+                Average_score: avg
+            }); 
+        console.log(" bar chart export ");
+        console.log(data);
         if(data == '')
             return;
             var currentDate=Date.now();
@@ -375,7 +401,15 @@
                     }
                     return parseInt(n);
                 });
-                //                console.log(weight);
+                             
+                               var newweight=[];
+                               var newsum=0;
+                               newweight=weight;
+                               _.each(newweight,function(n){
+                                   newsum=newsum+n;
+                               })
+                               weight.push(newsum/ (pillars.length - 1));
+                                 console.log(weight);
                 $('select').material_select();
                 createGraph();
                 createPie();
@@ -475,7 +509,7 @@
         }
 
         function createPie() {
-                   console.log(arr);
+                //    console.log(arr);
             $('#container').highcharts({
                 credits: {
                     enabled: false
