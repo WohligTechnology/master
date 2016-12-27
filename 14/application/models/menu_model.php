@@ -359,7 +359,7 @@ FROM `hq_useranswer`  LEFT OUTER JOIN `hq_options` ON `hq_options`.`id`=`hq_user
         }
            if ($experience != "") {
             if($experience2==''){
-                 $where .= "AND `user`.`noofyearsinorganization` > $experience1 ";
+                 $where .= "AND `user`.`noofyearsinorganization` > '$experience' ";
             }
             else
             {
@@ -977,9 +977,9 @@ public function uploadImage(){
             }
 
         }
-           if ($experience != "") {
+           if ($experience1 != "") {
             if($experience2==''){
-                 $where .= " `user`.`noofyearsinorganization` > $experience1 AND";
+                 $where .= " `user`.`noofyearsinorganization` > '$experience1' AND";
             }
             else
             {

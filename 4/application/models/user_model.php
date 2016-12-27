@@ -734,19 +734,19 @@ class User_model extends CI_Model
             }
             else
             {
-                             if(strtolower($maritalstatus)=='Unmarried')
+                             if($maritalstatus=='Unmarried')
                         {
                             $maritalstatus=1;
                         }
-                        else if(strtolower($maritalstatus)=='Married')
+                        else if($maritalstatus=='Married')
                         {
                             $maritalstatus=2;
                         }
-                        if(strtolower($gender)=='M')
+                        if($gender=='M')
                         {
                             $gender=1;
                         }
-                        else if(strtolower($gender)=='F')
+                        else if($gender=='F')
                         {
                             $gender=2;
                         }
