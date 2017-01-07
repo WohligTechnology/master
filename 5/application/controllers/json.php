@@ -910,6 +910,7 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
                 }
             }
           }
+         
             // new journey mainurl
             $getdate=$this->db->query("SELECT * FROM `hq_question` ORDER BY `date` DESC")->row();
             $lastdate=$getdate->date;
@@ -921,7 +922,10 @@ ORDER BY `hq_surveyquestionanswer`.`question` ASC")->result();
               // $this->menu_model->emailer($htmltext,'Thank You For Your Participation!',$adminemail,"Sir/Madam");
 
 
-                  $dateafter7day=date_add($lastdate,date_interval_create_from_date_string("7 days"));
+                  $dateafter7day=date('Y-m-d', strtotime("+7 days", strtotime($lastdate)));
+                    //   $dateafter7day="2017-01-07";
+          
+         
                   if($dateafter7day==$todaysdate){
                     // new journey mail
                     $data['link']=site_url('site/viewconclusionfinalsuggestion');
