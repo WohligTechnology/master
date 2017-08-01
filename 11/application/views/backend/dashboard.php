@@ -330,6 +330,10 @@
                 experience: $experience
             }, function(data) {
 
+// console.log("{");
+// console.log(data);
+
+// console.log("}");
                 var globalData=data;
                 makefiller(data);
 
@@ -344,7 +348,7 @@
                     sum+=obj.y;
                     arr.push(obj);
                 })
-
+// console.log(sum);
                 _.each(arr,function(n) {
                   n.percent = n.y/sum*100;
                   n.percent = n.percent.toFixed(1);
@@ -354,7 +358,7 @@
                 _.each(data, function(n) {
                     var obj1 = {};
                     obj1.Pillar_name = n.name;
-                    n.percent = n.pillaraveragevalues/sum*100;
+                    n.percent = (n.pillaraveragevalues/sum)*100;
                     n.percent = n.percent.toFixed(1);
                     obj1.Average_score =  n.percent;
                     arrforExport.push(obj1);
@@ -384,14 +388,16 @@
                     return parseInt(n);
                 });
                 expectedWeight.push(_.sum(expectedWeight) / (pillars.length - 1));
-                pillAraverage = _.pluck(data, "pillaraveragevalues");
+                pillAraverage = _.pluck(data, "percent");
+                // pillAraverage = _.pluck(data, "pillaraveragevalues");
                 pillAraverage = _.map(pillAraverage, function(n) {
                     if (n == "") {
                         n = 0;
                     }
-                    return parseInt(n);
+                    return parseFloat(n);
+                    // return parseInt(n);
                 });
-                //                console.log(pillAraverage);
+                            //    console.log(""+pillAraverage);
                 pillAraverage.push(_.sum(pillAraverage) / (pillars.length - 1));
 
                 weight = _.pluck(data, "weight");
