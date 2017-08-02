@@ -130,76 +130,13 @@
     var bigJson={};
     var arrforExport = [];
     var overallArray = [];
-    $(document).ready(function() {
-         new_base_url1 = "<?php echo site_url(); ?>";
-      function makefiller(data) {
-        console.log(data);
+    var dataForBarExcel;
 
-         groupedData = _.groupBy(data[0]['filler'], function(d){return "group"+d.question;});
-        $(".sec1").text("122");
-        options();
-        options1();
-        excelData=data;
-        bigArr = [];
-        for(var j=0;j<data.length;j++){
-          bigJson = {};
-            bigJson.Pillar_name=data[j].name;
-            bigJson.Ngu_weightage=data[j].expectedweight;
-            bigJson.Company_weightage=data[j].weight;
-            bigJson.Average_score=data[j].pillaraveragevalues;
-            bigArr.push(bigJson);
-        }
-// console.log(bigArr);
-        $('.barchartexport').click(function(){
-            var data=[];
-            var datatemp=[];
-        var data = bigArr;
-        var datatemp = bigArr;
-        var nguweightage=0;
-        var companyweightage=0;
-        var avg=0.0;
-        
-        ////////
-    for (var i = 0; i < datatemp.length; i++) {
-            nguweightage =nguweightage +   parseFloat(datatemp[i].Ngu_weightage);
-            companyweightage = companyweightage + parseFloat(datatemp[i].Company_weightage);
-            avg = parseFloat(avg) + parseFloat(datatemp[i].Average_score);
-    }
+ function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
 
-        var calculatelength=parseFloat(datatemp.length);
-        avg=parseInt(avg/calculatelength);
-        companyweightage=parseInt(companyweightage/calculatelength);
-        nguweightage=parseInt(nguweightage/calculatelength);
-        data.push({
-               Pillar_name: "Overall",
-                 Ngu_weightage: nguweightage,
-                   Company_weightage: companyweightage,
-                Average_score: avg
-            }); 
-        console.log(" bar chart export ");
-        console.log(data);
-        if(data == '')
-            return;
-            var currentDate=Date.now();
-        JSONToCSVConvertor(data, "Result"+currentDate, true);
-    });
-        $('.piechartexport').click(function(){
-        var data = arrforExport;
-        if(data == '')
-            return;
-            var currentDate=Date.now();
-        JSONToCSVConvertor(data, "Resultforpiechart"+currentDate, true);
-    });
-        $('.overallexport').click(function(){
-        var data = overallArray;
-        if(data == '')
-            return;
-            var currentDate=Date.now();
-        JSONToCSVConvertor(data, "Resultforoverall"+currentDate, true);
-    });
-        }
 
-        function JSONToCSVConvertor(JSONData, ReportTitle, ShowLabel) {
+            console.log("this is json to csv",JSONData);
+
             //If JSONData is not an object then JSON.parse will parse the JSON string in an Object
             var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
 
@@ -265,12 +202,84 @@
             //set the visibility hidden so it will not effect on your web-layout
             link.style = "visibility:hidden";
             link.download = fileName + ".csv";
+            console.log(link);
 
             //this part will append the anchor tag and remove it after automatic click
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
+
+    $(document).ready(function() {
+         new_base_url1 = "<?php echo site_url(); ?>";
+      function makefiller(data) {
+        console.log(data);
+
+         groupedData = _.groupBy(data[0]['filler'], function(d){return "group"+d.question;});
+        $(".sec1").text("122");
+        options();
+        options1();
+        excelData=data;
+        bigArr = [];
+        for(var j=0;j<data.length;j++){
+          bigJson = {};
+            bigJson.Pillar_name=data[j].name;
+            bigJson.Ngu_weightage=data[j].expectedweight;
+            bigJson.Company_weightage=data[j].weight;
+            bigJson.Average_score=data[j].pillaraveragevalues;
+            bigArr.push(bigJson);
+        }
+// console.log(bigArr);
+    //     $('.barchartexport').click(function(){
+    //         var data=[];
+    //         var datatemp=[];
+    //     var data = bigArr;
+    //     var datatemp = bigArr;
+    //     var nguweightage=0;
+    //     var companyweightage=0;
+    //     var avg=0.0;
+        
+    //     ////////
+    // for (var i = 0; i < datatemp.length; i++) {
+    //         nguweightage =nguweightage +   parseFloat(datatemp[i].Ngu_weightage);
+    //         companyweightage = companyweightage + parseFloat(datatemp[i].Company_weightage);
+    //         avg = parseFloat(avg) + parseFloat(datatemp[i].Average_score);
+    // }
+
+    //     var calculatelength=parseFloat(datatemp.length);
+    //     avg=parseInt(avg/calculatelength);
+    //     companyweightage=parseInt(companyweightage/calculatelength);
+    //     nguweightage=parseInt(nguweightage/calculatelength);
+    //     data.push({
+    //            Pillar_name: "Overall",
+    //              Ngu_weightage: nguweightage,
+    //                Company_weightage: companyweightage,
+    //             Average_score: avg
+    //         }); 
+    //     console.log(" bar chart export ");
+    //     console.log(data);
+    //     if(data == '')
+    //         return;
+    //         var currentDate=Date.now();
+    //     JSONToCSVConvertor(data, "Result"+currentDate, true);
+    // });
+    //     $('.piechartexport').click(function(){
+    //     var data = arrforExport;
+    //     if(data == '')
+    //         return;
+    //         var currentDate=Date.now();
+    //     JSONToCSVConvertor(data, "Resultforpiechart"+currentDate, true);
+    // });
+    //     $('.overallexport').click(function(){
+    //     var data = overallArray;
+    //     if(data == '')
+    //         return;
+    //         var currentDate=Date.now();
+    //     JSONToCSVConvertor(data, "Resultforoverall"+currentDate, true);
+    // });
+        }
+
+       
 
 
         GlobalFunctions.checkfortwo = function(val) {
@@ -399,7 +408,10 @@
                 });
                             //    console.log(""+pillAraverage);
                 pillAraverage.push(_.sum(pillAraverage) / (pillars.length - 1));
-
+dataForBarExcel=data;
+// delete myArray["lastname"];
+// console.log("data for bar excel");
+// console.log(dataForBarExcel);
                 weight = _.pluck(data, "weight");
                 weight = _.map(weight, function(n) {
                     if (n == "") {
@@ -417,6 +429,7 @@
                                weight.push(newsum/ (pillars.length - 1));
                                  console.log(weight);
                 $('select').material_select();
+
                 createGraph();
                 createPie();
                 overAll(totalexpected, totalsum);
@@ -742,6 +755,79 @@ function options1() {
                 color: 'white'
             })
             .add();
+    });
+
+
+
+$('.barchartexport').click(function(){
+            var data=[];
+            var datatemp=[];
+        var data = dataForBarExcel;
+        var datatemp = dataForBarExcel;
+        var nguweightage=0;
+        var companyweightage=0;
+        var avg=0.0;
+        for (var i = 0; i < datatemp.length; i++) {
+            //remove elements and change names
+
+            datatemp[i]["Pillar Name"]=datatemp[i]["name"];
+            delete datatemp[i]["name"];
+
+            datatemp[i]["NGU Weightage"]=datatemp[i]["expectedweight"];
+            delete datatemp[i]["expectedweight"];
+
+            datatemp[i]["Company Weightage"]=datatemp[i]["weight"];
+            delete datatemp[i]["weight"];
+
+            datatemp[i]["Average Weightage"]=datatemp[i]["percent"];
+            delete datatemp[i]["percent"];
+
+            delete datatemp[i]["order"];
+            delete datatemp[i]["filler"];
+            delete datatemp[i]["id"];
+            delete datatemp[i]["pillaraveragevalues"];
+            delete datatemp[i]["testexpectedweight"];
+            delete datatemp[i]["testname"];
+        }
+        console.log("after order remove");
+        console.log(datatemp);
+        ////////
+    for (var i = 0; i < datatemp.length; i++) {
+            nguweightage =nguweightage +   parseFloat(datatemp[i].expectedweight);
+            companyweightage = companyweightage + parseFloat(datatemp[i].weight);
+            avg = parseFloat(avg) + parseFloat(datatemp[i].percent);
+    }
+
+        var calculatelength=parseFloat(datatemp.length);
+        avg=parseInt(avg/calculatelength);
+        companyweightage=parseInt(companyweightage/calculatelength);
+        nguweightage=parseInt(nguweightage/calculatelength);
+        // data.push({
+        //        Pillar_name: "Overall",
+        //          Ngu_weightage: nguweightage,
+        //            Company_weightage: companyweightage,
+        //         Average_score: avg
+        //     }); 
+        console.log(" bar chart export ");
+        console.log(data);
+        // if(data == '')
+        //     return;
+            var currentDate=Date.now();
+        JSONToCSVConvertor(data, "Result"+currentDate, true);
+    });
+ $('.piechartexport').click(function(){
+        var data = arrforExport;
+        if(data == '')
+            return;
+            var currentDate=Date.now();
+        JSONToCSVConvertor(data, "Resultforpiechart"+currentDate, true);
+    });
+        $('.overallexport').click(function(){
+        var data = overallArray;
+        if(data == '')
+            return;
+            var currentDate=Date.now();
+        JSONToCSVConvertor(data, "Resultforoverall"+currentDate, true);
     });
 
 </script>

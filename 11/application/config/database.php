@@ -56,12 +56,13 @@ $myserver=$_SERVER['SERVER_NAME'];
 // {
   $db['default']['hostname'] = 'localhost';
   $db['default']['username'] = 'root';
-	$db['default']['password'] = 'SE7aeQ7a';
+	$db['default']['password'] = '';
+	// $db['default']['password'] = 'SE7aeQ7a';
 	$db['default']['database'] = '11';
   // $db['default']['username'] = 'wohligco_1';
 	// $db['default']['password'] = 'chintan123';
 	// $db['default']['database'] = 'wohligco_1';
-	$db['default']['dbdriver'] = 'mysql';
+	$db['default']['dbdriver'] = 'mysqli';
 	$db['default']['dbprefix'] = '';
 	$db['default']['pconnect'] = TRUE;
 	$db['default']['db_debug'] = TRUE;
