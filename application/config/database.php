@@ -56,10 +56,10 @@ $myserver=$_SERVER['SERVER_NAME'];
 // {
     $db['default']['hostname'] = 'localhost';
     $db['default']['username'] = 'root';
-    // $db['default']['password'] = 'SE7aeQ7a';
-    $db['default']['password'] = '';
+    $db['default']['password'] = 'SE7aeQ7a';
+    // $db['default']['password'] = '';
     $db['default']['database'] = 'master';
-    $db['default']['dbdriver'] = 'mysqli';
+    $db['default']['dbdriver'] = 'mysql';
     $db['default']['dbprefix'] = '';
     $db['default']['pconnect'] = TRUE;
     $db['default']['db_debug'] = TRUE;
