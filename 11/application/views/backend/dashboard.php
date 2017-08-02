@@ -396,7 +396,7 @@
                     }
                     return parseInt(n);
                 });
-                expectedWeight.push(_.sum(expectedWeight) / (pillars.length - 1));
+                // expectedWeight.push(_.sum(expectedWeight) / (pillars.length - 1));
                 pillAraverage = _.pluck(data, "percent");
                 // pillAraverage = _.pluck(data, "pillaraveragevalues");
                 pillAraverage = _.map(pillAraverage, function(n) {
@@ -407,7 +407,7 @@
                     // return parseInt(n);
                 });
                             //    console.log(""+pillAraverage);
-                pillAraverage.push(_.sum(pillAraverage) / (pillars.length - 1));
+                // pillAraverage.push(_.sum(pillAraverage) / (pillars.length - 1));
 dataForBarExcel=data;
 // delete myArray["lastname"];
 // console.log("data for bar excel");
@@ -426,7 +426,7 @@ dataForBarExcel=data;
                                _.each(newweight,function(n){
                                    newsum=newsum+n;
                                })
-                               weight.push(newsum/ (pillars.length - 1));
+                            //    weight.push(newsum/ (pillars.length - 1));
                                  console.log(weight);
                 $('select').material_select();
 
