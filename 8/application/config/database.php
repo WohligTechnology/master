@@ -56,6 +56,7 @@ $myserver=$_SERVER['SERVER_NAME'];
 // {
   $db['default']['hostname'] = 'localhost';
   $db['default']['username'] = 'root';
+	// $db['default']['password'] = '';
 	$db['default']['password'] = 'SE7aeQ7a';
 	$db['default']['database'] = '8';
   // $db['default']['username'] = 'wohligco_1';

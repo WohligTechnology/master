@@ -213,6 +213,7 @@
     $(document).ready(function() {
          new_base_url1 = "<?php echo site_url(); ?>";
       function makefiller(data) {
+          console.log("beforegroupdata processed");
         console.log(data);
 
          groupedData = _.groupBy(data[0]['filler'], function(d){return "group"+d.question;});
@@ -656,6 +657,9 @@ dataForBarExcel=data;
   <span style="font-size: 20px;"><b>Generic Questions</b></span>
 </div>
 <div class="jquestion">
+<?php
+// print_r(json_encode($fillerquestion));
+?>
   <?php echo $fillerquestion[0]->text;?>
 </div>
 <div id="imgoptions" class="row"></div>
@@ -676,7 +680,9 @@ var basepath="<?php echo base_url('uploads').'/'?>";
 function options() {
   // var image1=groupedData.group41[0].image;
   $("#imgoptions").html("");
+  console.log("before groupdata");
 console.log(groupedData);
+console.log("after groupdata");
 if(groupedData){
     if(groupedData.group41 && _.isArray(groupedData.group41)) {
 for(var i=0;i<groupedData.group41.length;i++){
